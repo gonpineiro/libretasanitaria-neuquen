@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the model class for table "Grupo".
  *
@@ -16,40 +17,65 @@
  * @property string $timestamp
  *
  */
-class Usuario {
+class Usuario
+{
     public $id;
-    public $id_wappersonas;
+    public $nro_tramite;
+    public $path_foto;
+    public $dni;
+    public $nombre;
+    public $apellido;
+    public $fecha_nac;
+    public $genero;
     public $telefono;
     public $email;
-    public $ciudad;
-    public $fechaAlta;
-    public $mensajeoperacion;
+    public $direccion_renaper;
+    public $localidad;
+    public $empresa_cuil;
+    public $empresa_nombre;
+    public $fecha_alta;
 
     public function __construct()
     {
         $this->id = "";
-        $this->id_wappersonas = "";
+        $this->nro_tramite = "";
+        $this->path_foto = "";
+        $this->dni = "";
+        $this->nombre = "";
+        $this->apellido = "";
+        $this->fecha_nac = "";
+        $this->genero = "";
         $this->telefono = "";
         $this->email = "";
-        $this->ciudad = "";
-        $this->setmensajeoperacion = "";
+        $this->direccion_renaper = "";
+        $this->localidad = "";
+        $this->empresa_cuil = "";
+        $this->empresa_nombre = "";
+        $this->fecha_alta = "";
     }
 
-    
-    public function setear($id, $id_wappersonas, $telefono, $email, $ciudad, $fechaAlta = null)
+    public function setear($id, $nro_tramite, $path_foto, $dni, $nombre, $apellido, $fecha_nac, $genero, $telefono, $email, $direccion_renaper, $localidad,  $empresa_cuil, $empresa_nombre, $fecha_alta = null)
     {
         $this->setId($id);
-        $this->setid_wappersonas($id_wappersonas);
+        $this->setNroTramite($nro_tramite);
+        $this->setPathFoto($path_foto);
+        $this->setDni($dni);
+        $this->setNombre($nombre);
+        $this->setApellido($apellido);
+        $this->setFechaNac($fecha_nac);
+        $this->setGenero($genero);
         $this->setTelefono($telefono);
         $this->setEmail($email);
-        $this->setCiudad($ciudad);
-        $this->setFechaAlta($fechaAlta);
+        $this->setDireccionRenaper($direccion_renaper);
+        $this->setLocalidad($localidad);
+        $this->setEmpresaCuil($empresa_cuil);
+        $this->setEmpresaNombre($empresa_nombre);
+        $this->setFechaAlta($fecha_alta);
     }
-    
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -59,56 +85,151 @@ class Usuario {
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
 
     /**
-     * Get the value of id_wappersonas
-     */ 
-    public function getid_wappersonas()
-    {
-        return $this->id_wappersonas;
-    }
-
-    /**
-     * Set the value of id_wappersonas
-     *
-     * @return  self
-     */ 
-    public function setid_wappersonas($id_wappersonas)
-    {
-        $this->id_wappersonas = $id_wappersonas;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of ciudad
+     * Get the value of nro_tramite
      */
-    public function getCiudad()
+    public function getNroTramite()
     {
-        return $this->ciudad;
+        return $this->nro_tramite;
     }
 
     /**
-     * Set the value of ciudad
+     * Set the value of nro_tramite
      *
      * @return  self
      */
-    public function setCiudad($ciudad)
+    public function setNroTramite($nro_tramite)
     {
-        $this->ciudad = $ciudad;
+        $this->nro_tramite = $nro_tramite;
 
         return $this;
     }
 
     /**
-     * Get the value of telefono
+     * Get the value of path_foto
+     */
+    public function getPathFoto()
+    {
+        return $this->path_foto;
+    }
+
+    /**
+     * Set the value of path_foto
+     *
+     * @return  self
+     */
+    public function setPathFoto($path_foto)
+    {
+        $this->path_foto = $path_foto;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dni
+     */
+    public function getDni()
+    {
+        return $this->dni;
+    }
+
+    /**
+     * Set the value of nro_tramite
+     *
+     * @return  self
+     */
+    public function setDni($dni)
+    {
+        $this->dni = $dni;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nombre
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set the value of nombre
+     *
+     * @return  self
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of apellido
+     */
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    /**
+     * Set the value of apellido
+     *
+     * @return  self
+     */
+    public function setApellido($apellido)
+    {
+        $this->apellido = $apellido;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fecha_nac
+     */
+    public function getFechaNac()
+    {
+        return $this->fecha_nac;
+    }
+
+    /**
+     * Set the value of fecha_nac
+     *
+     * @return  self
+     */
+    public function setFechaNac($fecha_nac)
+    {
+        $this->fecha_nac = $fecha_nac;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGenero()
+    {
+        return $this->genero;
+    }
+
+    /**
+     * @param string $genero
+     */
+    public function setGenero($genero)
+    {
+        $this->genero = $genero;
+    }
+
+    /**
+     * @return string
      */
     public function getTelefono()
     {
@@ -116,19 +237,15 @@ class Usuario {
     }
 
     /**
-     * Set the value of telefono
-     *
-     * @return  self
+     * @param string $telefono
      */
     public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
-
-        return $this;
     }
 
     /**
-     * Get the value of email
+     * @return string
      */
     public function getEmail()
     {
@@ -136,51 +253,91 @@ class Usuario {
     }
 
     /**
-     * Set the value of email
-     *
-     * @return  self
+     * @param string $email
      */
     public function setEmail($email)
     {
         $this->email = $email;
-
-        return $this;
-    }
-    
-    /**
-     * Get the value of fechaAlta
-     */
-    public function getFechaAlta()
-    {
-        return $this->fechaAlta;
     }
 
-    /**
-     * Set the value of fechaAlta
-     *
-     * @return  self
-     */
-    public function setFechaAlta($fechaAlta)
-    {
-        $this->fechaAlta = $fechaAlta;
-
-        return $this;
-    }
-    
     /**
      * @return string
      */
-    public function getMensajeoperacion()
+    public function getDireccionRenaper()
     {
-        return $this->mensajeoperacion;
+        return $this->direccion_renaper;
     }
 
     /**
-     * @param string $mensajeoperacion
+     * @param string $direccion_renaper
      */
-    public function setMensajeoperacion($mensajeoperacion)
+    public function setDireccionRenaper($direccion_renaper)
     {
-        $this->mensajeoperacion = $mensajeoperacion;
+        $this->direccion_renaper = $direccion_renaper;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocalidad()
+    {
+        return $this->localidad;
+    }
+
+    /**
+     * @param string $localidad
+     */
+    public function setLocalidad($localidad)
+    {
+        $this->localidad = $localidad;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmpresaCuil()
+    {
+        return $this->empresa_cuil;
+    }
+
+    /**
+     * @param string $empresa_cuil
+     */
+    public function setEmpresaCuil($empresa_cuil)
+    {
+        $this->empresa_cuil = $empresa_cuil;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmpresaNombre()
+    {
+        return $this->empresa_nombre;
+    }
+
+    /**
+     * @param string $empresa_nombre
+     */
+    public function setEmpresaNombre($empresa_nombre)
+    {
+        $this->empresa_nombre = $empresa_nombre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFechaAlta()
+    {
+        return $this->fecha_alta;
+    }
+
+    /**
+     * @param string $fecha_alta
+     */
+    public function setFechaAlta($fecha_alta)
+    {
+        $this->fecha_alta = $fecha_alta;
     }
 
     public function cargar()
@@ -188,8 +345,8 @@ class Usuario {
         $resp = false;
         $base = new BaseDatos();
         $sql = "SELECT * FROM ferias_usuario WHERE id = ?";
-        $params = Array($this->getId());
-        
+        $params = array($this->getId());
+
         if ($base) {
             $query = $base->prepareQuery($sql);
             $res = $base->executeQuery($query, false, $params, get_class($this));
@@ -273,11 +430,11 @@ class Usuario {
             $sql .= 'WHERE ' . $parametro;
         }
         $query = $base->prepareQuery($sql);
-        $res = $base->executeQuery($query,false, $valor);
+        $res = $base->executeQuery($query, false, $valor);
         if ($res) {
             while ($row = $base->Registro($query)) {
                 $obj = new Usuario();
-                $obj->setear($row['id'], $row['id_wappersonas'],$row['telefono'], $row['email'], $row['ciudad'],$row["fechaAlta"]);
+                $obj->setear($row['id'], $row['id_wappersonas'], $row['telefono'], $row['email'], $row['ciudad'], $row["fechaAlta"]);
                 array_push($arreglo, $obj);
             }
         }
