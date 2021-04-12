@@ -1,0 +1,46 @@
+
+Temp:Resource id #19
+Ret: 
+Statement: Resource id #18 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #19
+Ret: 
+Statement: Resource id #18 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #21
+Ret: 
+Statement: Resource id #20 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #19
+Ret: 
+Statement: Resource id #18 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #21
+Ret: 
+Statement: Resource id #20 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #19
+Ret: 
+Statement: Resource id #18 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #19
+Ret: 
+Statement: Resource id #18 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #19
+Ret: 
+Statement: Resource id #18 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
+Temp:Resource id #19
+Ret: 
+Statement: Resource id #18 
+ From: Solicitud 
+[Microsoft][ODBC SQL Server Driver][SQL Server]Hay más columnas en la instrucción INSERT que valores en la cláusula VALUES. El número de valores de VALUES debe coincidir con el de columnas de INSERT.
