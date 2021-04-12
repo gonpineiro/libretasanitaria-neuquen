@@ -7,7 +7,8 @@ header("Cache-Control: no-cache, must-revalidate ");
 /* Root Path */
 include_once 'paths.php';
 
-/* AutoLoad */
+/* AutoLoad composer & local */
+require ROOT_PATH . 'app/utils/funciones.php';
 require ROOT_PATH . 'vendor/autoload.php';
 
 /* Modo produccion: true */
