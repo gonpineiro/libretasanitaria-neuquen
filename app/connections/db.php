@@ -1,5 +1,4 @@
 <?php
-include_once 'paths.php';
 
 class ConnectMysql
 {

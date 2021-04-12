@@ -1,23 +1,122 @@
 <?php
-
-require_once('../app/config.php');
+include '../config/config.php';
+include '../connections/db.php';
 
 if (MIGRATE) {
     $conn = new ConnectMysql();
     $conn->connect();
 
-    /* User Table */
-    $usersSql =
-        "CREATE TABLE `pure`.`usuarios` (
-                `id` INT NOT NULL AUTO_INCREMENT,
-                `name` VARCHAR(45) NULL,
-                `password` VARCHAR(45) NULL,
-                `number` INT NULL,
-                PRIMARY KEY (`id`));";
+    /* ls_usuarios */
+    $ls_usuarios =
+        "CREATE TABLE `ls_usuarios` (
+            `id` INT NOT NULL AUTO_INCREMENT,
+            `nro_tramite` INT NULL,
+            `path_foto` VARCHAR(250) NULL,
+            `dni` INT NULL,
+            `nombre` VARCHAR(45) NULL,
+            `apellido` VARCHAR(45) NULL,
+            `fecha_nac` TIMESTAMP NULL,
+            `genero` VARCHAR(1) NULL,
+            `telefono` INT NULL,
+            `email` VARCHAR(250) NULL,
+            `direccion_renaper` VARCHAR(250) NULL,
+            `localidad` VARCHAR(250) NULL,
+            `empresa_cuil` INT NULL,
+            `empresa_nombre` VARCHAR(250) NULL,
+            `fecha_alta` TIMESTAMP NULL,
+            PRIMARY KEY (`id`));";
+    $conn->exec_query($ls_usuarios);
 
-    $conn->exec_query($usersSql);
+    /* ls_solicitudes */
+    $ls_solicitudes =
+        "CREATE TABLE `ls_solicitudes` (
+        `id` INT NOT NULL AUTO_INCREMENT,
+        `id_usuario_solicitante` INT NULL,
+        `id_usuario_solicitado` INT NULL,
+        `tipo_empleo` VARCHAR(45) NULL,
+        `renovacion` VARCHAR(45) NULL, /* ? */
+        `id_capacitador` INT NULL,
+        `municipalidad_nqn` TINYINT NULL,
+        `nro_recibo` INT NULL,
+        `path_comprobante_pago` VARCHAR(250) NULL,
+        `estado` VARCHAR(45) NULL, /* ? */
+        `retiro_en` VARCHAR(45) NULL,
+        `fecha_alta` TIMESTAMP NULL,
+        PRIMARY KEY (`id`));";
+    $conn->exec_query($ls_solicitudes);
 
-    
+    /* ls_capacitadores */
+    $ls_capacitadores =
+        "CREATE TABLE `ls_capacitadores` (
+        `id` INT NOT NULL,
+        `nombre` VARCHAR(45) NULL,
+        `apellido` VARCHAR(45) NULL,
+        `matricula` VARCHAR(45) NULL,
+        `path_certificado` VARCHAR(45) NULL,
+        `lugar` VARCHAR(45) NULL,
+        `fecha_alta` TIMESTAMP NULL,
+        PRIMARY KEY (`id`));";
+    $conn->exec_query($ls_capacitadores);
+
+    /* ls_log */
+    $ls_log =
+        "CREATE TABLE `ls_log` (
+        `id` INT NOT NULL AUTO_INCREMENT,
+        `id_usuario` INT NULL,
+        `id_solicitud` INT NULL,
+        `id_capacitador` INT NULL,
+        `error` VARCHAR(45) NULL,
+        `fecha_alta` TIMESTAMP NULL,
+        PRIMARY KEY (`id`));";
+    $conn->exec_query($ls_log);
+
+    /* ··················································· */
+
+    /* Relations */
+    $ls_solicitudes_id_usuario_solicitante_foreign =
+        "ALTER TABLE `ls_solicitudes` 
+        ADD CONSTRAINT `ls_solicitudes_id_usuario_solicitante_foreign`
+        FOREIGN KEY (`id_usuario_solicitante`)
+        REFERENCES `ls_usuarios` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION;";
+    $conn->exec_query($ls_solicitudes_id_usuario_solicitante_foreign);
+
+    $ls_solicitudes_id_capacitador_foreign =
+        "ALTER TABLE `ls_solicitudes` 
+        ADD CONSTRAINT `ls_solicitudes_id_capacitador_foreign`
+        FOREIGN KEY (`id`)
+        REFERENCES `ls_capacitadores` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION;";
+    $conn->exec_query($ls_solicitudes_id_capacitador_foreign);
+
+    $ls_log_id_usuario_foreign =
+        "ALTER TABLE `ls_log` 
+        ADD CONSTRAINT `ls_log_id_usuario_foreign`
+        FOREIGN KEY (`id_usuario`)
+        REFERENCES `ls_usuarios` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION;";
+    $conn->exec_query($ls_log_id_usuario_foreign);
+
+    $ls_log_id_solicitud_foreign =
+        "ALTER TABLE `ls_log` 
+        ADD CONSTRAINT `ls_log_id_solicitud_foreign`
+        FOREIGN KEY (`id_solicitud`)
+        REFERENCES `ls_solicitudes` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION;";
+    $conn->exec_query($ls_log_id_solicitud_foreign);
+
+    $ls_log_id_capacitador_foreign =
+        "ALTER TABLE `ls_log` 
+        ADD CONSTRAINT `ls_log_id_capacitador_foreign`
+        FOREIGN KEY (`id_capacitador`)
+        REFERENCES `ls_capacitadores` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION;";
+    $conn->exec_query($ls_log_id_capacitador_foreign);
 } else {
     header('Location: ../');
 }
