@@ -1,5 +1,5 @@
 <?php
-include("../../../configuration.php");
+include '../../../app/config/config.php';
 session_start();
 
 if (isset($_SESSION['userProfiles']) && $_SESSION['userProfiles'] != 3){

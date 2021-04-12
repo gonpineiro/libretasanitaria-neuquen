@@ -1,6 +1,5 @@
 <?php
-include("../../../configuration.php");
-session_start();
+include '../../../app/config/config.php';
 
 if (!isset($_SESSION['usuario'])) {
     header('HTTP/1.1 301 Moved Permanently');

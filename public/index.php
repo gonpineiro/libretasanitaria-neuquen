@@ -1,6 +1,6 @@
 <?php
-include "../configuration.php";
-session_start();
+include_once '../app/config/config.php';
+
 $_GET['APP'] = 43;
 if (isset($_GET['SESSIONKEY'])) {
     $_SESSION['app'] = $_GET['APP'];
@@ -12,9 +12,9 @@ if (isset($_GET['SESSIONKEY'])) {
     }
 
     foreach ($_SESSION['usuario']['apps'] as $apps) {
-        if ($apps['id'] == 43 && $apps['userProfiles']){
+        if ($apps['id'] == 43 && $apps['userProfiles']) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
-        } 
+        }
     }
     if ($_SESSION['userProfiles'] == 3) {
         header('Location: views/menu/index.php');
