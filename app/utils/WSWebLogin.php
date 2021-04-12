@@ -18,29 +18,32 @@ try {
     curl_close($curl);
 
     $usuario = json_decode($response, true);
-    $datos_personales = $usuario['datosPersonales'];
-    $usuario['idusuario_weblogin'] = $usuario['referenciaID'];
-    $usuario["correoElectronico"] = $datos_personales["correoElectronico"];
-    $usuario["celular"] = $datos_personales["celular"];
-    $usuario["wapPersonasId"] = $datos_personales["referenciaID"];
-    $usuario["celularVerificado"] = 1;
-    $usuario["razonSocial"] = $datos_personales["razonSocial"];
-    $usuario["tipoDoc"] = "DNI";
-    $usuario["documento"] = $datos_personales["documento"];
-    $usuario["genero"] = $datos_personales["genero"]["textID"];
-    $usuario["fechaNacimiento"] = $datos_personales["fechaDeNacimiento"];
-    //! Posiblemente un array_filter sea mas limpio
-    foreach ($usuario["apps"] as $numero => $app) {
-        if($app['id']== intval($_SESSION['app'])){
-            if($app['userProfiles']!=$app['standardType']){
-                if (isset($app['userProfiles'])) {
-                    $_SESSION['perfilUsuario'] = $app['userProfiles'];
+    if ($response && $usuario['error'] == null) {
+        $datos_personales = $usuario['datosPersonales'];
+        $usuario['idusuario_weblogin'] = $usuario['referenciaID'];
+        $usuario["correoElectronico"] = $datos_personales["correoElectronico"];
+        $usuario["celular"] = $datos_personales["celular"];
+        $usuario["wapPersonasId"] = $datos_personales["referenciaID"];
+        $usuario["celularVerificado"] = 1;
+        $usuario["razonSocial"] = $datos_personales["razonSocial"];
+        $usuario["tipoDoc"] = "DNI";
+        $usuario["documento"] = $datos_personales["documento"];
+        $usuario["genero"] = $datos_personales["genero"]["textID"];
+        $usuario["fechaNacimiento"] = $datos_personales["fechaDeNacimiento"];
+        //! Posiblemente un array_filter sea mas limpio
+        foreach ($usuario["apps"] as $numero => $app) {
+            if($app['id']== intval($_SESSION['app'])){
+                if($app['userProfiles']!=$app['standardType']){
+                    if (isset($app['userProfiles'])) {
+                        $_SESSION['perfilUsuario'] = $app['userProfiles'];
+                    }
                 }
+                break;
             }
-            break;
         }
-    }
-    $_SESSION['usuario'] = $usuario;
+        $_SESSION['usuario'] = $usuario;
+
+    } 
 } catch (Exception $e) {
     echo $e->getMessage();
 }

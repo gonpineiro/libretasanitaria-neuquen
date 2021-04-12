@@ -5,8 +5,8 @@ $_GET['APP'] = 43;
 if (isset($_GET['SESSIONKEY'])) {
     $_SESSION['app'] = $_GET['APP'];
     $_SESSION['token'] = $_GET['SESSIONKEY'];
-    include "../utils/WSWebLogin.php";
-    if (!isset($_SESSION['usuario'])) {
+    include UTIl_PATH.'\WSWebLogin.php';
+    if (!isset($_SESSION['usuario']) and $_SESSION['usuario']['error'] != null) {
         header('https://weblogin.muninqn.gov.ar');
         exit();
     }
@@ -16,13 +16,9 @@ if (isset($_GET['SESSIONKEY'])) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
         }
     }
-    if ($_SESSION['userProfiles'] == 3) {
-        header('Location: views/menu/index.php');
-        exit();
-    } else {
-        header('Location: views/Ferias/inscripcion.php');
-        exit();
-    }
+    
+    header('Location: views/menu/index.php');
+    exit();
 }
 header('Location: https://weblogin.muninqn.gov.ar');
 exit();
