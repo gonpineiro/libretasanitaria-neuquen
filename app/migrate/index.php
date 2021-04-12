@@ -1,6 +1,6 @@
 <?php
 include '../config/config.php';
-include '../connections/db.php';
+use App\Connections\ConnectMysql;
 
 if (MIGRATE) {
     $conn = new ConnectMysql();
@@ -9,21 +9,21 @@ if (MIGRATE) {
     /* ls_usuarios */
     $ls_usuarios =
         "CREATE TABLE `ls_usuarios` (
-            `id` INT NOT NULL AUTO_INCREMENT,
-            `nro_tramite` INT NULL,
+            `id` VARCHAR(250) NULL,
+            `nro_tramite` VARCHAR(250) NULL,
             `path_foto` VARCHAR(250) NULL,
-            `dni` INT NULL,
+            `dni` VARCHAR(250) NULL,
             `nombre` VARCHAR(45) NULL,
             `apellido` VARCHAR(45) NULL,
             `fecha_nac` TIMESTAMP NULL,
             `genero` VARCHAR(1) NULL,
-            `telefono` INT NULL,
+            `telefono` VARCHAR(250) NULL,
             `email` VARCHAR(250) NULL,
             `direccion_renaper` VARCHAR(250) NULL,
             `localidad` VARCHAR(250) NULL,
-            `empresa_cuil` INT NULL,
+            `empresa_cuil` VARCHAR(250) NULL,
             `empresa_nombre` VARCHAR(250) NULL,
-            `fecha_alta` TIMESTAMP NULL,
+            `fecha_alta` VARCHAR(250) NULL,
             PRIMARY KEY (`id`));";
     $conn->exec_query($ls_usuarios);
 

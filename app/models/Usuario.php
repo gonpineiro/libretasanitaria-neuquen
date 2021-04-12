@@ -1,20 +1,27 @@
 <?php
 
+namespace App\Models;
+
+use App\Connections\ConnectMysql;
+
 /**
  * This is the model class for table "Grupo".
  *
  * @property int $id
- * @property int $id_wappersonas
- * @property int $ciudad
- * @property int $nombre
- * @property int $apellido
- * @property int $fechaNac
- * @property int $genero
+ * @property int $nro_tramite
+ * @property string $path_foto
+ * @property int $dni
+ * @property string $nombre
+ * @property string $apellido
+ * @property string $fecha_nac
+ * @property string $genero
  * @property int $telefono
- * @property int $email
- * @property int $direccionRenaper
- * @property int $altura
- * @property string $timestamp
+ * @property string $email
+ * @property string $direccion_renaper
+ * @property string $localidad
+ * @property int $empresa_cuil
+ * @property string $empresa_nombre
+ * @property timestamp $fecha_alta
  *
  */
 class Usuario
@@ -54,7 +61,7 @@ class Usuario
         $this->fecha_alta = "";
     }
 
-    public function setear($id, $nro_tramite, $path_foto, $dni, $nombre, $apellido, $fecha_nac, $genero, $telefono, $email, $direccion_renaper, $localidad,  $empresa_cuil, $empresa_nombre, $fecha_alta = null)
+    public function setear($id, $nro_tramite, $path_foto='', $dni, $nombre='', $apellido='', $fecha_nac='', $genero='', $telefono='', $email='', $direccion_renaper='', $localidad='',  $empresa_cuil='', $empresa_nombre='', $fecha_alta = null)
     {
         $this->setId($id);
         $this->setNroTramite($nro_tramite);
@@ -71,6 +78,7 @@ class Usuario
         $this->setEmpresaCuil($empresa_cuil);
         $this->setEmpresaNombre($empresa_nombre);
         $this->setFechaAlta($fecha_alta);
+        ;
     }
 
     /**
@@ -340,6 +348,15 @@ class Usuario
         $this->fecha_alta = $fecha_alta;
     }
 
+    public function save()
+    {
+        $array = json_decode(json_encode($this), true);
+        var_dump(count($array));
+        $conn = new ConnectMysql();
+        $conn->store('ls_usuarios', $array, 'sssssssssssssss');
+    }
+
+    /* CÓDIGO ANTIGUO */
     public function cargar()
     {
         $resp = false;
