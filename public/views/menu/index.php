@@ -78,7 +78,7 @@ $apellido = $nombreapellido[0];
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class='icono' style='background-image: url(../../estilos/menu/ferias.png);'></div>
+                                    <div class='icono' style='background-image: url(../../estilos/menu/libreta.png);'></div>
                                 </td>
                             </tr>
                             <tr style='height: 60px;'>
@@ -95,7 +95,7 @@ $apellido = $nombreapellido[0];
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class='icono' style='background-image: url(../../estilos/menu/ferias.png);'></div>
+                                    <div class='icono' style='background-image: url(../../estilos/menu/libreta.png);'></div>
                                 </td>
                             </tr>
                             <tr style='height: 60px;'>
