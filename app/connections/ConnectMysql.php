@@ -42,7 +42,7 @@ class ConnectMysql
                 if (isset($ops[$key])) {
                     $op = $ops[$key];
                 }
-                $where .= " AND " . $key . $op . " ?";
+                $where .= " AND " . $key . $op . $value;
                 $values[] = $value;
             }
         }
@@ -68,6 +68,19 @@ class ConnectMysql
         return $this->exec_query($sql, $params, $types);
     }
 
+    public function update($table, $params, $id)
+    {
+        $this->connect();
+        $strKeyValues = '';
+        foreach ($params as $key => $value) {
+            $strKeyValues .= "$key = '$value',";
+        }
+        $strKeyValues = trim($strKeyValues, ',');
+
+        $sql = "UPDATE $table SET $strKeyValues WHERE id=$id";
+        return $this->exec_query($sql, $params);
+    }
+
     public function exec_query($sql, $params = [], $types = '')
     {
         if ($stmt = mysqli_prepare($this->conn, $sql)) {
@@ -85,5 +98,10 @@ class ConnectMysql
             return true;
         }
         return false;
+    }
+
+    public function fetch_assoc($result)
+    {
+        return mysqli_fetch_assoc($result);
     }
 }

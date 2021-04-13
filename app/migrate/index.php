@@ -12,20 +12,22 @@ if (MIGRATE) {
     $ls_usuarios =
         "CREATE TABLE `ls_usuarios` (
             `id` INT NOT NULL AUTO_INCREMENT,
-            `nro_tramite` VARCHAR(250) NULL,
-            `path_foto` VARCHAR(250) NULL,
+            `id_wappersonas` INT NULL,
             `dni` VARCHAR(250) NULL,
+            `genero` VARCHAR(1) NULL,
             `nombre` VARCHAR(45) NULL,
             `apellido` VARCHAR(45) NULL,
-            `fecha_nac` VARCHAR(45) NULL,
-            `genero` VARCHAR(1) NULL,
             `telefono` VARCHAR(250) NULL,
             `email` VARCHAR(250) NULL,
             `direccion_renaper` VARCHAR(250) NULL,
-            `localidad` VARCHAR(250) NULL,
+            `fecha_nac` VARCHAR(45) NULL,
             `empresa_cuil` VARCHAR(250) NULL,
             `empresa_nombre` VARCHAR(250) NULL,
             `fecha_alta` VARCHAR(250) NULL,
+
+            `nro_tramite` VARCHAR(250) NULL,
+            `path_foto` VARCHAR(250) NULL,
+            `localidad` VARCHAR(250) NULL,
             PRIMARY KEY (`id`));";
     $conn->exec_query($ls_usuarios);
 
@@ -36,12 +38,12 @@ if (MIGRATE) {
         `id_usuario_solicitante` INT NULL,
         `id_usuario_solicitado` INT NULL,
         `tipo_empleo` VARCHAR(45) NULL,
-        `renovacion` VARCHAR(45) NULL, /* ? */
+        `renovacion` TINYINT NULL,
         `id_capacitador` INT NULL,
         `municipalidad_nqn` TINYINT NULL,
         `nro_recibo` INT NULL,
         `path_comprobante_pago` VARCHAR(250) NULL,
-        `estado` VARCHAR(45) NULL, /* ? */
+        `estado` VARCHAR(45) NULL,
         `retiro_en` VARCHAR(45) NULL,
         `fecha_alta` TIMESTAMP NULL,
         PRIMARY KEY (`id`));";

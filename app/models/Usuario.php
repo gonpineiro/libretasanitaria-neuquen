@@ -358,8 +358,24 @@ class Usuario
     public static function list()
     {
         $conn = new ConnectMysql();
-        $usuario = $conn->search('ls_usuarios');
+        $usuarios = $conn->search('ls_usuarios');
+        return $usuarios;
+    }
+
+    public static function get($id)
+    {
+        $conn = new ConnectMysql();
+        $params = ['id' => $id];
+        $result = $conn->search('ls_usuarios', $params);
+        $usuario = $conn->fetch_assoc($result);
         return $usuario;
+    }
+
+    public static function update($res, $id)
+    {
+        $conn = new ConnectMysql();
+        $result = $conn->update('ls_usuarios', $res, $id);
+        return $result;
     }
 
     /* CÓDIGO ANTIGUO */

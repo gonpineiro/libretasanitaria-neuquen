@@ -11,7 +11,7 @@ class UsuarioController
         $usuario = new Usuario();
         $values = array_values($res);
         $usuario->set(...$values);
-        $usuario->save();        
+        $usuario->save();
     }
 
     static public function index()
@@ -19,6 +19,16 @@ class UsuarioController
         return Usuario::list();
     }
 
+    static public function get($id)
+    {
+        return Usuario::get($id);
+    }
+
+    static public function update($res, $id)
+    {
+       
+        return Usuario::update($res, $id);
+    }
 
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto

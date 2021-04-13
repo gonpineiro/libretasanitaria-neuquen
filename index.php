@@ -28,4 +28,15 @@ $_POST['localidad'] = "Juan Jose";
 $_POST['empresa_cuil'] = "Juan Jose";
 $_POST['empresa_nombre'] = "Juan Jose";
 $_POST['fecha_alta'] = "Juan Jose";
+
 $UserController->store($_POST);
+$user = $UserController->get(1);
+unset($_POST);
+
+$_POST['empresa_cuil'] = "UPDATE";
+$_POST['empresa_nombre'] = "UPDATE";
+$_POST['fecha_alta'] = "UPDATE";
+$_POST['nombre'] = "NOMBRE_UPDATE";
+$_POST['fecha_alta'] = "UPDATE";
+
+$UserController->update($_POST, 3);
