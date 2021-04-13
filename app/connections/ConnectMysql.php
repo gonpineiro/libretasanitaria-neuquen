@@ -31,6 +31,13 @@ class ConnectMysql
         );
     }
 
+    /**
+     * Permite realizar la busqueda de un objeto por multiples campos y si se especifica, con operadores
+     * específicos.
+     * @param array $param arreglo del direccion 'campo' => 'valor buscado' o vacio si se necesitan listar todos
+     * @param array $ops arreglo opcional del direccion 'campo' => 'operador', por defecto el operador es '='
+     * @return Usuario[]
+     */
     public function search($table, $param = [], $ops = [])
     {
         $this->connect();
