@@ -1,20 +1,57 @@
 <?php
-class SolicitudController {
+
+namespace App\Controllers;
+
+use App\Models\Solicitud;
+
+class SolicitudController
+{
+    /* Guarda un solicitud */
+    public function store($res)
+    {
+        $solicitud = new Solicitud();
+        $values = array_values($res);
+        $solicitud->set(...$values);
+        $solicitud->save();
+    }
+
+    /* Busca todos los solicitud */
+    static public function index($param = [], $ops = [])
+    {
+        return Solicitud::list($param, $ops);
+    }
+
+    /* Busca un solicitud */
+    static public function get($id)
+    {
+        return Solicitud::get($id);
+    }
+
+    /* Actualiza un solicitud */
+    static public function update($res, $id)
+    {
+
+        return Solicitud::update($res, $id);
+    }
+
+    /* CODIGO VIEJO */
     /**
      * @param array $param
      * @return Solicitud
      */
-    private function cargarObjeto($param){
+    private function cargarObjeto($param)
+    {
         $obj = null;
-           
-        if( array_key_exists('id',$param) 
-                and array_key_exists('id_usuario',$param) and $param['id_usuario'] != (null or '') 
-                and array_key_exists('feria', $param) and $param['feria'] != (null or '')
-                and array_key_exists('nombre_emprendimiento', $param) and $param['nombre_emprendimiento'] != (null or '') 
-                and array_key_exists('rubro_emprendimiento', $param) and $param['rubro_emprendimiento'] != (null or '')
-                and array_key_exists('producto', $param) and $param['producto'] != (null or '')
-                and array_key_exists('previa_participacion', $param) and $param['previa_participacion'] != (null or '')
-                ){
+
+        if (
+            array_key_exists('id', $param)
+            and array_key_exists('id_usuario', $param) and $param['id_usuario'] != (null or '')
+            and array_key_exists('feria', $param) and $param['feria'] != (null or '')
+            and array_key_exists('nombre_emprendimiento', $param) and $param['nombre_emprendimiento'] != (null or '')
+            and array_key_exists('rubro_emprendimiento', $param) and $param['rubro_emprendimiento'] != (null or '')
+            and array_key_exists('producto', $param) and $param['producto'] != (null or '')
+            and array_key_exists('previa_participacion', $param) and $param['previa_participacion'] != (null or '')
+        ) {
 
             $obj = new Solicitud();
 
@@ -24,9 +61,8 @@ class SolicitudController {
             if (!array_key_exists('observacion', $param)) {
                 $param['observacion'] = null;
             }
-            
-            $obj->setear($param['id'], $param['id_usuario'], $param['feria'], $param['nombre_emprendimiento'], $param["rubro_emprendimiento"], $param['producto'], $param['instagram'], $param['previa_participacion'],$param['estado'], $param['observacion']);
 
+            $obj->setear($param['id'], $param['id_usuario'], $param['feria'], $param['nombre_emprendimiento'], $param["rubro_emprendimiento"], $param['producto'], $param['instagram'], $param['previa_participacion'], $param['estado'], $param['observacion']);
         }
         return $obj;
     }
@@ -35,44 +71,47 @@ class SolicitudController {
      * @param array $param
      * @return Solicitud
      */
-    private function cargarObjetoConClave($param){
+    private function cargarObjetoConClave($param)
+    {
         $obj = null;
-        
-        if( isset($param['id']) ){
+
+        if (isset($param['id'])) {
             $obj = new Solicitud();
             $obj->setId($param['id']);
         }
         return $obj;
     }
-    
-    
+
+
     /**
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param){
+    private function seteadosCamposClaves($param)
+    {
         $resp = false;
         if (isset($param['id']))
             $resp = true;
         return $resp;
     }
-    
+
     /**
      * 
      * @param array $param
      * @return Solicitud|false|null
      */
-    public function alta($param){
+    public function alta($param)
+    {
         $resp = null;
         $param['id'] = null;
         $solicitud = $this->cargarObjeto($param);
-        if ($solicitud!=null and $solicitud->insertar()){
+        if ($solicitud != null and $solicitud->insertar()) {
             $resp = $solicitud;
-            if($solicitud->getMensajeoperacion() != (null or '')) {
-                cargarLog($solicitud->getId_usuario(),null,'Alta solicitud: '.$solicitud->getMensajeoperacion() );
+            if ($solicitud->getMensajeoperacion() != (null or '')) {
+                cargarLog($solicitud->getId_usuario(), null, 'Alta solicitud: ' . $solicitud->getMensajeoperacion());
             }
         }
-        
+
         return $resp;
     }
 
@@ -81,30 +120,32 @@ class SolicitudController {
      * @param array $param
      * @return boolean
      */
-    public function baja($param){
+    public function baja($param)
+    {
         $resp = false;
-      
-        if ($this->seteadosCamposClaves($param)){
+
+        if ($this->seteadosCamposClaves($param)) {
             $solicitud = $this->cargarObjetoConClave($param);
-            if ($solicitud!=null and $solicitud->eliminar()){
+            if ($solicitud != null and $solicitud->eliminar()) {
                 $resp = true;
             }
         }
-        
+
         return $resp;
     }
-    
+
     /**
      * permite modificar un objeto
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param){
-       
+    public function modificacion($param)
+    {
+
         $resp = false;
-        if ($this->seteadosCamposClaves($param)){
+        if ($this->seteadosCamposClaves($param)) {
             $solicitud = $this->cargarObjeto($param);
-            if($solicitud!=null and $solicitud->modificar()){
+            if ($solicitud != null and $solicitud->modificar()) {
                 $resp = $solicitud;
             }
         }
@@ -132,8 +173,7 @@ class SolicitudController {
                 $values[] = $value;
             }
         }
-        $arreglo = Solicitud::listar($where, $values);  
+        $arreglo = Solicitud::listar($where, $values);
         return $arreglo;
     }
-   
 }

@@ -6,8 +6,6 @@ use App\Connections\ConnectMysql;
 
 /**
  * This is the model class for table "Grupo".
- *
- * @property int $id
  * @property int $id_wappersonas
  * @property int $dni
  * @property string $genero
@@ -20,11 +18,9 @@ use App\Connections\ConnectMysql;
  * @property int $empresa_cuil
  * @property string $empresa_nombre
  * @property timestamp $fecha_alta
- *
  */
 class Usuario
 {
-    public $id;
     public $id_wappersonas;
     public $dni;
     public $genero;
@@ -40,7 +36,6 @@ class Usuario
 
     public function __construct()
     {
-        $this->id = "";
         $this->id_wappersonas = "";
         $this->dni = "";
         $this->genero = "";
@@ -55,9 +50,8 @@ class Usuario
         $this->fecha_alta = "";
     }
 
-    public function set($id, $id_wappersonas = null, $dni = null, $genero = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $direccion_renaper = null, $fecha_nac = null, $empresa_cuil = null, $empresa_nombre = null, $fecha_alta = null)
+    public function set($id_wappersonas = null, $dni = null, $genero = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $direccion_renaper = null, $fecha_nac = null, $empresa_cuil = null, $empresa_nombre = null, $fecha_alta = null)
     {
-        $this->id = $id;
         $this->id_wappersonas = $id_wappersonas;
         $this->dni = $dni;
         $this->genero = $genero;
@@ -75,9 +69,8 @@ class Usuario
     public function save()
     {
         $array = json_decode(json_encode($this), true);
-        unset($array['id']);
         $conn = new ConnectMysql();
-        $conn->store('ls_usuarios', $array, 'ssssssssssss');
+        $conn->store('ls_usuarios', $array, 'iissssssssss');
     }
 
     public static function list($param = [], $ops = [])
@@ -102,5 +95,4 @@ class Usuario
         $result = $conn->update('ls_usuarios', $res, $id);
         return $result;
     }
-
 }

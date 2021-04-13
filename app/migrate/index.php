@@ -31,17 +31,17 @@ if (MIGRATE) {
     $ls_solicitudes =
         "CREATE TABLE `ls_solicitudes` (
         `id` INT NOT NULL AUTO_INCREMENT,
-        `id_usuario_solicitante` INT NULL,
-        `id_usuario_solicitado` INT NULL,
+        `id_usuario_solicitante` VARCHAR(250) NULL,
+        `id_usuario_solicitado` VARCHAR(250) NULL,
         `tipo_empleo` VARCHAR(45) NULL,
-        `renovacion` TINYINT NULL,
-        `id_capacitador` INT NULL,
-        `municipalidad_nqn` TINYINT NULL,
-        `nro_recibo` INT NULL,
+        `renovacion` VARCHAR(250) NULL,
+        `id_capacitador` VARCHAR(250) NULL,
+        `municipalidad_nqn` VARCHAR(250) NULL,
+        `nro_recibo` VARCHAR(250) NULL,
         `path_comprobante_pago` VARCHAR(250) NULL,
         `estado` VARCHAR(45) NULL,
         `retiro_en` VARCHAR(45) NULL,
-        `fecha_alta` TIMESTAMP NULL,
+        `fecha_alta` VARCHAR(250) NULL,
         PRIMARY KEY (`id`));";
     $conn->exec_query($ls_solicitudes);
 
@@ -73,7 +73,7 @@ if (MIGRATE) {
     /* ··················································· */
 
     /* Relations */
-    $ls_solicitudes_id_usuario_solicitante_foreign =
+   /*  $ls_solicitudes_id_usuario_solicitante_foreign =
         "ALTER TABLE `ls_solicitudes` 
         ADD CONSTRAINT `ls_solicitudes_id_usuario_solicitante_foreign`
         FOREIGN KEY (`id_usuario_solicitante`)
@@ -89,7 +89,7 @@ if (MIGRATE) {
         REFERENCES `ls_capacitadores` (`id`)
         ON DELETE NO ACTION
         ON UPDATE NO ACTION;";
-    $conn->exec_query($ls_solicitudes_id_capacitador_foreign);
+    $conn->exec_query($ls_solicitudes_id_capacitador_foreign); */
 
 } else {
     header('Location: ../');
