@@ -34,7 +34,7 @@ if ($errores) {
                             <div style='display:none' id="alertaErrorCarga" class="alert alert-danger fade show" role="alert">
                                 Hubo un error al intentar cargar su solicitud, por favor intente nuevamente mas tarde.
                             </div>
-                            <h1 class="titulo float-left">Inscripci&oacute;n Ferias </h1>
+                            <h1 class="titulo float-left">Inscripci&oacute;n Individual </h1>
                         </div>
                     </div>
 
