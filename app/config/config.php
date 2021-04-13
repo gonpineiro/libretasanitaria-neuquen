@@ -15,7 +15,7 @@ require ROOT_PATH . 'vendor/autoload.php';
 define('PROD', false);
 
 /* Seguridad para migration */
-define('MIGRATE', false);
+define('MIGRATE', true);
 
 /* Configuracion base de datos */
 if (PROD) {
@@ -30,6 +30,6 @@ if (!PROD) {
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
     define('DB_PASS', 'root');
-    define('DB_NAME', 'pure');
+    define('DB_NAME', 'libreta');
     define('DB_PORT', '3306');
 }

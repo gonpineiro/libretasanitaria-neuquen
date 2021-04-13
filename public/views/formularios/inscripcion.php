@@ -26,15 +26,13 @@ $apellido = $nombreapellido[0];
 //* false renderiza el formulario ./inscripcion_form.php
 $inscripcion_exitosa = false;
 
-if (isset($_POST) && !empty($_POST)) {
-    
+if (isset($_POST) && !empty($_POST)) {    
     $respuesta = [];
     $usuario = null;
     $log_controller = new LogController();
     $usuario_controller = new UsuarioController;
     $solicitud_controller = new SolicitudController;
     $usuarioArr = $usuario_controller->buscar(['id_wappersonas' => $id_wappersonas]);
-
 
     if (empty($usuarioArr)) {
         $usuario = $usuario_controller->alta(

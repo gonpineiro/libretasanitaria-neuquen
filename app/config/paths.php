@@ -5,4 +5,4 @@ define('PUBLIC_PATH', ROOT_PATH . 'public');
 define('VIEW_PATH', ROOT_PATH . 'public\views');
 define('APP_PATH', ROOT_PATH . 'app');
 define('CON_PATH', ROOT_PATH . 'app\connections');
-define('UTIl_PATH', ROOT_PATH . 'app\utils');
+define('UTIL_PATH', ROOT_PATH . 'app\utils');
