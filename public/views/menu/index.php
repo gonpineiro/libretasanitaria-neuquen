@@ -25,7 +25,7 @@ $apellido = $nombreapellido[0];
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../estilos/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../estilos/menu/menu.css">
 </head>
 
@@ -73,7 +73,7 @@ $apellido = $nombreapellido[0];
 
         <div class="row">
             <div class='col-sm d-flex justify-content-center'>
-                <div class='opcion' onclick='window.location.href = "../Ferias/inscripcion.php"'>
+                <div class='opcion' onclick='window.location.href = "../formularios/inscripcion.php?tipo=i"'>
                     <table style='width: 100%;'>
                         <tbody>
                             <tr>
@@ -82,7 +82,7 @@ $apellido = $nombreapellido[0];
                                 </td>
                             </tr>
                             <tr style='height: 60px;'>
-                                <td class='opcion-titulo text-center'>FORMULARIO FERIAS</td>
+                                <td class='opcion-titulo text-center'>FORMULARIO INDIVIDUAL</td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,7 +90,24 @@ $apellido = $nombreapellido[0];
             </div>
 
             <div class='col-sm d-flex justify-content-center'>
-                <div class='opcion' onclick='window.location.href = "../FeriasCsv/index.php"'>
+                <div class='opcion' onclick='window.location.href = "../formularios/inscripcion.php?tipo=e"'>
+                    <table style='width: 100%;'>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class='icono' style='background-image: url(../../estilos/menu/ferias.png);'></div>
+                                </td>
+                            </tr>
+                            <tr style='height: 60px;'>
+                                <td class='opcion-titulo text-center'>FORMULARIO EMPRESARIAL</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <?= $_SESSION['userPerfiles'] != 3?:"<div class='col-sm d-flex justify-content-center'>
+                <div class='opcion' onclick='window.location.href = \"../administrar/index.php\"'>
                     <table style='width: 100%;'>
                         <tbody>
                             <tr>
@@ -104,16 +121,14 @@ $apellido = $nombreapellido[0];
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div>" ;?>
 
 
         </div>
     </div>
 
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../js/menu/menu.js"></script>
-    <script src="" async defer></script>
+    <script src="../../../node_modules\jquery\dist\jquery.min.js"></script>
+    <script src="../../../node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
 </body>
 
 </html>
