@@ -47,10 +47,9 @@ class Usuario
         $this->fecha_nac = "";
         $this->empresa_cuil = "";
         $this->empresa_nombre = "";
-        $this->fecha_alta = "";
     }
 
-    public function set($id_wappersonas = null, $dni = null, $genero = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $direccion_renaper = null, $fecha_nac = null, $empresa_cuil = null, $empresa_nombre = null, $fecha_alta = null)
+    public function set($id_wappersonas = null, $dni = null, $genero = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $direccion_renaper = null, $fecha_nac = null, $empresa_cuil = null, $empresa_nombre = null)
     {
         $this->id_wappersonas = $id_wappersonas;
         $this->dni = $dni;
@@ -63,7 +62,6 @@ class Usuario
         $this->fecha_nac = $fecha_nac;
         $this->empresa_cuil = $empresa_cuil;
         $this->empresa_nombre = $empresa_nombre;
-        $this->fecha_alta = $fecha_alta;
     }
 
     public function save()
