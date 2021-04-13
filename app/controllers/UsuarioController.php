@@ -6,6 +6,7 @@ use App\Models\Usuario;
 
 class UsuarioController
 {
+    /* Guarda un usuario */
     public function store($res)
     {
         $usuario = new Usuario();
@@ -14,22 +15,26 @@ class UsuarioController
         $usuario->save();
     }
 
+    /* Busca todos los usuarios */
     static public function index()
     {
         return Usuario::list();
     }
 
+    /* Busca un usuario */
     static public function get($id)
     {
         return Usuario::get($id);
     }
 
+    /* Actualiza un usuario */
     static public function update($res, $id)
     {
        
         return Usuario::update($res, $id);
     }
 
+    /* CODIGO VIEJO */
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param

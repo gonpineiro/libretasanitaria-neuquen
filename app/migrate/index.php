@@ -13,7 +13,7 @@ if (MIGRATE) {
         "CREATE TABLE `ls_usuarios` (
             `id` INT NOT NULL AUTO_INCREMENT,
             `id_wappersonas` INT NULL,
-            `dni` VARCHAR(250) NULL,
+            `dni` INT NULL,
             `genero` VARCHAR(1) NULL,
             `nombre` VARCHAR(45) NULL,
             `apellido` VARCHAR(45) NULL,
@@ -24,10 +24,6 @@ if (MIGRATE) {
             `empresa_cuil` VARCHAR(250) NULL,
             `empresa_nombre` VARCHAR(250) NULL,
             `fecha_alta` VARCHAR(250) NULL,
-
-            `nro_tramite` VARCHAR(250) NULL,
-            `path_foto` VARCHAR(250) NULL,
-            `localidad` VARCHAR(250) NULL,
             PRIMARY KEY (`id`));";
     $conn->exec_query($ls_usuarios);
 
@@ -95,32 +91,6 @@ if (MIGRATE) {
         ON UPDATE NO ACTION;";
     $conn->exec_query($ls_solicitudes_id_capacitador_foreign);
 
-    $ls_log_id_usuario_foreign =
-        "ALTER TABLE `ls_log` 
-        ADD CONSTRAINT `ls_log_id_usuario_foreign`
-        FOREIGN KEY (`id_usuario`)
-        REFERENCES `ls_usuarios` (`id`)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION;";
-    $conn->exec_query($ls_log_id_usuario_foreign);
-
-    $ls_log_id_solicitud_foreign =
-        "ALTER TABLE `ls_log` 
-        ADD CONSTRAINT `ls_log_id_solicitud_foreign`
-        FOREIGN KEY (`id_solicitud`)
-        REFERENCES `ls_solicitudes` (`id`)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION;";
-    $conn->exec_query($ls_log_id_solicitud_foreign);
-
-    $ls_log_id_capacitador_foreign =
-        "ALTER TABLE `ls_log` 
-        ADD CONSTRAINT `ls_log_id_capacitador_foreign`
-        FOREIGN KEY (`id_capacitador`)
-        REFERENCES `ls_capacitadores` (`id`)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION;";
-    $conn->exec_query($ls_log_id_capacitador_foreign);
 } else {
     header('Location: ../');
 }

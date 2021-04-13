@@ -26,8 +26,6 @@ $_POST['email'] = "Juan Jose";
 $_POST['direccion_renaper'] = "Juan Jose";
 $_POST['localidad'] = "Juan Jose";
 $_POST['empresa_cuil'] = "Juan Jose";
-$_POST['empresa_nombre'] = "Juan Jose";
-$_POST['fecha_alta'] = "Juan Jose";
 
 $UserController->store($_POST);
 $user = $UserController->get(1);
@@ -39,4 +37,4 @@ $_POST['fecha_alta'] = "UPDATE";
 $_POST['nombre'] = "NOMBRE_UPDATE";
 $_POST['fecha_alta'] = "UPDATE";
 
-$UserController->update($_POST, 3);
+$UserController->update($_POST, 8);

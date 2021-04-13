@@ -27,17 +27,15 @@ use App\Connections\ConnectMysql;
 class Usuario
 {
     public $id;
-    public $nro_tramite;
-    public $path_foto;
+    public $id_wappersonas;
     public $dni;
+    public $genero;
     public $nombre;
     public $apellido;
-    public $fecha_nac;
-    public $genero;
     public $telefono;
     public $email;
     public $direccion_renaper;
-    public $localidad;
+    public $fecha_nac;
     public $empresa_cuil;
     public $empresa_nombre;
     public $fecha_alta;
@@ -45,39 +43,35 @@ class Usuario
     public function __construct()
     {
         $this->id = "";
-        $this->nro_tramite = "";
-        $this->path_foto = "";
+        $this->id_wappersonas = "";
         $this->dni = "";
+        $this->genero = "";
         $this->nombre = "";
         $this->apellido = "";
-        $this->fecha_nac = "";
-        $this->genero = "";
         $this->telefono = "";
         $this->email = "";
         $this->direccion_renaper = "";
-        $this->localidad = "";
+        $this->fecha_nac = "";
         $this->empresa_cuil = "";
         $this->empresa_nombre = "";
         $this->fecha_alta = "";
     }
 
-    public function set($id, $nro_tramite, $path_foto = '', $dni, $nombre = '', $apellido = '', $fecha_nac = '', $genero = '', $telefono = '', $email = '', $direccion_renaper = '', $localidad = '', $empresa_cuil = '', $empresa_nombre = '', $fecha_alta = null)
+    public function set($id, $id_wappersonas = null, $dni = null, $genero = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $direccion_renaper = null, $fecha_nac = null, $empresa_cuil = null, $empresa_nombre = null, $fecha_alta = null)
     {
         $this->setId($id);
-        $this->setNroTramite($nro_tramite);
-        $this->setPathFoto($path_foto);
+        $this->setIdWappersonas($id_wappersonas);
         $this->setDni($dni);
+        $this->setGenero($genero);
         $this->setNombre($nombre);
         $this->setApellido($apellido);
-        $this->setFechaNac($fecha_nac);
-        $this->setGenero($genero);
         $this->setTelefono($telefono);
         $this->setEmail($email);
         $this->setDireccionRenaper($direccion_renaper);
-        $this->setLocalidad($localidad);
+        $this->setFechaNac($fecha_nac);
         $this->setEmpresaCuil($empresa_cuil);
         $this->setEmpresaNombre($empresa_nombre);
-        $this->setFechaAlta($fecha_alta);;
+        $this->setFechaAlta($fecha_alta);
     }
 
     /**
@@ -100,42 +94,21 @@ class Usuario
     }
 
     /**
-     * Get the value of nro_tramite
+     * Get the value of id_wappersonas
      */
-    public function getNroTramite()
+    public function getIdWappersonas()
     {
-        return $this->nro_tramite;
+        return $this->id_wappersonas;
     }
 
     /**
-     * Set the value of nro_tramite
+     * Set the value of id
      *
      * @return  self
      */
-    public function setNroTramite($nro_tramite)
+    public function setIdWappersonas($id_wappersonas)
     {
-        $this->nro_tramite = $nro_tramite;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of path_foto
-     */
-    public function getPathFoto()
-    {
-        return $this->path_foto;
-    }
-
-    /**
-     * Set the value of path_foto
-     *
-     * @return  self
-     */
-    public function setPathFoto($path_foto)
-    {
-        $this->path_foto = $path_foto;
-
+        $this->id_wappersonas = $id_wappersonas;
         return $this;
     }
 
@@ -157,6 +130,22 @@ class Usuario
         $this->dni = $dni;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGenero()
+    {
+        return $this->genero;
+    }
+
+    /**
+     * @param string $genero
+     */
+    public function setGenero($genero)
+    {
+        $this->genero = $genero;
     }
 
     /**
@@ -197,42 +186,6 @@ class Usuario
         $this->apellido = $apellido;
 
         return $this;
-    }
-
-    /**
-     * Get the value of fecha_nac
-     */
-    public function getFechaNac()
-    {
-        return $this->fecha_nac;
-    }
-
-    /**
-     * Set the value of fecha_nac
-     *
-     * @return  self
-     */
-    public function setFechaNac($fecha_nac)
-    {
-        $this->fecha_nac = $fecha_nac;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGenero()
-    {
-        return $this->genero;
-    }
-
-    /**
-     * @param string $genero
-     */
-    public function setGenero($genero)
-    {
-        $this->genero = $genero;
     }
 
     /**
@@ -284,19 +237,23 @@ class Usuario
     }
 
     /**
-     * @return string
+     * Get the value of fecha_nac
      */
-    public function getLocalidad()
+    public function getFechaNac()
     {
-        return $this->localidad;
+        return $this->fecha_nac;
     }
 
     /**
-     * @param string $localidad
+     * Set the value of fecha_nac
+     *
+     * @return  self
      */
-    public function setLocalidad($localidad)
+    public function setFechaNac($fecha_nac)
     {
-        $this->localidad = $localidad;
+        $this->fecha_nac = $fecha_nac;
+
+        return $this;
     }
 
     /**
@@ -352,7 +309,7 @@ class Usuario
         $array = json_decode(json_encode($this), true);
         unset($array['id']);
         $conn = new ConnectMysql();
-        $conn->store('ls_usuarios', $array, 'ssssssssssssss');
+        $conn->store('ls_usuarios', $array, 'ssssssssssss');
     }
 
     public static function list()
@@ -378,7 +335,7 @@ class Usuario
         return $result;
     }
 
-    /* CÓDIGO ANTIGUO */
+    /* CODIGO VIEJO */
     public function cargar()
     {
         $resp = false;

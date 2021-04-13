@@ -5,4 +5,4 @@ define('VIEW_PATH', ROOT_PATH . 'views');
 define('LY_PATH', ROOT_PATH . 'views\layout');
 define('APP_PATH', ROOT_PATH . 'app');
 define('CON_PATH', ROOT_PATH . 'app\connections');
-define('UTIl_PATH', ROOT_PATH . 'app\utils');
+define('UTIL_PATH', ROOT_PATH . 'app\utils');
