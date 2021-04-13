@@ -61,7 +61,7 @@ class Usuario
         $this->fecha_alta = "";
     }
 
-    public function setear($id, $nro_tramite, $path_foto='', $dni, $nombre='', $apellido='', $fecha_nac='', $genero='', $telefono='', $email='', $direccion_renaper='', $localidad='',  $empresa_cuil='', $empresa_nombre='', $fecha_alta = null)
+    public function set($id, $nro_tramite, $path_foto = '', $dni, $nombre = '', $apellido = '', $fecha_nac = '', $genero = '', $telefono = '', $email = '', $direccion_renaper = '', $localidad = '', $empresa_cuil = '', $empresa_nombre = '', $fecha_alta = null)
     {
         $this->setId($id);
         $this->setNroTramite($nro_tramite);
@@ -77,8 +77,7 @@ class Usuario
         $this->setLocalidad($localidad);
         $this->setEmpresaCuil($empresa_cuil);
         $this->setEmpresaNombre($empresa_nombre);
-        $this->setFechaAlta($fecha_alta);
-        ;
+        $this->setFechaAlta($fecha_alta);;
     }
 
     /**
@@ -351,9 +350,16 @@ class Usuario
     public function save()
     {
         $array = json_decode(json_encode($this), true);
-        var_dump(count($array));
+        unset($array['id']);
         $conn = new ConnectMysql();
-        $conn->store('ls_usuarios', $array, 'sssssssssssssss');
+        $conn->store('ls_usuarios', $array, 'ssssssssssssss');
+    }
+
+    public static function list()
+    {
+        $conn = new ConnectMysql();
+        $usuario = $conn->search('ls_usuarios');
+        return $usuario;
     }
 
     /* CÓDIGO ANTIGUO */

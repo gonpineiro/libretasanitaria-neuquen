@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Connections;
 
 class ConnectMysql
@@ -30,7 +31,7 @@ class ConnectMysql
         );
     }
 
-    public function search($table, $param, $ops = [])
+    public function search($table, $param = [], $ops = [])
     {
         $this->connect();
         $where = " 1=1 ";

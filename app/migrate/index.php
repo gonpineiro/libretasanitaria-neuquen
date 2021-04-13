@@ -1,5 +1,6 @@
 <?php
 include '../config/config.php';
+
 use App\Connections\ConnectMysql;
 
 if (MIGRATE) {
@@ -7,15 +8,16 @@ if (MIGRATE) {
     $conn->connect();
 
     /* ls_usuarios */
+    /* CORREGIR */
     $ls_usuarios =
         "CREATE TABLE `ls_usuarios` (
-            `id` VARCHAR(250) NULL,
+            `id` INT NOT NULL AUTO_INCREMENT,
             `nro_tramite` VARCHAR(250) NULL,
             `path_foto` VARCHAR(250) NULL,
             `dni` VARCHAR(250) NULL,
             `nombre` VARCHAR(45) NULL,
             `apellido` VARCHAR(45) NULL,
-            `fecha_nac` TIMESTAMP NULL,
+            `fecha_nac` VARCHAR(45) NULL,
             `genero` VARCHAR(1) NULL,
             `telefono` VARCHAR(250) NULL,
             `email` VARCHAR(250) NULL,
