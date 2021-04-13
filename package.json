@@ -6,9 +6,10 @@
   "dependencies": {
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^4.6.0",
-    "i18n": "^0.13.2",
+    "bootstrap-select": "^1.13.18",
     "jquery": "^3.6.0",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "selectize-bootstrap4-theme": "^2.0.2"
   },
   "devDependencies": {},
   "scripts": {
