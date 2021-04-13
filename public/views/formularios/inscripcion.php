@@ -99,24 +99,23 @@ if (isset($_POST) && !empty($_POST)) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../estilos/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="../../estilos/estilo.css">
-        <link rel="stylesheet" href="../../estilos/bootstrap-select.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
         <title>Inscripci&oacute;n Ferias</title>
     </head>
 
     <body>
         <?php 
-            include('inscripcion_header.php');
-            ($inscripcion_exitosa)? include('inscripcion_exitosa.php') : include('inscripcion_form.php');
+            include('header.php');
+            if ( !$inscripcion_exitosa ) {
+                isset($_GET['tipo']) && $_GET['tipo'] == 'e' && $_SESSION['userPerfiles'] == (2 || 3)? include('inscripcion_empresarial.php') : include('inscripcion_individual.php');
+            } else include('inscripcion_exitosa.php'); 
         ?>
     </body>
 
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../js/bootstrap-select.min.js"></script>
-    <script src="../../js/i18n/defaults-es_ES.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
-    <script src="../../js/ferias/inscripcion.js"></script>
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../../js/formularios/inscripcion.js"></script>
 </html>

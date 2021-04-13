@@ -1,6 +1,5 @@
 <?php
 include '../../../app/config/config.php';
-session_start();
 
 if (isset($_SESSION['userProfiles']) && $_SESSION['userProfiles'] != 3){
     header('Location: https://weblogin.muninqn.gov.ar');
@@ -25,7 +24,7 @@ $apellido = $nombreapellido[0];
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../estilos/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../estilos/menu/menu.css">
 </head>
 
@@ -88,9 +87,8 @@ $apellido = $nombreapellido[0];
             </div>
         </div>
     </div>
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../js/menu/menu.js"></script>
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="" async defer></script>
 </body>
 

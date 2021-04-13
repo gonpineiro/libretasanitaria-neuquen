@@ -7,8 +7,6 @@ include '../../../app/config/config.php';
 use League\Csv\Exception;
 use League\Csv\Writer;
 
-
-session_start();
 if ($_SESSION['userProfiles'] != 3){
     header('https://weblogin.muninqn.gov.ar');
     exit();
