@@ -8,17 +8,15 @@ use App\Connections\ConnectMysql;
  * This is the model class for table "Grupo".
  *
  * @property int $id
- * @property int $nro_tramite
- * @property string $path_foto
+ * @property int $id_wappersonas
  * @property int $dni
+ * @property string $genero
  * @property string $nombre
  * @property string $apellido
- * @property string $fecha_nac
- * @property string $genero
  * @property int $telefono
  * @property string $email
  * @property string $direccion_renaper
- * @property string $localidad
+ * @property string $fecha_nac
  * @property int $empresa_cuil
  * @property string $empresa_nombre
  * @property timestamp $fecha_alta
