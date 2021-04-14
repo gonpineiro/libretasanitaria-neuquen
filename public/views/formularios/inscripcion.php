@@ -100,7 +100,7 @@ if (isset($_POST) && !empty($_POST)) {
         <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="../../estilos/estilo.css">
-        <title>Inscripci&oacute;n Ferias</title>
+        <title>Inscripci&oacute;n Libreta Sanitaria</title>
     </head>
 
     <body>
