@@ -18,7 +18,9 @@ use App\Connections\ConnectMysql;
  * @property string $path_comprobante_pago
  * @property string $estado
  * @property string $retiro_en
- * @property string $fecha_alta
+ * @property string $fecha_emision
+ * @property string $fecha_vencimiento
+ * @property string $observaciones
  *
  */
 class Solicitud
@@ -35,6 +37,9 @@ class Solicitud
     public $estado;
     public $retiro_en;
     public $fecha_alta;
+    public $fecha_emision;
+    public $fecha_vencimiento;
+    public $observaciones;
 
     public function __construct()
     {
@@ -49,10 +54,12 @@ class Solicitud
         $this->path_comprobante_pago = "";
         $this->estado = "";
         $this->retiro_en = "";
-        $this->fecha_alta = "";
+        $this->fecha_emision = "";
+        $this->fecha_vencimiento = "";
+        $this->observaciones = "";
     }
 
-    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $capacitacion = null, $id_capacitador = null, $municipalidad_nqn = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_alta = null)
+    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $capacitacion = null, $id_capacitador = null, $municipalidad_nqn = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_emision = null, $fecha_vencimiento = null, $observaciones = null)
     {
         $this->id_usuario_solicitante = $id_usuario_solicitante;
         $this->id_usuario_solicitado = $id_usuario_solicitado;
@@ -65,14 +72,16 @@ class Solicitud
         $this->path_comprobante_pago = $path_comprobante_pago;
         $this->estado = $estado;
         $this->retiro_en = $retiro_en;
-        $this->fecha_alta = $fecha_alta;
+        $this->fecha_emision = $fecha_emision;
+        $this->fecha_vencimiento = $fecha_vencimiento;
+        $this->observaciones = $observaciones;
     }
 
     public function save()
     {
         $array = json_decode(json_encode($this), true);
         $conn = new ConnectMysql();
-        $conn->store('ls_solicitudes', $array, 'ssssssssssss');
+        $conn->store('ls_solicitudes', $array, 'sssssssssssssss');
     }
 
     public static function list($param = [], $ops = [])
