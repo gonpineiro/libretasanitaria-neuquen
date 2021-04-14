@@ -36,8 +36,12 @@ $apellido = $nombreapellido[0];
 $inscripcion_exitosa = false;
 
 if (isset($_POST) && !empty($_POST)) {
-    $respuesta = [];
+    /* Si no existe el usuario lo guardamos en ls_usuarios */
+    $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
+    $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+    if (!$usuario) $usuarioController->store(['id_wappersonas' => $id_wappersonas]);
 
+    /* buscamos el usuario  */
     $usuarioArr = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 
     /* Verificamos si cambio telefono o celular */
@@ -74,15 +78,14 @@ if (isset($_POST) && !empty($_POST)) {
         'municipalidad_nqn' => $_POST['municipalidad_nqn'],
         'nro_recibo' => $_POST['nro_recibo'],
         'path_comprobante_pago' => null,
-        'estado' => null,
+        'estado' => 'Nuevo',
         'retiro_en' => $_POST['retiro_en'],
         'fecha_emision' => null,
         'fecha_vencimiento' => null,
-        'observaciones' => 'observaciones',
+        'observaciones' => null,
     ];
     $solicitudController->store($solicitudParams);
     $lastSolicitud = $solicitudController->getLast();
-
 
     /* Update solicitudes with paths */
     $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $lastSolicitud['id'], date('Ymd'));
@@ -99,42 +102,7 @@ if (isset($_POST) && !empty($_POST)) {
             $lastCapacitador['id']
         );
     }
-
-    /* CÓDIGO VIEJO */
-    /*  if (isset($usuario) and $usuario != (null or false)) {
-        $respuesta['usuario'] = $usuario;
-
-        $_POST['id_usuario'] = $usuario->getId();
-        $_POST['estado'] = 0;
-        $params = [
-            'id_usuario' => $usuario->getId(),
-            'feria' => $_POST['feria'],
-            'nombre_emprendimiento' => $_POST['nombre_emprendimiento'],
-            'rubro_emprendimiento' => $_POST['rubro_emprendimiento'],
-            'producto' => 1,
-            'instagram' => $_POST['instagram'],
-            'previa_participacion' => $_POST['previa_participacion'],
-            'estado' => $_POST['estado']
-        ];
-        $solicitud = $solicitud_controller->alta($params);
-
-        if ($solicitud != (null or false) and $solicitud->getMensajeoperacion() == (null or '')) {
-            $respuesta['solicitud'] = $solicitud;
-            $inscripcion_exitosa = true;
-            $errores = false;
-
-            $envioMail = enviarMailApi($usuario->getEmail(), [$solicitud->getId()]);
-            if (!$envioMail) {
-                cargarLog($respuesta['usuario']->getId(), $respuesta['solicitud']->getIdsolicitud(), 'Error: envio de mail fallido');
-                $errores = true;
-            } elseif ($envioMail->error != (null or '')) {
-                cargarLog($respuesta['usuario']->getId(), $respuesta['solicitud']->getIdsolicitud(), $envioMail['error']);
-                $errores = true;
-            }
-        } else cargarLog($respuesta['usuario']->getId(), null, 'Error para cargar la Solicitud.');
-        $errores = true;
-    } else cargarLog(null, null, 'Error carga Usuario.');
-    $errores = true; */
+    die();
 }
 ?>
 
