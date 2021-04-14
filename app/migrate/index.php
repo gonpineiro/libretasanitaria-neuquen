@@ -42,6 +42,9 @@ if (MIGRATE) {
         `path_comprobante_pago` VARCHAR(250) NULL,
         `estado` VARCHAR(45) NULL,
         `retiro_en` VARCHAR(45) NULL,
+        `fecha_emision` TIMESTAMP NULL,
+        `fecha_vencimiento` TIMESTAMP NULL,
+        `observaciones` VARCHAR(250) NULL,
         `fecha_alta` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (`id`))";
     $conn->exec_query($ls_solicitudes);
@@ -54,8 +57,9 @@ if (MIGRATE) {
         `apellido` VARCHAR(45) NULL,
         `matricula` VARCHAR(45) NULL,
         `path_certificado` VARCHAR(45) NULL,
-        `lugar` VARCHAR(45) NULL,
-        `fecha_alta` TIMESTAMP NULL,
+        `lugar_capacitacion` VARCHAR(45) NULL,
+        `fecha_capacitacion` TIMESTAMP NULL,    
+        `fecha_alta` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (`id`));";
     $conn->exec_query($ls_capacitadores);
 
@@ -82,7 +86,7 @@ if (MIGRATE) {
         ON DELETE NO ACTION
         ON UPDATE NO ACTION;";
     $conn->exec_query($ls_solicitudes_id_usuario_solicitado_foreign);
-    
+
     $ls_solicitudes_id_usuario_solicitante_foreign =
         "ALTER TABLE `ls_solicitudes` 
         ADD CONSTRAINT `ls_solicitudes_id_usuario_solicitante_foreign`
