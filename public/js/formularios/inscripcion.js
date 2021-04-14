@@ -1,5 +1,3 @@
-const opcionesParaValidar = {terminos_y_condiciones: false, reventa: true};
-
 (function () {
     'use strict';
     window.addEventListener('load', function () {
@@ -73,27 +71,49 @@ $( function () {
             validate();
             bsSelectValidation();
             var form = document.getElementsByClassName('needs-validation');
-
-            if (opcionesParaValidar.terminos_y_condiciones == true && opcionesParaValidar.reventa == false) {
-                $("#submit").prop("disabled", false);
-            } else {
-                $("#submit").prop("disabled", true);
-            }
             
         } 
     );
-
-    let localidades_rn_nqn = llamadaAjax('https://apis.datos.gob.ar/georef/api/municipios?provincia=58&campos=nombre&max=999'),
-        arr_localidades = $.map(localidades_rn_nqn.municipios, function (value, key) {
-            return value;
-        });
-
-    for (let value of arr_localidades) {
-        $('#select-ciudad').prepend(`<option value=${value.id}>${value.nombre}</option>`)
-    }
     
+    $('#capacitacion').on('change', function(e) {
+        if (this.value == 1) {
+            $('#div-infoCapacitacion').show(500);
+            $('#div-infoCapacitacion :input').attr('required', true);
+        } else {
+            $('#div-infoCapacitacion').hide(500);
+            $('#div-infoCapacitacion :input').attr('required', false);
+        }
+    });
+
+    $('#path_certificado').on('change', function(e) {
+        checkArchivo(this);
+    });
+
+    $('#terminosycondiciones').on('change', terminosycondicionescheck(this))
     
 });
+
+function checkArchivo(file){
+    var fileSize = file.files[0].size / 1024 / 1024, // in MB 
+        fileType = $(file).val().toLowerCase(), 
+        fileName = $(file).val().replace(/C:\\fakepath\\/i, ''),
+        regex = new RegExp("(.*?)\.(pdf|jpg|png|jpeg)$", 'i'),
+        max_file_size = 10;
+
+    if (fileSize > max_file_size) {
+        $(file).val('');
+        alert(`El tamaño del archivo max es de ${max_file_size} MB. Su archivo pesa ${~~fileSize} MB`);
+
+    } else {
+        //* se verifica tipo de archivo
+        if ( !(regex.test(fileType)) ) {
+            $(file).val('');
+            alert('Formato de archivo no aceptado. Por favor ingrese un archivo del tipo pdf, jpg, png o jpeg.');
+        } else {
+            $(`#labelAdjunto-${file.id}`).html(fileName);
+        }
+    }
+}
 
 function mostrarInputOtro(value) {
     if (value == null || value.length == 0) {
@@ -140,9 +160,9 @@ function bsSelectValidation() {
 
 function terminosycondicionescheck(elem) {
     if (elem.checked) {
-        opcionesParaValidar.terminos_y_condiciones = true;
+        $('#submit').prop('disabled', false);
     } else {
-        opcionesParaValidar.terminos_y_condiciones = false;
+        $('#submit').prop('disabled', true);
     }
 }
 
@@ -177,20 +197,4 @@ function mostrarErrorEnAlta() {
     let targetEle = $("#form").parent();
     animateToInput(targetEle);
     $(`#alertaErrorCarga`).show(500);
-}
-
-// no se puede realizar una inscripcion con tipo de producto 'reventa'
-// aun asi desean mostrar la opcion, para que el colgado que llegue hasta aca, lo vea y no le deje inscribirse o eso me explicaron
-function jsjsnopodesreventa(elem) {
-    switch(elem.value) {
-        case '1':
-            opcionesParaValidar.reventa = false;
-            $('#error-reventa').hide(500);
-            break;
-        case '2':
-            opcionesParaValidar.reventa = true;
-            $('#error-reventa').show(500);
-            animateToInput($('#form'));
-            break;
-    }
 }
