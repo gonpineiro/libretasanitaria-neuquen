@@ -102,8 +102,8 @@ if (isset($_POST) && !empty($_POST)) {
             $lastCapacitador['id']
         );
     }
-    die();
 }
+
 ?>
 
 <!DOCTYPE html>
