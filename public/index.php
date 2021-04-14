@@ -5,7 +5,7 @@ $_GET['APP'] = 43;
 if (isset($_GET['SESSIONKEY'])) {
     $_SESSION['app'] = $_GET['APP'];
     $_SESSION['token'] = $_GET['SESSIONKEY'];
-    include UTIl_PATH.'\WSWebLogin.php';
+    include UTIL_PATH.'\WSWebLogin.php';
     if (!isset($_SESSION['usuario']) and $_SESSION['usuario']['error'] != null) {
         header('https://weblogin.muninqn.gov.ar');
         exit();
