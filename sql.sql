@@ -25,7 +25,6 @@ CREATE TABLE `ls_solicitudes` (
 	`id_usuario_solicitado` INT NULL,
 	`tipo_empleo` VARCHAR(45) NULL,
 	`renovacion` BOOLEAN NULL,
-	`capacitacion` VARCHAR(250) NULL,
 	`id_capacitador` INT NULL,
 	`municipalidad_nqn` BOOLEAN NULL,
 	`nro_recibo` INT,

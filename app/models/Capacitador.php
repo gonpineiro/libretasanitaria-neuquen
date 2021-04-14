@@ -71,4 +71,12 @@ class Capacitador
         $result = $conn->update('ls_capacitadores', $res, $id);
         return $result;
     }
+
+    public static function getLast()
+    {
+        $conn = new ConnectMysql();
+        $result = $conn->getLast('ls_capacitadores');
+        $id = $conn->fetch_assoc($result);
+        return $id;
+    }
 }

@@ -29,14 +29,12 @@ class Solicitud
     public $id_usuario_solicitado;
     public $tipo_empleo;
     public $renovacion;
-    public $capacitacion;
     public $id_capacitador;
     public $municipalidad_nqn;
     public $nro_recibo;
     public $path_comprobante_pago;
     public $estado;
     public $retiro_en;
-    public $fecha_alta;
     public $fecha_emision;
     public $fecha_vencimiento;
     public $observaciones;
@@ -47,7 +45,6 @@ class Solicitud
         $this->id_usuario_solicitado = "";
         $this->tipo_empleo = "";
         $this->renovacion = "";
-        $this->capacitacion = "";
         $this->id_capacitador = "";
         $this->municipalidad_nqn = "";
         $this->nro_recibo = "";
@@ -59,13 +56,12 @@ class Solicitud
         $this->observaciones = "";
     }
 
-    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $capacitacion = null, $id_capacitador = null, $municipalidad_nqn = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_emision = null, $fecha_vencimiento = null, $observaciones = null)
+    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $municipalidad_nqn = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_emision = null, $fecha_vencimiento = null, $observaciones = null)
     {
         $this->id_usuario_solicitante = $id_usuario_solicitante;
         $this->id_usuario_solicitado = $id_usuario_solicitado;
         $this->tipo_empleo = $tipo_empleo;
         $this->renovacion = $renovacion;
-        $this->capacitacion = $capacitacion;
         $this->id_capacitador = $id_capacitador;
         $this->municipalidad_nqn = $municipalidad_nqn;
         $this->nro_recibo = $nro_recibo;
@@ -81,7 +77,7 @@ class Solicitud
     {
         $array = json_decode(json_encode($this), true);
         $conn = new ConnectMysql();
-        $conn->store('ls_solicitudes', $array, 'sssssssssssssss');
+        $conn->store('ls_solicitudes', $array, 'sssssssssssss');
     }
 
     public static function list($param = [], $ops = [])
@@ -105,5 +101,13 @@ class Solicitud
         $conn = new ConnectMysql();
         $result = $conn->update('ls_solicitudes', $res, $id);
         return $result;
+    }
+
+    public static function getLast()
+    {
+        $conn = new ConnectMysql();
+        $result = $conn->getLast('ls_solicitudes');
+        $id = $conn->fetch_assoc($result);
+        return $id;
     }
 }

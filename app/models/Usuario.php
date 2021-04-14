@@ -78,10 +78,9 @@ class Usuario
         return $usuarios;
     }
 
-    public static function get($id)
+    public static function get($params)
     {
         $conn = new ConnectMysql();
-        $params = ['id' => $id];
         $result = $conn->search('ls_usuarios', $params);
         $usuario = $conn->fetch_assoc($result);
         return $usuario;

@@ -1,17 +1,26 @@
 <?php
 include '../../../app/config/config.php';
 
+use App\Controllers\UsuarioController;
+use App\Controllers\CapacitadorController;
+use App\Controllers\SolicitudController;
+
 if (!isset($_SESSION['usuario'])) {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: https://weblogin.muninqn.gov.ar');
     exit();
 }
+$usuarioController = new UsuarioController();
+$capacitadorController = new CapacitadorController();
+$solicitudController = new SolicitudController();
+
+$estados = $solicitudController->index(['estado' => '0']);
 
 $errores = [];
 $id_wapusuarios = $_SESSION['usuario']['referenciaID'];
 $dni = $_SESSION['usuario']['documento'];
 $datosPersonales = $_SESSION['usuario']['datosPersonales'];
-$direccionRenaper = $datosPersonales['domicilioReal']['direccion'].' '.$datosPersonales['domicilioReal']['codigoPostal']['ciudad'];
+$direccionRenaper = $datosPersonales['domicilioReal']['direccion'] . ' ' . $datosPersonales['domicilioReal']['codigoPostal']['ciudad'];
 $nroTramite = $datosPersonales['properties']['renaperID'];
 $id_wappersonas = $datosPersonales['referenciaID'];
 $email = $_SESSION['usuario']['correoElectronico'];
@@ -26,36 +35,75 @@ $apellido = $nombreapellido[0];
 //* false renderiza el formulario ./inscripcion_form.php
 $inscripcion_exitosa = false;
 
-if (isset($_POST) && !empty($_POST)) {    
+if (isset($_POST) && !empty($_POST)) {
     $respuesta = [];
-    $usuario = null;
-    $log_controller = new LogController();
-    $usuario_controller = new UsuarioController;
-    $solicitud_controller = new SolicitudController;
-    $usuarioArr = $usuario_controller->buscar(['id_wappersonas' => $id_wappersonas]);
 
-    if (empty($usuarioArr)) {
-        $usuario = $usuario_controller->alta(
-            [
-                'id_wappersonas' => $id_wappersonas,
-                'telefono' =>  $celular == $_POST['telefono'] ? $celular : $_POST['telefono'],
-                'email' => $email == $_POST['email'] ? $email : $_POST['email'],
-                'ciudad' => $_POST['nombreCiudad'],
-            ]
+    $usuarioArr = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+
+    /* Verificamos si cambio telefono o celular */
+    if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
+        $usuarioParams = [
+            'telefono' =>  $_POST['telefono'],
+            'email' => $_POST['email']
+        ];
+        $usuarioController->update($usuarioParams, $usuarioArr['id']);
+    }
+
+    /* Si tiene un capacitador, primero lo guardamos */
+    if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
+        $capacitadorParams = [
+            'nombre_capacitador' => $_POST['nombre_capacitador'],
+            'apellido_capacitador' => $_POST['apellido_capacitador'],
+            'path_certificado' => null,
+            'matriculo' => null,
+            'lugar_capacitador' => $_POST['lugar_capacitacion'],
+            'fecha_capacitacion' => $_POST['fecha_capacitacion'],
+        ];
+
+        $capacitadorController->store($capacitadorParams);
+        $lastCapacitador = $capacitadorController->getLast();
+    }
+
+    /* Guardamos la solicitud */
+    $solicitudParams = [
+        'id_usuario_solicitante' => $usuarioArr['id'],
+        'id_usuario_solicitado' => $usuarioArr['id'],
+        'tipo_empleo' => $_POST['tipo_empleo'],
+        'renovacion' => $_POST['renovacion'],
+        'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador['id'] : null,
+        'municipalidad_nqn' => $_POST['municipalidad_nqn'],
+        'nro_recibo' => $_POST['nro_recibo'],
+        'path_comprobante_pago' => null,
+        'estado' => null,
+        'retiro_en' => $_POST['retiro_en'],
+        'fecha_emision' => null,
+        'fecha_vencimiento' => null,
+        'observaciones' => 'observaciones',
+    ];
+    $solicitudController->store($solicitudParams);
+    $lastSolicitud = $solicitudController->getLast();
+
+
+    /* Update solicitudes with paths */
+    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $lastSolicitud['id'], date('Ymd'));
+    $solicitudController->update(
+        ['path_comprobante_pago' => $pathComprobantePago['path_local']],
+        $lastSolicitud['id']
+    );
+
+    /* Update capacitadores with paths */
+    if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
+        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $lastCapacitador['id'], date('Ymd'));
+        $capacitadorController->update(
+            ['path_certificado' => $pathCertificado['path_local']],
+            $lastCapacitador['id']
         );
-    } else {
-        if ($usuarioArr[0]->getEmail() != $_POST['email'] or $usuarioArr[0]->getCiudad() != $_POST['nombreCiudad']  or $usuarioArr[0]->getTelefono() != $_POST['telefono'] ) {
-            $usuarioArr[0]->setEmail($_POST['email']);
-            $usuarioArr[0]->setTelefono($_POST['telefono']);
-            $usuarioArr[0]->setCiudad($_POST['nombreCiudad']);
-            $usuario = $usuarioArr[0]->modificar();
-        } else $usuario = $usuarioArr[0];
-        
-    } 
-    
-    if (isset($usuario) and $usuario != (null or false)) {
+    }
+
+    /* CÓDIGO VIEJO */
+    /*  if (isset($usuario) and $usuario != (null or false)) {
         $respuesta['usuario'] = $usuario;
-        
+
         $_POST['id_usuario'] = $usuario->getId();
         $_POST['estado'] = 0;
         $params = [
@@ -66,54 +114,54 @@ if (isset($_POST) && !empty($_POST)) {
             'producto' => 1,
             'instagram' => $_POST['instagram'],
             'previa_participacion' => $_POST['previa_participacion'],
-            'estado' => $_POST['estado']            
+            'estado' => $_POST['estado']
         ];
         $solicitud = $solicitud_controller->alta($params);
-        
+
         if ($solicitud != (null or false) and $solicitud->getMensajeoperacion() == (null or '')) {
             $respuesta['solicitud'] = $solicitud;
             $inscripcion_exitosa = true;
             $errores = false;
 
             $envioMail = enviarMailApi($usuario->getEmail(), [$solicitud->getId()]);
-            if (!$envioMail){
-                cargarLog($respuesta['usuario']->getId(), $respuesta['solicitud']->getIdsolicitud(),'Error: envio de mail fallido');
+            if (!$envioMail) {
+                cargarLog($respuesta['usuario']->getId(), $respuesta['solicitud']->getIdsolicitud(), 'Error: envio de mail fallido');
                 $errores = true;
             } elseif ($envioMail->error != (null or '')) {
-                cargarLog($respuesta['usuario']->getId(), $respuesta['solicitud']->getIdsolicitud(),$envioMail['error']);
+                cargarLog($respuesta['usuario']->getId(), $respuesta['solicitud']->getIdsolicitud(), $envioMail['error']);
                 $errores = true;
             }
-
-        } else cargarLog($respuesta['usuario']->getId(), null,'Error para cargar la Solicitud.');$errores = true;
-    } else cargarLog(null, null,'Error carga Usuario.');$errores = true;
-
+        } else cargarLog($respuesta['usuario']->getId(), null, 'Error para cargar la Solicitud.');
+        $errores = true;
+    } else cargarLog(null, null, 'Error carga Usuario.');
+    $errores = true; */
 }
-
 ?>
 
 <!DOCTYPE html>
-    <html lang="es">
+<html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
-        <link rel="stylesheet" href="../../estilos/estilo.css">
-        <title>Inscripci&oacute;n Libreta Sanitaria</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../estilos/estilo.css">
+    <title>Inscripci&oacute;n Libreta Sanitaria</title>
+</head>
 
-    <body>
-        <?php 
-            include('header.php');
-            if ( !$inscripcion_exitosa ) {
-                isset($_GET['tipo']) && $_GET['tipo'] == 'e' && $_SESSION['userPerfiles'] == (2 || 3)? include('inscripcion_empresarial.php') : include('inscripcion_individual.php');
-            } else include('inscripcion_exitosa.php'); 
-        ?>
-    </body>
+<body>
+    <?php
+    include('header.php');
+    if (!$inscripcion_exitosa) {
+        isset($_GET['tipo']) && $_GET['tipo'] == 'e' && $_SESSION['userPerfiles'] == (2 || 3) ? include('inscripcion_empresarial.php') : include('inscripcion_individual.php');
+    } else include('inscripcion_exitosa.php');
+    ?>
+</body>
 
-    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="../../js/formularios/inscripcion.js"></script>
+<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../../js/formularios/inscripcion.js"></script>
+
 </html>

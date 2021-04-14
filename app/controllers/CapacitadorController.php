@@ -32,4 +32,10 @@ class CapacitadorController
     {
         return Capacitador::update($res, $id);
     }
+
+    /* Obtenemos el utlimo registro */
+    public static function getLast()
+    {
+        return Capacitador::getLast();
+    }
 }

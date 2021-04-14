@@ -16,22 +16,20 @@ class UsuarioController
     }
 
     /* Busca todos los usuarios */
-    static public function index( $param = [], $ops = [] )
+    static public function index($param = [], $ops = [])
     {
         return Usuario::list($param, $ops);
     }
 
     /* Busca un usuario */
-    static public function get($id)
+    static public function get($params)
     {
-        return Usuario::get($id);
+        return Usuario::get($params);
     }
 
     /* Actualiza un usuario */
     static public function update($res, $id)
     {
-       
         return Usuario::update($res, $id);
     }
-
 }

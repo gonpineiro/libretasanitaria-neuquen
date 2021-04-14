@@ -88,6 +88,13 @@ class ConnectMysql
         return $this->exec_query($sql, $params);
     }
 
+    public function getLast($table)
+    {
+        $this->connect();
+        $sql = "SELECT id FROM $table ORDER BY id DESC LIMIT 1;";
+        return mysqli_query($this->conn, $sql);
+    }
+
     public function exec_query($sql, $params = [], $types = '')
     {
         if ($stmt = mysqli_prepare($this->conn, $sql)) {

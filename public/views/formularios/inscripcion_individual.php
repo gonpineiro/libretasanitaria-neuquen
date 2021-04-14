@@ -138,7 +138,7 @@ if ($errores) {
                                             <div class="form-group row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                         <label for="nombre_capacitador">Nombre del Capacitador </label>
-                                                        <input type="text" id="nombre_capacitador" class="form-control" placeholder="Indique el nombre del Capacitador" required>
+                                                        <input type="text" id="nombre_capacitador" class="form-control" placeholder="Indique el nombre del Capacitador" name="nombre_capacitador" required>
                                                         <div class="invalid-feedback">
                                                             <strong>
                                                                 Por favor ingrese la nombre del capacitador.
@@ -148,7 +148,7 @@ if ($errores) {
     
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                         <label for="apellido_capacitador">Apellido del Capacitador </label>
-                                                        <input type="text" id="apellido_capacitador" class="form-control" placeholder="Indique el Apellido del Capacitador" required>
+                                                        <input type="text" id="apellido_capacitador" class="form-control" placeholder="Indique el Apellido del Capacitador"name="apellido_capacitador" required>
                                                         <div class="invalid-feedback">
                                                             <strong>
                                                                 Por favor ingrese la apellido del capacitador.
@@ -160,7 +160,7 @@ if ($errores) {
                                             <div class="form-group row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                         <label for="lugar_capacitacion" class="required">Lugar de la Capacitacion CURSO MANIPULACION DE ALIMENTOS </label>
-                                                        <input type="text" id="lugar_capacitacion" class="form-control" placeholder="Indique la el lugar de la capacitacion" required>
+                                                        <input type="text" id="lugar_capacitacion" class="form-control" placeholder="Indique la el lugar de la capacitacion" name="lugar_capacitacion" required>
                                                         <div class="invalid-feedback">
                                                                 Por favor seleccionar un tipo de organizaci&oacute;n.
                                                         </div>
@@ -168,7 +168,7 @@ if ($errores) {
                                                 
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                         <label for="fecha_capacitacion">Fecha de Capacitaci&oacute;n </label>
-                                                        <input type="date" id="fecha_capacitacion" class="form-control" required>
+                                                        <input type="date" id="fecha_capacitacion" class="form-control" name="fecha_capacitacion" required>
                                                         <div class="invalid-feedback">
                                                             <strong>
                                                                 Por favor ingrese la matricula del capacitador.
@@ -246,10 +246,10 @@ if ($errores) {
                             </div>
                             <div class="form-inline">
                                 <span >
-                                    Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:emprende.capacitacionyempleo@gmail.com" target="_blank">emprende.capacitacionyempleo@gmail.com</a>
+                                    Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:carnetma@muninqn.gob.ar" target="_blank">carnetma@muninqn.gob.ar</a>
                                 </span>
                             </div>
-                            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" disabled />
+                            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos"  />
                         </div>
                     </div>
                 </form>
