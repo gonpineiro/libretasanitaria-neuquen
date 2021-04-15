@@ -7,6 +7,8 @@
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^4.6.0",
     "bootstrap-select": "^1.13.18",
+    "datatables.net": "^1.10.24",
+    "datatables.net-dt": "^1.10.24",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "selectize-bootstrap4-theme": "^2.0.2"
