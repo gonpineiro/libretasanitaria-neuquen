@@ -73,7 +73,7 @@ class Solicitud
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $conn->store(SOLICITUDES, $array, 'sssssssssssss');
+        return $conn->store(SOLICITUDES, $array, 'sssssssssssss');
     }
 
     public static function list($param = [], $ops = [])

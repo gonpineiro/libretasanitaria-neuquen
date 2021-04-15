@@ -81,7 +81,7 @@ class BaseDatos
 
         $sql = "UPDATE $table SET $strKeyValues WHERE id=$id";
         $query = $this->prepare($sql);
-        return odbc_execute($query, $params);
+        return $this->executeQuery($query, $params);
     }
 
     private function prepare($sql)

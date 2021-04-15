@@ -8,7 +8,7 @@ class SolicitudController
         $solicitud = new Solicitud();
         $values = array_values($res);
         $solicitud->set(...$values);
-        $solicitud->save();
+        return $solicitud->save();
     }
 
     /* Busca todos los solicitud */
@@ -28,5 +28,4 @@ class SolicitudController
     {
         return Solicitud::update($res, $id);
     }
-
 }
