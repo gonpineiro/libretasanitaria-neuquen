@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * This is the model class for table "Grupo".
  * @property string $nombre
