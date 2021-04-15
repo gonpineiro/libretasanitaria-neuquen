@@ -160,13 +160,12 @@ function checkFile( $maxsize = 15, $acceptable = array('application/pdf','image/
 }
 
 spl_autoload_register(function ($class_name){
-    global $ROOT;
-
     $directorys = array(
-        $ROOT.'/app/controllers/',
-        $ROOT.'/app/models/',
-        $ROOT.'/connections/'
+        APP_PATH.'/controllers/',
+        APP_PATH.'/models/',
+        CON_PATH.'/'
     );
+
     foreach($directorys as $directory){
         if(file_exists($directory.$class_name . '.php')){
             include($directory.$class_name . '.php');

@@ -1,8 +1,6 @@
 <?php
 include '../config/config.php';
 
-use App\Connections\ConnectMysql;
-
 if (MIGRATE) {
     $conn = new ConnectMysql();
     $conn->connect();

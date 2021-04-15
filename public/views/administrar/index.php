@@ -72,17 +72,12 @@ $apellido = $nombreapellido[0];
         <div class="form-group">
             <div class="form-group col-12">
                 <div class='col-sm d-flex justify-content-center'>
-                    <button type="button"  onclick='window.location.replace("./descarga-csv.php?descargar=1")' class="btn btn-primary btn-lg" style="background-color: #109AD6;">CSV Emprende</button>
+                    <button type="button" onclick='window.location = ("./nuevas_solicitudes.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:250px">Nuevas Solicitudes</button>
                 </div>
             </div>
             <div class="form-group col-12">
                 <div class='col-sm d-flex justify-content-center'>
-                    <button type="button"  onclick='window.location.replace("./descarga-csv.php?descargar=2")' class="btn btn-primary btn-lg" style="background-color: #109AD6;">CSV Raiz</button>
-                </div>
-            </div>
-            <div class="form-group col-12">
-                <div class='col-sm d-flex justify-content-center'>
-                    <button type="button"  onclick='window.location.replace("./descarga-csv.php?descargar=3")' class="btn btn-primary btn-lg" style="background-color: #109AD6;">CSV Todos</button>
+                    <button type="button" onclick='window.location = ("./historial_solicitudes.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:250px">Historial Solicitudes</button>
                 </div>
             </div>
         </div>

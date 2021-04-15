@@ -106,7 +106,7 @@ $apellido = $nombreapellido[0];
                 </div>
             </div>
 
-            <?= $_SESSION['userPerfiles'] != 3?:"<div class='col-sm d-flex justify-content-center'>
+            <?= $_SESSION['userProfiles'] != 3?:"<div class='col-sm d-flex justify-content-center'>
                 <div class='opcion' onclick='window.location.href = \"../administrar/index.php\"'>
                     <table style='width: 100%;'>
                         <tbody>

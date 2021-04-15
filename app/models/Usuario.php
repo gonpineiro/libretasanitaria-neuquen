@@ -1,10 +1,5 @@
 <?php
 
-namespace App\Models;
-
-use App\Connections\ConnectMysql;
-use App\Connections\BaseDatos;
-
 /**
  * This is the model class for table "Grupo".
  * @property int $id_wappersonas
