@@ -72,12 +72,13 @@ if (isset($_POST) && !empty($_POST)) {
         'renovacion' => (int) $_POST['renovacion'],
         'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador : null,        
         'nro_recibo' => $_POST['nro_recibo'],
-        'path_comprobante_pago' => '',
+        'path_comprobante_pago' => null,
         'estado' => 'Nuevo',
         'retiro_en' => $_POST['retiro_en'],
-        'fecha_emision' => '',
-        'fecha_vencimiento' => '',
-        'observaciones' => '',
+        'fecha_evaluacion' => null,
+        'fecha_vencimiento' => null,
+        'observaciones' => null,
+        'id_usuario_admin' => null,
     ];
     (int) $lastSolicitud = $solicitudController->store($solicitudParams);
 
