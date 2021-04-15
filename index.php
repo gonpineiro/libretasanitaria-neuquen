@@ -1,20 +1,15 @@
 <?php
 include 'app/config/config.php';
 
-if ($_ENV['PROD']) {
-    header('HTTP/1.1 301 Moved Permanently');
-    header('Location: https://weblogin.muninqn.gov.ar');
-    exit();
-}
-
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
 use App\Controllers\UsuarioController;
 use App\Controllers\SolicitudController;
 use App\Controllers\CapacitadorController;
 
-$UserController = new UsuarioController(); {
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+$UserController = new UsuarioController();
+{
     $_POST['id_wappersonas'] = 1;
     $_POST['dni'] = 123123;
     $_POST['genero'] = "G";
@@ -26,7 +21,7 @@ $UserController = new UsuarioController(); {
     $_POST['fecha_nac'] = "fecha_nac";
     $_POST['empresa_cuil'] = "empresa_cuil";
     $_POST['empresa_nombre'] = "empresa_nombre";
-    $_POST['fecha_alta'] = "fecha_alta";
+    $_POST['fecha_alta'] = "2021-08-21";
     $UserController->store($_POST);
     unset($_POST);
     $user = $UserController->get(1);
@@ -36,9 +31,9 @@ $UserController = new UsuarioController(); {
     $_POST['fecha_alta'] = "UPDATE";
     $_POST['nombre'] = "NOMBRE_UPDATE";
     $_POST['fecha_alta'] = "UPDATE";
-    $UserController->update($_POST, 18);
+    $UserController->update($_POST, 1);
     unset($_POST);
-} {
+}  {
     $capacitadorController = new CapacitadorController();
     $_POST['nombre'] = "nombre";
     $_POST['apellido'] = "apellido";
@@ -46,6 +41,7 @@ $UserController = new UsuarioController(); {
     $_POST['path_certificado'] = "path_certificado";
     $_POST['lugar_capacitacion'] = "lugar_capacitacion";
     $_POST['fecha_capacitacion'] = "fecha_capacitacion";
+    $_POST['fecha_alta'] = "fecha_alta";
     $capacitadorController->store($_POST);
     unset($_POST);
     $_POST['nombre'] = "EDIT";
@@ -57,15 +53,16 @@ $UserController = new UsuarioController(); {
     $capacitadorController->update($_POST, 3);
     unset($_POST);
     $cap = $capacitadorController->index();
-} {
+    $cap2 = $capacitadorController->get(1);
+}
+{
     $solicitudController = new SolicitudController();
     $_POST['id_usuario_solicitante'] = 1;
     $_POST['id_usuario_solicitado'] = 2;
     $_POST['tipo_empleo'] = 'tipo_empleo';
-    $_POST['renovacion'] = true;
-    $_POST['capacitacion'] = "capacitacion";
+    $_POST['renovacion'] = 1;
     $_POST['id_capacitador'] = 1;
-    $_POST['municipalidad_nqn'] = true;
+    $_POST['municipalidad_nqn'] = 1;
     $_POST['nro_recibo'] = 2339282;
     $_POST['path_comprobante_pago'] = "path_comprobante_pago";
     $_POST['estado'] = "estado";
@@ -73,16 +70,16 @@ $UserController = new UsuarioController(); {
     $_POST['fecha_emision'] = "2021/02/02";
     $_POST['fecha_vencimiento'] = "venci";
     $_POST['observaciones'] = "observaciones";
+    $_POST['fecha_alta'] = "observaciones";
     $solicitudController->store($_POST);
     unset($_POST);
     $_POST['id_usuario_solicitante'] = 2;
     $_POST['id_usuario_solicitado'] = 2;
-    $_POST['tipo_empleo'] = '6545454545';
-    $_POST['renovacion'] = true;
-    $_POST['capacitacion'] = "6545454545";
+    $_POST['tipo_empleo'] = '23';
+    $_POST['renovacion'] = 1;
     $_POST['id_capacitador'] = 1;
-    $_POST['municipalidad_nqn'] = false;
-    $_POST['nro_recibo'] = 6545454545;
+    $_POST['municipalidad_nqn'] = 1;
+    $_POST['nro_recibo'] = 332;
     $_POST['path_comprobante_pago'] = "6";
     $_POST['estado'] = "asd";
     $_POST['retiro_en'] = "asd";
@@ -116,7 +113,7 @@ $user = $UserController->index();
     <h3>Usuarios</h3>
     <ul>
         <?php
-        while ($row = mysqli_fetch_array($user)) { ?>
+        while ($row = odbc_fetch_array($user)) { ?>
             <li><?= $row['nombre'] ?></li>
         <?php } ?>
 
@@ -124,16 +121,17 @@ $user = $UserController->index();
     <h3>Sol</h3>
     <ul>
         <?php
-        while ($row = mysqli_fetch_array($sol)) { ?>
+        while ($row = odbc_fetch_array($sol)) { ?>
             <li><?= $row['path_comprobante_pago'] ?></li>
         <?php } ?>
     </ul>
     <h3>Cap</h3>
     <ul>
         <?php
-        while ($row = mysqli_fetch_array($cap)) { ?>
+        while ($row = odbc_fetch_array($cap)) { ?>
             <li><?= $row['matricula'] ?></li>
         <?php } ?>
+        <?php echo $cap2['nombre'] ?>
     </ul>
 </body>
 

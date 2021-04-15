@@ -12,7 +12,7 @@ class CapacitadorController
         $capacitador = new Capacitador();
         $values = array_values($res);
         $capacitador->set(...$values);
-        $capacitador->save();
+        return $capacitador->save();
     }
 
     /* Busca todos los capacitador */

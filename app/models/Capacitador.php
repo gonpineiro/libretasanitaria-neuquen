@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Connections\BaseDatos;
 use App\Connections\ConnectMysql;
 
 /**
@@ -45,21 +46,20 @@ class Capacitador
     public function save()
     {
         $array = json_decode(json_encode($this), true);
-        $conn = new ConnectMysql();
-        $conn->store(CAPACITADORES, $array, 'ssssss');
+        $conn = new BaseDatos();
+        return $conn->store(CAPACITADORES, $array, 'ssssss');
     }
 
     public static function list($param = [], $ops = [])
     {
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $usuarios = $conn->search(CAPACITADORES, $param, $ops);
         return $usuarios;
     }
 
-    public static function get($id)
+    public static function get($params)
     {
-        $conn = new ConnectMysql();
-        $params = ['id' => $id];
+        $conn = new BaseDatos();
         $result = $conn->search(CAPACITADORES, $params);
         $usuario = $conn->fetch_assoc($result);
         return $usuario;
@@ -67,14 +67,14 @@ class Capacitador
 
     public static function update($res, $id)
     {
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $result = $conn->update(CAPACITADORES, $res, $id);
         return $result;
     }
 
     public static function getLast()
     {
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $result = $conn->getLast(CAPACITADORES);
         $id = $conn->fetch_assoc($result);
         return $id;

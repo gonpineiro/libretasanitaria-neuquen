@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Connections\ConnectMysql;
+use App\Connections\BaseDatos;
 
 /**
  * This is the model class for table "Grupo".
@@ -67,20 +68,20 @@ class Usuario
     public function save()
     {
         $array = json_decode(json_encode($this), true);
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $conn->store(USUARIOS, $array, 'iissssssssss');
     }
 
     public static function list($param = [], $ops = [])
     {
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $usuarios = $conn->search(USUARIOS, $param, $ops);
         return $usuarios;
     }
 
     public static function get($params)
     {
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $result = $conn->search(USUARIOS, $params);
         $usuario = $conn->fetch_assoc($result);
         return $usuario;
@@ -88,7 +89,7 @@ class Usuario
 
     public static function update($res, $id)
     {
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $result = $conn->update(USUARIOS, $res, $id);
         return $result;
     }

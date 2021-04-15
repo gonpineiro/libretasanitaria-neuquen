@@ -1,24 +1,160 @@
 <?php
-class BaseDatos{
+
+namespace App\Connections;
+
+class BaseDatos
+{
 
     private $connection_string;
     private $user;
     private $pass;
     public $db;
     public $msj_error;
+    private $conn;
 
     public function __construct()
     {
-        $this->connection_string = 'DRIVER={SQL Server};SERVER=;DATABASE=;charset=utf8';
-        $this->user = 'root';
-        $this->pass = '';
-        $conexion = odbc_connect($this->connection_string, $this->user, $this->pass);
-        if ($conexion == false) {
-            $e = odbc_error();
-            trigger_error(htmlentities(odbc_errormsg(), ENT_QUOTES), E_USER_ERROR);
-        }
-        $this->db = $conexion;
+
+        $this->host = DB_HOST;
+        $this->user = DB_USER;
+        $this->pass = DB_PASS;
+        $this->db = DB_NAME;
+        $this->port = DB_PORT;
     }
+
+    public function connect()
+    {
+        $this->connection_string = 'DRIVER={SQL Server};SERVER=128.53.15.3;DATABASE=' . DB_NAME . ';charset=utf8';
+        $this->conn = odbc_connect($this->connection_string, $this->user, $this->pass);
+    }
+
+    /**
+     * Permite realizar la busqueda de un objeto por multiples campos y si se especifica, con operadores
+     * específicos.
+     * @param array $param arreglo del direccion 'campo' => 'valor buscado' o vacio si se necesitan listar todos
+     * @param array $ops arreglo opcional del direccion 'campo' => 'operador', por defecto el operador es '='
+     * @return Usuario[]
+     */
+    public function search($table, $param = [], $ops = [])
+    {
+        $this->connect();
+        $where = " 1=1 ";
+        $values = array();
+        foreach ($param as $key => $value) {
+            $op = "=";
+            if (isset($value)) {
+                if (isset($ops[$key])) {
+                    $op = $ops[$key];
+                }
+                $where .= " AND " . $key . $op . $value;
+                $values[] = $value;
+            }
+        }
+
+        $sql = "SELECT * FROM " . $table . " WHERE " . $where;
+        $query = odbc_exec($this->conn, $sql);
+        if ($query) {
+            return $query;
+        } else {
+            return false;
+        };
+    }
+
+    public function store($table, $params, $types)
+    {
+        $this->connect();
+        $count = count($params);
+        $strKeys = "(" . implode(" ,", array_keys($params)) . ")";
+        $strVals = "(?" . str_repeat(",?", $count - 1) . ")";
+        $sql = "INSERT INTO $table$strKeys VALUES " . $strVals;
+
+        /* Ejecutamos la consulta */
+        $query = $this->prepare($sql);
+        return $this->executeQuery($query, $params, true);
+    }
+
+    public function update($table, $params, $id)
+    {
+        $this->connect();
+        $strKeyValues = '';
+        foreach ($params as $key => $value) {
+            $strKeyValues .= "$key = '$value',";
+        }
+        $strKeyValues = trim($strKeyValues, ',');
+
+        $sql = "UPDATE $table SET $strKeyValues WHERE id=$id";
+        $query = $this->prepare($sql);
+        return odbc_execute($query, $params);
+    }
+
+    /* public function getLast($table)
+    {
+        $this->connect();
+        $sql = "SELECT TOP 1 id from $table order by id;";
+        return odbc_exec($this->conn, $sql);
+    } */
+
+    private function prepare($sql)
+    {
+        return odbc_prepare($this->conn, $sql);
+    }
+
+    public function fetch_assoc($result)
+    {
+        return odbc_fetch_array($result);
+    }
+
+    /**
+     * Ejecuta una sentencia preparada con los parametros provistos.
+     * 
+     * Dado un resource de una sentencia SQL preparada, unifica los valores parametrizados.
+     * Si se busca ejecutar una instruccion SQL no preparada, se debe utilizar Query($sql).
+     *  @param  resource $stmt query preparada anteriormente con prepareQuery
+     *  @param  boolean $alta true si la query es una alta para retornar el ID, false en otro caso
+     *  @param  array $parameters array de parametros con los cuales instanciar la query preparada
+     *  @return int|bool ID si $alta es true, true|false en otro caso
+     */
+    function executeQuery($stmt, $parameters, $alta = false)
+    {
+        $temp = odbc_exec($this->conn, "SET NOCOUNT ON");
+        $ret = odbc_execute($stmt, $parameters);
+        if ($alta) {
+            $r = odbc_exec($this->conn, "SELECT @@IDENTITY AS ID");
+            $rc = odbc_fetch_into($r, $row);
+            $ret = $row[0];
+        }
+        return $ret;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Ejecuta una instruccion SQL.
@@ -30,7 +166,7 @@ class BaseDatos{
      */
     function query($query)
     {
-        return odbc_exec($this->db,$query);
+        return odbc_exec($this->db, $query);
     }
 
     function Registro($query_result)
@@ -58,38 +194,7 @@ class BaseDatos{
         return odbc_prepare($this->db, $query);
     }
 
-    /**
-     * Ejecuta una sentencia preparada con los parametros provistos.
-     * 
-     * Dado un resource de una sentencia SQL preparada, unifica los valores parametrizados.
-     * Si se busca ejecutar una instruccion SQL no preparada, se debe utilizar Query($sql).
-     *  @param  resource $stmt query preparada anteriormente con prepareQuery
-     *  @param  boolean $alta true si la query es una alta para retornar el ID, false en otro caso
-     *  @param  array $parameters array de parametros con los cuales instanciar la query preparada
-     *  @return int|bool ID si $alta es true, true|false en otro caso
-     */
-    function executeQuery($stmt, $alta, $parameters, $from = '')
-    {
-        $temp = odbc_exec($this->db, "SET NOCOUNT ON");	
-        $ret = odbc_execute($stmt, $parameters);
-        if($alta){
-            $r = odbc_exec($this->db, "SELECT @@IDENTITY AS ID");
-            $rc = odbc_fetch_into($r, $row);
-            $ret = $row[0];    
-        }
 
-        if (!$temp or !$ret){
-            $this->msj_error = $stmt;
-            $myfile = fopen("log.txt", "a") or die("Unable to open file!");
-            $msg = "\nTemp:$temp\nRet: $ret\nStatement: $stmt \n From: $from \n";
-            $error = odbc_errormsg($this->db);
-            $msg .= $error;
-            fwrite($myfile, $msg);
-            fclose($myfile);
-        }
-
-        return $ret;
-    }
 
     function commit()
     {
@@ -101,8 +206,8 @@ class BaseDatos{
         return odbc_prepare($this->db, $query);
     }
 
-    function getError(){
-        return odbc_error($this->db) +" - "+ odbc_errormsg($this->db) +" - "+ $this->msj_error;
+    function getError()
+    {
+        return odbc_error($this->db) + " - " + odbc_errormsg($this->db) + " - " + $this->msj_error;
     }
-
 }

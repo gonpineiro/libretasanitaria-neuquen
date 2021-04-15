@@ -64,8 +64,7 @@ if (isset($_POST) && !empty($_POST)) {
             'fecha_capacitacion' => $_POST['fecha_capacitacion'],
         ];
 
-        $capacitadorController->store($capacitadorParams);
-        $lastCapacitador = $capacitadorController->getLast();
+        $lastCapacitador = $capacitadorController->store($capacitadorParams);
     }
 
     /* Guardamos la solicitud */
@@ -74,7 +73,7 @@ if (isset($_POST) && !empty($_POST)) {
         'id_usuario_solicitado' => $usuarioArr['id'],
         'tipo_empleo' => $_POST['tipo_empleo'],
         'renovacion' => $_POST['renovacion'],
-        'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador['id'] : null,
+        'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador : null,
         'municipalidad_nqn' => $_POST['municipalidad_nqn'],
         'nro_recibo' => $_POST['nro_recibo'],
         'path_comprobante_pago' => null,
@@ -84,22 +83,21 @@ if (isset($_POST) && !empty($_POST)) {
         'fecha_vencimiento' => null,
         'observaciones' => null,
     ];
-    $solicitudController->store($solicitudParams);
-    $lastSolicitud = $solicitudController->getLast();
+    $lastSolicitud = $solicitudController->store($solicitudParams);
 
     /* Update solicitudes with paths */
-    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $lastSolicitud['id'], date('Ymd'));
+    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $lastSolicitud, date('Ymd'));
     $solicitudController->update(
         ['path_comprobante_pago' => $pathComprobantePago['path_local']],
-        $lastSolicitud['id']
+        $lastSolicitud
     );
 
     /* Update capacitadores with paths */
     if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
-        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $lastCapacitador['id'], date('Ymd'));
+        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $lastCapacitador, date('Ymd'));
         $capacitadorController->update(
             ['path_certificado' => $pathCertificado['path_local']],
-            $lastCapacitador['id']
+            $lastCapacitador
         );
     }
 }
