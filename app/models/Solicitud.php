@@ -1,9 +1,5 @@
 <?php
 
-namespace App\Models;
-
-use App\Connections\ConnectMysql;
-
 /**
  * This is the model class for table "Grupo".
  *

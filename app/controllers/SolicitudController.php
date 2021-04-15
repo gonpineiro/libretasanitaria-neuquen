@@ -1,9 +1,5 @@
 <?php
 
-namespace App\Controllers;
-
-use App\Models\Solicitud;
-
 class SolicitudController
 {
     /* Guarda un solicitud */

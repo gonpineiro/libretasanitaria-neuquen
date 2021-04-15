@@ -29,7 +29,7 @@ if (PROD) {
 if (!PROD) {
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
-    define('DB_PASS', 'root');
+    define('DB_PASS', '');
     define('DB_NAME', 'libreta');
     define('DB_PORT', '3306');
 }

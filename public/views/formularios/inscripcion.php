@@ -1,10 +1,6 @@
 <?php
 include '../../../app/config/config.php';
 
-use App\Controllers\UsuarioController;
-use App\Controllers\CapacitadorController;
-use App\Controllers\SolicitudController;
-
 if (!isset($_SESSION['usuario'])) {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: https://weblogin.muninqn.gov.ar');
