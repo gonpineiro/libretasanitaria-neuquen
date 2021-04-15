@@ -70,30 +70,30 @@ if (isset($_POST) && !empty($_POST)) {
         'tipo_empleo' => $_POST['tipo_empleo'],
         'renovacion' => $_POST['renovacion'],
         'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador : null,
-        'municipalidad_nqn' => $_POST['municipalidad_nqn'],
+        'municipalidad_nqn' => $_POST['municipalidad_nqn'] === '' ? 0 : 1,
         'nro_recibo' => $_POST['nro_recibo'],
-        'path_comprobante_pago' => null,
+        'path_comprobante_pago' => '',
         'estado' => 'Nuevo',
         'retiro_en' => $_POST['retiro_en'],
-        'fecha_emision' => null,
-        'fecha_vencimiento' => null,
-        'observaciones' => null,
+        'fecha_emision' => '',
+        'fecha_vencimiento' => '',
+        'observaciones' => '',
     ];
-    $id = $solicitudController->store($solicitudParams);
+    $lastSolicitud = $solicitudController->store($solicitudParams);
+
 
     /* Update solicitudes with paths */
-    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $id, 'path_comprobante_pago');
+    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $lastSolicitud, 'path_comprobante_pago');
     $solicitudController->update(
         ['path_comprobante_pago' => $pathComprobantePago],
-        $id
+        $lastSolicitud
     );
-
     /* Update capacitadores with paths */
     if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
-        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $id, 'path_certificado');
+        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $lastCapacitador, 'path_certificado');
         $capacitadorController->update(
             ['path_certificado' => $pathCertificado],
-            $id
+            $lastCapacitador
         );
     }
 }

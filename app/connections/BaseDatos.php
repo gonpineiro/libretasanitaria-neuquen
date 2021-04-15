@@ -81,15 +81,8 @@ class BaseDatos
 
         $sql = "UPDATE $table SET $strKeyValues WHERE id=$id";
         $query = $this->prepare($sql);
-        return odbc_execute($query, $params);
+        return $this->executeQuery($query, $params);
     }
-
-    /* public function getLast($table)
-    {
-        $this->connect();
-        $sql = "SELECT TOP 1 id from $table order by id;";
-        return odbc_exec($this->conn, $sql);
-    } */
 
     private function prepare($sql)
     {

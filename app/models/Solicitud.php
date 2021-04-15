@@ -73,7 +73,7 @@ class Solicitud
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $conn->store(SOLICITUDES, $array, 'sssssssssssss');
+        return $conn->store(SOLICITUDES, $array, 'sssssssssssss');
     }
 
     public static function list($param = [], $ops = [])
@@ -99,11 +99,11 @@ class Solicitud
         return $result;
     }
 
-    public static function getLast()
+   /*  public static function getLast()
     {
         $conn = new BaseDatos();
         $result = $conn->getLast(SOLICITUDES);
         $id = $conn->fetch_assoc($result);
         return $id;
-    }
+    } */
 }

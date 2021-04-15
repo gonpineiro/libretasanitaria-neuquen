@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the model class for table "Grupo".
  * @property string $nombre
@@ -64,13 +65,5 @@ class Capacitador
         $conn = new BaseDatos();
         $result = $conn->update(CAPACITADORES, $res, $id);
         return $result;
-    }
-
-    public static function getLast()
-    {
-        $conn = new BaseDatos();
-        $result = $conn->getLast(CAPACITADORES);
-        $id = $conn->fetch_assoc($result);
-        return $id;
     }
 }
