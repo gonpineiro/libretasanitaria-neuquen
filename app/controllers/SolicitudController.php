@@ -8,7 +8,7 @@ class SolicitudController
         $solicitud = new Solicitud();
         $values = array_values($res);
         $solicitud->set(...$values);
-        $solicitud->save();
+        return $solicitud->save();
     }
 
     /* Busca todos los solicitud */
@@ -27,11 +27,5 @@ class SolicitudController
     public static function update($res, $id)
     {
         return Solicitud::update($res, $id);
-    }
-
-    /* Obtenemos el utlimo registro */
-    public static function getLast()
-    {
-        return Solicitud::getLast();
     }
 }

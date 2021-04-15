@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * This is the model class for table "Grupo".
  * @property string $nombre
@@ -42,38 +41,29 @@ class Capacitador
     public function save()
     {
         $array = json_decode(json_encode($this), true);
-        $conn = new ConnectMysql();
-        $conn->store('ls_capacitadores', $array, 'ssssss');
+        $conn = new BaseDatos();
+        return $conn->store(CAPACITADORES, $array, 'ssssss');
     }
 
     public static function list($param = [], $ops = [])
     {
-        $conn = new ConnectMysql();
-        $usuarios = $conn->search('ls_capacitadores', $param, $ops);
+        $conn = new BaseDatos();
+        $usuarios = $conn->search(CAPACITADORES, $param, $ops);
         return $usuarios;
     }
 
-    public static function get($id)
+    public static function get($params)
     {
-        $conn = new ConnectMysql();
-        $params = ['id' => $id];
-        $result = $conn->search('ls_capacitadores', $params);
+        $conn = new BaseDatos();
+        $result = $conn->search(CAPACITADORES, $params);
         $usuario = $conn->fetch_assoc($result);
         return $usuario;
     }
 
     public static function update($res, $id)
     {
-        $conn = new ConnectMysql();
-        $result = $conn->update('ls_capacitadores', $res, $id);
+        $conn = new BaseDatos();
+        $result = $conn->update(CAPACITADORES, $res, $id);
         return $result;
-    }
-
-    public static function getLast()
-    {
-        $conn = new ConnectMysql();
-        $result = $conn->getLast('ls_capacitadores');
-        $id = $conn->fetch_assoc($result);
-        return $id;
     }
 }

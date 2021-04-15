@@ -72,38 +72,31 @@ class Solicitud
     public function save()
     {
         $array = json_decode(json_encode($this), true);
-        $conn = new ConnectMysql();
-        $conn->store('ls_solicitudes', $array, 'sssssssssssss');
+        $conn = new BaseDatos();
+        return $conn->store(SOLICITUDES, $array, 'sssssssssssss');
     }
 
     public static function list($param = [], $ops = [])
     {
-        $conn = new ConnectMysql();
-        $solicitud = $conn->search('ls_solicitudes', $param, $ops);
+        $conn = new BaseDatos();
+        $solicitud = $conn->search(SOLICITUDES, $param, $ops);
         return $solicitud;
     }
 
     public static function get($id)
     {
-        $conn = new ConnectMysql();
+        $conn = new BaseDatos();
         $params = ['id' => $id];
-        $result = $conn->search('ls_solicitudes', $params);
+        $result = $conn->search(SOLICITUDES, $params);
         $solicitud = $conn->fetch_assoc($result);
         return $solicitud;
     }
 
     public static function update($res, $id)
     {
-        $conn = new ConnectMysql();
-        $result = $conn->update('ls_solicitudes', $res, $id);
+        $conn = new BaseDatos();
+        $result = $conn->update(SOLICITUDES, $res, $id);
         return $result;
     }
 
-    public static function getLast()
-    {
-        $conn = new ConnectMysql();
-        $result = $conn->getLast('ls_solicitudes');
-        $id = $conn->fetch_assoc($result);
-        return $id;
-    }
 }

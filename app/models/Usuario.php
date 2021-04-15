@@ -63,29 +63,29 @@ class Usuario
     public function save()
     {
         $array = json_decode(json_encode($this), true);
-        $conn = new ConnectMysql();
-        $conn->store('ls_usuarios', $array, 'iissssssssss');
+        $conn = new BaseDatos();
+        $conn->store(USUARIOS, $array, 'iissssssssss');
     }
 
     public static function list($param = [], $ops = [])
     {
-        $conn = new ConnectMysql();
-        $usuarios = $conn->search('ls_usuarios', $param, $ops);
+        $conn = new BaseDatos();
+        $usuarios = $conn->search(USUARIOS, $param, $ops);
         return $usuarios;
     }
 
     public static function get($params)
     {
-        $conn = new ConnectMysql();
-        $result = $conn->search('ls_usuarios', $params);
+        $conn = new BaseDatos();
+        $result = $conn->search(USUARIOS, $params);
         $usuario = $conn->fetch_assoc($result);
         return $usuario;
     }
 
     public static function update($res, $id)
     {
-        $conn = new ConnectMysql();
-        $result = $conn->update('ls_usuarios', $res, $id);
+        $conn = new BaseDatos();
+        $result = $conn->update(USUARIOS, $res, $id);
         return $result;
     }
 }

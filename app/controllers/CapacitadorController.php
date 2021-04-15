@@ -9,7 +9,7 @@ class CapacitadorController
         $capacitador = new Capacitador();
         $values = array_values($res);
         $capacitador->set(...$values);
-        $capacitador->save();
+        return $capacitador->save();
     }
 
     /* Busca todos los capacitador */
@@ -30,9 +30,4 @@ class CapacitadorController
         return Capacitador::update($res, $id);
     }
 
-    /* Obtenemos el utlimo registro */
-    public static function getLast()
-    {
-        return Capacitador::getLast();
-    }
 }
