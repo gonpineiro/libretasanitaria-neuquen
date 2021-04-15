@@ -75,6 +75,7 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../../estilos/estilo.css">
+    <link rel="stylesheet" href="../../estilos/menu/menu.css">
     <link rel="stylesheet" type="text/css" href="../../../node_modules/datatables.net-dt/css/jquery.dataTables.min.css">
 
     <title>Inscripci&oacute;n Ferias</title>
@@ -82,10 +83,29 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
 
 <body>
     <?PHP include('../formularios/header.php'); ?>
-    <div style="background-color: #478FCD;">
-        <div class="container py-3">
-            <h4 class="text-right" style="color: white;margin:0px"><?= "$nombre $apellido" ?></h4>
-        </div>
+    <div id="divUserInfo" class="container py-4" style="display: table-cell;float: right;">
+        <table id="tableWidth" style="float: right; margin-right: 30px;">
+            <tbody>
+                <tr onclick="usrOptions.style.display='block'" onmouseleave="usrOptions.style.display='none'" style="cursor: pointer;">
+                    <td>
+                        <img alt="" style="width: 25px;" src="../../estilos/menu/icono-login.png">
+                    </td>
+                    <td style="display: inline-flex; padding: 5px;">
+                        <div style="color: #109AD6;"><?php echo "$apellido $nombre"; ?></div>
+                    </td>
+                    <td>
+                        <img alt="" src="../../estilos/menu/arrDown.jpg">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div onmouseover="this.style.display='block'" onmouseleave="this.style.display='none'" id="usrOptions" style="z-index: 999; background-color: transparent; display: none; position: absolute; margin-top: -5px; width: 307px;">
+                            <div onclick="window.location.href = './index.php'" class="whiteButton" style="margin-top: 5px;">Regresar</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="body container" style="padding-bottom: 50px;">
         <div style="min-height: 50px;">
