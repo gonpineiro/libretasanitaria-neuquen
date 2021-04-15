@@ -29,9 +29,4 @@ class SolicitudController
         return Solicitud::update($res, $id);
     }
 
-    /* Obtenemos el utlimo registro */
-    public static function getLast()
-    {
-        return Solicitud::getLast();
-    }
 }

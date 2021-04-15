@@ -66,11 +66,4 @@ class Capacitador
         return $result;
     }
 
-    public static function getLast()
-    {
-        $conn = new BaseDatos();
-        $result = $conn->getLast(CAPACITADORES);
-        $id = $conn->fetch_assoc($result);
-        return $id;
-    }
 }

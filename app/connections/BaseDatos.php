@@ -84,13 +84,6 @@ class BaseDatos
         return odbc_execute($query, $params);
     }
 
-    /* public function getLast($table)
-    {
-        $this->connect();
-        $sql = "SELECT TOP 1 id from $table order by id;";
-        return odbc_exec($this->conn, $sql);
-    } */
-
     private function prepare($sql)
     {
         return odbc_prepare($this->conn, $sql);

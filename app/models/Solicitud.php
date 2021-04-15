@@ -99,11 +99,4 @@ class Solicitud
         return $result;
     }
 
-    public static function getLast()
-    {
-        $conn = new BaseDatos();
-        $result = $conn->getLast(SOLICITUDES);
-        $id = $conn->fetch_assoc($result);
-        return $id;
-    }
 }
