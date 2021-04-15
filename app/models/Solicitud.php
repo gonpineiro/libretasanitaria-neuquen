@@ -9,7 +9,6 @@
  * @property bool $renovacion
  * @property bool $capacitacion
  * @property int $id_capacitador
- * @property bool $municipalidad_nqn
  * @property int $nro_recibo
  * @property string $path_comprobante_pago
  * @property string $estado
@@ -17,7 +16,7 @@
  * @property string $fecha_emision
  * @property string $fecha_vencimiento
  * @property string $observaciones
- *
+ * @property string $fecha_alta *
  */
 class Solicitud
 {
@@ -26,7 +25,6 @@ class Solicitud
     public $tipo_empleo;
     public $renovacion;
     public $id_capacitador;
-    public $municipalidad_nqn;
     public $nro_recibo;
     public $path_comprobante_pago;
     public $estado;
@@ -34,6 +32,7 @@ class Solicitud
     public $fecha_emision;
     public $fecha_vencimiento;
     public $observaciones;
+    public $fecha_alta;
 
     public function __construct()
     {
@@ -42,7 +41,6 @@ class Solicitud
         $this->tipo_empleo = "";
         $this->renovacion = "";
         $this->id_capacitador = "";
-        $this->municipalidad_nqn = "";
         $this->nro_recibo = "";
         $this->path_comprobante_pago = "";
         $this->estado = "";
@@ -50,16 +48,16 @@ class Solicitud
         $this->fecha_emision = "";
         $this->fecha_vencimiento = "";
         $this->observaciones = "";
+        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
-    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $municipalidad_nqn = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_emision = null, $fecha_vencimiento = null, $observaciones = null)
+    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_emision = null, $fecha_vencimiento = null, $observaciones = null)
     {
         $this->id_usuario_solicitante = $id_usuario_solicitante;
         $this->id_usuario_solicitado = $id_usuario_solicitado;
         $this->tipo_empleo = $tipo_empleo;
         $this->renovacion = $renovacion;
         $this->id_capacitador = $id_capacitador;
-        $this->municipalidad_nqn = $municipalidad_nqn;
         $this->nro_recibo = $nro_recibo;
         $this->path_comprobante_pago = $path_comprobante_pago;
         $this->estado = $estado;
@@ -99,7 +97,7 @@ class Solicitud
         return $result;
     }
 
-   /*  public static function getLast()
+    /*  public static function getLast()
     {
         $conn = new BaseDatos();
         $result = $conn->getLast(SOLICITUDES);

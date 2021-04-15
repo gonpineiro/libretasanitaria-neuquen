@@ -54,23 +54,23 @@ if (isset($_POST) && !empty($_POST)) {
         $capacitadorParams = [
             'nombre_capacitador' => $_POST['nombre_capacitador'],
             'apellido_capacitador' => $_POST['apellido_capacitador'],
-            'path_certificado' => null,
             'matricula' => null,
+            'municipalidad_nqn' => (int) $_POST['municipalidad_nqn'],
+            'path_certificado' => null,
             'lugar_capacitador' => $_POST['lugar_capacitacion'],
             'fecha_capacitacion' => $_POST['fecha_capacitacion'],
         ];
 
-        $lastCapacitador = $capacitadorController->store($capacitadorParams);
+        (int) $lastCapacitador = $capacitadorController->store($capacitadorParams);
     }
 
     /* Guardamos la solicitud */
     $solicitudParams = [
-        'id_usuario_solicitante' => $usuarioArr['id'],
-        'id_usuario_solicitado' => $usuarioArr['id'],
-        'tipo_empleo' => $_POST['tipo_empleo'],
-        'renovacion' => $_POST['renovacion'],
-        'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador : null,
-        'municipalidad_nqn' => $_POST['municipalidad_nqn'] === '' ? 0 : 1,
+        'id_usuario_solicitante' => (int) $usuarioArr['id'],
+        'id_usuario_solicitado' => (int) $usuarioArr['id'],
+        'tipo_empleo' => (int) $_POST['tipo_empleo'],
+        'renovacion' => (int) $_POST['renovacion'],
+        'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador : null,        
         'nro_recibo' => $_POST['nro_recibo'],
         'path_comprobante_pago' => '',
         'estado' => 'Nuevo',
@@ -79,7 +79,7 @@ if (isset($_POST) && !empty($_POST)) {
         'fecha_vencimiento' => '',
         'observaciones' => '',
     ];
-    $lastSolicitud = $solicitudController->store($solicitudParams);
+    (int) $lastSolicitud = $solicitudController->store($solicitudParams);
 
 
     /* Update solicitudes with paths */

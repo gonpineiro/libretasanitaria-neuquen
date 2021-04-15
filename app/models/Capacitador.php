@@ -5,34 +5,41 @@
  * @property string $nombre
  * @property string $apellido
  * @property string $matricula
+ * @property int $municipalidad_nqn
  * @property string $path_certificado
  * @property string $lugar_capacitacion
  * @property string $fecha_capacitacion
+ * @property string $fecha_alta
  */
 class Capacitador
 {
     public $nombre;
     public $apellido;
     public $matricula;
+    public $municipalidad_nqn;
     public $path_certificado;
     public $lugar_capacitacion;
     public $fecha_capacitacion;
+    public $fecha_alta;
 
     public function __construct()
     {
         $this->nombre = "";
         $this->apellido = "";
         $this->matricula = "";
+        $this->municipalidad_nqn = "";
         $this->path_certificado = "";
         $this->lugar_capacitacion = "";
         $this->fecha_capacitacion = "";
+        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
-    public function set($nombre = null, $apellido = null, $matricula = null, $path_certificado = null, $lugar_capacitacion = null, $fecha_capacitacion = null)
+    public function set($nombre = null, $apellido = null, $matricula = null, $municipalidad_nqn = null, $path_certificado = null, $lugar_capacitacion = null, $fecha_capacitacion = null)
     {
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->matricula = $matricula;
+        $this->municipalidad_nqn = $municipalidad_nqn;
         $this->path_certificado = $path_certificado;
         $this->lugar_capacitacion = $lugar_capacitacion;
         $this->fecha_capacitacion = $fecha_capacitacion;
