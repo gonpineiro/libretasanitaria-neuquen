@@ -68,42 +68,34 @@ function enviarMailApi ( $address, $arrIdSolicitud ) {
 }
 
 function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName){
-    global $PROYECTO;
-    $new_path = null;
     $new_path_local = null;
     
-    $target_path = $_SERVER['SERVER_NAME'] ."\\$PROYECTO\\archivos\\". $idsolicitud ."\\boletoestudiantil\\$adjuntoInputName\\";
-    $target_path_local = $_SERVER['DOCUMENT_ROOT'] ."\\$PROYECTO\\archivos\\". $idsolicitud ."\\boletoestudiantil\\$adjuntoInputName\\";
+    $target_path_local = ROOT_PATH ."\\archivos\\". $idsolicitud ."\\$adjuntoInputName\\";
     
     if (!file_exists($target_path_local)){
         mkdir($target_path_local, 0777, true);
     };
 
     if (!empty($adjunto)) {
-        $new_path = $target_path . $adjuntoInputName;
         $new_path_local = $target_path_local . $adjuntoInputName;
         switch($adjunto['type']) {
             case('image/jpeg'):
-                $new_path = $new_path . '.jpeg';
                 $new_path_local = $new_path_local . '.jpeg'; 
                 break;
             case('image/jpg'):
-                $new_path = $new_path . '.jpg';
                 $new_path_local = $new_path_local . '.jpg'; 
                 break;
             case('image/png'):
-                $new_path = $new_path . '.png';
                 $new_path_local = $new_path_local . '.png'; 
                 break;
             case 'application/pdf':
-                $new_path = $new_path . '.pdf';
                 $new_path_local = $new_path_local . '.pdf'; 
                 break;
                 
         }
     };
 
-    return ['path_web' => $new_path, 'path_local' => $new_path_local];
+    return $new_path_local;
 }
 
 /**

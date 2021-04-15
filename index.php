@@ -1,9 +1,12 @@
 <?php
 include 'app/config/config.php';
 
-use App\Controllers\UsuarioController;
-use App\Controllers\SolicitudController;
-use App\Controllers\CapacitadorController;
+/* echo ROOT_PATH . '<br>';
+echo VIEW_PATH . '<br>';
+echo LY_PATH . '<br>';
+echo APP_PATH . '<br>';
+echo CON_PATH . '<br>';
+echo UTIl_PATH . '<br>'; */
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
