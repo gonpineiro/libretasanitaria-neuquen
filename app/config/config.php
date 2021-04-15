@@ -11,19 +11,23 @@ include_once 'paths.php';
 require ROOT_PATH . 'app/utils/funciones.php';
 require ROOT_PATH . 'vendor/autoload.php';
 
+/*  */
+$dotenv = \Dotenv\Dotenv::createImmutable(ROOT_PATH);
+$dotenv->load();
+
 /* Modo produccion: true */
-define('PROD', false);
+define('PROD', $_ENV['PROD']);
 
 /* Seguridad para migration */
-define('MIGRATE', true);
+define('MIGRATE', $_ENV['MIGRATE']);
 
 /* Configuracion base de datos */
 if (PROD) {
-    define('DB_HOST', 'db_prod_host');
-    define('DB_USER', 'db_prod_user');
-    define('DB_PASS', 'db_prod_pass');
-    define('DB_NAME', 'db_prod_name');
-    define('DB_PORT', 'db_prod_port');
+    define('DB_HOST', $_ENV['DB_HOST']);
+    define('DB_USER', $_ENV['DB_USER']);
+    define('DB_PASS', $_ENV['DB_PASS']);
+    define('DB_NAME', $_ENV['DB_NAME']);
+    define('DB_PORT', $_ENV['DB_PORT']);
 }
 
 if (!PROD) {
@@ -33,3 +37,8 @@ if (!PROD) {
     define('DB_NAME', 'libreta');
     define('DB_PORT', '3306');
 }
+
+/* Configuración de tablas */
+define('USUARIOS', 'ls_usuarios');
+define('CAPACITADORES', 'ls_capacitadores');
+define('SOLICITUDES', 'ls_solicitudes');

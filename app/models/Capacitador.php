@@ -46,13 +46,13 @@ class Capacitador
     {
         $array = json_decode(json_encode($this), true);
         $conn = new ConnectMysql();
-        $conn->store('ls_capacitadores', $array, 'ssssss');
+        $conn->store(CAPACITADORES, $array, 'ssssss');
     }
 
     public static function list($param = [], $ops = [])
     {
         $conn = new ConnectMysql();
-        $usuarios = $conn->search('ls_capacitadores', $param, $ops);
+        $usuarios = $conn->search(CAPACITADORES, $param, $ops);
         return $usuarios;
     }
 
@@ -60,7 +60,7 @@ class Capacitador
     {
         $conn = new ConnectMysql();
         $params = ['id' => $id];
-        $result = $conn->search('ls_capacitadores', $params);
+        $result = $conn->search(CAPACITADORES, $params);
         $usuario = $conn->fetch_assoc($result);
         return $usuario;
     }
@@ -68,14 +68,14 @@ class Capacitador
     public static function update($res, $id)
     {
         $conn = new ConnectMysql();
-        $result = $conn->update('ls_capacitadores', $res, $id);
+        $result = $conn->update(CAPACITADORES, $res, $id);
         return $result;
     }
 
     public static function getLast()
     {
         $conn = new ConnectMysql();
-        $result = $conn->getLast('ls_capacitadores');
+        $result = $conn->getLast(CAPACITADORES);
         $id = $conn->fetch_assoc($result);
         return $id;
     }

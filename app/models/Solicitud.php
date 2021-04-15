@@ -77,13 +77,13 @@ class Solicitud
     {
         $array = json_decode(json_encode($this), true);
         $conn = new ConnectMysql();
-        $conn->store('ls_solicitudes', $array, 'sssssssssssss');
+        $conn->store(SOLICITUDES, $array, 'sssssssssssss');
     }
 
     public static function list($param = [], $ops = [])
     {
         $conn = new ConnectMysql();
-        $solicitud = $conn->search('ls_solicitudes', $param, $ops);
+        $solicitud = $conn->search(SOLICITUDES, $param, $ops);
         return $solicitud;
     }
 
@@ -91,7 +91,7 @@ class Solicitud
     {
         $conn = new ConnectMysql();
         $params = ['id' => $id];
-        $result = $conn->search('ls_solicitudes', $params);
+        $result = $conn->search(SOLICITUDES, $params);
         $solicitud = $conn->fetch_assoc($result);
         return $solicitud;
     }
@@ -99,14 +99,14 @@ class Solicitud
     public static function update($res, $id)
     {
         $conn = new ConnectMysql();
-        $result = $conn->update('ls_solicitudes', $res, $id);
+        $result = $conn->update(SOLICITUDES, $res, $id);
         return $result;
     }
 
     public static function getLast()
     {
         $conn = new ConnectMysql();
-        $result = $conn->getLast('ls_solicitudes');
+        $result = $conn->getLast(SOLICITUDES);
         $id = $conn->fetch_assoc($result);
         return $id;
     }
