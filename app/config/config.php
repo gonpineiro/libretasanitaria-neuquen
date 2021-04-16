@@ -11,7 +11,7 @@ include_once 'paths.php';
 require ROOT_PATH . 'app/utils/funciones.php';
 require ROOT_PATH . 'vendor/autoload.php';
 
-/*  */
+/* Carga del DOTENV */
 $dotenv = \Dotenv\Dotenv::createImmutable(ROOT_PATH);
 $dotenv->load();
 
@@ -28,6 +28,7 @@ if (PROD) {
     define('DB_PASS', $_ENV['DB_PASS']);
     define('DB_NAME', $_ENV['DB_NAME']);
     define('DB_PORT', $_ENV['DB_PORT']);
+    define('DB_CHARSET', $_ENV['DB_CHARSET']);
 }
 
 if (!PROD) {
@@ -36,6 +37,7 @@ if (!PROD) {
     define('DB_PASS', '');
     define('DB_NAME', 'libreta');
     define('DB_PORT', '3306');
+    define('DB_CHARSET', 'utf8');
 }
 
 /* Configuración de tablas */

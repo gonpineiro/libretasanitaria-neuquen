@@ -2,12 +2,13 @@
 class BaseDatos
 {
 
-    private $connection_string;
+    private $conn_string;
     private $user;
     private $pass;
     public $db;
     public $msj_error;
     private $conn;
+    private $charset;
 
     public function __construct()
     {
@@ -16,13 +17,13 @@ class BaseDatos
         $this->user = DB_USER;
         $this->pass = DB_PASS;
         $this->db = DB_NAME;
-        $this->port = DB_PORT;
+        $this->charset = DB_CHARSET;
     }
 
     public function connect()
     {
-        $this->connection_string = 'DRIVER={SQL Server};SERVER=128.53.15.3;DATABASE=' . DB_NAME . ';charset=utf8';
-        $this->conn = odbc_connect($this->connection_string, $this->user, $this->pass);
+        $this->conn_string = 'DRIVER={SQL Server};SERVER=' . $this->host . ';DATABASE=' . $this->db . ';charset=' . $this->charset;
+        $this->conn = odbc_connect($this->conn_string, $this->user, $this->pass);
     }
 
     /**
