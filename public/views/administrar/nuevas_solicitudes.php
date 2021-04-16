@@ -211,7 +211,7 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
                         <td class="date">01/89/2021</td>
                         <td class="company">empresa</td>
                         <td class="state text-center text-success"><i class="bi bi-check-circle-fill"></i></td>
-                        <td class="printCard text-center"><a href=""><i class="bi bi-printer-fill"></i></a></td>
+                        <td class="printCard text-center"><a href="libreta.php" target=_blank><i class="bi bi-printer-fill"></i></a></td>
                     </tr>
                     <tr>
                         <td class="user_dni">33222211</td>
@@ -220,7 +220,7 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
                         <td class="date">12/12/2021</td>
                         <td class="company">empresa</td>
                         <td class="state text-center text-success"><i class="bi bi-check-circle-fill"></i></td>
-                        <td class="printCard text-center"><a href=""><i class="bi bi-printer-fill"></i></a></td>
+                        <td class="printCard text-center"><a href="libreta.php" target=_blank><i class="bi bi-printer-fill"></i></a></td>
                     </tr>
                     <tr>
                         <td class="user_dni">44564333</td>
@@ -229,7 +229,7 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
                         <td class="date">23/07/2021</td>
                         <td class="company">empresa</td>
                         <td class="state text-center text-success"><i class="bi bi-check-circle-fill"></i></td>
-                        <td class="printCard text-center"><a href=""><i class="bi bi-printer-fill"></i></a></td>
+                        <td class="printCard text-center"><a href="libreta.php" target=_blank><i class="bi bi-printer-fill"></i></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -245,7 +245,7 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body modal_solicitud">
                         <div class="card card flex-row flow flex-wrap">
                             <div class="card-header border-0" style="background-color: white!important;">
                                 <?PHP echo '<img class="" style="width:200px" src=" ' . $foto . '" />'; ?>
@@ -342,11 +342,12 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
 <script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="../../../node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
 <script>
-    $('.tablas_solicitudes td').click(function() {
+    $('#tabla_nuevas_solicitudes td').click(function() {
         //$('.modal-body').html($(this).closest('tr').html());
         $('#modalFicha').modal('show');
     });
 </script>
+
 <script>
     $(document).ready(function() {
         $('.tablas_solicitudes').DataTable({
