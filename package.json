@@ -6,6 +6,7 @@
   "dependencies": {
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.1",
     "bootstrap-select": "^1.13.18",
     "datatables.net": "^1.10.24",
     "datatables.net-dt": "^1.10.24",
