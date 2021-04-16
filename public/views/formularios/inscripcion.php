@@ -84,14 +84,14 @@ if (isset($_POST) && !empty($_POST)) {
     $idSolicitud = $solicitudController->store($solicitudParams);
 
     /* Update solicitudes with paths */
-    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'path_comprobante_pago');
+    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
     $solicitudUpdated = $solicitudController->update(
         ['path_comprobante_pago' => $pathComprobantePago],
         $idSolicitud
     );
     /* Update capacitadores with paths */
     if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
-        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $idSolicitud, 'path_certificado');
+        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $idSolicitud, 'certificado');
         $capacitadorUpdated = $capacitadorController->update(
             ['path_certificado' => $pathCertificado],
             $idSolicitud
