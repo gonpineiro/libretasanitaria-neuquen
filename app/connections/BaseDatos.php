@@ -117,88 +117,14 @@ class BaseDatos
         return $ret;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Ejecuta una instruccion SQL.
-     * 
-     * Ejecuta SQL plano sin verificacion de parametros.
-     * Si se busca ejecutar una instruccion SQL preparada, se debe utilizar executeQuery($stmt, $alta, $parameters).
-     *  @param  string $query query SQL lista para ejecutar.
-     *  @return resource|bool resource|false segun el exito en la ejecucion.
-     */
-    function query($query)
+    public function query($query)
     {
-        return odbc_exec($this->db, $query);
-    }
-
-    function Registro($query_result)
-    {
-        return odbc_fetch_array($query_result);
+        $this->connect();
+        return odbc_exec($this->conn, $query);
     }
 
     function numRows($query_result)
     {
         return odbc_num_rows($query_result);
-    }
-
-    function fetch_all($query_result, $res = null)
-    {
-        return false;
-    }
-
-    function select_db($database_db)
-    {
-        return false;
-    }
-
-    function prepareQuery($query)
-    {
-        return odbc_prepare($this->db, $query);
-    }
-
-
-
-    function commit()
-    {
-        odbc_commit($this->db);
-    }
-
-    function parse($query)
-    {
-        return odbc_prepare($this->db, $query);
-    }
-
-    function getError()
-    {
-        return odbc_error($this->db) + " - " + odbc_errormsg($this->db) + " - " + $this->msj_error;
     }
 }
