@@ -1,12 +1,12 @@
-# Formulario Boleto Ferias
-Este proyecto esta basado en los formularios de Concursos y Boleto Esenciales.
+# Formulario Libreta Sanitaria
+Este proyecto esta basado en los formularios de Ferias.
 
 ##### Visualizacion en Produccion/Replica
 La info para abrir el proyecto desde WebLogin se encuentra en la tabla info.dbo.wlaplicaciones, app_id={actualizar appid}.
 
 ##### Iniciar proyecto localmente:
 - Crear DB con `sql.sql` en la raiz del directorio (preparada para MSSQL, deberas [traducirla](http://www.sqlines.com/online) si queres crearla en MySQL u otro gestor de DB, o en lugar de crear una DB, pedir acceso/configurar tu cliente de sql para hacer uso de las tablas creadas en Infoprueba/crear las tablas en Infopruebas si no las encontras.
-- Modifica los valores de `connections/BaseDatos.php` acorde a tu configuracion especifica. Ver [odbc_connect](https://www.php.net/manual/en/function.odbc-connect.php).
+- Modifica los valores de `.env` (úbicado en la raiz del proyecto) acorde a tu configuración especifica. Ver [odbc_connect](https://www.php.net/manual/en/function.odbc-connect.php).
 - Version minima de php 7.3
 - Instalar [composer](https://getcomposer.org/) y correr en una consola sobre la raiz del proyecto `composer install`
 - Para simular un usuario autorizada a usar la app (como sería en produccion) y tener su informacion para usarla en el formulario, se debe obtener una SESSIONKEY de un usuario inscripto en [WebLogin](https://weblogin.muninqn.gov.ar/).
