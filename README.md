@@ -16,11 +16,25 @@ La info para abrir el proyecto desde WebLogin se encuentra en la tabla info.dbo.
 - Dirigirte a `direccion-de-tu-proyecto/public/index.php?SESSIONKEY=<tu sessionkey>`
 - La opcion anterior la podes usar local, sin necesidad de conectarte a las bases de datos de la muni, ya que la consulta del SESSIONKEY se realiza por un WebService directo a las tablas en produccion. En caso de no necesitar simular una persona con la info tal cual es provista en produccion, y querer realizar pruebas en Replica, podes modificar el proyecto en Replica para encontrar al usuario, buscando el SESSIONKEY que te entrega el WebLogin de Replica, en infoprueba.dbo.wlusuarios columna 'controlkey'. 
 
-##### Subiendo a produccion / replica
-Al momento de realizar este README, la subida es reemplazandolo el codigo modificado, evitando en lo posible subir los siguientes archivos/secciones de codigo.
-> configuration.php  
-> connections/BaseDatos.php  
-> utils/funciones.php -> `spl_autoload_register()`  
 
-##### Licencia
-nosejsja
+##### Subiendo a produccion / replica - Configutación del proyecto
+- Hay que configurar correctament el archivo `.env` ubicado en el `root` del proyecto:
+    - `PROD=true`
+        - Permite eliminiar la muestra de los errores, ademas nos permite facilitar diferentes configuraciones.
+    - `MIGRATE=false`
+        - 'llave' para permitir poder crear las tablas y las relaciones.
+    - `DB_HOST=`
+        - IP/HOST donde se encuentra la base de datos.
+    - `DB_USER=` 
+        - Usuario de la base de datos.
+    - `DB_PASS=`
+        - Contraseña de la base de datos.
+    - `DB_NAME=`
+        - Nombre de la base de datos.
+    - `DB_PORT=`
+        - Puerto de la base de datos, este parametro no se esta utilzando.
+    - `DB_CHARSET=` 
+        - Charset de la base de datos.
+
+- En `app/config/config.php` se encuentra la configuración general del proyecto, ahi es donde se levanta la información del `.env`. Se encuentra tambien la configuración de las tablas, como estan definidas.
+- En `app/config/path.php` se encuentra la configuración de las rutas del proyecto.

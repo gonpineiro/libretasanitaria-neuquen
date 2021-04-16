@@ -1,18 +1,13 @@
 <?php
 include 'app/config/config.php';
 
-/* echo ROOT_PATH . '<br>';
-echo VIEW_PATH . '<br>';
-echo LY_PATH . '<br>';
-echo APP_PATH . '<br>';
-echo CON_PATH . '<br>';
-echo UTIl_PATH . '<br>'; */
+if (PROD) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: https://weblogin.muninqn.gov.ar');
+    exit();
+}
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-$UserController = new UsuarioController();
-{
+$UserController = new UsuarioController(); {
     $_POST['id_wappersonas'] = 1;
     $_POST['dni'] = 123123;
     $_POST['genero'] = "G";
@@ -36,7 +31,7 @@ $UserController = new UsuarioController();
     $_POST['fecha_alta'] = "UPDATE";
     $UserController->update($_POST, 1);
     unset($_POST);
-}  {
+} {
     $capacitadorController = new CapacitadorController();
     $_POST['nombre'] = "nombre";
     $_POST['apellido'] = "apellido";
@@ -57,8 +52,7 @@ $UserController = new UsuarioController();
     unset($_POST);
     $cap = $capacitadorController->index();
     $cap2 = $capacitadorController->get(1);
-}
-{
+} {
     $solicitudController = new SolicitudController();
     $_POST['id_usuario_solicitante'] = 1;
     $_POST['id_usuario_solicitado'] = 2;
