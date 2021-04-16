@@ -204,7 +204,7 @@ if ($errores) {
 
                                         <div class="form-group">
                                             <label for="nro_recibo">Nro. de comprobante sellado </label>
-                                            <input type="number" id="nro_recibo" class="form-control" placeholder="Ej: Recibo Nro. 0002-57972906" name="nro_recibo" required>
+                                            <input type="text" id="nro_recibo" class="form-control" placeholder="Ej: Recibo Nro. 0002-57972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
                                                 <strong>
                                                     Por favor ingrese el numero de comprobante sellado.

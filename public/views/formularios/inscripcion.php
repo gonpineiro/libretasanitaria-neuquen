@@ -61,16 +61,17 @@ if (isset($_POST) && !empty($_POST)) {
             'fecha_capacitacion' => $_POST['fecha_capacitacion'],
         ];
 
-        (int) $lastCapacitador = $capacitadorController->store($capacitadorParams);
+        $idCapacitador = $capacitadorController->store($capacitadorParams);
     }
 
     /* Guardamos la solicitud */
     $solicitudParams = [
-        'id_usuario_solicitante' => (int) $usuarioArr['id'],
-        'id_usuario_solicitado' => (int) $usuarioArr['id'],
-        'tipo_empleo' => (int) $_POST['tipo_empleo'],
-        'renovacion' => (int) $_POST['renovacion'],
-        'id_capacitador' => $_POST['capacitacion'] === "1" ? $lastCapacitador : null,        
+        'id_usuario_solicitante' => $usuarioArr['id'],
+        'id_usuario_solicitado' => $usuarioArr['id'],
+        'tipo_empleo' => $_POST['tipo_empleo'],
+        'renovacion' => $_POST['renovacion'],
+        'id_capacitador' => $_POST['capacitacion'] === "1" ? $idCapacitador : null,
+        'municipalidad_nqn' => $_POST['municipalidad_nqn'],
         'nro_recibo' => $_POST['nro_recibo'],
         'path_comprobante_pago' => null,
         'estado' => 'Nuevo',
@@ -80,23 +81,30 @@ if (isset($_POST) && !empty($_POST)) {
         'observaciones' => null,
         'id_usuario_admin' => null,
     ];
-    (int) $lastSolicitud = $solicitudController->store($solicitudParams);
-
+    $idSolicitud = $solicitudController->store($solicitudParams);
 
     /* Update solicitudes with paths */
-    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $lastSolicitud, 'path_comprobante_pago');
-    $solicitudController->update(
+    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
+    $solicitudUpdated = $solicitudController->update(
         ['path_comprobante_pago' => $pathComprobantePago],
-        $lastSolicitud
+        $idSolicitud
     );
     /* Update capacitadores with paths */
     if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
-        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $lastCapacitador, 'path_certificado');
-        $capacitadorController->update(
+        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $idSolicitud, 'certificado');
+        $capacitadorUpdated = $capacitadorController->update(
             ['path_certificado' => $pathCertificado],
-            $lastCapacitador
+            $idSolicitud
         );
     }
+
+    // upload comprobante & certificado
+    if (!$solicitudUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathComprobantePago)) {
+        $error = "Solicitud nº $idSolicitud: Carga adjunto Certificado escolar fallida";
+    } 
+    if (!$capacitadorUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathCertificado)) {
+        $error = "Solicitud nº $idSolicitud: Carga adjunto Certificado escolar fallida";
+    } 
 }
 
 ?>
