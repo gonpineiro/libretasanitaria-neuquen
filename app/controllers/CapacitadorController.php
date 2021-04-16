@@ -29,5 +29,4 @@ class CapacitadorController
     {
         return Capacitador::update($res, $id);
     }
-
 }

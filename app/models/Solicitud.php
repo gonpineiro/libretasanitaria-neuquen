@@ -9,15 +9,16 @@
  * @property bool $renovacion
  * @property bool $capacitacion
  * @property int $id_capacitador
- * @property bool $municipalidad_nqn
  * @property int $nro_recibo
  * @property string $path_comprobante_pago
  * @property string $estado
  * @property string $retiro_en
- * @property string $fecha_emision
+ * @property string $fecha_evaluacion
  * @property string $fecha_vencimiento
  * @property string $observaciones
- *
+ * @property string $id_usuario_admin
+ * @property string $fecha_alta 
+ * 
  */
 class Solicitud
 {
@@ -26,14 +27,15 @@ class Solicitud
     public $tipo_empleo;
     public $renovacion;
     public $id_capacitador;
-    public $municipalidad_nqn;
     public $nro_recibo;
     public $path_comprobante_pago;
     public $estado;
     public $retiro_en;
-    public $fecha_emision;
+    public $fecha_evaluacion;
     public $fecha_vencimiento;
     public $observaciones;
+    public $id_usuario_admin;
+    public $fecha_alta;
 
     public function __construct()
     {
@@ -42,30 +44,31 @@ class Solicitud
         $this->tipo_empleo = "";
         $this->renovacion = "";
         $this->id_capacitador = "";
-        $this->municipalidad_nqn = "";
         $this->nro_recibo = "";
         $this->path_comprobante_pago = "";
         $this->estado = "";
         $this->retiro_en = "";
-        $this->fecha_emision = "";
+        $this->fecha_evaluacion = "";
         $this->fecha_vencimiento = "";
         $this->observaciones = "";
+        $this->id_usuario_admin = "";
+        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
-    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $municipalidad_nqn = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_emision = null, $fecha_vencimiento = null, $observaciones = null)
+    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_evaluacion = null, $fecha_vencimiento = null, $id_usuario_admin = null, $observaciones = null)
     {
         $this->id_usuario_solicitante = $id_usuario_solicitante;
         $this->id_usuario_solicitado = $id_usuario_solicitado;
         $this->tipo_empleo = $tipo_empleo;
         $this->renovacion = $renovacion;
         $this->id_capacitador = $id_capacitador;
-        $this->municipalidad_nqn = $municipalidad_nqn;
         $this->nro_recibo = $nro_recibo;
         $this->path_comprobante_pago = $path_comprobante_pago;
         $this->estado = $estado;
         $this->retiro_en = $retiro_en;
-        $this->fecha_emision = $fecha_emision;
+        $this->fecha_evaluacion = $fecha_evaluacion;
         $this->fecha_vencimiento = $fecha_vencimiento;
+        $this->id_usuario_admin = $id_usuario_admin;
         $this->observaciones = $observaciones;
     }
 

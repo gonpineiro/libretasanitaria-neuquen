@@ -54,8 +54,9 @@ if (isset($_POST) && !empty($_POST)) {
         $capacitadorParams = [
             'nombre_capacitador' => $_POST['nombre_capacitador'],
             'apellido_capacitador' => $_POST['apellido_capacitador'],
-            'path_certificado' => null,
             'matricula' => null,
+            'municipalidad_nqn' => (int) $_POST['municipalidad_nqn'],
+            'path_certificado' => null,
             'lugar_capacitador' => $_POST['lugar_capacitacion'],
             'fecha_capacitacion' => $_POST['fecha_capacitacion'],
         ];
@@ -72,12 +73,13 @@ if (isset($_POST) && !empty($_POST)) {
         'id_capacitador' => $_POST['capacitacion'] === "1" ? $idCapacitador : null,
         'municipalidad_nqn' => $_POST['municipalidad_nqn'],
         'nro_recibo' => $_POST['nro_recibo'],
-        'path_comprobante_pago' => '',
+        'path_comprobante_pago' => null,
         'estado' => 'Nuevo',
         'retiro_en' => $_POST['retiro_en'],
-        'fecha_emision' => '',
-        'fecha_vencimiento' => '',
-        'observaciones' => '',
+        'fecha_evaluacion' => null,
+        'fecha_vencimiento' => null,
+        'observaciones' => null,
+        'id_usuario_admin' => null,
     ];
     $idSolicitud = $solicitudController->store($solicitudParams);
 
