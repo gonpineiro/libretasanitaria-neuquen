@@ -7,10 +7,10 @@
                     ¡Se ha realizado la solicitud con &eacute;xito!
                 </div>
                 <div class="card-body mb-3">
-                    <p class="card-text text-center">Nº de Solicitud: <?php echo $respuesta['solicitud']->getId(); ?></p>
+                    <p class="card-text text-center">Nº de Solicitud: <?= $idSolicitud; ?></p>
                     <br>
                     <p class="">
-                    <p>Gracias por inscribirte para participar en la Feria Neuquén Emprende/Proyecto Raíz, de ser seleccionado/a nos comunicaremos via telefónica con vos para coordinar tu participación. </p>
+                    <p>Su solicitud para Libreta Sanitaria fue recbida, de ser aceptada nos comunicaremos con usted. </p>
                     </p>
                 </div>
                 <div class="text-center">
