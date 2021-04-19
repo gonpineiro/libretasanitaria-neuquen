@@ -17,7 +17,6 @@
  * @property string $fecha_vencimiento
  * @property string $observaciones
  * @property string $id_usuario_admin
- * @property string $fecha_alta 
  * 
  */
 class Solicitud
@@ -35,7 +34,6 @@ class Solicitud
     public $fecha_vencimiento;
     public $observaciones;
     public $id_usuario_admin;
-    public $fecha_alta;
 
     public function __construct()
     {
@@ -52,10 +50,9 @@ class Solicitud
         $this->fecha_vencimiento = "";
         $this->observaciones = "";
         $this->id_usuario_admin = "";
-        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
-    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_evaluacion = null, $fecha_vencimiento = null, $id_usuario_admin = null, $observaciones = null)
+    public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_evaluacion = null, $fecha_vencimiento = null, $observaciones = null, $id_usuario_admin = null)
     {
         $this->id_usuario_solicitante = $id_usuario_solicitante;
         $this->id_usuario_solicitado = $id_usuario_solicitado;
@@ -68,21 +65,38 @@ class Solicitud
         $this->retiro_en = $retiro_en;
         $this->fecha_evaluacion = $fecha_evaluacion;
         $this->fecha_vencimiento = $fecha_vencimiento;
-        $this->id_usuario_admin = $id_usuario_admin;
         $this->observaciones = $observaciones;
+        $this->id_usuario_admin = $id_usuario_admin;
     }
 
     public function save()
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        return $conn->store(SOLICITUDES, $array, 'sssssssssssss');
+        $result = $conn->store(SOLICITUDES, $array, 'sssssssssssss');
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error al guardar una solicitud';
+            $log = new Log();
+            $log->set($this->id_usuario_solicitante, null, null, $error, get_class(), 'save');
+            $log->save();
+        }
+        return $result;
     }
 
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
         $solicitud = $conn->search(SOLICITUDES, $param, $ops);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error al listar las solicitudes';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'list');
+            $log->save();
+        }
         return $solicitud;
     }
 
@@ -92,6 +106,14 @@ class Solicitud
         $params = ['id' => $id];
         $result = $conn->search(SOLICITUDES, $params);
         $solicitud = $conn->fetch_assoc($result);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error a obtener la solicitud: ' . $id;
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'get');
+            $log->save();
+        }
         return $solicitud;
     }
 
@@ -99,7 +121,14 @@ class Solicitud
     {
         $conn = new BaseDatos();
         $result = $conn->update(SOLICITUDES, $res, $id);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error a modificar la solicitud';
+            $log = new Log();
+            $log->set(null,  $id, null, $error, get_class(), 'update');
+            $log->save();
+        }
         return $result;
     }
-
 }

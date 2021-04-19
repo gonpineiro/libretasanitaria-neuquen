@@ -11,7 +11,7 @@ CREATE TABLE ls_usuarios (
 	fecha_nac VARCHAR(45) NULL,
 	empresa_cuil VARCHAR(250) NULL,
 	empresa_nombre VARCHAR(250) NULL,
-	fecha_alta VARCHAR(250) NULL);
+	fecha_alta DATETIME DEFAULT GETDATE());
 	
 CREATE TABLE ls_solicitudes (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -20,13 +20,13 @@ CREATE TABLE ls_solicitudes (
 	tipo_empleo INT NULL,
 	renovacion INT NULL,
 	id_capacitador INT NULL,
-	nro_recibo INT NULL,
+	nro_recibo VARCHAR(50),
 	path_comprobante_pago VARCHAR(500) NULL,
 	estado VARCHAR(45) NULL,
 	retiro_en VARCHAR(45) NULL,
     fecha_evaluacion VARCHAR(250) NULL,
 	fecha_vencimiento VARCHAR(250) NULL,
-	observaciones VARCHAR(250) NULL,
+	observaciones VARCHAR(500) NULL,
 	id_usuario_admin INT NULL,
 	fecha_alta VARCHAR(250) NULL);
 
@@ -47,6 +47,8 @@ CREATE TABLE ls_log (
 	id_solicitud INT NULL,
 	id_capacitador INT NULL,
 	error VARCHAR(45) NULL,
+	class VARCHAR(45) NULL,
+	metodo VARCHAR(45) NULL,
 	fecha_alta VARCHAR(250) NULL);
 	
 ALTER TABLE ls_solicitudes

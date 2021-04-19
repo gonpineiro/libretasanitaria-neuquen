@@ -13,7 +13,6 @@
  * @property string $fecha_nac
  * @property int $empresa_cuil
  * @property string $empresa_nombre
- * @property string $fecha_alta
  */
 class Usuario
 {
@@ -28,7 +27,6 @@ class Usuario
     public $fecha_nac;
     public $empresa_cuil;
     public $empresa_nombre;
-    public $fecha_alta;
 
     public function __construct()
     {
@@ -43,7 +41,6 @@ class Usuario
         $this->fecha_nac = "";
         $this->empresa_cuil = "";
         $this->empresa_nombre = "";
-        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
     public function set($id_wappersonas = null, $dni = null, $genero = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $direccion_renaper = null, $fecha_nac = null, $empresa_cuil = null, $empresa_nombre = null)
@@ -65,13 +62,29 @@ class Usuario
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $conn->store(USUARIOS, $array, 'iissssssssss');
+        $result = $conn->store(USUARIOS, $array, 'iissssssssss');
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error al guardar un usuario';
+            $log = new Log();
+            $log->set($this->id_wappersonas, null, null, $error, get_class(), 'save');
+            $log->save();
+        }
+        return $result;
     }
 
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
         $usuarios = $conn->search(USUARIOS, $param, $ops);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error al listar el usuario';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'list');
+            $log->save();
+        }
         return $usuarios;
     }
 
@@ -80,6 +93,14 @@ class Usuario
         $conn = new BaseDatos();
         $result = $conn->search(USUARIOS, $params);
         $usuario = $conn->fetch_assoc($result);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error a obtener la solicitud: ' . $params['id'];
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'get');
+            $log->save();
+        }
         return $usuario;
     }
 
@@ -87,6 +108,14 @@ class Usuario
     {
         $conn = new BaseDatos();
         $result = $conn->update(USUARIOS, $res, $id);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error a modificar el usuario';
+            $log = new Log();
+            $log->set(null,  $id, null, $error, get_class(), 'update');
+            $log->save();
+        }
         return $result;
     }
 }

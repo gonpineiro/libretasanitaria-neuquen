@@ -9,7 +9,6 @@
  * @property string $path_certificado
  * @property string $lugar_capacitacion
  * @property string $fecha_capacitacion
- * @property string $fecha_alta
  */
 class Capacitador
 {
@@ -20,7 +19,6 @@ class Capacitador
     public $path_certificado;
     public $lugar_capacitacion;
     public $fecha_capacitacion;
-    public $fecha_alta;
 
     public function __construct()
     {
@@ -31,7 +29,6 @@ class Capacitador
         $this->path_certificado = "";
         $this->lugar_capacitacion = "";
         $this->fecha_capacitacion = "";
-        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
     public function set($nombre = null, $apellido = null, $matricula = null, $municipalidad_nqn = null, $path_certificado = null, $lugar_capacitacion = null, $fecha_capacitacion = null)
@@ -49,13 +46,30 @@ class Capacitador
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        return $conn->store(CAPACITADORES, $array, 'ssssss');
+        $result = $conn->store(CAPACITADORES, $array, 'ssssss');
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error al guardar un capacitador';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'save');
+            $log->save();
+        }
+        return $result;
     }
 
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
         $usuarios = $conn->search(CAPACITADORES, $param, $ops);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error al listar los capacitadores';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'list');
+            $log->save();
+        }
         return $usuarios;
     }
 
@@ -64,6 +78,14 @@ class Capacitador
         $conn = new BaseDatos();
         $result = $conn->search(CAPACITADORES, $params);
         $usuario = $conn->fetch_assoc($result);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error a obtener el capacitador: ' . $params['id'];
+            $log = new Log();
+            $log->set(null, null, $params['id'], $error, get_class(), 'get');
+            $log->save();
+        }
         return $usuario;
     }
 
@@ -71,6 +93,14 @@ class Capacitador
     {
         $conn = new BaseDatos();
         $result = $conn->update(CAPACITADORES, $res, $id);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error a modificar el capacitador';
+            $log = new Log();
+            $log->set(null,  $id, null, $error, get_class(), 'update');
+            $log->save();
+        }
         return $result;
     }
 }
