@@ -38,7 +38,7 @@ $apellido = $nombreapellido[0];
         <tr>
             <td style="padding: 35px;">
                 <div class="header">
-                    <img class="logo" alt="" src="../../estilos/menu/webLoginLogoReduced.png" style="display: inline-block; width: max-content; max-width: 80%;">
+                    <img class="logo" alt="" src="../../../estilos/menu/webLoginLogoReduced.png" style="display: inline-block; width: max-content; max-width: 80%;">
                     <div onclick="pago()" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.1)'" onmouseleave="this.style.backgroundColor='transparent'" style="cursor: pointer; color: rgb(16, 154, 214); font-size: 8pt; display: inline-block; padding: 10px; border-radius: 10px; background-color: transparent;">contacto: soporte@muninqn.gov.ar</div>
                     <div id="divUserInfo" style="display: table-cell;">
                         <table id="tableWidth" style="float: right; margin-right: 30px;">
@@ -51,7 +51,7 @@ $apellido = $nombreapellido[0];
                                         <div style="color: #109AD6;" id="lblVarUSUARIO"><?php echo "$apellido $nombre"; ?></div>
                                     </td>
                                     <td>
-                                        <img alt="" src="../../estilos/menu/arrDown.jpg">
+                                        <img alt="" src="../../../estilos/menu/arrDown.jpg">
                                     </td>
                                 </tr>
                                 <tr>
@@ -121,7 +121,7 @@ $apellido = $nombreapellido[0];
                         </tbody>
                     </table>
                 </div>
-            </div>" ;?>
+            </div>"; ?>
 
 
         </div>
