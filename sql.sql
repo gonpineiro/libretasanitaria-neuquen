@@ -3,8 +3,8 @@ CREATE TABLE ls_usuarios (
 	id_wappersonas INT NULL,
 	dni INT NULL,
 	genero VARCHAR(1) NULL,
-	nombre VARCHAR(50) NULL,
-	apellido VARCHAR(50) NULL,
+	nombre VARCHAR(45) NULL,
+	apellido VARCHAR(45) NULL,
 	telefono VARCHAR(250) NULL,
 	email VARCHAR(250) NULL,
 	direccion_renaper VARCHAR(250) NULL,
@@ -22,19 +22,19 @@ CREATE TABLE ls_solicitudes (
 	id_capacitador INT NULL,
 	nro_recibo VARCHAR(50) NULL,
 	path_comprobante_pago VARCHAR(500) NULL,
-	estado VARCHAR(15) NULL,
-	retiro_en VARCHAR(45) NULL, 
+	estado VARCHAR(45) NULL,
+	retiro_en VARCHAR(45) NULL,
     fecha_evaluacion VARCHAR(250) NULL,
 	fecha_vencimiento VARCHAR(250) NULL,
-	observaciones VARCHAR(750) NULL, *
+	observaciones VARCHAR(250) NULL,
 	id_usuario_admin INT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 
 CREATE TABLE ls_capacitadores (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	nombre VARCHAR(50) NULL, 
-	apellido VARCHAR(50) NULL,
-	matricula VARCHAR(45) NULL,
+	nombre VARCHAR(45) NULL,
+	apellido VARCHAR(45) NULL,
+	matricula VARCHAR(45) NULL,	
 	municipalidad_nqn INT NULL,
 	path_certificado VARCHAR(500) NULL,
 	lugar_capacitacion VARCHAR(45) NULL,
@@ -46,9 +46,9 @@ CREATE TABLE ls_log (
 	id_usuario INT NULL,
 	id_solicitud INT NULL,
 	id_capacitador INT NULL,
-	error VARCHAR(50) NULL,
-	class VARCHAR(15) NULL,
-	metodo VARCHAR(15) NULL,
+	error VARCHAR(45) NULL,
+	class VARCHAR(45) NULL,
+	metodo VARCHAR(45) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
 ALTER TABLE ls_solicitudes
