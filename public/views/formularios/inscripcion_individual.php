@@ -81,7 +81,7 @@ if ($errores) {
                                             </div>
                                             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                 <label for="email">Compruebe su direcci&oacute;n de email </label>
-                                                <input type="text" id="email" class="form-control" value="<?= $email; ?>" placeholder="Email" name="email" required>
+                                                <input type="email" id="email" class="form-control" value="<?= $email; ?>" placeholder="Email" name="email" required>
                                                 <div class="invalid-feedback">
                                                     <strong>
                                                         Por favor ingrese el direcci&oacute;n.
@@ -150,7 +150,7 @@ if ($errores) {
                                             <div class="form-group row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                     <label for="nombre_capacitador">Nombre del Capacitador </label>
-                                                    <input type="text" id="nombre_capacitador" class="form-control" placeholder="Indique el nombre del Capacitador" name="nombre_capacitador" required>
+                                                    <input type="text" id="nombre_capacitador" size="50" class="form-control" placeholder="Indique el nombre del Capacitador" name="nombre_capacitador" required>
                                                     <div class="invalid-feedback">
                                                         <strong>
                                                             Por favor ingrese la nombre del capacitador.
@@ -160,7 +160,7 @@ if ($errores) {
 
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                     <label for="apellido_capacitador">Apellido del Capacitador </label>
-                                                    <input type="text" id="apellido_capacitador" class="form-control" placeholder="Indique el Apellido del Capacitador" name="apellido_capacitador" required>
+                                                    <input type="text" id="apellido_capacitador" size="50" class="form-control" placeholder="Indique el Apellido del Capacitador" name="apellido_capacitador" required>
                                                     <div class="invalid-feedback">
                                                         <strong>
                                                             Por favor ingrese la apellido del capacitador.
@@ -204,7 +204,7 @@ if ($errores) {
 
                                         <div class="form-group">
                                             <label for="nro_recibo">Nro. de comprobante sellado </label>
-                                            <input type="text" id="nro_recibo" class="form-control" placeholder="Ej: Recibo Nro. 0002-57972906" name="nro_recibo" required>
+                                            <input type="text" id="nro_recibo" size="50" class="form-control" placeholder="Ej: Recibo Nro. 0002-57972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
                                                 <strong>
                                                     Por favor ingrese el numero de comprobante sellado.

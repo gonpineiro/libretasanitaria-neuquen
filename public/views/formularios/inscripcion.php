@@ -21,7 +21,7 @@ $nroTramite = $datosPersonales['properties']['renaperID'];
 $id_wappersonas = $datosPersonales['referenciaID'];
 $email = $_SESSION['usuario']['correoElectronico'];
 $celular = $_SESSION['usuario']['celular'];
-$fechanacimiento = date('d-m-Y', strtotime($_SESSION['usuario']['fechaNacimiento']));
+$fechanacimiento = date('d-m-Y', strtotime(mb_split('T',$_SESSION['usuario']['fechaNacimiento'])[0]));
 $genero = $_SESSION['usuario']['genero'];
 $nombreapellido = explode(",", $_SESSION['usuario']["razonSocial"]);
 $razonSocial = $_SESSION['usuario']["razonSocial"];
@@ -104,8 +104,8 @@ if (isset($_POST) && !empty($_POST)) {
         'retiro_en' => $_POST['retiro_en'],
         'fecha_evaluacion' => null,
         'fecha_vencimiento' => null,
-        'id_usuario_admin' => null,
         'observaciones' => null,
+        'id_usuario_admin' => null,
     ];
     $idSolicitud = $solicitudController->store($solicitudParams);
 
@@ -157,7 +157,7 @@ if (isset($_POST) && !empty($_POST)) {
         
     }
 
-    if ( empty($errores) ) $inscripcion_exitosa = true;
+    if ( count($errores) == 0 ) $inscripcion_exitosa = true;
 
     }
 }
