@@ -68,34 +68,34 @@ function enviarMailApi ( $address, $arrIdSolicitud ) {
 }
 
 function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName){
-    $new_path_local = null;
+    $path = null;
     
-    $target_path_local = ROOT_PATH ."\\archivos\\". $idsolicitud ."\\$adjuntoInputName\\";
+    $target_path_local = ROOT_PATH ."\\archivos\\$idsolicitud\\$adjuntoInputName\\";
     
     if (!file_exists($target_path_local)){
-        mkdir($target_path_local, 0777, true);
+        mkdir($target_path_local, 0755, true);
     };
 
     if (!empty($adjunto)) {
-        $new_path_local = $target_path_local . $adjuntoInputName;
+        $path = $target_path_local . $adjuntoInputName;
         switch($adjunto['type']) {
             case('image/jpeg'):
-                $new_path_local = $new_path_local . '.jpeg'; 
+                $path = $path . '.jpeg'; 
                 break;
             case('image/jpg'):
-                $new_path_local = $new_path_local . '.jpg'; 
+                $path = $path . '.jpg'; 
                 break;
             case('image/png'):
-                $new_path_local = $new_path_local . '.png'; 
+                $path = $path . '.png'; 
                 break;
             case 'application/pdf':
-                $new_path_local = $new_path_local . '.pdf'; 
+                $path = $path . '.pdf'; 
                 break;
                 
         }
     };
 
-    return $new_path_local;
+    return $path;
 }
 
 /**
