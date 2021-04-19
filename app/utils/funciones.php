@@ -50,10 +50,10 @@ function enviarMailApi ( $address, $arrIdSolicitud ) {
 
     } else {
         $idsolicitud = $arrIdSolicitud[0];
-        $body = "<p>Gracias por inscribirte ( inscripci&oacute;n Nº$idsolicitud ) para participar en la Feria Neuquén Emprende /Proyecto Raíz, de ser seleccionado/a nos comunicaremos via telefónica con vos para coordinar tu participación. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:emprende.capacitacionyempleo@gmail.com' target='_blank'>emprende.capacitacionyempleo@gmail.com</a></p><p>Secretaria de capacitación y Empleo</p><p>Municipalidad de Neuquén</p>";
+        $body = "<p>Su solicitud para Libreta Sanitaria fue recbida, de ser aceptada nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
     }
 
-    $subject = "Inscipción a Ferias";
+    $subject = "Solicitud de Libreta Sanitaria";
     $post_fields = json_encode( ['address'=>$address, 'subject' => $subject, 'htmlBody' => $body]);
     
     $uri = "https://weblogin.muninqn.gov.ar/api/Mail";
