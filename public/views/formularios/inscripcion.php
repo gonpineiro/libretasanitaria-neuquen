@@ -32,13 +32,38 @@ $apellido = $nombreapellido[0];
 $inscripcion_exitosa = false;
 
 if (isset($_POST) && !empty($_POST)) {
-    /* Si no existe el usuario lo guardamos en ls_usuarios */
+    if (checkFile()) {
+      
+    /* Cargamos usuario */
     $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
     $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
     if (!$usuario) $usuarioController->store(['id_wappersonas' => $id_wappersonas]);
 
     /* buscamos el usuario  */
-    $usuarioArr = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+    $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+    
+    /* Si es carga empresarial y se carga a un tercero  */
+     if (!$usuario) {
+        if (isset($_POST['dni'], $_POST['genero'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email'], $_POST['direccion_renaper'], $_POST['fecha_nac'])) {
+            $params = [
+                'dni' => $_POST['dni'],
+                'genero' => $_POST['genero'],
+                'nombre' => $_POST['nombre'],
+                'apellido' => $_POST['apellido'],
+                'telefono' => $_POST['telefono'],
+                'email' => $_POST['email'],
+                'direccion_renaper' => $_POST['direccion_renaper'],
+                'fecha_nac' => $_POST['fecha_nac'],
+                'empresa_cuil' => $_POST['empresa_cuil'],
+                'empresa_nombre' => $_POST['empresa_nombre']
+            ];
+    
+            $usuarioController->store($params);
+            $usuario = $usuarioController->get(['dni' => $params['dni'], 'genero' => $params['genero']]);
+
+        } else $errores [] = 'Not seteados datos usuario para cargar un tercero en carga empresarial';
+
+    }
 
     /* Verificamos si cambio telefono o celular */
     if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
@@ -46,7 +71,7 @@ if (isset($_POST) && !empty($_POST)) {
             'telefono' =>  $_POST['telefono'],
             'email' => $_POST['email']
         ];
-        $usuarioController->update($usuarioParams, $usuarioArr['id']);
+        $usuarioController->update($usuarioParams, $usuario['id']);
     }
 
     /* Si tiene un capacitador, primero lo guardamos */
