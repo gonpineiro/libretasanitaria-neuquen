@@ -48,11 +48,11 @@ class Usuario
         $this->id_wappersonas = $id_wappersonas;
         $this->dni = $dni;
         $this->genero = $genero;
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->telefono = $telefono;
-        $this->email = $email;
-        $this->direccion_renaper = $direccion_renaper;
+        $this->nombre = substr($nombre, 0, LT_USU_NOMBRE);
+        $this->apellido = substr($apellido, 0, LT_USU_APELLIDO);
+        $this->telefono = substr($telefono, 0, LT_USU_TELEFONO);
+        $this->email = substr($email, 0, LT_USU_EMAIL);
+        $this->direccion_renaper = substr($direccion_renaper, 0, LT_USU_DIRRENAPER);
         $this->fecha_nac = $fecha_nac;
         $this->empresa_cuil = $empresa_cuil;
         $this->empresa_nombre = $empresa_nombre;

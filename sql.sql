@@ -20,15 +20,15 @@ CREATE TABLE ls_solicitudes (
 	tipo_empleo INT NULL,
 	renovacion INT NULL,
 	id_capacitador INT NULL,
-	nro_recibo VARCHAR(50),
+	nro_recibo VARCHAR(50) NULL,
 	path_comprobante_pago VARCHAR(500) NULL,
 	estado VARCHAR(45) NULL,
 	retiro_en VARCHAR(45) NULL,
     fecha_evaluacion VARCHAR(250) NULL,
 	fecha_vencimiento VARCHAR(250) NULL,
-	observaciones VARCHAR(500) NULL,
+	observaciones VARCHAR(250) NULL,
 	id_usuario_admin INT NULL,
-	fecha_alta VARCHAR(250) NULL);
+	fecha_alta DATETIME DEFAULT GETDATE());
 
 CREATE TABLE ls_capacitadores (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -39,7 +39,7 @@ CREATE TABLE ls_capacitadores (
 	path_certificado VARCHAR(500) NULL,
 	lugar_capacitacion VARCHAR(45) NULL,
 	fecha_capacitacion VARCHAR(45) NULL,    
-	fecha_alta VARCHAR(250) NULL);
+	fecha_alta DATETIME DEFAULT GETDATE());
 	
 CREATE TABLE ls_log (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -49,7 +49,7 @@ CREATE TABLE ls_log (
 	error VARCHAR(45) NULL,
 	class VARCHAR(45) NULL,
 	metodo VARCHAR(45) NULL,
-	fecha_alta VARCHAR(250) NULL);
+	fecha_alta DATETIME DEFAULT GETDATE());
 	
 ALTER TABLE ls_solicitudes
 	ADD FOREIGN KEY (id_usuario_solicitante) REFERENCES ls_usuarios(id)

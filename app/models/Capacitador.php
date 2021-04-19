@@ -33,12 +33,12 @@ class Capacitador
 
     public function set($nombre = null, $apellido = null, $matricula = null, $municipalidad_nqn = null, $path_certificado = null, $lugar_capacitacion = null, $fecha_capacitacion = null)
     {
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->matricula = $matricula;
+        $this->nombre = substr($nombre, 0, LT_CAP_NOMBRE);
+        $this->apellido = substr($apellido, 0, LT_CAP_APELLIDO);
+        $this->matricula = substr($matricula, 0, LT_CAP_MATRICULA);
         $this->municipalidad_nqn = $municipalidad_nqn;
         $this->path_certificado = $path_certificado;
-        $this->lugar_capacitacion = $lugar_capacitacion;
+        $this->lugar_capacitacion = substr($lugar_capacitacion, 0, LT_CAP_LUCAPACITACION);
         $this->fecha_capacitacion = $fecha_capacitacion;
     }
 

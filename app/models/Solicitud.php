@@ -59,13 +59,13 @@ class Solicitud
         $this->tipo_empleo = $tipo_empleo;
         $this->renovacion = $renovacion;
         $this->id_capacitador = $id_capacitador;
-        $this->nro_recibo = $nro_recibo;
+        $this->nro_recibo = substr($nro_recibo, 0, LT_SOL_NRORECIBO);
         $this->path_comprobante_pago = $path_comprobante_pago;
         $this->estado = $estado;
         $this->retiro_en = $retiro_en;
         $this->fecha_evaluacion = $fecha_evaluacion;
         $this->fecha_vencimiento = $fecha_vencimiento;
-        $this->observaciones = $observaciones;
+        $this->observaciones = substr($observaciones, 0, LT_SOL_OBS);
         $this->id_usuario_admin = $id_usuario_admin;
     }
 
