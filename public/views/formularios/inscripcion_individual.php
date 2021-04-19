@@ -226,8 +226,8 @@ if ($errores) {
                                         <div class="form-group">
                                             <label for="retiro_en" class="required">Elegir Lugar de retiro del Carnet </label>
                                             <select id="retiro_en" class="selectpicker form-control" title="Seleccionar" name='retiro_en' required>
-                                                <option value="Oeste">Oeste - Islas Malvinas 1850</option>
-                                                <option value="Centro">Centro - Novella y Godoy</option>
+                                                <option value="Oeste">Oeste - Novella y Godoy</option>
+                                                <option value="Centro">Centro - Islas Malvinas 1850</option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 Por favor seleccionar lugar de retiro para el carnet.
