@@ -45,3 +45,18 @@ define('USUARIOS', 'ls_usuarios');
 define('CAPACITADORES', 'ls_capacitadores');
 define('SOLICITUDES', 'ls_solicitudes');
 define('LOG', 'ls_log');
+
+/* Limit Length columns */
+define('LT_USU_NOMBRE', 50);
+define('LT_USU_APELLIDO', 50);
+define('LT_USU_TELEFONO', 250);
+define('LT_USU_EMAIL', 250);
+define('LT_USU_DIRRENAPER', 250);
+
+define('LT_SOL_NRORECIBO', 50);
+define('LT_SOL_OBS', 750);
+
+define('LT_CAP_NOMBRE', 50);
+define('LT_CAP_APELLIDO', 50);
+define('LT_CAP_MATRICULA', 45);
+define('LT_CAP_LUCAPACITACION', 45);
