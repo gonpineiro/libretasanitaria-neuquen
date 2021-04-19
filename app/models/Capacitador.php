@@ -9,7 +9,6 @@
  * @property string $path_certificado
  * @property string $lugar_capacitacion
  * @property string $fecha_capacitacion
- * @property string $fecha_alta
  */
 class Capacitador
 {
@@ -20,7 +19,6 @@ class Capacitador
     public $path_certificado;
     public $lugar_capacitacion;
     public $fecha_capacitacion;
-    public $fecha_alta;
 
     public function __construct()
     {
@@ -31,7 +29,6 @@ class Capacitador
         $this->path_certificado = "";
         $this->lugar_capacitacion = "";
         $this->fecha_capacitacion = "";
-        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
     public function set($nombre = null, $apellido = null, $matricula = null, $municipalidad_nqn = null, $path_certificado = null, $lugar_capacitacion = null, $fecha_capacitacion = null)

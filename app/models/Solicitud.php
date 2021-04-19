@@ -17,7 +17,6 @@
  * @property string $fecha_vencimiento
  * @property string $observaciones
  * @property string $id_usuario_admin
- * @property string $fecha_alta 
  * 
  */
 class Solicitud
@@ -35,7 +34,6 @@ class Solicitud
     public $fecha_vencimiento;
     public $observaciones;
     public $id_usuario_admin;
-    public $fecha_alta;
 
     public function __construct()
     {
@@ -52,7 +50,6 @@ class Solicitud
         $this->fecha_vencimiento = "";
         $this->observaciones = "";
         $this->id_usuario_admin = "";
-        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
     public function set($id_usuario_solicitante = null, $id_usuario_solicitado = null, $tipo_empleo = null, $renovacion = null, $id_capacitador = null, $nro_recibo = null, $path_comprobante_pago = null, $estado = null, $retiro_en = null, $fecha_evaluacion = null, $fecha_vencimiento = null, $observaciones = null, $id_usuario_admin = null)

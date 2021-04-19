@@ -13,7 +13,6 @@
  * @property string $fecha_nac
  * @property int $empresa_cuil
  * @property string $empresa_nombre
- * @property string $fecha_alta
  */
 class Usuario
 {
@@ -28,7 +27,6 @@ class Usuario
     public $fecha_nac;
     public $empresa_cuil;
     public $empresa_nombre;
-    public $fecha_alta;
 
     public function __construct()
     {
@@ -43,7 +41,6 @@ class Usuario
         $this->fecha_nac = "";
         $this->empresa_cuil = "";
         $this->empresa_nombre = "";
-        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
     public function set($id_wappersonas = null, $dni = null, $genero = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $direccion_renaper = null, $fecha_nac = null, $empresa_cuil = null, $empresa_nombre = null)

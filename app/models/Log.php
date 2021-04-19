@@ -9,7 +9,6 @@
  * @property int $error
  * @property int $class
  * @property int $metodo
- * @property string $fecha_alta
  *
  */
 class Log
@@ -20,7 +19,6 @@ class Log
     public $error;
     public $class;
     public $metodo;
-    public $fecha_alta;
 
     public function __construct()
     {
@@ -30,7 +28,6 @@ class Log
         $this->error = "";
         $this->class = "";
         $this->metodo = "";
-        $this->fecha_alta = date('d/m/Y H:i:s');
     }
 
     public function set($id_usuario, $id_solicitud, $id_capacitador, $error, $class, $metodo)
