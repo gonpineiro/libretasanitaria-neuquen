@@ -1,7 +1,6 @@
 <?php
 include_once '../app/config/config.php';
 
-$_GET['APP'] = 43;
 if (isset($_GET['SESSIONKEY'])) {
     $_SESSION['app'] = $_GET['APP'];
     $_SESSION['token'] = $_GET['SESSIONKEY'];
@@ -12,7 +11,7 @@ if (isset($_GET['SESSIONKEY'])) {
     }
 
     foreach ($_SESSION['usuario']['apps'] as $apps) {
-        if ($apps['id'] == 43 && $apps['userProfiles']) {
+        if ($apps['id'] == 55 && $apps['userProfiles']) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
         }
     }
@@ -20,7 +19,7 @@ if (isset($_GET['SESSIONKEY'])) {
     // persona con permiso 1, envia a inscripcion individual
     // si tiene permiso 2 (empresarial), puede ver el menu con iconos individual/empresarial
     // con permiso 3, puede ver un 3er icono 'Admin'
-    if ($_SESSION['userProfiles'] == 3) {
+    if ($_SESSION['userProfiles'] == 1) {
         header('Location: views/formularios/inscripcion.php');
         exit();
     } elseif ($_SESSION['userProfiles'] == (2 || 3)) {
