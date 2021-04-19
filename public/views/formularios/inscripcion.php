@@ -89,47 +89,77 @@ if (isset($_POST) && !empty($_POST)) {
         $idCapacitador = $capacitadorController->store($capacitadorParams);
     }
 
-    /* Guardamos la solicitud */
+    $idCapacitador = isset($idCapacitador) && is_numeric($idCapacitador)?$idCapacitador:null; // caso error en alta, setea id null, porque el model puede devolver un bool o undefined
+
+    /* Guardamos la solicitud */    
     $solicitudParams = [
-        'id_usuario_solicitante' => $usuarioArr['id'],
-        'id_usuario_solicitado' => $usuarioArr['id'],
+        'id_usuario_solicitante' => $usuario['id'],
+        'id_usuario_solicitado' => $usuario['id'],
         'tipo_empleo' => $_POST['tipo_empleo'],
         'renovacion' => $_POST['renovacion'],
         'id_capacitador' => $_POST['capacitacion'] === "1" ? $idCapacitador : null,
-        'municipalidad_nqn' => $_POST['municipalidad_nqn'],
         'nro_recibo' => $_POST['nro_recibo'],
         'path_comprobante_pago' => null,
         'estado' => 'Nuevo',
         'retiro_en' => $_POST['retiro_en'],
         'fecha_evaluacion' => null,
         'fecha_vencimiento' => null,
-        'observaciones' => null,
         'id_usuario_admin' => null,
+        'observaciones' => null,
     ];
     $idSolicitud = $solicitudController->store($solicitudParams);
 
-    /* Update solicitudes with paths */
-    $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
-    $solicitudUpdated = $solicitudController->update(
-        ['path_comprobante_pago' => $pathComprobantePago],
-        $idSolicitud
-    );
-    /* Update capacitadores with paths */
-    if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
-        $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $idSolicitud, 'certificado');
-        $capacitadorUpdated = $capacitadorController->update(
-            ['path_certificado' => $pathCertificado],
+    if (isset($idSolicitud) && $idSolicitud != (false or null)) {
+        /* Update solicitudes with paths */
+        $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
+        $solicitudUpdated = $solicitudController->update(
+            ['path_comprobante_pago' => $pathComprobantePago],
             $idSolicitud
         );
+        if (!$solicitudUpdated) {
+            $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
+        }
+
+        /* Update capacitadores with paths */
+        if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
+            $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $idSolicitud, 'certificado');
+            $capacitadorUpdated = $capacitadorController->update(
+                ['path_certificado' => $pathCertificado],
+                $idSolicitud
+            );
+            if (!$capacitadorUpdated) {
+                $errores[] = "Solicitud nro $idSolicitud: Falla en update direccion capacitador.";
+            }
+        }
+    
+        /* upload comprobante & certificado */
+        if (!$solicitudUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathComprobantePago)) {
+            $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
+        } 
+        if (isset($capacitadorUpdated) && (!$capacitadorUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathCertificado))) {
+            $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto certificado capacitacion fallida";
+        } 
+
+    } else $errores[] = 'Error en alta de solicitud';
+    
+    if (count($errores) > 0) {
+        foreach($errores as $error) {
+            console_log($error);
+        }
+    } else {
+        /* Envio mail */
+        $enviarMailResult = enviarMailApi($_POST['email'], [$idSolicitud]);
+        console_log('enviar mail: '.json_encode($enviarMailResult));
+        if ($enviarMailResult['error']!=null) {
+            $errores[] = 'Error envio de mail:'.$enviarMailResult['error'];
+            console_log($enviarMailResult['error']);
+        }
+        
     }
 
-    // upload comprobante & certificado
-    if (!$solicitudUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathComprobantePago)) {
-        $error = "Solicitud nº $idSolicitud: Carga adjunto Certificado escolar fallida";
-    } 
-    if (!$capacitadorUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathCertificado)) {
-        $error = "Solicitud nº $idSolicitud: Carga adjunto Certificado escolar fallida";
-    } 
+    if ( empty($errores) ) $inscripcion_exitosa = true;
+
+    }
 }
 
 ?>
