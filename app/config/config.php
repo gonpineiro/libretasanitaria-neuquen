@@ -44,3 +44,4 @@ if (!PROD) {
 define('USUARIOS', 'ls_usuarios');
 define('CAPACITADORES', 'ls_capacitadores');
 define('SOLICITUDES', 'ls_solicitudes');
+define('LOG', 'ls_log');

@@ -80,6 +80,13 @@ class SolicitudController
         $conn = new BaseDatos();
         $array = [];
         $query =  $conn->query($sql);
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Obtener una solicitud';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'getSolicitudesWhereEstado');
+            $log->save();
+        }
         while ($row = odbc_fetch_array($query)) array_push($array, $row);
         return $array;
     }
@@ -134,6 +141,14 @@ class SolicitudController
 
         $conn = new BaseDatos();
         $query =  $conn->query($sql);
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Obtener una solicitud';
+            $log = new Log();
+            $log->set(null,  $id, null, $error, get_class(), 'getSolicitudesWhereId');
+            $log->save();
+        }
 
         return $conn->fetch_assoc($query);
     }

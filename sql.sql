@@ -47,6 +47,8 @@ CREATE TABLE ls_log (
 	id_solicitud INT NULL,
 	id_capacitador INT NULL,
 	error VARCHAR(45) NULL,
+	class VARCHAR(45) NULL,
+	metodo VARCHAR(45) NULL,
 	fecha_alta VARCHAR(250) NULL);
 	
 ALTER TABLE ls_solicitudes

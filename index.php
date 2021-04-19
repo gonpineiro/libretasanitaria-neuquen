@@ -1,12 +1,7 @@
 <?php
 include 'app/config/config.php';
 
-$solController = new SolicitudController;
-$join = $solController->getSolicitudesWhereEstado('Nuevo');
-$join = $solController->getSolicitudesWhereId(1);
-verEstructura($join);
-die();
-if (!PROD) {
+if (PROD) {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: https://weblogin.muninqn.gov.ar');
     exit();

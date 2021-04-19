@@ -127,4 +127,9 @@ class BaseDatos
     {
         return odbc_num_rows($query_result);
     }
+
+    function getError()
+    {
+        return odbc_error($this->conn);
+    }
 }

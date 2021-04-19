@@ -71,7 +71,6 @@ if (isset($_POST) && !empty($_POST)) {
         'tipo_empleo' => $_POST['tipo_empleo'],
         'renovacion' => $_POST['renovacion'],
         'id_capacitador' => $_POST['capacitacion'] === "1" ? $idCapacitador : null,
-        'municipalidad_nqn' => $_POST['municipalidad_nqn'],
         'nro_recibo' => $_POST['nro_recibo'],
         'path_comprobante_pago' => null,
         'estado' => 'Nuevo',
