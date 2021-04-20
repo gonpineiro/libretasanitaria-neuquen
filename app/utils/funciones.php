@@ -31,12 +31,15 @@ function verificarSesion(){
     }
 }
 
-function cargarLog($idUsuario = null, $idSolicitud = null, $error = '-'){
+function cargarLog($id_usuario = null, $id_solicitud = null, $id_capacitador = null, $error = '-', $class = '-', $metodo = '-'){
     $log_controller = new LogController();
-    $log_controller->alta([
-        'idUsuario' =>  $idUsuario,
-        'idSolicitud' => $idSolicitud,
-        'error' => $error
+    $log_controller->store([
+        'id_usuario' =>  $id_usuario,
+        'id_solicitud' => $id_solicitud,
+        'id_capacitador' => $id_capacitador,
+        'error' => $error,
+        'class' => $class,
+        'metodo' => $metodo
     ]);
 }
 
@@ -50,7 +53,7 @@ function enviarMailApi ( $address, $arrIdSolicitud ) {
 
     } else {
         $idsolicitud = $arrIdSolicitud[0];
-        $body = "<p>Su solicitud para Libreta Sanitaria fue recbida, de ser aceptada nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
+        $body = "<p>Su solicitud (Id nº$idsolicitud) para Libreta Sanitaria fue recbida, de ser aceptada nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
     }
 
     $subject = "Solicitud de Libreta Sanitaria";
