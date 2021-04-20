@@ -40,9 +40,6 @@ $certificado = true;
 $solicitudController = new SolicitudController();
 $solicitudesNuevas = $solicitudController->getSolicitudesWhereEstado('Nuevo');
 $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobado');
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +114,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                     <?php foreach ($solicitudesNuevas as $sol) {
                         $nombreApellido = explode(', ', $sol['nombre_te']);
                     ?>
-                        <tr>
+                        <tr id=<?= $sol['id'] ?>>
                             <td class="numero_sol"><?= $sol['id'] ?></td>
                             <td class="user_dni"><?= $sol['dni_te'] ?></td>
                             <td class="user_name"><?= $nombreApellido['0'] ?></td>
@@ -137,6 +134,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
             <table id="tabla_solicitudes_aprobadas" class="table tablas_solicitudes">
                 <thead class="thead-dark">
                     <tr>
+                        <th scope="col">N°</th>
                         <th scope="col">DNI</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
@@ -184,25 +182,23 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                     <div class="modal-body modal_solicitud">
                         <div class="card card flex-row flow flex-wrap">
                             <div class="card-header border-0" style="background-color: white!important;">
-                                <?PHP echo '<img class="" style="width:200px" src=" ' . $foto . '" />'; ?>
+                                <?= '<img class="" style="width:200px" src=" ' . $foto . '" />'; ?>
                             </div>
-                            <div class="card-block px-2">
-                                <h4 class="card-title">Nombre y Apellido</h4>
-                                <p class="card-text" style="margin-bottom:0rem;">DNI:</p>
-                                <p class="card-text" style="margin-bottom:0rem;">Fecha Nacimiento: </p>
-                                <p class="card-text" style="margin-bottom:0rem;">Domicilio: </p>
-                                <p class="card-text" style="margin-bottom:0rem;">Teléfono: </p>
-                                <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: CON/SIN MANIPULACIÓN ALIMENTOS</p>
+                            <div class="card-block px-2" id="card-detail-sol">
+                                <h4 class="card-title"><span id="nombre-span-nueva"></span></h4>
+                                <p class="card-text" style="margin-bottom:0rem;">DNI: <span id="dni-span-nueva"></span></p>
+                                <p class="card-text" style="margin-bottom:0rem;">Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
+                                <p class="card-text" style="margin-bottom:0rem;">Domicilio: <span id="dire-span-nueva"></span></p>
+                                <p class="card-text" style="margin-bottom:0rem;">Teléfono: <span id="tel-span-nueva"></span></p>
+                                <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-nueva"></span></p>
+                                <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-nueva"></span></p>
                                 <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#comprobantePago" aria-expanded="false" aria-controls="comprobantePago">
                                     Ver Comprobante de Pago
                                 </button>
-                                <?PHP
-                                if ($certificado) {
-                                    echo '<button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion" aria-expanded="false" aria-controls="capacitacion">
-                                        Ver Capacitación
-                                    </button>';
-                                }
-                                ?>
+                                <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion" aria-expanded="false" aria-controls="capacitacion" id="btn-capacitacion">
+                                    Ver Capacitación
+                                </button>'
+
                             </div>
 
                             <div class="card-block w-100 pb-3 container">
@@ -217,11 +213,10 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                 <div class="collapse" id="capacitacion">
                                     <hr>
                                     <h4 class="card-title">Capacitación</h4>
-                                    <p class="card-text" style="margin-bottom:0rem;">Nombre y Apellido Capacitador <?PHP echo "ho"; ?></p>
-                                    <p class="card-text" style="margin-bottom:0rem;">Matrícula: </p>
-                                    <p class="card-text" style="margin-bottom:0rem;">Lugar Capacitación: </p>
-                                    <p class="card-text" style="margin-bottom:0rem;">Fecha Capacitación: </p>
-                                    <p class="card-text" style="margin-bottom:0rem;">Fecha Alta:</p>
+                                    <p class="card-text" style="margin-bottom:0rem;">Nombre y Apellido Capacitador: <span id="nombre-capa-span-nueva"></span></p>
+                                    <p class="card-text" style="margin-bottom:0rem;">Matrícula: <span id="matricula-span-nueva"></span></p>
+                                    <p class="card-text" style="margin-bottom:0rem;">Lugar Capacitación: <span id="lugar-capa-span-nueva"></span></p>
+                                    <p class="card-text" style="margin-bottom:0rem;">Fecha Capacitación: <span id="fecha-capa-span-nueva"></span></p>
                                     <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#verCertificado" aria-expanded="false" aria-controls="verCertificado">
                                         Ver Certificado
                                     </button>
@@ -243,9 +238,9 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><?PHP echo $fechaactual ?></td>
-                                            <td><?PHP echo $fechaMasUnAno ?></td>
-                                            <td>257951084</td>
+                                            <td><span id="fecha-alta-span-nueva"></td>
+                                            <td><span id="fecha-alta-mas-span-nueva"></td>
+                                            <td><span id="nro-recibo-span-nueva"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -280,11 +275,63 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 
 <script>
-    $('#tabla_nuevas_solicitudes td').click(function(id) {
-        console.log(id);
-        console.log(id.parentElement);
-        //$('.modal-body').html($(this).closest('tr').html());
-        $('#modalFicha').modal('show');
+    $('#tabla_nuevas_solicitudes td').click(function(node) {
+        const id = node.currentTarget.parentNode.id
+        $.ajax({
+            url: "getDatosSolicitud.php",
+            type: "GET",
+            data: {
+                id
+            },
+            async: false,
+            success: function(res) {
+                const data = $.parseJSON(res)
+
+                console.log(data);
+
+                /* Nombre y apellido */
+                const nombre = data.nombre_te
+                $("#nombre-span-nueva").html(nombre);
+
+                /* Datos principales */
+                const dni = data.dni_te
+                $("#dni-span-nueva").html(dni);
+                const fe_nac = formatDate(data.fecha_nac_te)
+                $("#fe_nac-span-nueva").html(fe_nac);
+                const dire = data.direccion_te
+                $("#dire-span-nueva").html(dire);
+                const tel = data.telefono_te
+                $("#tel-span-nueva").html(tel);
+                const tipo_empleo = data.tipo_empleo ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos'
+                $("#tipo_empleo-span-nueva").html(tipo_empleo);
+                const renovacion = data.renovacion ? 'SI' : 'NO'
+                $("#renovacion-span-nueva").html(renovacion);
+
+                /* fechas y numero de recibo */
+                const fecha_alta = formatDate(data.fecha_alta_sol)
+                $("#fecha-alta-span-nueva").html(fecha_alta);
+                const fecha_venci = formatDate(data.fecha_alta_sol)
+                $("#fecha-alta-mas-span-nueva").html(fecha_venci);
+                const nro_recibo = data.nro_recibo
+                $("#nro-recibo-span-nueva").html(nro_recibo);
+
+                /* capacitación */
+                const nombre_capa = data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : ''
+                $("#nombre-capa-span-nueva").html(nombre_capa);
+                const matricula = data.matricula
+                $("#matricula-span-nueva").html(matricula);
+                const lugar_capa = data.lugar_capacitacion
+                $("#lugar-capa-span-nueva").html(lugar_capa);
+                const fecha_capa = formatDate(data.fecha_capacitacion)
+                $("#fecha-capa-span-nueva").html(fecha_capa);
+
+                /* Mostramos el modal */
+                $('#modalFicha').modal('show');
+            },
+            error: function(errorThrown) {
+                console.log(errorThrown);
+            }
+        });
     });
 </script>
 
@@ -328,6 +375,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 </script>
 <script>
     function formatDate(input) {
+        if (input == null) return ''
         var datePart = input.match(/\d+/g),
             year = datePart[0], // get only two digits
             month = datePart[1],
