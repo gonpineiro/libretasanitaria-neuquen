@@ -126,7 +126,7 @@ if (isset($_POST) && !empty($_POST)) {
             $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $idSolicitud, 'certificado');
             $capacitadorUpdated = $capacitadorController->update(
                 ['path_certificado' => $pathCertificado],
-                $idSolicitud
+                $idCapacitador
             );
             if (!$capacitadorUpdated) {
                 $errores[] = "Solicitud nro $idSolicitud: Falla en update direccion capacitador.";
