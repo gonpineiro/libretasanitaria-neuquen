@@ -187,6 +187,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                 <?= '<img class="" style="width:200px" src=" ' . $foto . '" />'; ?>
                             </div>
                             <div class="card-block px-2" id="card-detail-sol">
+                                <span hidden id="id-modal-nueva"></span>
                                 <h4 class="card-title"><span id="nombre-span-nueva"></span></h4>
                                 <p class="card-text" style="margin-bottom:0rem;">DNI: <span id="dni-span-nueva"></span></p>
                                 <p class="card-text" style="margin-bottom:0rem;">Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
@@ -219,7 +220,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                     <p class="card-text" style="margin-bottom:0rem;">Matrícula: <span id="matricula-span-nueva"></span></p>
                                     <p class="card-text" style="margin-bottom:0rem;">Capacitado en Municipalidad de Neuqu&eacute;n </p>
                                     <p class="card-text" style="margin-bottom:0rem;">Lugar Capacitación: <span id="lugar-capa-span-nueva"></span></p>
-                                    <p class="card-text" style="margin-bottom:0rem;">Fecha Capacitación: <span id="fecha-capa-span-nueva"></span></p>                                  
+                                    <p class="card-text" style="margin-bottom:0rem;">Fecha Capacitación: <span id="fecha-capa-span-nueva"></span></p>
                                     <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#verCertificado" aria-expanded="false" aria-controls="verCertificado">
                                         Ver Certificado
                                     </button>
@@ -261,8 +262,8 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="confirmacionAprobar()">Aprobar</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" href="#modalConfirmacion" style="background-color: #f54842; border-color: #f54842;">Rechazar</button>
+                        <button type="button" class="btn btn-primary" onclick="confirmacionCambiarEstado('Aprobado')">Aprobar</button>
+                        <button type="button" class="btn btn-primary" onclick="confirmacionCambiarEstado('Rechazado')" data-toggle="modal" href="#modalConfirmacion" style="background-color: #f54842; border-color: #f54842;">Rechazar</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -281,7 +282,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     $('#tabla_nuevas_solicitudes td').click(function(node) {
         const id = node.currentTarget.parentNode.id
         $.ajax({
-            url: "getDatosSolicitud.php",
+            url: "proceso_solicitud.php",
             type: "GET",
             data: {
                 id
@@ -292,6 +293,8 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 
                 console.log(data);
 
+                const id = data.id;
+                $("#id-modal-nueva").html(id);
                 /* Nombre y apellido */
                 const nombre = data.nombre_te
                 $("#nombre-span-nueva").html(nombre);
@@ -369,13 +372,34 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 </script>
 
 <script>
-    function confirmacionAprobar() {
-        if (confirm("Está seguro de aprobar la solicitud?")) {
-            document.write('<?php echo 'asdasd' ?> ');
+    function confirmacionCambiarEstado(estado) {
+        const msgAprobado = "Está seguro de aprobar la solicitud?";
+        const msgRechazado = "Está seguro de rechazar la solicitud?"
+        const msg = estado === 'Aprobado' ? msgAprobado : estado === 'Rechazado' && msgRechazado
+        console.log(estado);
+        if (confirm(msg)) {
+            const id = document.getElementById('id-modal-nueva').textContent;
+            $.ajax({
+                url: "proceso_solicitud.php",
+                type: "POST",
+                data: {
+                    id,
+                    estado
+                },
+                async: false,
+                success: function(res) {
+                    location.reload();
+                },
+                error: function(errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
         } else {
             // cancelar
         }
     }
+
+
 
     function formatDate(input) {
         if (input == null) return ''
