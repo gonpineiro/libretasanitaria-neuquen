@@ -37,7 +37,7 @@ if ($errores) {
         </div>
         <div class="">
             <div class="">
-                <form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
+                <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
                     <div class="row form">
                         <div class="col-12 elementor-divider"> <span class="elementor-divider-separator"></span></div>
                     </div>

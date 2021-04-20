@@ -108,7 +108,7 @@ if (isset($_POST) && !empty($_POST)) {
         'id_usuario_admin' => null,
     ];
     $idSolicitud = $solicitudController->store($solicitudParams);
-
+    if ( isset($idSolicitud) ) console_log("Id Solicitud: $idSolicitud");
     if (isset($idSolicitud) && $idSolicitud != (false or null)) {
         /* Update solicitudes with paths */
         $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
