@@ -139,7 +139,7 @@ if (isset($_POST) && !empty($_POST)) {
             $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
             cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
         } 
-        if (isset($capacitadorUpdated) && (!$capacitadorUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathCertificado))) {
+        if (isset($capacitadorUpdated) && (!$capacitadorUpdated || !copy($_FILES["path_certificado"]['tmp_name'], $pathCertificado))) {
             $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto certificado capacitacion fallida";
             cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto certificado capacitacion fallida");
         } 
