@@ -371,7 +371,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     $('#tabla_solicitudes_aprobadas td').click(function(node) {
         const id = node.currentTarget.parentNode.id
         $.ajax({
-            url: "getDatosSolicitud.php",
+            url: "proceso_solicitud.php",
             type: "GET",
             data: {
                 id
