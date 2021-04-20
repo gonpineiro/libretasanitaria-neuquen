@@ -8,9 +8,8 @@
                 </div>
                 <div class="card-body mb-3">
                     <p class="card-text text-center">Nº de Solicitud: <?= $idSolicitud; ?></p>
-                    <br>
-                    <p class="">
-                    <p>Su solicitud para Libreta Sanitaria fue recbida, de ser aceptada nos comunicaremos con usted. </p>
+                    <p class="text-center">
+                    Su solicitud para Libreta Sanitaria fue recbida, de ser aceptada nos comunicaremos con usted. 
                     </p>
                 </div>
                 <div class="text-center">
