@@ -29,64 +29,20 @@ $fechaMasUnAno = date('d/m/Y', $fechaMasUnAno);
 $fechaactual = date('d/m/Y', strtotime($fechaactual));
 
 
-function prueba()
-{
-    echo "ho";
-}
 // para determinar el tipo de archivo con los certificados y con el comprobante de pago
 $content = file_get_contents("https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/M32020923");
 $result = json_decode($content);
 $foto = $result->docInfo->imagen;
 
-
 // si tiene certificación se visualiza el botón con el collapse para verlo en el modal
 $certificado = true;
 
+$solicitudController = new SolicitudController();
+$solicitudesNuevas = $solicitudController->getSolicitudesWhereEstado('Nuevo');
+$solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobado');
 
 
 
-
-
-
-function listarSolicitudes($parametro = "1=1", $valor = [])
-{
-    $arreglo = array();
-    $base = new BaseDatos();
-    $sql = "SELECT  ferias_Solicitud.id AS 'Id Solicitud', ferias_Solicitud.fechaAlta AS 'Alta Solicitud', wapPersonas.Nombre, wapPersonas.Documento, wapPersonas.Genero, wapPersonas.fechaNacimiento, wapPersonas.CorreoElectronico AS Mail, 
-                      wapPersonas.Celular, wapPersonas.DomicilioReal, wapPersonas.CPostalReal,  ferias_Usuario.email AS 'Mail Actualiz', ferias_Usuario.telefono AS 'Cel Actualiz', ferias_Usuario.ciudad, ferias_Solicitud.feria, 
-                      ferias_Solicitud.nombre_emprendimiento AS 'Nombre Emprendimiento', ferias_Solicitud.rubro_emprendimiento AS Rubro, ferias_Solicitud.producto, 
-                      ferias_Solicitud.instagram, ferias_Solicitud.previa_participacion
-            FROM ferias_Solicitud 
-            LEFT OUTER JOIN ferias_Usuario ON ferias_Solicitud.id_usuario = ferias_Usuario.id 
-            LEFT OUTER JOIN wapPersonas ON ferias_Usuario.id_wappersonas = wapPersonas.ReferenciaID
-            /* where estado nuevo */
-    ";
-
-    if ($parametro != "") {
-        $sql .= 'WHERE ' . $parametro;
-    }
-
-    $query = $base->prepareQuery($sql);
-    $res = $base->executeQuery($query, false, $valor);
-    if ($res) {
-
-        $municipios = buscarCiudades()['municipios'];
-        $municipios = array_reduce($municipios, function ($carry, $item) {
-            $carry[$item['id']] = $item['nombre'];
-            return $carry;
-        }, []);
-
-        while ($row = $base->Registro($query)) {
-            $row['feria'] = $row['feria'] == 1 ? 'Emprende' : 'Raiz';
-            $row['producto'] = $row['producto'] == 1 ? 'Elaboracion Propia' : 'Reventa';
-            $row['previa_participacion'] = $row['previa_participacion'] == 1 ? 'Si' : 'No';
-            $row['ciudad'] = $municipios[$row['ciudad']];
-            $row['Alta Solicitud'] = date('d-m-Y', $row['Alta Solicitud']);
-            array_push($arreglo, $row);
-        }
-    }
-    return $arreglo;
-}
 ?>
 
 <!DOCTYPE html>
@@ -148,6 +104,7 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
             <table id="tabla_nuevas_solicitudes" class="table tablas_solicitudes">
                 <thead class="thead-dark">
                     <tr>
+                        <th scope="col">N°</th>
                         <th scope="col">DNI</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
@@ -156,27 +113,18 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="user_dni">33333333</td>
-                        <td class="user_name">Mark</td>
-                        <td class="user_surname">Otto</td>
-                        <td class="date">01/89/2021</td>
-                        <td class="company">empresa</td>
-                    </tr>
-                    <tr>
-                        <td class="user_dni">33222211</td>
-                        <td class="user_name">MIke</td>
-                        <td class="user_surname">Olsen</td>
-                        <td class="date">12/12/2021</td>
-                        <td class="company">empresa</td>
-                    </tr>
-                    <tr>
-                        <td class="user_dni">44564333</td>
-                        <td class="user_name">Lawson</td>
-                        <td class="user_surname">Rawson</td>
-                        <td class="date">23/07/2021</td>
-                        <td class="company">empresa</td>
-                    </tr>
+                    <?php foreach ($solicitudesNuevas as $sol) {
+                        $nombreApellido = explode(', ', $sol['nombre_te']);
+                    ?>
+                        <tr>
+                            <td class="numero_sol"><?= $sol['id'] ?></td>
+                            <td class="user_dni"><?= $sol['dni_te'] ?></td>
+                            <td class="user_name"><?= $nombreApellido['0'] ?></td>
+                            <td class="user_surname"><?= $nombreApellido['1'] ?></td>
+                            <td class="date"><?= $sol['fecha_alta_sol'] ?></td>
+                            <td class="company">-</td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -204,33 +152,20 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="user_dni">33333333</td>
-                        <td class="user_name">Mark</td>
-                        <td class="user_surname">Otto</td>
-                        <td class="date">01/89/2021</td>
-                        <td class="company">empresa</td>
-                        <td class="state text-center text-success"><i class="bi bi-check-circle-fill"></i></td>
-                        <td class="printCard text-center"><a href="libreta.php" target=_blank><i class="bi bi-printer-fill"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td class="user_dni">33222211</td>
-                        <td class="user_name">MIke</td>
-                        <td class="user_surname">Olsen</td>
-                        <td class="date">12/12/2021</td>
-                        <td class="company">empresa</td>
-                        <td class="state text-center text-success"><i class="bi bi-check-circle-fill"></i></td>
-                        <td class="printCard text-center"><a href="libreta.php" target=_blank><i class="bi bi-printer-fill"></i></a></td>
-                    </tr>
-                    <tr>
-                        <td class="user_dni">44564333</td>
-                        <td class="user_name">Lawson</td>
-                        <td class="user_surname">Rawson</td>
-                        <td class="date">23/07/2021</td>
-                        <td class="company">empresa</td>
-                        <td class="state text-center text-success"><i class="bi bi-check-circle-fill"></i></td>
-                        <td class="printCard text-center"><a onclick="imprimirLibreta()" target=_blank><i class="bi bi-printer-fill"></i></a></td>
-                    </tr>
+                    <?php foreach ($solicitudesAprobadas as $sol) {
+                        $nombreApellido = explode(', ', $sol['nombre_te']);
+                    ?>
+                        <tr>
+                            <td class="numero_sol"><?= $sol['id'] ?></td>
+                            <td class="user_dni"><?= $sol['dni_te'] ?></td>
+                            <td class="user_name"><?= $nombreApellido['0'] ?></td>
+                            <td class="user_surname"><?= $nombreApellido['1'] ?></td>
+                            <td class="date"><?= $sol['fecha_alta_sol'] ?></td>
+                            <td class="company">-</td>
+                            <td class="state text-center text-success"><i class="bi bi-check-circle-fill"></i></td>
+                            <td class="printCard text-center"><a href="libreta.php" target=_blank><i class="bi bi-printer-fill"></i></a></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -344,7 +279,9 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 
 <script>
-    $('#tabla_nuevas_solicitudes td').click(function() {
+    $('#tabla_nuevas_solicitudes td').click(function(id) {
+        console.log(id);
+        console.log(id.parentElement);
         //$('.modal-body').html($(this).closest('tr').html());
         $('#modalFicha').modal('show');
     });
@@ -382,7 +319,7 @@ function listarSolicitudes($parametro = "1=1", $valor = [])
 <script>
     function confirmacionAprobar() {
         if (confirm("Está seguro de aprobar la solicitud?")) {
-            document.write(' <?php prueba(); ?> ');
+            document.write( '<?php echo 'asdasd'?> ');
         } else {
             // cancelar
         }
