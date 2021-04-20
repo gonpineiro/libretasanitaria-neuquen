@@ -37,7 +37,7 @@ CREATE TABLE ls_capacitadores (
 	matricula VARCHAR(45) NULL,	
 	municipalidad_nqn INT NULL,
 	path_certificado VARCHAR(500) NULL,
-	lugar_capacitacion VARCHAR(45) NULL,
+	lugar_capacitacion VARCHAR(100) NULL,
 	fecha_capacitacion VARCHAR(45) NULL,    
 	fecha_alta DATETIME DEFAULT GETDATE());
 	

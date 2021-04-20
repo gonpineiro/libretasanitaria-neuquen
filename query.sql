@@ -21,6 +21,7 @@ cap.lugar_capacitacion as lugar_capacitacion,
 cap.municipalidad_nqn as municipalidad_nqn,
 cap.fecha_capacitacion as fecha_capacitacion,
 cap.fecha_alta as fecha_alta_capacitacion,
+cap.path_certificado as path_certificado,
 sol.tipo_empleo as tipo_empleo,
 sol.renovacion as renovacion,
 sol.nro_recibo as nro_recibo,
@@ -29,7 +30,8 @@ sol.retiro_en as retiro_en,
 sol.fecha_evaluacion as fecha_evaluacion,
 sol.fecha_vencimiento as fecha_vencimiento,
 sol.observaciones as observaciones,
-sol.fecha_alta as fecha_alta_sol
+sol.fecha_alta as fecha_alta_sol,
+sol.path_comprobante_pago as path_comprobante_pago
 FROM ls_solicitudes sol
 LEFT OUTER JOIN (
 	dbo.wappersonas as wap_te
@@ -40,4 +42,3 @@ LEFT OUTER JOIN (
 	left join ls_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id
 ) ON sol.id_usuario_solicitado = usu_do.id
 LEFT JOIN dbo.ls_capacitadores cap ON sol.id_capacitador = cap.id
-WHERE estado = 'Nuevo';
