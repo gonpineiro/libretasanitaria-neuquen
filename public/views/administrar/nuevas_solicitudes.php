@@ -61,6 +61,13 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 
     <title>Inscripci&oacute;n Ferias</title>
     <style>
+        /* en hover cambia color la fila en las tablas */
+
+        table.dataTable tbody tr:hover {
+            background-color: #E4F8FE;
+            cursor: pointer;
+        }
+
         /* modal más ancho en pantallas 800x600 */
         @media (min-width: 576px) {
             .modal-dialog {
@@ -98,7 +105,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     </div>
     <div class="body container" style="padding-bottom: 50px;">
         <div style="min-height: 50px;">
-            <h2 style="padding:30px 0px;color: #076AB3;">NUEVAS SOLICITUDES</h2>
+            <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES NUEVAS</h2>
             <button onclick="imprimirLibreta() ">imprimir</button>
         </div>
         <div class="table-responsive">
@@ -137,16 +144,12 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
             <table id="tabla_solicitudes_aprobadas" class="table tablas_solicitudes">
                 <thead class="thead-dark">
                     <tr>
+                        <th scope="col">N°</th>
                         <th scope="col">DNI</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Empresa</th>
-                        <th scope="col">
-                            <div class="text-center">
-                                Estado
-                            </div>
-                        </th>
                         <th scope="col">
                             <div class="text-center">Imprimir</div>
                         </th>
@@ -317,6 +320,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         });
     });
 </script>
+
 <script>
     function confirmacionAprobar() {
         if (confirm("Está seguro de aprobar la solicitud?")) {
@@ -325,8 +329,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
             // cancelar
         }
     }
-</script>
-<script>
+
     function formatDate(input) {
         var datePart = input.match(/\d+/g),
             year = datePart[0], // get only two digits
@@ -359,6 +362,9 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                 var numeroLibreta = "N°: " + dni;
                 var tipoEmpleo = "con manipulación alimentos";
                 var observaciones = data.observaciones;
+                if (observaciones === undefined || observaciones === null) {
+                    observaciones = " ";
+                }
                 imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo);
 
             },
