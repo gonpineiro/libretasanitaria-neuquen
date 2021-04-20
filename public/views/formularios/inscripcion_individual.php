@@ -104,7 +104,7 @@ if ($errores) {
                                             </div>
 
                                             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 menor">
-                                                <label for="renovacion" class="required">Es renovacion? </label>
+                                                <label for="renovacion" class="required">Es renovaci&oacute;n? </label>
                                                 <select id="renovacion" class="selectpicker form-control" title="Seleccionar" name='renovacion' required>
                                                     <option value="1">Si</option>
                                                     <option value="0">No</option>
@@ -133,7 +133,7 @@ if ($errores) {
 
                                         <!-- INFO CAPACITADOR -->
                                         <div id="div-infoCapacitacion" style="display: none;">
-                                            <label>DATOS DE LA CAPACITACION</label>
+                                            <label>DATOS DE LA CAPACITACI&Oacute;N</label>
                                             <div class="form-group row">
                                                 <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12">
                                                     <label for="municipalidad_nqn" class="required">Fue en la Municipalidad de Neuqu&eacute;n? </label>
@@ -171,8 +171,8 @@ if ($errores) {
 
                                             <div class="form-group row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                    <label for="lugar_capacitacion" class="required">Lugar de la Capacitacion CURSO MANIPULACION DE ALIMENTOS </label>
-                                                    <input type="text" id="lugar_capacitacion" class="form-control" placeholder="Indique la el lugar de la capacitacion" name="lugar_capacitacion" required>
+                                                    <label for="lugar_capacitacion" class="required">Lugar de la Capacitaci&oacute;n CURSO MANIPULACION DE ALIMENTOS </label>
+                                                    <input type="text" id="lugar_capacitacion" class="form-control" placeholder="Indique la el lugar de la capacitaci&oacute;n" name="lugar_capacitacion" required>
                                                     <div class="invalid-feedback">
                                                         Por favor seleccionar un tipo de organizaci&oacute;n.
                                                     </div>
