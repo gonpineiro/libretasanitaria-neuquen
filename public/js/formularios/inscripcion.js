@@ -89,6 +89,10 @@ $( function () {
         checkArchivo(this);
     });
 
+    $('#path_comprobante_pago').on('change', function(e) {
+        checkArchivo(this);
+    });
+
     $('#terminosycondiciones').on('change', terminosycondicionescheck(this))
     
 });
@@ -101,13 +105,15 @@ function checkArchivo(file){
         max_file_size = 10;
 
     if (fileSize > max_file_size) {
-        $(file).val('');
+        $(file).val(null);
+        $(file).closest(".form-group").find(".invalid-feedback").addClass("d-block");
         alert(`El tamaño del archivo max es de ${max_file_size} MB. Su archivo pesa ${~~fileSize} MB`);
-
+        
     } else {
         //* se verifica tipo de archivo
         if ( !(regex.test(fileType)) ) {
-            $(file).val('');
+            $(file).val(null);
+            $(file).closest(".form-group").find(".invalid-feedback").addClass("d-block");
             alert('Formato de archivo no aceptado. Por favor ingrese un archivo del tipo pdf, jpg, png o jpeg.');
         } else {
             $(`#labelAdjunto-${file.id}`).html(fileName);

@@ -150,7 +150,7 @@ if ($errores) {
                                             <div class="form-group row">
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                     <label for="nombre_capacitador">Nombre del Capacitador </label>
-                                                    <input type="text" id="nombre_capacitador" size="50" class="form-control" placeholder="Indique el nombre del Capacitador" name="nombre_capacitador" required>
+                                                    <input type="text" id="nombre_capacitador" minlength="1" maxlength="100" class="form-control" placeholder="Indique el nombre del Capacitador" name="nombre_capacitador" required>
                                                     <div class="invalid-feedback">
                                                         <strong>
                                                             Por favor ingrese la nombre del capacitador.
@@ -160,7 +160,7 @@ if ($errores) {
 
                                                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                                     <label for="apellido_capacitador">Apellido del Capacitador </label>
-                                                    <input type="text" id="apellido_capacitador" size="50" class="form-control" placeholder="Indique el Apellido del Capacitador" name="apellido_capacitador" required>
+                                                    <input type="text" id="apellido_capacitador" minlength="1" maxlength="100" class="form-control" placeholder="Indique el Apellido del Capacitador" name="apellido_capacitador" required>
                                                     <div class="invalid-feedback">
                                                         <strong>
                                                             Por favor ingrese la apellido del capacitador.
@@ -196,7 +196,7 @@ if ($errores) {
                                                     <label for="path_certificado" class="custom-file-label" id="label-path_certificado"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
                                                 </div>
                                                 <div class="invalid-feedback">
-                                                    Por favor ingrese el n&uacute;mero de tel&eacute;fono de la Beneficiario 1.
+                                                    Por favor cargue o compruebe que se cargo el adjunto correctamente.
                                                 </div>
                                             </div>
 
@@ -204,10 +204,10 @@ if ($errores) {
 
                                         <div class="form-group">
                                             <label for="nro_recibo">Nro. de comprobante sellado </label>
-                                            <input type="text" id="nro_recibo" size="50" class="form-control" placeholder="Ej: Recibo Nro. 0002-57972906" name="nro_recibo" required>
+                                            <input type="text" id="nro_recibo" minlength="1" maxlength="20" pattern="^[0-9]+-[0-9]+$" class="form-control" placeholder="Ej: 0002-57972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
                                                 <strong>
-                                                    Por favor ingrese el numero de comprobante sellado.
+                                                    Por favor ingrese y chequee el formato del numero de comprobante.
                                                 </strong>
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@ if ($errores) {
                                                 <label for="path_comprobante_pago" class="custom-file-label" id="label-path_comprobante_pago"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
                                             </div>
                                             <div class="invalid-feedback">
-                                                Por favor ingrese el comprobante de pago.
+                                                Por favor cargue o compruebe que se cargo el adjunto correctamente.
                                             </div>
                                         </div>
 

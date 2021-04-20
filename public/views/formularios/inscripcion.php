@@ -167,7 +167,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     if ( count($errores) == 0 ) $inscripcion_exitosa = true;
 
-    }
+    } else $errores[] = 'Error adjunto';
 }
 
 ?>
