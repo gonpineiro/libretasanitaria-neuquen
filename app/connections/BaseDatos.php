@@ -75,14 +75,18 @@ class BaseDatos
     {
         $this->connect();
         $strKeyValues = '';
+        $values = [];
         foreach ($params as $key => $value) {
-            $strKeyValues .= "$key = '$value',";
+            $strKeyValues .= "$key = ?,";
+            $values[] = $value;
         }
+        $values[] = $id;
+        
         $strKeyValues = trim($strKeyValues, ',');
 
-        $sql = "UPDATE $table SET $strKeyValues WHERE id=$id";
+        $sql = "UPDATE $table SET $strKeyValues WHERE id=?";
         $query = $this->prepare($sql);
-        return $this->executeQuery($query, $params);
+        return $this->executeQuery($query, $values);
     }
 
     private function prepare($sql)
