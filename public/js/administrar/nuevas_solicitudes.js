@@ -34,11 +34,13 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
 
             /* capacitación */
             if (data.nombre_capacitador == null) {
-                $("#btn-capacitacion").addClass('hideDiv');
-                $("#div-capacitacion").addClass('hideDiv');
+                $("#btn-capacitacion-aprobada").addClass('hideDiv');
+                $("#div-capacitacion-aprobada").addClass('hideDiv');
+                $("#capacitacion-span-aprobada").html('NO PRESENTA');
             } else {
-                $("#btn-capacitacion").removeClass('hideDiv');
-                $("#div-capacitacion").removeClass('hideDiv');
+                $("#btn-capacitacion-aprobada").removeClass('hideDiv');
+                $("#div-capacitacion-aprobada").removeClass('hideDiv');
+                $("#capacitacion-span-aprobada").html('SI PRESENTA');
             }
             $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-aprobada").html(data.matricula);
@@ -95,11 +97,13 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
 
             /* capacitación */
             if (data.nombre_capacitador == null) {
-                $("#btn-capacitacion").addClass('hideDiv');
-                $("#div-capacitacion").addClass('hideDiv');
+                $("#btn-capacitacion-nueva").addClass('hideDiv');
+                $("#div-capacitacion-nueva").addClass('hideDiv'); 
+                $("#capacitacion-span-nueva").html('NO PRESENTA');
             }else{
-                $("#btn-capacitacion").removeClass('hideDiv');
-                $("#div-capacitacion").removeClass('hideDiv');
+                $("#btn-capacitacion-nueva").removeClass('hideDiv');
+                $("#div-capacitacion-nueva").removeClass('hideDiv');
+                $("#capacitacion-span-nueva").html('SI PRESENTA');
             }
             $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-nueva").html(data.matricula);
