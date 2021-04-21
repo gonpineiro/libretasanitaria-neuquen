@@ -38,8 +38,8 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
             $("#fecha-capa-span-aprobada").html(formatDate(data.fecha_capacitacion));
             $("#certificado-capa-aprobada").attr("src", data.path_certificado);
-            
-            
+
+
 
             $("#id-solicitud-aprobada").html(data.id);
 
@@ -54,6 +54,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
 
 $('#tabla_nuevas_solicitudes td').click(function (node) {
     const id = node.currentTarget.parentNode.id
+    console.log(id);
     $.ajax({
         url: "proceso_solicitud.php",
         type: "GET",
@@ -63,8 +64,8 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
-
             console.log(data);
+
 
             $("#id-modal-nueva").html(data.id);
             /* Nombre y apellido */
@@ -84,7 +85,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#fecha-alta-mas-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#nro-recibo-span-nueva").html(data.nro_recibo);
             $("#comprobante-pago-span-nueva").attr("src", data.path_comprobante_pago);
-            
+
 
             /* capacitación */
             $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
@@ -134,7 +135,7 @@ function confirmacionCambiarEstado(estado) {
     const msgAprobado = "Está seguro de aprobar la solicitud?";
     const msgRechazado = "Está seguro de rechazar la solicitud?"
     const msg = estado === 'Aprobado' ? msgAprobado : estado === 'Rechazado' && msgRechazado
-    console.log(estado);
+    const observaciones = document.getElementById('observaciones').value;
     if (confirm(msg)) {
         const id = document.getElementById('id-modal-nueva').textContent;
         $.ajax({
@@ -142,7 +143,8 @@ function confirmacionCambiarEstado(estado) {
             type: "POST",
             data: {
                 id,
-                estado
+                estado,
+                observaciones
             },
             async: false,
             success: function (res) {
@@ -158,7 +160,7 @@ function confirmacionCambiarEstado(estado) {
 }
 
 function formatDate(input) {
-    if (input == null) return ''
+    if (input == (null || '')) return ''
     var datePart = input.match(/\d+/g),
         year = datePart[0], // get only two digits
         month = datePart[1],

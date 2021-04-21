@@ -117,6 +117,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                 </thead>
                 <tbody>
                     <?php foreach ($solicitudesNuevas as $sol) {
+                        $sol = utf8_converter($sol, false);
                         $nombreApellido = explode(', ', $sol['nombre_te']);
                     ?>
                         <tr id=<?= $sol['id'] ?>>
@@ -150,6 +151,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                 </thead>
                 <tbody>
                     <?php foreach ($solicitudesAprobadas as $sol) {
+                        $sol = utf8_converter($sol, false);
                         $nombreApellido = explode(', ', $sol['nombre_te']);
                     ?>
                         <tr id=<?= $sol['id'] ?>>
@@ -166,6 +168,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         </div>
         <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
         <a href="./index.php" class="btn btn-primary btn-lg">Regresar</a>
+        
         <!-- Modal Ficha Nueva Solicitud-->
         <div class="modal" id="modalFicha" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog modal-lg modal-dialog-centered" role="document">

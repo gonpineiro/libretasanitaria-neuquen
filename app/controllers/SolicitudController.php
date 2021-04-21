@@ -63,7 +63,7 @@ class SolicitudController
             $log->save();
         }
 
-        return $conn->fetch_assoc($query);
+        return odbc_fetch_array($query);
     }
 
     private function insertSqlQuery($where)

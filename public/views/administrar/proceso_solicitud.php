@@ -23,15 +23,25 @@ if (isset($_GET['id'])) {
         $imagen = $json->{'docInfo'}->{'imagen'};
     }
     $solicitud['imagen'] = $imagen;
-    echo (json_encode($solicitud));
+    echo utf8_converter($solicitud, true);
+    $asd = utf8_converter($solicitud, true);
     exit();
 }
 
 /* Aprobamos o rechazamos la solicitud */
 if (isset($_POST['id']) && isset($_POST['estado'])) {
+
     $params = [
-        'estado' => $_POST['estado']
+        'estado' => $_POST['estado'],
+        'fecha_evaluacion' => date('d/m/Y'),
+        'observaciones' => $_POST['observaciones'],
+        'id_usuario_admin' => UsuarioController::get(['id_wappersonas' => $_SESSION['usuario']['wapPersonasId']])['id']
     ];
+
+    if ($_POST['estado'] === 'Aprobado') {
+        $params['fecha_vencimiento'] = date('d/m/Y', strtotime('+1 year -1 day', strtotime(date('Y-m-d'))));
+    }
+
     $sol = SolicitudController::update($params, $_POST['id']);
     echo ($sol);
     exit();

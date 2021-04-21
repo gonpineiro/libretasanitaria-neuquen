@@ -1,10 +1,13 @@
 <?php
 include 'app/config/config.php';
+
 if (PROD) {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: https://weblogin.muninqn.gov.ar');
     exit();
 }
+$nuevafecha = date('d/m/Y', strtotime('+1 year -1 day', strtotime(date('Y-m-d'))));
+die();
 ?>
 
 <!DOCTYPE html>
