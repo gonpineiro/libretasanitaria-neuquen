@@ -28,7 +28,6 @@ $fechaMasUnAno = strtotime('+1 year', strtotime($fechaactual));
 $fechaMasUnAno = date('d/m/Y', $fechaMasUnAno);
 $fechaactual = date('d/m/Y', strtotime($fechaactual));
 
-
 // para determinar el tipo de archivo con los certificados y con el comprobante de pago
 $content = file_get_contents("https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/M32020923");
 $result = json_decode($content);
@@ -103,7 +102,6 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     <div class="body container" style="padding-bottom: 50px;">
         <div style="min-height: 50px;">
             <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES NUEVAS</h2>
-            <button onclick="imprimirLibreta() ">imprimir</button>
         </div>
         <div class="table-responsive">
             <table id="tabla_nuevas_solicitudes" class="table tablas_solicitudes">
@@ -126,7 +124,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                             <td class="user_dni"><?= $sol['dni_te'] ?></td>
                             <td class="user_name"><?= $nombreApellido['0'] ?></td>
                             <td class="user_surname"><?= $nombreApellido['1'] ?></td>
-                            <td class="date"><?= $sol['fecha_alta_sol'] ?></td>
+                            <td class="date"><?= date('d/m/Y', strtotime($sol['fecha_alta_sol'])) ?></td>
                             <td class="company">-</td>
                         </tr>
                     <?php } ?>
@@ -159,7 +157,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                             <td class="user_dni"><?= $sol['dni_te'] ?></td>
                             <td class="user_name"><?= $nombreApellido['0'] ?></td>
                             <td class="user_surname"><?= $nombreApellido['1'] ?></td>
-                            <td class="date"><?= $sol['fecha_alta_sol'] ?></td>
+                            <td class="date"><?= date('d/m/Y', strtotime($sol['fecha_alta_sol'])) ?></td>
                             <td class="company">-</td>
                         </tr>
                     <?php } ?>
@@ -180,7 +178,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                     <div class="modal-body modal_solicitud">
                         <div class="card card flex-row flow flex-wrap">
                             <div class="card-header border-0" style="background-color: white!important;">
-                                <?= '<img class="" style="width:200px" src=" ' . $foto . '" />'; ?>
+                                <img class="" id="imagen-pefil-nuevo" style="width:200px" src="" />
                             </div>
                             <div class="card-block px-2" id="card-detail-sol">
                                 <span hidden id="id-modal-nueva"></span>
@@ -279,7 +277,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                     <div class="modal-body modal_solicitud">
                         <div class="card card flex-row flow flex-wrap">
                             <div class="card-header border-0" style="background-color: white!important;">
-                                <?= '<img class="" style="width:200px" src=" ' . $foto . '" />'; ?>
+                                <img class="" id="imagen-pefil-aprobada" style="width:200px" src="" />
                             </div>
                             <div class="card-block px-2" id="card-detail-sol">
                                 <h4 class="card-title"><span id="nombre-span-aprobada"></span></h4>
@@ -385,45 +383,29 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                 /* Nombre y apellido */
                 const nombre = data.nombre_te
                 $("#nombre-span-aprobada").html(nombre);
+                $("#imagen-pefil-aprobada").attr("src", data.imagen);
 
                 /* Datos principales */
-                const dni = data.dni_te
-                $("#dni-span-aprobada").html(dni);
-                const fe_nac = formatDate(data.fecha_nac_te)
-                $("#fe_nac-span-aprobada").html(fe_nac);
-                const dire = data.direccion_te
-                $("#dire-span-aprobada").html(dire);
-                const tel = data.telefono_te
-                $("#tel-span-aprobada").html(tel);
-                const tipo_empleo = data.tipo_empleo ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos'
-                $("#tipo_empleo-span-aprobada").html(tipo_empleo);
-                const renovacion = data.renovacion ? 'SI' : 'NO'
-                $("#renovacion-span-aprobada").html(renovacion);
-                const observaciones = data.observaciones
-                $("#observaciones-span-aprobada").html(observaciones);
+                $("#dni-span-aprobada").html(data.dni_te);
+                $("#fe_nac-span-aprobada").html(formatDate(data.fecha_nac_te));
+                $("#dire-span-aprobada").html(data.direccion_te);
+                $("#tel-span-aprobada").html(data.telefono_te);
+                $("#tipo_empleo-span-aprobada").html(data.tipo_empleo ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
+                $("#renovacion-span-aprobada").html(data.renovacion ? 'SI' : 'NO');
+                $("#observaciones-span-aprobada").html(data.observaciones);
 
                 /* fechas y numero de recibo */
-                const fecha_alta = formatDate(data.fecha_alta_sol)
-                $("#fecha-alta-span-aprobada").html(fecha_alta);
-                const fecha_venci = formatDate(data.fecha_alta_sol)
-                $("#fecha-alta-mas-span-aprobada").html(fecha_venci);
-                const nro_recibo = data.nro_recibo
-                $("#nro-recibo-span-aprobada").html(nro_recibo);
+                $("#fecha-alta-span-aprobada").html(formatDate(data.fecha_alta_sol));
+                $("#fecha-alta-mas-span-aprobada").html(formatDate(data.fecha_alta_sol));
+                $("#nro-recibo-span-aprobada").html(data.nro_recibo);
 
                 /* capacitación */
-                const nombre_capa = data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : ''
-                $("#nombre-capa-span-aprobada").html(nombre_capa);
-                const matricula = data.matricula
-                $("#matricula-span-aprobada").html(matricula);
-                const lugar_capa = data.lugar_capacitacion
-                $("#lugar-capa-span-aprobada").html(lugar_capa);
-                const fecha_capa = formatDate(data.fecha_capacitacion)
-                $("#fecha-capa-span-aprobada").html(fecha_capa);
+                $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
+                $("#matricula-span-aprobada").html(data.matricula);
+                $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
+                $("#fecha-capa-span-aprobada").html(formatDate(data.fecha_capacitacion));
 
-                const id = data.id
-
-                $("#id-solicitud-aprobada").html(id);
-
+                $("#id-solicitud-aprobada").html(data.id);
 
                 /* Mostramos el modal */
                 $('#modalFichaAprobada').modal('show');
@@ -447,43 +429,29 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 
                 console.log(data);
 
-                const id = data.id;
-                $("#id-modal-nueva").html(id);
+                $("#id-modal-nueva").html(data.id);
                 /* Nombre y apellido */
-                const nombre = data.nombre_te
-                $("#nombre-span-nueva").html(nombre);
+                $("#nombre-span-nueva").html(data.nombre_te);
+                $("#imagen-pefil-nuevo").attr("src", data.imagen);
 
                 /* Datos principales */
-                const dni = data.dni_te
-                $("#dni-span-nueva").html(dni);
-                const fe_nac = formatDate(data.fecha_nac_te)
-                $("#fe_nac-span-nueva").html(fe_nac);
-                const dire = data.direccion_te
-                $("#dire-span-nueva").html(dire);
-                const tel = data.telefono_te
-                $("#tel-span-nueva").html(tel);
-                const tipo_empleo = data.tipo_empleo ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos'
-                $("#tipo_empleo-span-nueva").html(tipo_empleo);
-                const renovacion = data.renovacion ? 'SI' : 'NO'
-                $("#renovacion-span-nueva").html(renovacion);
+                $("#dni-span-nueva").html(data.dni_te);
+                $("#fe_nac-span-nueva").html(formatDate(data.fecha_nac_te));
+                $("#dire-span-nueva").html(data.direccion_te);
+                $("#tel-span-nueva").html(data.telefono_te);
+                $("#tipo_empleo-span-nueva").html(data.tipo_empleo ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
+                $("#renovacion-span-nueva").html(data.renovacion ? 'SI' : 'NO');
 
                 /* fechas y numero de recibo */
-                const fecha_alta = formatDate(data.fecha_alta_sol)
-                $("#fecha-alta-span-nueva").html(fecha_alta);
-                const fecha_venci = formatDate(data.fecha_alta_sol)
-                $("#fecha-alta-mas-span-nueva").html(fecha_venci);
-                const nro_recibo = data.nro_recibo
-                $("#nro-recibo-span-nueva").html(nro_recibo);
+                $("#fecha-alta-span-nueva").html(formatDate(data.fecha_alta_sol));
+                $("#fecha-alta-mas-span-nueva").html(formatDate(data.fecha_alta_sol));
+                $("#nro-recibo-span-nueva").html(data.nro_recibo);
 
                 /* capacitación */
-                const nombre_capa = data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : ''
-                $("#nombre-capa-span-nueva").html(nombre_capa);
-                const matricula = data.matricula
-                $("#matricula-span-nueva").html(matricula);
-                const lugar_capa = data.lugar_capacitacion
-                $("#lugar-capa-span-nueva").html(lugar_capa);
-                const fecha_capa = formatDate(data.fecha_capacitacion)
-                $("#fecha-capa-span-nueva").html(fecha_capa);
+                $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
+                $("#matricula-span-nueva").html(data.matricula);
+                $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
+                $("#fecha-capa-span-nueva").html(formatDate(data.fecha_capacitacion));
 
                 /* Mostramos el modal */
                 $('#modalFicha').modal('show');
@@ -553,8 +521,6 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         }
     }
 
-
-
     function formatDate(input) {
         if (input == null) return ''
         var datePart = input.match(/\d+/g),
@@ -617,9 +583,9 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                 var dni = data.dni_te
                 var fotodni = data[0];
                 var nombre = data.nombre_te;
-                var nombre = nombre.substring(0, 38);
+                var nombre = nombre.substring(0, 32);
                 var domicilio = data.direccion_do;
-                var domicilio = domicilio.substring(0, 38);
+                var domicilio = domicilio.substring(0, 32);
                 var fechaNacimiento = formatDate(data.fecha_nac_do);
                 var fechaExpedicion = data.fecha_nac_sol;
                 var fechaVencimiento = data.fecha_vencimiento;
