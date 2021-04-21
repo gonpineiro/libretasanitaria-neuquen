@@ -30,12 +30,16 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#fecha-alta-span-aprobada").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-aprobada").html(formatDate(data.fecha_alta_sol));
             $("#nro-recibo-span-aprobada").html(data.nro_recibo);
+            $("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
 
             /* capacitación */
             $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-aprobada").html(data.matricula);
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
             $("#fecha-capa-span-aprobada").html(formatDate(data.fecha_capacitacion));
+            $("#certificado-capa-aprobada").attr("src", data.path_certificado);
+            
+            
 
             $("#id-solicitud-aprobada").html(data.id);
 
@@ -58,8 +62,8 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         },
         async: false,
         success: function (res) {
-            console.log(res);
             const data = $.parseJSON(res)
+
             console.log(data);
 
             $("#id-modal-nueva").html(data.id);
@@ -79,12 +83,15 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#fecha-alta-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#nro-recibo-span-nueva").html(data.nro_recibo);
+            $("#comprobante-pago-span-nueva").attr("src", data.path_comprobante_pago);
+            
 
             /* capacitación */
             $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-nueva").html(data.matricula);
             $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
             $("#fecha-capa-span-nueva").html(formatDate(data.fecha_capacitacion));
+            $("#certificado-capa-nueva").attr("src", data.path_certificado);
 
             /* Mostramos el modal */
             $('#modalFicha').modal('show');
@@ -159,7 +166,6 @@ function formatDate(input) {
 
     return day + '/' + month + '/' + year;
 }
-
 $(document).ready(function () {
     $('PONER EL SELECTOR ACA').click(function (e) {
         var idReferencia = node.currentTarget.parentNode.id;
