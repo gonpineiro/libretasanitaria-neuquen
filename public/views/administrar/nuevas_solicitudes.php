@@ -103,7 +103,6 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     <div class="body container" style="padding-bottom: 50px;">
         <div style="min-height: 50px;">
             <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES NUEVAS</h2>
-            <button onclick="imprimirLibreta() ">imprimir</button>
         </div>
         <div class="table-responsive">
             <table id="tabla_nuevas_solicitudes" class="table tablas_solicitudes">
@@ -126,7 +125,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                             <td class="user_dni"><?= $sol['dni_te'] ?></td>
                             <td class="user_name"><?= $nombreApellido['0'] ?></td>
                             <td class="user_surname"><?= $nombreApellido['1'] ?></td>
-                            <td class="date"><?= $sol['fecha_alta_sol'] ?></td>
+                            <td class="date"><?= date('d/m/Y',strtotime($sol['fecha_alta_sol'])) ?></td>
                             <td class="company">-</td>
                         </tr>
                     <?php } ?>
@@ -159,7 +158,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                             <td class="user_dni"><?= $sol['dni_te'] ?></td>
                             <td class="user_name"><?= $nombreApellido['0'] ?></td>
                             <td class="user_surname"><?= $nombreApellido['1'] ?></td>
-                            <td class="date"><?= $sol['fecha_alta_sol'] ?></td>
+                            <td class="date"><?= date('d/m/Y', strtotime($sol['fecha_alta_sol'])) ?></td>
                             <td class="company">-</td>
                         </tr>
                     <?php } ?>
