@@ -31,6 +31,10 @@ if (PROD) {
     define('DB_CHARSET', $_ENV['DB_CHARSET']);
 }
 
+
+if (PROD) define('WS_URL', 'http://weblogin.muninqn.gov.ar/api/getUserByToken/');
+if (!PROD) define('WS_URL', 'http://muninqn.gov.ar:90/api/getUserByToken/');
+
 if (!PROD) {
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
@@ -41,22 +45,22 @@ if (!PROD) {
 }
 
 /* Configuración de tablas */
-define('USUARIOS', 'ls_usuarios');
-define('CAPACITADORES', 'ls_capacitadores');
-define('SOLICITUDES', 'ls_solicitudes');
-define('LOG', 'ls_log');
+define('USUARIOS', $_ENV['DB_USUARIOS_TABLE']);
+define('CAPACITADORES', $_ENV['DB_CAPACITADORES_TABLE']);
+define('SOLICITUDES', $_ENV['DB_SOLICITUDES_TABLE']);
+define('LOG', $_ENV['DB_LOG_TABLE']);
 
 /* Limit Length columns */
-define('LT_USU_NOMBRE', 50);
-define('LT_USU_APELLIDO', 50);
-define('LT_USU_TELEFONO', 250);
-define('LT_USU_EMAIL', 250);
-define('LT_USU_DIRRENAPER', 250);
+define('LT_USU_NOMBRE', $_ENV['LT_USU_NOMBRE']);
+define('LT_USU_APELLIDO', $_ENV['LT_USU_APELLIDO']);
+define('LT_USU_TELEFONO', $_ENV['LT_USU_TELEFONO']);
+define('LT_USU_EMAIL', $_ENV['LT_USU_EMAIL']);
+define('LT_USU_DIRRENAPER', $_ENV['LT_USU_DIRRENAPER']);
 
-define('LT_SOL_NRORECIBO', 50);
-define('LT_SOL_OBS', 750);
+define('LT_SOL_NRORECIBO', $_ENV['LT_SOL_NRORECIBO']);
+define('LT_SOL_OBS', $_ENV['LT_SOL_OBS']);
 
-define('LT_CAP_NOMBRE', 50);
-define('LT_CAP_APELLIDO', 50);
-define('LT_CAP_MATRICULA', 45);
-define('LT_CAP_LUCAPACITACION', 45);
+define('LT_CAP_NOMBRE', $_ENV['LT_CAP_NOMBRE']);
+define('LT_CAP_APELLIDO', $_ENV['LT_CAP_APELLIDO']);
+define('LT_CAP_MATRICULA', $_ENV['LT_CAP_MATRICULA']);
+define('LT_CAP_LUCAPACITACION', $_ENV['LT_CAP_LUCAPACITACION']);

@@ -32,56 +32,10 @@ class SolicitudController
     /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where estado */
     public function getSolicitudesWhereEstado($estado)
     {
-        $sql =
-            "SELECT
-            sol.id as id,
-            wap_te.Documento as dni_te,
-            wap_te.Genero as genero_te,
-            wap_te.nombre as nombre_te,
-            wap_te.Celular as telefono_te,
-            wap_te.CorreoElectronico as email_te,
-            wap_te.DomicilioReal as direccion_te,
-            wap_te.FechaNacimiento as fecha_nac_te,
-            wap_do.Documento as dni_do,
-            wap_do.Genero as genero_do,
-            wap_do.nombre as nombre_do,
-            wap_do.Celular as telefono_do,
-            wap_do.CorreoElectronico as email_do,
-            wap_do.DomicilioReal as direccion_do,
-            wap_do.FechaNacimiento as fecha_nac_do,
-            cap.nombre as nombre_capacitador,
-            cap.apellido as apellido_capacitador,
-            cap.matricula as matricula,
-            cap.lugar_capacitacion as lugar_capacitacion,
-            cap.municipalidad_nqn as municipalidad_nqn,
-            cap.fecha_capacitacion as fecha_capacitacion,
-            cap.fecha_alta as fecha_alta_capacitacion,
-            cap.path_certificado as path_certificado,
-            sol.tipo_empleo as tipo_empleo,
-            sol.renovacion as renovacion,
-            sol.nro_recibo as nro_recibo,
-            sol.estado as estado,
-            sol.retiro_en as retiro_en,
-            sol.fecha_evaluacion as fecha_evaluacion,
-            sol.fecha_vencimiento as fecha_vencimiento,
-            sol.observaciones as observaciones,
-            sol.fecha_alta as fecha_alta_sol,
-            sol.path_comprobante_pago as path_comprobante_pago
-            FROM ls_solicitudes sol
-            LEFT OUTER JOIN (
-                dbo.wappersonas as wap_te
-                left join ls_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id_wappersonas
-            ) ON sol.id_usuario_solicitante = usu_te.id
-            LEFT OUTER JOIN (
-                dbo.wappersonas as wap_do
-                left join ls_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id
-            ) ON sol.id_usuario_solicitado = usu_do.id
-            LEFT JOIN dbo.ls_capacitadores cap ON sol.id_capacitador = cap.id
-            WHERE sol.estado = '$estado'";
-
+        $where = "WHERE sol.estado = '$estado'";
         $conn = new BaseDatos();
         $array = [];
-        $query =  $conn->query($sql);
+        $query =  $conn->query($this->insertSqlQuery($where));
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Obtener una solicitud';
@@ -95,6 +49,24 @@ class SolicitudController
 
     /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where id */
     public function getSolicitudesWhereId($id)
+    {
+        $where = "WHERE sol.id = '$id'";
+
+        $conn = new BaseDatos();
+        $query =  $conn->query($this->insertSqlQuery($where));
+
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Obtener una solicitud';
+            $log = new Log();
+            $log->set(null,  $id, null, $error, get_class(), 'getSolicitudesWhereId');
+            $log->save();
+        }
+
+        return $conn->fetch_assoc($query);
+    }
+
+    private function insertSqlQuery($where)
     {
         $sql =
             "SELECT
@@ -138,22 +110,11 @@ class SolicitudController
             ) ON sol.id_usuario_solicitante = usu_te.id
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_do
-                left join ls_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id
+                left join ls_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
             ) ON sol.id_usuario_solicitado = usu_do.id
             LEFT JOIN dbo.ls_capacitadores cap ON sol.id_capacitador = cap.id
-            WHERE sol.id = '$id'";
+            $where";
 
-        $conn = new BaseDatos();
-        $query =  $conn->query($sql);
-
-        /* Guardamos los errores */
-        if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Obtener una solicitud';
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'getSolicitudesWhereId');
-            $log->save();
-        }
-
-        return $conn->fetch_assoc($query);
+        return $sql;
     }
 }

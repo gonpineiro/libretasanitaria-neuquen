@@ -8,8 +8,8 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
         },
         async: false,
         success: function (res) {
+            console.log(res);
             const data = $.parseJSON(res)
-
             console.log(data);
 
             /* Nombre y apellido */
@@ -58,8 +58,8 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         },
         async: false,
         success: function (res) {
+            console.log(res);
             const data = $.parseJSON(res)
-
             console.log(data);
 
             $("#id-modal-nueva").html(data.id);
@@ -159,6 +159,7 @@ function formatDate(input) {
 
     return day + '/' + month + '/' + year;
 }
+
 $(document).ready(function () {
     $('PONER EL SELECTOR ACA').click(function (e) {
         var idReferencia = node.currentTarget.parentNode.id;

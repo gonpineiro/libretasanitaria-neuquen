@@ -1,8 +1,8 @@
 <?php
 
-$url = "http://weblogin.muninqn.gov.ar/api/getUserByToken/";
+$url = WS_URL;
 try {
-    
+
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL => $url . $_SESSION['token'],
@@ -32,8 +32,8 @@ try {
         $usuario["fechaNacimiento"] = $datos_personales["fechaDeNacimiento"];
         //! Posiblemente un array_filter sea mas limpio
         foreach ($usuario["apps"] as $numero => $app) {
-            if($app['id']== intval($_SESSION['app'])){
-                if($app['userProfiles']!=$app['standardType']){
+            if ($app['id'] == intval($_SESSION['app'])) {
+                if ($app['userProfiles'] != $app['standardType']) {
                     if (isset($app['userProfiles'])) {
                         $_SESSION['perfilUsuario'] = $app['userProfiles'];
                     }
@@ -42,8 +42,7 @@ try {
             }
         }
         $_SESSION['usuario'] = $usuario;
-
-    } 
+    }
 } catch (Exception $e) {
     echo $e->getMessage();
 }

@@ -10,7 +10,8 @@ if (isset($_GET['SESSIONKEY'])) {
         exit();
     }
 
-    $_SESSION['userProfiles'] = 1;
+    /* Cambiar */
+    $_SESSION['userProfiles'] = 3;
     foreach ($_SESSION['usuario']['apps'] as $apps) {
         if ($apps['id'] == 55 && $apps['userProfiles']) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
