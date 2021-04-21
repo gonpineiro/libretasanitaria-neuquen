@@ -73,7 +73,7 @@ function enviarMailApi ( $address, $arrIdSolicitud ) {
 function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName){
     $path = null;
     
-    $target_path_local = FILE_PATH ."\\$idsolicitud\\$adjuntoInputName\\";
+    $target_path_local = '../../archivos' ."\\$idsolicitud\\$adjuntoInputName\\";
     
     if (!file_exists($target_path_local)){
         mkdir($target_path_local, 0755, true);

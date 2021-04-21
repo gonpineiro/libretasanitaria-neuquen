@@ -1,9 +1,5 @@
 <?php
 include 'app/config/config.php';
-
-$string = 'Esto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadenaEsto es una cadena';
-die(substr($string, 0, 10));
-
 if (PROD) {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: https://weblogin.muninqn.gov.ar');

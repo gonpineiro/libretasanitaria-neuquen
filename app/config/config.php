@@ -31,10 +31,6 @@ if (PROD) {
     define('DB_CHARSET', $_ENV['DB_CHARSET']);
 }
 
-
-if (PROD) define('WS_URL', 'http://weblogin.muninqn.gov.ar/api/getUserByToken/');
-if (!PROD) define('WS_URL', 'http://muninqn.gov.ar:90/api/getUserByToken/');
-
 if (!PROD) {
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');

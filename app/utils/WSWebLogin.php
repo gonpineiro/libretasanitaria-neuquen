@@ -1,6 +1,6 @@
 <?php
 
-$url = WS_URL;
+$url = 'http://muninqn.gov.ar:90/api/getUserByToken/';
 try {
 
     $curl = curl_init();
