@@ -33,6 +33,13 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
 
             /* capacitación */
+            if (data.nombre_capacitador == null) {
+                $("#btn-capacitacion").addClass('hideDiv');
+                $("#div-capacitacion").addClass('hideDiv');
+            } else {
+                $("#btn-capacitacion").removeClass('hideDiv');
+                $("#div-capacitacion").removeClass('hideDiv');
+            }
             $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-aprobada").html(data.matricula);
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
@@ -87,12 +94,18 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             
 
             /* capacitación */
+            if (data.nombre_capacitador == null) {
+                $("#btn-capacitacion").addClass('hideDiv');
+                $("#div-capacitacion").addClass('hideDiv');
+            }else{
+                $("#btn-capacitacion").removeClass('hideDiv');
+                $("#div-capacitacion").removeClass('hideDiv');
+            }
             $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-nueva").html(data.matricula);
             $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
             $("#fecha-capa-span-nueva").html(formatDate(data.fecha_capacitacion));
             $("#certificado-capa-nueva").attr("src", data.path_certificado);
-
             /* Mostramos el modal */
             $('#modalFicha').modal('show');
         },
