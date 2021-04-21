@@ -64,6 +64,10 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
             cursor: pointer;
         }
 
+        .hideDiv {
+            display: none;
+        }
+
         /* modal más ancho en pantallas 800x600 */
         @media (min-width: 576px) {
             .modal-dialog {
@@ -165,10 +169,11 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                     <?php } ?>
                 </tbody>
             </table>
+
         </div>
         <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
-        <a href="./index.php" class="btn btn-primary btn-lg">Regresar</a>
-        
+        <a href="./index.php" class="btn btn-primary">Regresar</a>
+
         <!-- Modal Ficha Nueva Solicitud-->
         <div class="modal" id="modalFicha" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -193,10 +198,11 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                 <p class="card-text" style="margin-bottom:0rem;">Teléfono: <span id="tel-span-nueva"></span></p>
                                 <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-nueva"></span></p>
                                 <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-nueva"></span></p>
+                                <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-nueva"></span></p>
                                 <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#comprobantePago" aria-expanded="false" aria-controls="comprobantePago">
                                     Ver Comprobante de Pago
                                 </button>
-                                <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion" aria-expanded="false" aria-controls="capacitacion" id="btn-capacitacion">
+                                <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion-nueva" aria-expanded="false" aria-controls="capacitacion-nueva" id="btn-capacitacion-nueva">
                                     Ver Capacitación
                                 </button>
 
@@ -209,12 +215,11 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-block w-100 pb-3 container">
-                                <div class="collapse" id="capacitacion">
+                            <div id="div-capacitacion-nueva" class="card-block w-100 pb-3 container">
+                                <div id="capacitacion-nueva" class="collapse">
                                     <hr>
                                     <h4 class="card-title">Capacitación</h4>
                                     <p class="card-text" style="margin-bottom:0rem;">Nombre y Apellido Capacitador: <span id="nombre-capa-span-nueva"></span></p>
-                                    <p class="card-text" style="margin-bottom:0rem;">Matrícula: <span id="matricula-span-nueva"></span></p>
                                     <p class="card-text" style="margin-bottom:0rem;">Capacitado en Municipalidad de Neuqu&eacute;n </p>
                                     <p class="card-text" style="margin-bottom:0rem;">Lugar Capacitación: <span id="lugar-capa-span-nueva"></span></p>
                                     <p class="card-text" style="margin-bottom:0rem;">Fecha Capacitación: <span id="fecha-capa-span-nueva"></span></p>
@@ -291,10 +296,12 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                 <p class="card-text" style="margin-bottom:0rem;">Teléfono: <span id="tel-span-aprobada"></span></p>
                                 <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-aprobada"></span></p>
                                 <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-aprobada"></span></p>
+                                <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-aprobada"></span></p>
+
                                 <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#comprobantePago" aria-expanded="false" aria-controls="comprobantePago">
                                     Ver Comprobante de Pago
                                 </button>
-                                <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion" aria-expanded="false" aria-controls="capacitacion" id="btn-capacitacion">
+                                <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion-aprobada" aria-expanded="false" aria-controls="capacitacion-aprobada" id="btn-capacitacion-aprobada">
                                     Ver Capacitación
                                 </button>
 
@@ -307,8 +314,8 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-block w-100 pb-3 container">
-                                <div class="collapse" id="capacitacion">
+                            <div id="div-capacitacion-aprobada" class="card-block w-100 pb-3 container">
+                                <div id="capacitacion-aprobada" class="collapse">
                                     <hr>
                                     <h4 class="card-title">Capacitación</h4>
                                     <p class="card-text" style="margin-bottom:0rem;">Nombre y Apellido Capacitador: <span id="nombre-capa-span-aprobada"></span></p>

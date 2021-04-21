@@ -33,6 +33,15 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
 
             /* capacitación */
+            if (data.nombre_capacitador == null) {
+                $("#btn-capacitacion-aprobada").addClass('hideDiv');
+                $("#div-capacitacion-aprobada").addClass('hideDiv');
+                $("#capacitacion-span-aprobada").html('NO PRESENTA');
+            } else {
+                $("#btn-capacitacion-aprobada").removeClass('hideDiv');
+                $("#div-capacitacion-aprobada").removeClass('hideDiv');
+                $("#capacitacion-span-aprobada").html('SI PRESENTA');
+            }
             $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-aprobada").html(data.matricula);
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
@@ -88,12 +97,20 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
 
 
             /* capacitación */
+            if (data.nombre_capacitador == null) {
+                $("#btn-capacitacion-nueva").addClass('hideDiv');
+                $("#div-capacitacion-nueva").addClass('hideDiv'); 
+                $("#capacitacion-span-nueva").html('NO PRESENTA');
+            }else{
+                $("#btn-capacitacion-nueva").removeClass('hideDiv');
+                $("#div-capacitacion-nueva").removeClass('hideDiv');
+                $("#capacitacion-span-nueva").html('SI PRESENTA');
+            }
             $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-nueva").html(data.matricula);
             $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
             $("#fecha-capa-span-nueva").html(formatDate(data.fecha_capacitacion));
             $("#certificado-capa-nueva").attr("src", data.path_certificado);
-
             /* Mostramos el modal */
             $('#modalFicha').modal('show');
         },
