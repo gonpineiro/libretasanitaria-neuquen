@@ -70,7 +70,7 @@ class SolicitudController
             FROM ls_solicitudes sol
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_te
-                left join ls_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id
+                left join ls_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id_wappersonas
             ) ON sol.id_usuario_solicitante = usu_te.id
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_do
@@ -134,7 +134,7 @@ class SolicitudController
             FROM ls_solicitudes sol
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_te
-                left join ls_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id
+                left join ls_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id_wappersonas
             ) ON sol.id_usuario_solicitante = usu_te.id
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_do
