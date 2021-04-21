@@ -67,7 +67,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         /* modal más ancho en pantallas 800x600 */
         @media (min-width: 576px) {
             .modal-dialog {
-                max-width: 700px;
+                max-width: 750px;
             }
         }
     </style>
@@ -164,13 +164,14 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                 </tbody>
             </table>
         </div>
-
-        <!-- Modal Ficha -->
+        <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
+        <a href="./index.php" class="btn btn-primary btn-lg">Regresar</a>
+        <!-- Modal Ficha Nueva Solicitud-->
         <div class="modal" id="modalFicha" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" style="color: #076AB3;">Ficha Libreta Sanitaria</h4>
+                        <h5 class="modal-title" style="color: #076AB3;">Ficha Libreta Sanitaria</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -182,7 +183,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                             </div>
                             <div class="card-block px-2" id="card-detail-sol">
                                 <span hidden id="id-modal-nueva"></span>
-                                <h4 class="card-title"><span id="nombre-span-nueva"></span></h4>
+                                <h5 class="card-title"><span id="nombre-span-nueva"></span></h5>
                                 <p class="card-text" style="margin-bottom:0rem;">DNI: <span id="dni-span-nueva"></span></p>
                                 <p class="card-text" style="margin-bottom:0rem;">Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
                                 <p class="card-text" style="margin-bottom:0rem;">Domicilio: <span id="dire-span-nueva"></span></p>
@@ -201,8 +202,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                             <div class="card-block w-100 pb-3 container">
                                 <div class="collapse" id="comprobantePago">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="<?PHP $comprobantePago = './2.png';
-                                                                                    echo $comprobantePago ?>"></iframe>
+                                        <iframe id="comprobante-pago-span-nueva" class="embed-responsive-item" src="about:blank"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -219,9 +219,10 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                         Ver Certificado
                                     </button>
                                 </div>
+
                                 <div class="collapse" id="verCertificado">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="./1.pdf"></iframe>
+                                        <iframe id="certificado-capa-nueva" class="embed-responsive-item" src="about:blank"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +278,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                     <div class="modal-body modal_solicitud">
                         <div class="card card flex-row flow flex-wrap">
                             <div class="card-header border-0" style="background-color: white!important;">
-                                <img class="" id="imagen-pefil-aprobada" style="width:200px" src="" />
+                                <img id="imagen-pefil-aprobada" style="width:200px" src="" />
                             </div>
                             <div class="card-block px-2" id="card-detail-sol">
                                 <h4 class="card-title"><span id="nombre-span-aprobada"></span></h4>
@@ -299,8 +300,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                             <div class="card-block w-100 pb-3 container">
                                 <div class="collapse" id="comprobantePago">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="<?PHP $comprobantePago = './2.png';
-                                                                                    echo $comprobantePago ?>"></iframe>
+                                        <iframe id="comprobante-pago-span-aprobada" class="embed-responsive-item" src="about:blank"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +319,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                 </div>
                                 <div class="collapse" id="verCertificado">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="./1.pdf"></iframe>
+                                        <iframe id="certificado-capa-aprobada" class="embed-responsive-item" src="about:blank"></iframe>
                                     </div>
                                 </div>
                             </div>
