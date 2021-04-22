@@ -17,16 +17,16 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
 
             /* Datos principales */
             $("#dni-span-aprobada").html(data.dni_te);
-            $("#fe_nac-span-aprobada").html(formatDate(data.fecha_nac_te));
+            $("#fe_nac-span-aprobada").html(data.fecha_nac_te);
             $("#dire-span-aprobada").html(data.direccion_te);
             $("#tel-span-aprobada").html(data.telefono_te);
             $("#tipo_empleo-span-aprobada").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-aprobada").html(data.renovacion === '1' ? 'SI' : 'NO');
             $("#observaciones-span-aprobada").html(data.observaciones);
-
+        
             /* fechas y numero de recibo */
-            $("#fecha-alta-span-aprobada").html(formatDate(data.fecha_alta_sol));
-            $("#fecha-alta-mas-span-aprobada").html(formatDate(data.fecha_alta_sol));
+            $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
+            $("#fecha-alta-mas-span-aprobada").html(data.fecha_vencimiento);
             $("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
             $("#nro-recibo-span-aprobada").html(data.nro_recibo);
 
@@ -71,7 +71,6 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         success: function (res) {
             const data = $.parseJSON(res)
 
-
             $("#id-modal-nueva").html(data.id);
             /* Nombre y apellido */
             $("#nombre-span-nueva").html(data.nombre_te);
@@ -95,9 +94,9 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             /* capacitación */
             if (data.nombre_capacitador == null) {
                 $("#btn-capacitacion-nueva").addClass('hideDiv');
-                $("#div-capacitacion-nueva").addClass('hideDiv'); 
+                $("#div-capacitacion-nueva").addClass('hideDiv');
                 $("#capacitacion-span-nueva").html('NO PRESENTA');
-            }else{
+            } else {
                 $("#btn-capacitacion-nueva").removeClass('hideDiv');
                 $("#div-capacitacion-nueva").removeClass('hideDiv');
                 $("#capacitacion-span-nueva").html('SI PRESENTA');
@@ -174,10 +173,11 @@ function confirmacionCambiarEstado(estado) {
 
 function formatDate(input) {
     if (input == (null || '')) return ''
-    var datePart = input.match(/\d+/g),
-        year = datePart[0], // get only two digits
-        month = datePart[1],
-        day = datePart[2];
+    const datePart = input.match(/\d+/g)
+
+    const year = datePart[0]
+    const month = datePart[1]
+    const day = datePart[2]
 
     return day + '/' + month + '/' + year;
 }

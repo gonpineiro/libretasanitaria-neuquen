@@ -103,9 +103,9 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         </table>
     </div>
     <div class="body container" style="padding-bottom: 50px;">
-        
+
         <!-- Tabla solicitudes nuevas -->
-        <?php include './components/solicitudes_nuevas.php' ?>        
+        <?php include './components/solicitudes_nuevas.php' ?>
 
         <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
 
