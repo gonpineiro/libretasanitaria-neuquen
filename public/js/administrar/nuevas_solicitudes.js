@@ -183,7 +183,7 @@ function formatDate(input) {
 
     return day + '/' + month + '/' + year;
 }
-$(document).ready(function () {
+/* $(document).ready(function () {
     $('PONER EL SELECTOR ACA').click(function (e) {
         var idReferencia = node.currentTarget.parentNode.id;
         $.ajax({
@@ -217,12 +217,11 @@ $(document).ready(function () {
             }
         });
     });
-});
+}); */
 
 function imprimirLibreta(idReferencia) {
     var idReferencia = document.getElementById('id-solicitud-aprobada').textContent
     console.log(idReferencia)
-    // para obtener el id de la fila = const idReferencia = node.currentTarget.parentNode.id
     $.ajax({
         url: "getDatosLibreta.php",
         type: "POST",

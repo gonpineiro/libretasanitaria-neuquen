@@ -73,6 +73,9 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
             .modal-dialog {
                 max-width: 750px;
             }
+            .nombre-modal{
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -208,7 +211,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 
                             <div class="card-block w-100 pb-3 container">
                                 <div class="collapse" id="comprobantePago">
-                                    <div class="embed-responsive embed-responsive-16by9">
+                                    <div class="embed-responsive embed-responsive-16by9" style="background-color: beige;">
                                         <iframe id="comprobante-pago-span-nueva" class="embed-responsive-item" src="about:blank"></iframe>
                                     </div>
                                 </div>

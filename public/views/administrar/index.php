@@ -77,7 +77,7 @@ $apellido = $nombreapellido[0];
             </div>
             <div class="form-group col-12">
                 <div class='col-sm d-flex justify-content-center'>
-                    <button type="button" onclick='window.location = ("./historial_solicitudes.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:250px">Historial Solicitudes</button>
+                    <button type="button" onclick='window.location = ("./historial_solicitudes.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:250px">Solicitudes por Período</button>
                 </div>
             </div>
         </div>
