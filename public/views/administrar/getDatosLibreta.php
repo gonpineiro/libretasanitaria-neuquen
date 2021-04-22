@@ -1,8 +1,14 @@
 <?PHP
 include '../../../app/config/config.php';
 
-
 $solicitud = new SolicitudController();
+
+if (!isset($_POST['idReferencia'])) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: https://weblogin.muninqn.gov.ar');
+    exit();
+}
+
 $idReferencia = $_POST['idReferencia'];
 
 $datosLibreta = $solicitud->getSolicitudesWhereId($idReferencia);
@@ -22,4 +28,4 @@ if (is_null($imagen)) {
     $imagen = $json->{'docInfo'}->{'imagen'};
 }
 $datosLibreta[] = $imagen;
-echo json_encode($datosLibreta);
+echo utf8_converter($datosLibreta, true);
