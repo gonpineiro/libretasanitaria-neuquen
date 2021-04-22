@@ -55,7 +55,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 
 
-    <title>Inscripci&oacute;n Ferias</title>
+    <title>Solicitudes por Per&iacute;odo - Libreta Sanitaria</title>
     <style>
         /* en hover cambia color la fila en las tablas */
 
@@ -101,7 +101,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     </div>
     <div class="body container" style="padding-bottom: 50px;">
         <div style="min-height: 50px;">
-            <h2 style="padding:30px 0px;color: #076AB3;">Solicitudes por Período</h2>
+            <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES POR PER&Iacute;ODO</h2>
         </div>
 
         <div class="pb-5">

@@ -50,7 +50,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 
 
-    <title>Inscripci&oacute;n Ferias</title>
+    <title>Solicitudes Nuevas y Aprobadas - Libreta Sanitaria</title>
     <style>
         /* en hover cambia color la fila en las tablas */
 
@@ -103,9 +103,9 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         </table>
     </div>
     <div class="body container" style="padding-bottom: 50px;">
-        
+
         <!-- Tabla solicitudes nuevas -->
-        <?php include './components/solicitudes_nuevas.php' ?>        
+        <?php include './components/solicitudes_nuevas.php' ?>
 
         <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
 

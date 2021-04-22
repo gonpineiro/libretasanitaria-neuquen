@@ -145,8 +145,8 @@ $(document).ready(function () {
 });
 
 function confirmacionCambiarEstado(estado) {
-    const msgAprobado = "Está seguro de aprobar la solicitud?";
-    const msgRechazado = "Está seguro de rechazar la solicitud?"
+    const msgAprobado = "¿Está seguro de aprobar la solicitud?";
+    const msgRechazado = "¿Está seguro de rechazar la solicitud?"
     const msg = estado === 'Aprobado' ? msgAprobado : estado === 'Rechazado' && msgRechazado
     const observaciones = document.getElementById('observaciones').value;
     if (confirm(msg)) {
