@@ -9,7 +9,6 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
-
             /* Nombre y apellido */
             const nombre = data.nombre_te
             $("#nombre-span-aprobada").html(nombre);
@@ -40,6 +39,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
                 $("#div-capacitacion-aprobada").removeClass('hideDiv');
                 $("#capacitacion-span-aprobada").html('SI PRESENTA');
             }
+            $("#muni-capa-span-aprobada").html(data.municipalidad_nqn === '1' ? 'SI' : 'NO');
             $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-aprobada").html(data.matricula);
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
@@ -70,7 +70,6 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
-
             $("#id-modal-nueva").html(data.id);
             /* Nombre y apellido */
             $("#nombre-span-nueva").html(data.nombre_te);
@@ -83,7 +82,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#tel-span-nueva").html(data.telefono_te);
             $("#tipo_empleo-span-nueva").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-nueva").html(data.renovacion === '1' ? 'SI' : 'NO');
-
+        
             /* fechas y numero de recibo */
             $("#fecha-alta-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-nueva").html(formatDate(data.fecha_alta_sol));
@@ -101,6 +100,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
                 $("#div-capacitacion-nueva").removeClass('hideDiv');
                 $("#capacitacion-span-nueva").html('SI PRESENTA');
             }
+            $("#muni-capa-span-nueva").html(data.municipalidad_nqn === '1' ? 'SI' : 'NO');
             $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-nueva").html(data.matricula);
             $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
