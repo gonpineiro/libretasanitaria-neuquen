@@ -23,11 +23,6 @@ $razonSocial = $_SESSION['usuario']["razonSocial"];
 $nombre = $nombreapellido[1];
 $apellido = $nombreapellido[0];
 
-// para determinar el tipo de archivo con los certificados y con el comprobante de pago
-$content = file_get_contents("https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/M32020923");
-$result = json_decode($content);
-$foto = $result->docInfo->imagen;
-
 // si tiene certificación se visualiza el botón con el collapse para verlo en el modal
 $certificado = true;
 
