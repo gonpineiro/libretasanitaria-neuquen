@@ -207,7 +207,7 @@ if ($errores) {
                                             <input type="text" id="nro_recibo" minlength="1" maxlength="20" pattern="^[0-9]+-[0-9]+$" class="form-control" placeholder="Ej: 0002-57972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
                                                 <strong>
-                                                    Por favor ingrese y chequee el formato del numero de comprobante.
+                                                    Por favor ingrese un número como el Ej: 0002-57972906
                                                 </strong>
                                             </div>
                                         </div>
