@@ -8,9 +8,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
         },
         async: false,
         success: function (res) {
-            console.log(res);
             const data = $.parseJSON(res)
-            console.log(data);
 
             /* Nombre y apellido */
             const nombre = data.nombre_te
@@ -29,8 +27,8 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             /* fechas y numero de recibo */
             $("#fecha-alta-span-aprobada").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-aprobada").html(formatDate(data.fecha_alta_sol));
-            $("#nro-recibo-span-aprobada").html(data.nro_recibo);
             $("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
+            $("#nro-recibo-span-aprobada").html(data.nro_recibo);
 
             /* capacitación */
             if (data.nombre_capacitador == null) {
@@ -63,7 +61,6 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
 
 $('#tabla_nuevas_solicitudes td').click(function (node) {
     const id = node.currentTarget.parentNode.id
-    console.log(id);
     $.ajax({
         url: "proceso_solicitud.php",
         type: "GET",
@@ -73,7 +70,6 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
-            console.log(data);
 
 
             $("#id-modal-nueva").html(data.id);
@@ -185,6 +181,7 @@ function formatDate(input) {
 
     return day + '/' + month + '/' + year;
 }
+
 $(document).ready(function () {
     $('PONER EL SELECTOR ACA').click(function (e) {
         var idReferencia = node.currentTarget.parentNode.id;
@@ -197,7 +194,6 @@ $(document).ready(function () {
             async: false,
             success: function (response) {
                 var data = $.parseJSON(response);
-                console.log(data);
                 var dni = data.dni_te
                 var fotodni = data[0];
                 var nombre = data.nombre_te;
@@ -234,7 +230,6 @@ function imprimirLibreta(idReferencia) {
         async: false,
         success: function (response) {
             var data = $.parseJSON(response);
-            console.log(data);
             var dni = data.dni_te
             var fotodni = data[0];
             var nombre = data.nombre_te;

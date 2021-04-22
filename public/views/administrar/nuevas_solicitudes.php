@@ -23,10 +23,12 @@ $razonSocial = $_SESSION['usuario']["razonSocial"];
 $nombre = $nombreapellido[1];
 $apellido = $nombreapellido[0];
 
-$fechaactual = date('Y/m/d');
+/* $fechaactual = date('Y/m/d');
 $fechaMasUnAno = strtotime('+1 year', strtotime($fechaactual));
 $fechaMasUnAno = date('d/m/Y', $fechaMasUnAno);
-$fechaactual = date('d/m/Y', strtotime($fechaactual));
+$fechaactual = date('d/m/Y', strtotime($fechaactual)); */
+
+
 
 // para determinar el tipo de archivo con los certificados y con el comprobante de pago
 $content = file_get_contents("https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/M32020923");
@@ -107,6 +109,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         <div style="min-height: 50px;">
             <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES NUEVAS</h2>
         </div>
+        
         <div class="table-responsive">
             <table id="tabla_nuevas_solicitudes" class="table tablas_solicitudes">
                 <thead class="thead-dark">
@@ -140,6 +143,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
         <div style="min-height: 50px;">
             <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES APROBADAS</h2>
         </div>
+
         <div class="table-responsive">
             <table id="tabla_solicitudes_aprobadas" class="table tablas_solicitudes">
                 <thead class="thead-dark">
@@ -245,8 +249,8 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><span id="fecha-alta-span-nueva"></td>
-                                            <td><span id="fecha-alta-mas-span-nueva"></td>
+                                            <td><?= date('d/m/Y') ?></td>
+                                            <td><?= date('d/m/Y', strtotime('+1 year -1 day', strtotime(date('Y-m-d')))); ?></td>
                                             <td><span id="nro-recibo-span-nueva"></td>
                                         </tr>
                                     </tbody>
