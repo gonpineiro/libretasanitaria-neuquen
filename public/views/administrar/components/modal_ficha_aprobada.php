@@ -43,8 +43,7 @@
                             <hr>
                             <h4 class="card-title">Capacitación</h4>
                             <p class="card-text" style="margin-bottom:0rem;">Nombre y Apellido Capacitador: <span id="nombre-capa-span-aprobada"></span></p>
-                            <p class="card-text" style="margin-bottom:0rem;">Matrícula: <span id="matricula-span-aprobada"></span></p>
-                            <p class="card-text" style="margin-bottom:0rem;">Capacitado en Municipalidad de Neuqu&eacute;n </p>
+                            <p class="card-text" style="margin-bottom:0rem;">Capacitado en Municipalidad de Neuqu&eacute;n: <span id="muni-capa-span-aprobada"></span></p>
                             <p class="card-text" style="margin-bottom:0rem;">Lugar Capacitación: <span id="lugar-capa-span-aprobada"></span></p>
                             <p class="card-text" style="margin-bottom:0rem;">Fecha Capacitación: <span id="fecha-capa-span-aprobada"></span></p>
                             <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#verCertificado" aria-expanded="false" aria-controls="verCertificado">
