@@ -182,45 +182,9 @@ function formatDate(input) {
     return day + '/' + month + '/' + year;
 }
 
-$(document).ready(function () {
-    $('PONER EL SELECTOR ACA').click(function (e) {
-        var idReferencia = node.currentTarget.parentNode.id;
-        $.ajax({
-            url: "getDatosLibreta.php",
-            type: "POST",
-            data: {
-                idReferencia: idReferencia
-            },
-            async: false,
-            success: function (response) {
-                var data = $.parseJSON(response);
-                var dni = data.dni_te
-                var fotodni = data[0];
-                var nombre = data.nombre_te;
-                var nombre = nombre.substring(0, 38);
-                var domicilio = data.direccion_do;
-                var domicilio = domicilio.substring(0, 38);
-                var fechaNacimiento = formatDate(data.fecha_nac_do);
-                var fechaExpedicion = data.fecha_nac_sol;
-                var fechaVencimiento = data.fecha_vencimiento;
-                var numeroLibreta = "N°: " + dni;
-                var tipoEmpleo = data.tipo_empleo ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
-                var observaciones = data.observaciones ? data.observaciones : "No presenta";
-                var observaciones = observaciones.substring(0, 40);
-                imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones);
-
-            },
-            error: function (errorThrown) {
-                console.log(errorThrown);
-            }
-        });
-    });
-});
-
 function imprimirLibreta(idReferencia) {
     var idReferencia = document.getElementById('id-solicitud-aprobada').textContent
     console.log(idReferencia)
-    // para obtener el id de la fila = const idReferencia = node.currentTarget.parentNode.id
     $.ajax({
         url: "getDatosLibreta.php",
         type: "POST",
