@@ -204,8 +204,7 @@ function imprimirLibreta(idReferencia) {
             var fechaNacimiento = formatDate(data.fecha_nac_do);
             var fechaExpedicion = data.fecha_evaluacion;
             var fechaVencimiento = data.fecha_vencimiento;
-            var numeroLibreta = "N°: " + dni;
-            var tipoEmpleo = data.tipo_empleo ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
+            var tipoEmpleo = data.tipo_empleo === "1" ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
             var observaciones = data.observaciones ? data.observaciones : "No presenta";
             var observaciones = observaciones.substring(0, 50);
             imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones);
