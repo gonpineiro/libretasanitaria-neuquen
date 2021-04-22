@@ -16,29 +16,21 @@ $dotenv = \Dotenv\Dotenv::createImmutable(ROOT_PATH);
 $dotenv->load();
 
 /* Modo produccion: true */
-define('PROD', $_ENV['PROD']);
+define('PROD', $_ENV['PROD'] == 'true' ? true : false);
 
 /* Seguridad para migration */
-define('MIGRATE', $_ENV['MIGRATE']);
+define('MIGRATE', $_ENV['MIGRATE'] == 'true' ? true : false);
+
+/* Configuracion de URLs */
+define('WEBLOGIN', PROD ? 'https://weblogin.muninqn.gov.ar' : 'http://muninqn.gov.ar:90');
 
 /* Configuracion base de datos */
-if (PROD) {
-    define('DB_HOST', $_ENV['DB_HOST']);
-    define('DB_USER', $_ENV['DB_USER']);
-    define('DB_PASS', $_ENV['DB_PASS']);
-    define('DB_NAME', $_ENV['DB_NAME']);
-    define('DB_PORT', $_ENV['DB_PORT']);
-    define('DB_CHARSET', $_ENV['DB_CHARSET']);
-}
-
-if (!PROD) {
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
-    define('DB_NAME', 'libreta');
-    define('DB_PORT', '3306');
-    define('DB_CHARSET', 'utf8');
-}
+define('DB_HOST', PROD ? $_ENV['DB_HOST'] : '128.53.15.3');
+define('DB_USER',  PROD ? $_ENV['DB_USER'] : 'userturnos');
+define('DB_PASS',  PROD ? $_ENV['DB_PASS'] : 'turnero16');
+define('DB_NAME',  PROD ? $_ENV['DB_NAME'] : 'infoprueba');
+define('DB_PORT',  PROD ? $_ENV['DB_PORT'] : '3306');
+define('DB_CHARSET',  PROD ? $_ENV['DB_CHARSET'] : 'utf8');
 
 /* Configuración de tablas */
 define('USUARIOS', $_ENV['DB_USUARIOS_TABLE']);

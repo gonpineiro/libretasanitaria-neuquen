@@ -8,7 +8,7 @@ use League\Csv\Exception;
 use League\Csv\Writer;
 
 if ($_SESSION['userProfiles'] != 3){
-    header('https://weblogin.muninqn.gov.ar');
+    header(WEBLOGIN);
     exit();
 }
 

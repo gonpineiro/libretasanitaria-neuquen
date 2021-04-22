@@ -1,6 +1,6 @@
 <?php
 
-$url = 'http://muninqn.gov.ar:90/api/getUserByToken/';
+$url = WEBLOGIN . '/api/getUserByToken/';
 try {
 
     $curl = curl_init();

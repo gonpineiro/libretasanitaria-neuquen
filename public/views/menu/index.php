@@ -2,7 +2,7 @@
 include '../../../app/config/config.php';
 
 if (isset($_SESSION['userProfiles']) && $_SESSION['userProfiles'] != 3) {
-    header('Location: https://weblogin.muninqn.gov.ar');
+    header('Location: ' . WEBLOGIN);
     exit();
 }
 
@@ -89,7 +89,7 @@ $apellido = $nombreapellido[0];
                 </div>
             </div>
 
-           <!--  <div class='col-sm d-flex justify-content-center'>
+            <!--  <div class='col-sm d-flex justify-content-center'>
                 <div class='opcion' onclick='window.location.href = "../formularios/inscripcion.php?tipo=e"'>
                     <table style='width: 100%;'>
                         <tbody>
@@ -106,7 +106,7 @@ $apellido = $nombreapellido[0];
                 </div>
             </div> -->
 
-            <?= $_SESSION['userProfiles'] != 3?:"<div class='col-sm d-flex justify-content-center'>
+            <?= $_SESSION['userProfiles'] != 3 ?: "<div class='col-sm d-flex justify-content-center'>
                 <div class='opcion' onclick='window.location.href = \"../administrar/index.php\"'>
                     <table style='width: 100%;'>
                         <tbody>

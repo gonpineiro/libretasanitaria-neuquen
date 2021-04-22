@@ -57,7 +57,7 @@ function enviarMailApi($address, $arrIdSolicitud)
         $body .= ") han sido recibidas y están siendo procesadas. Dentro de las próximas 72 hs. recibirás un nuevo correo electrónico de la aprobación o no de los beneficios. </p><p>Dirección General SUBE - Subsecretaría de Transporte</p><p>Municipalidad de Neuquén</p>";
     } else {
         $idsolicitud = $arrIdSolicitud[0];
-        $body = "<p>Su solicitud (Id nº$idsolicitud) para Libreta Sanitaria fue recbida, de ser aceptada nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
+        $body = "<p>Su solicitud (Nº $idsolicitud) para Libreta Sanitaria fue recibida, de ser aceptada nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
     }
 
     $subject = "Solicitud de Libreta Sanitaria";

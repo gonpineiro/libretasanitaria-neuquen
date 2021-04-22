@@ -7,7 +7,7 @@ if (isset($_GET['SESSIONKEY'])) {
     include UTIL_PATH . '\WSWebLogin.php';
 
     if (!isset($_SESSION['usuario']) or $_SESSION['usuario']['error'] != (null || '')) {
-        header('Location: https://weblogin.muninqn.gov.ar');
+        header('Location: ' . WEBLOGIN);
         exit();
     }
 
@@ -33,5 +33,5 @@ if (isset($_GET['SESSIONKEY'])) {
     header('Location: views/menu/index.php');
     exit();
 }
-header('Location: https://weblogin.muninqn.gov.ar');
+header('Location: ' . WEBLOGIN);
 exit();

@@ -2,7 +2,7 @@
 include '../../../app/config/config.php';
 
 if (isset($_SESSION['userProfiles']) && $_SESSION['userProfiles'] != 3) {
-    header('Location: https://weblogin.muninqn.gov.ar');
+    header('Location: ' . WEBLOGIN);
     exit();
 }
 

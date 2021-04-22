@@ -3,7 +3,7 @@ include '../../../app/config/config.php';
 
 if (!isset($_SESSION['usuario'])) {
     header('HTTP/1.1 301 Moved Permanently');
-    header('Location: https://weblogin.muninqn.gov.ar');
+    header('Location: '.WEBLOGIN);
     exit();
 }
 
@@ -50,5 +50,3 @@ if ( isset($_GET['s']) && isset($_GET['z']) && isset($_GET['x']) && isset($_GET[
 
     echo $data;
 }
-
-?>
