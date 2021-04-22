@@ -26,7 +26,7 @@
                     <td class="user_name"><?= $nombreApellido['0'] ?></td>
                     <td class="user_surname"><?= $nombreApellido['1'] ?></td>
                     <td class="date"><?= date('d/m/Y', strtotime($sol['fecha_alta_sol'])) ?></td>
-                    <td class="company">-</td>
+                    <td class="company"><?= $sol['retiro_en'] ?></td>
                 </tr>
             <?php } ?>
         </tbody>

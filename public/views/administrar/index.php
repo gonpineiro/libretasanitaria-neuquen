@@ -72,7 +72,7 @@ $apellido = $nombreapellido[0];
         <div class="form-group">
             <div class="form-group col-12">
                 <div class='col-sm d-flex justify-content-center'>
-                    <button type="button" onclick='window.location = ("./nuevas_solicitudes.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:250px">Nuevas Solicitudes</button>
+                    <button type="button" onclick='window.location = ("./nuevas_solicitudes.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:250px">Solicitudes Nuevas y Aprobadas</button>
                 </div>
             </div>
             <div class="form-group col-12">

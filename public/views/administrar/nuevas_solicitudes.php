@@ -50,7 +50,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 
 
-    <title>Inscripci&oacute;n Ferias</title>
+    <title>Solicitudes Nuevas y Aprobadas - Libreta Sanitaria</title>
     <style>
         /* en hover cambia color la fila en las tablas */
 
