@@ -3,7 +3,7 @@
 </div>
 
 <div class="table-responsive">
-    <table id="tabla_solicitudes_aprobadas" class="table tablas_solicitudes">
+    <table id="tabla_solicitudes_aprobadas" class="table tablas_solicitudes_aprobadas">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">N°</th>
@@ -12,7 +12,6 @@
                 <th scope="col">Apellido</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Retiro</th>
-                <!-- <th scope="col">Empresa</th> -->
             </tr>
         </thead>
         <tbody>
@@ -25,7 +24,7 @@
                     <td class="user_dni"><?= $sol['dni_te'] ?></td>
                     <td class="user_name"><?= $nombreApellido['0'] ?></td>
                     <td class="user_surname"><?= $nombreApellido['1'] ?></td>
-                    <td class="date"><?= date('d/m/Y', strtotime($sol['fecha_alta_sol'])) ?></td>
+                    <td class="date"><?= $sol['fecha_evaluacion'] ?></td>
                     <td class="company"><?= $sol['retiro_en'] ?></td>
                 </tr>
             <?php } ?>

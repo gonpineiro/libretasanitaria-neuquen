@@ -9,6 +9,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
+            console.log(data)
             /* Nombre y apellido */
             const nombre = data.nombre_te
             $("#nombre-span-aprobada").html(nombre);
@@ -30,7 +31,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#nro-recibo-span-aprobada").html(data.nro_recibo);
 
             /* capacitación */
-            if (data.nombre_capacitador == null) {
+            if (data.nombre_capacitador == (null || "") ) {
                 $("#btn-capacitacion-aprobada").addClass('hideDiv');
                 $("#div-capacitacion-aprobada").addClass('hideDiv');
                 $("#capacitacion-span-aprobada").html('NO PRESENTA');
@@ -91,7 +92,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
 
 
             /* capacitación */
-            if (data.nombre_capacitador == null) {
+            if (data.nombre_capacitador == (null || "")) {
                 $("#btn-capacitacion-nueva").addClass('hideDiv');
                 $("#div-capacitacion-nueva").addClass('hideDiv');
                 $("#capacitacion-span-nueva").html('NO PRESENTA');
@@ -116,7 +117,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
 });
 
 $(document).ready(function () {
-    $('.tablas_solicitudes').DataTable({
+    $('.tablas_solicitudes_nuevas').DataTable({
         "language": {
             "lengthMenu": "Display _MENU_ solicitudes por página",
             "zeroRecords": "No se encuentra",
@@ -142,7 +143,34 @@ $(document).ready(function () {
         }
     });
 });
-
+$(document).ready(function () {
+    $('.tablas_solicitudes_aprobadas').DataTable({
+        "order": [[4, "asc"]],
+        "language": {
+            "lengthMenu": "Display _MENU_ solicitudes por página",
+            "zeroRecords": "No se encuentra",
+            "info": "Viendo página _PAGE_ de _PAGES_",
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    });
+});
 function confirmacionCambiarEstado(estado) {
     const msgAprobado = "¿Está seguro de aprobar la solicitud?";
     const msgRechazado = "¿Está seguro de rechazar la solicitud?"
