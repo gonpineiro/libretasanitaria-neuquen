@@ -101,11 +101,33 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     </div>
     <div class="body container" style="padding-bottom: 50px;">
         <div style="min-height: 50px;">
-            <h2 style="padding:30px 0px;color: #076AB3;">Historial Solicitudes</h2>
+            <h2 style="padding:30px 0px;color: #076AB3;">Solicitudes por Período</h2>
         </div>
 
-        <div>
-
+        <div class="pb-5">
+            <h5>Elegir el período para realizar la búsqueda</h5>
+            <form class="pt-2" action="">
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="fecha_desde font-weight-bold">Desde </label>
+                        <input type="date" id="fecha_desde" class="form-control" name="fecha_desde" required>
+                        <div class="invalid-feedback">
+                            <strong>
+                                Por favor ingrese la fecha correctamente.
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="fecha_hasta font-weight-bold">Hasta </label>
+                        <input type="date" id="fecha_hasta" class="form-control" name="fecha_hasta" required>
+                        <div class="invalid-feedback">
+                            <strong>
+                                Por favor ingrese la fecha correctamente.
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="table-responsive">
             <table id="tabla_solicitudes_aprobadas" class="table tablas_solicitudes">
