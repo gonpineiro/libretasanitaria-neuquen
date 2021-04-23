@@ -38,28 +38,13 @@
                     <tr>
                         <th scope="col">N°</th>
                         <th scope="col">DNI</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
+                        <th scope="col">Apellido y Nombre</th>
                         <th scope="col">Fecha Evaluación</th>
                         <th scope="col">Retiro</th>
                         <th scope="col">Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($solicitudesAprobadas as $sol) {
-                        $nombreApellido = explode(', ', $sol['nombre_te']);
-                    ?>
-                        <tr id=<?= $sol['id'] ?>>
-                            <td class="numero_sol"><?= $sol['id'] ?></td>
-                            <td class="user_dni"><?= $sol['dni_te'] ?></td>
-                            <td class="user_name"><?= $nombreApellido['0'] ?></td>
-                            <td class="user_surname"><?= $nombreApellido['1'] ?></td>
-                            <td class="date"><?= date('d/m/Y', strtotime($sol['fecha_alta_sol'])) ?></td>
-                            <td class="company"><?= $sol['retiro_en'] ?></td>
-                            <td class="company">Estado</td>
-                        </tr>
-                    <?php
-                    } ?>
                 </tbody>
             </table>
         </div>
