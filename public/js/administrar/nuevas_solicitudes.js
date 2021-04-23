@@ -17,13 +17,13 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
 
             /* Datos principales */
             $("#dni-span-aprobada").html(data.dni_te);
-            $("#fe_nac-span-aprobada").html(data.fecha_nac_te);
+            $("#fe_nac-span-aprobada").html(formatDate(data.fecha_nac_te));
             $("#dire-span-aprobada").html(data.direccion_te);
             $("#tel-span-aprobada").html(data.telefono_te);
             $("#tipo_empleo-span-aprobada").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-aprobada").html(data.renovacion === '1' ? 'SI' : 'NO');
             $("#observaciones-span-aprobada").html(data.observaciones);
-        
+
             /* fechas y numero de recibo */
             $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
             $("#fecha-alta-mas-span-aprobada").html(data.fecha_vencimiento);
@@ -31,7 +31,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#nro-recibo-span-aprobada").html(data.nro_recibo);
 
             /* capacitación */
-            if (data.nombre_capacitador == (null || "") ) {
+            if (data.nombre_capacitador == (null || "")) {
                 $("#btn-capacitacion-aprobada").addClass('hideDiv');
                 $("#div-capacitacion-aprobada").addClass('hideDiv');
                 $("#capacitacion-span-aprobada").html('NO PRESENTA');
@@ -83,7 +83,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#tel-span-nueva").html(data.telefono_te);
             $("#tipo_empleo-span-nueva").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-nueva").html(data.renovacion === '1' ? 'SI' : 'NO');
-        
+
             /* fechas y numero de recibo */
             $("#fecha-alta-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-nueva").html(formatDate(data.fecha_alta_sol));
@@ -165,6 +165,7 @@ $(document).ready(function () {
             "paginate": {
                 "first": "Primero",
                 "last": "Ultimo",
+                "next": "Siguiente",
                 "previous": "Anterior"
             }
         }
@@ -172,6 +173,7 @@ $(document).ready(function () {
 });
 $(document).ready(function () {
     $('.tablas_solicitudes_periodo').DataTable({
+        "data": [],
         "order": [[4, "desc"]],
         "language": {
             "lengthMenu": "Display _MENU_ solicitudes por página",
