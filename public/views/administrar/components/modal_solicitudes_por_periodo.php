@@ -83,7 +83,7 @@
                 </div>
                 <div class="modal-footer">
                     <span id="id-solicitud-periodo" hidden></span>
-                    <button type="button" class="btn btn-primary" onclick="imprimirLibreta()">Imprimir
+                    <button id="btn-print" type="button" class="btn btn-primary" onclick="imprimirLibreta()">Imprimir
                     </button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
