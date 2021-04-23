@@ -10,8 +10,8 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
-            console.log(data);
-            $("#id-modal-periodo").html(data.id);
+            //console.log(data)
+            $("#id-solicitud-periodo").html(data.id)
             /* Nombre y apellido */
             $("#nombre-span-periodo").html(data.nombre_te);
             $("#imagen-pefil-periodo").attr("src", data.imagen);
@@ -31,14 +31,20 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#comprobante-pago-span-periodo").attr("src", data.path_comprobante_pago);
 
 
+            /* mostrar botón imprimir */
+            if (data.estado == "Rechazado") {
+                $("#btn-imprimir-periodo").addClass('hideDiv');
+            }
+            else {
+                $("#btn-imprimir-periodo").removeClass('hideDiv');
+            }
+
             /* capacitación */
             if (data.nombre_capacitador == (null || "")) {
-                $("#btn-print").addClass('hideDiv');
                 $("#btn-capacitacion-periodo").addClass('hideDiv');
                 $("#div-capacitacion-periodo").addClass('hideDiv');
                 $("#capacitacion-span-periodo").html('NO PRESENTA');
             } else {
-                $("#btn-print").removeClass('hideDiv');
                 $("#btn-capacitacion-periodo").removeClass('hideDiv');
                 $("#div-capacitacion-periodo").removeClass('hideDiv');
                 $("#capacitacion-span-periodo").html('SI PRESENTA');
@@ -131,7 +137,6 @@ $('#buscar').on('click', function (e) {
     });
 });
 
-
 function formatDate(input) {
     if (input == (null || '')) return ''
     const datePart = input.match(/\d+/g)
@@ -142,7 +147,6 @@ function formatDate(input) {
 
     return day + '/' + month + '/' + year;
 }
-
 function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-periodo').textContent
     console.log(idReferencia)
