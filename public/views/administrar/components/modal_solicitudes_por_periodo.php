@@ -25,7 +25,7 @@
                             <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#comprobantePago" aria-expanded="false" aria-controls="comprobantePago">
                                 Ver Comprobante de Pago
                             </button>
-                            <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion" aria-expanded="false" aria-controls="capacitacion" id="btn-capacitacion-periodo">
+                            <button class="btn btn-sm btn-primary my-3" type="button" data-toggle="collapse" data-target="#capacitacion-periodo" aria-expanded="false" aria-controls="capacitacion-periodo" id="btn-capacitacion-periodo">
                                 Ver Capacitación
                             </button>
 
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div id="div-capacitacion-periodo" class="card-block w-100 pb-3 container">
-                            <div class="collapse" id="capacitacion">
+                            <div class="collapse" id="capacitacion-periodo">
                                 <hr>
                                 <h4 class="card-title">Capacitación</h4>
                                 <p class="card-text" style="margin-bottom:0rem;">Nombre y Apellido Capacitador: <span id="nombre-capa-span-periodo"></span></p>
