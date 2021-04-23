@@ -10,7 +10,7 @@
                 <th scope="col">DNI</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Fecha</th>
+                <th scope="col">Fecha Solicitud</th>
                 <th scope="col">Retiro</th>
             </tr>
         </thead>
