@@ -8,10 +8,10 @@ DB_NAME=
 DB_PORT=
 DB_CHARSET=utf8
 
-DB_USUARIOS_TABLE=ls_usuarios
-DB_CAPACITADORES_TABLE=ls_capacitadores
-DB_SOLICITUDES_TABLE=ls_solicitudes
-DB_LOG_TABLE=ls_log
+DB_USUARIOS_TABLE=libretas_usuarios
+DB_CAPACITADORES_TABLE=libretas_capacitadores
+DB_SOLICITUDES_TABLE=libretas_solicitudes
+DB_LOG_TABLE=libretas_log
 
 LT_USU_NOMBRE=50
 LT_USU_APELLIDO=50
