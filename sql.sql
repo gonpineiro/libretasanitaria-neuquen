@@ -1,4 +1,4 @@
-CREATE TABLE ls_usuarios (
+CREATE TABLE libretas_usuarios (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	id_wappersonas INT NULL,
 	dni INT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE ls_usuarios (
 	empresa_nombre VARCHAR(250) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
-CREATE TABLE ls_solicitudes (
+CREATE TABLE libretas_solicitudes (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	id_usuario_solicitante INT NULL,
 	id_usuario_solicitado INT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE ls_solicitudes (
 	id_usuario_admin INT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 
-CREATE TABLE ls_capacitadores (
+CREATE TABLE libretas_capacitadores (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	nombre VARCHAR(50) NULL,
 	apellido VARCHAR(50) NULL,
@@ -41,7 +41,7 @@ CREATE TABLE ls_capacitadores (
 	fecha_capacitacion VARCHAR(45) NULL,    
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
-CREATE TABLE ls_log (
+CREATE TABLE libretas_log (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	id_usuario INT NULL,
 	id_solicitud INT NULL,
@@ -51,11 +51,11 @@ CREATE TABLE ls_log (
 	metodo VARCHAR(45) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
-ALTER TABLE ls_solicitudes
-	ADD FOREIGN KEY (id_usuario_solicitante) REFERENCES ls_usuarios(id);
-ALTER TABLE ls_solicitudes
-	ADD FOREIGN KEY (id_usuario_solicitado) REFERENCES ls_usuarios(id);
-ALTER TABLE ls_solicitudes
-	ADD FOREIGN KEY (id_usuario_admin) REFERENCES ls_usuarios(id);
-ALTER TABLE ls_solicitudes
-	ADD FOREIGN KEY (id_capacitador) REFERENCES ls_capacitadores(id);
+ALTER TABLE libretas_solicitudes
+	ADD FOREIGN KEY (id_usuario_solicitante) REFERENCES libretas_usuarios(id);
+ALTER TABLE libretas_solicitudes
+	ADD FOREIGN KEY (id_usuario_solicitado) REFERENCES libretas_usuarios(id);
+ALTER TABLE libretas_solicitudes
+	ADD FOREIGN KEY (id_usuario_admin) REFERENCES libretas_usuarios(id);
+ALTER TABLE libretas_solicitudes
+	ADD FOREIGN KEY (id_capacitador) REFERENCES libretas_capacitadores(id);

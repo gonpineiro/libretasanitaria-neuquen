@@ -32,13 +32,13 @@ sol.fecha_vencimiento as fecha_vencimiento,
 sol.observaciones as observaciones,
 sol.fecha_alta as fecha_alta_sol,
 sol.path_comprobante_pago as path_comprobante_pago
-FROM ls_solicitudes sol
+FROM libretas_solicitudes sol
 LEFT OUTER JOIN (
 	dbo.wappersonas as wap_te
-	left join ls_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id_wappersonas
+	left join libretas_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id_wappersonas
 ) ON sol.id_usuario_solicitante = usu_te.id
 LEFT OUTER JOIN (
 	dbo.wappersonas as wap_do
-	left join ls_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
+	left join libretas_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
 ) ON sol.id_usuario_solicitado = usu_do.id
 LEFT JOIN dbo.ls_capacitadores cap ON sol.id_capacitador = cap.id

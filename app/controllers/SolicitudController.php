@@ -49,7 +49,7 @@ class SolicitudController
     /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where periodo de fechas */
     public function getSolicitudesWherePeriod($fecha_desde, $fecha_hasta)
     {
-        $where = "where (estado = 'Rechazado' or estado ='Aprobado') and (fecha_evaluacion BETWEEN ". "'".$fecha_desde."'" ." AND "."'" .$fecha_hasta."'".")";
+        $where = "where (estado = 'Rechazado' or estado ='Aprobado') and (fecha_evaluacion BETWEEN " . "'" . $fecha_desde . "'" . " AND " . "'" . $fecha_hasta . "'" . ")";
         $conn = new BaseDatos();
         $array = [];
         $query =  $conn->query($this->insertSqlQuery($where));
@@ -119,14 +119,14 @@ class SolicitudController
             sol.observaciones as observaciones,
             sol.fecha_alta as fecha_alta_sol,
             sol.path_comprobante_pago as path_comprobante_pago
-            FROM ls_solicitudes sol
+            FROM " . SOLICITUDES . " sol
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_te
-                left join ls_usuarios usu_te ON wap_te.ReferenciaID = usu_te.id_wappersonas
+                left join " . USUARIOS . " usu_te ON wap_te.ReferenciaID = usu_te.id_wappersonas
             ) ON sol.id_usuario_solicitante = usu_te.id
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_do
-                left join ls_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
+                left join " . USUARIOS . " usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
             ) ON sol.id_usuario_solicitado = usu_do.id
             LEFT JOIN dbo.ls_capacitadores cap ON sol.id_capacitador = cap.id
             $where";
