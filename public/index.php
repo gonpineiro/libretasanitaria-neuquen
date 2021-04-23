@@ -11,8 +11,9 @@ if (isset($_GET['SESSIONKEY'])) {
         exit();
     }
 
-    /* Cambiar */
-    $_SESSION['userProfiles'] = 3;
+    /* Entorno de prueba */
+    if (!PROD) $_SESSION['userProfiles'] = 3;
+    
     foreach ($_SESSION['usuario']['apps'] as $apps) {
         if ($apps['id'] == 55 && $apps['userProfiles']) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
