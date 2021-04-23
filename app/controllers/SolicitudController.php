@@ -128,7 +128,7 @@ class SolicitudController
                 dbo.wappersonas as wap_do
                 left join " . USUARIOS . " usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
             ) ON sol.id_usuario_solicitado = usu_do.id
-            LEFT JOIN dbo.ls_capacitadores cap ON sol.id_capacitador = cap.id
+            LEFT JOIN " . CAPACITADORES . " cap ON sol.id_capacitador = cap.id
             $where";
 
         return $sql;

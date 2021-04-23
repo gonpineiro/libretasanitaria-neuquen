@@ -41,4 +41,4 @@ LEFT OUTER JOIN (
 	dbo.wappersonas as wap_do
 	left join libretas_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
 ) ON sol.id_usuario_solicitado = usu_do.id
-LEFT JOIN dbo.ls_capacitadores cap ON sol.id_capacitador = cap.id
+LEFT JOIN dbo.libretas_capacitadores cap ON sol.id_capacitador = cap.id
