@@ -46,7 +46,23 @@ class SolicitudController
         while ($row = odbc_fetch_array($query)) array_push($array, $row);
         return $array;
     }
-
+    /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where periodo de fechas */
+    public function getSolicitudesWherePeriod($fecha_desde, $fecha_hasta)
+    {
+        $where = "where (estado = 'Rechazado' or estado ='Aprobado') and (fecha_evaluacion BETWEEN ". "'".$fecha_desde."'" ." AND "."'" .$fecha_hasta."'".")";
+        $conn = new BaseDatos();
+        $array = [];
+        $query =  $conn->query($this->insertSqlQuery($where));
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Obtener una solicitud';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'getSolicitudesWherePeriod');
+            $log->save();
+        }
+        while ($row = odbc_fetch_array($query)) array_push($array, $row);
+        return $array;
+    }
     /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where id */
     public function getSolicitudesWhereId($id)
     {
