@@ -28,7 +28,8 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#fecha-alta-span-periodo").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-periodo").html(formatDate(data.fecha_alta_sol));
             $("#nro-recibo-span-periodo").html(data.nro_recibo);
-            $("#comprobante-pago-span-periodo").attr("src", data.path_comprobante_pago);
+            $("#comprobante-pago-span-periodo").attr("src", data.path_comprobante_pago); 
+            $("#observaciones-span-periodo").html(data.observaciones);
 
 
             /* mostrar botón imprimir */

@@ -76,6 +76,7 @@
                     </div>
                     <div class="w-100"></div>
                     <div class="card-footer w-100 text-muted">
+                        <p>Observaciones:</p>
                         <p id="observaciones-span-aprobada">Observaciones</p>
                     </div>
                 </div>
