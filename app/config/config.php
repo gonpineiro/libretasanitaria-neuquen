@@ -21,6 +21,9 @@ define('PROD', $_ENV['PROD'] == 'true' ? true : false);
 /* Seguridad para migration */
 define('MIGRATE', $_ENV['MIGRATE'] == 'true' ? true : false);
 
+/* AppID */
+define('APPID', PROD ? 53 : 55);
+
 /* Configuracion de URLs */
 define('WEBLOGIN', PROD ? 'https://weblogin.muninqn.gov.ar' : 'http://muninqn.gov.ar:90');
 

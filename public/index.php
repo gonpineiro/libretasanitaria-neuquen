@@ -11,19 +11,19 @@ if (isset($_GET['SESSIONKEY'])) {
         exit();
     }
 
-    /* Entorno de prueba */
-    if (!PROD) $_SESSION['userProfiles'] = 3;
-    
     foreach ($_SESSION['usuario']['apps'] as $apps) {
-        if ($apps['id'] == 55 && $apps['userProfiles']) {
+        if ($apps['id'] == APPID && $apps['userProfiles']) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
         }
     }
 
+    /* Entorno de prueba */
+    //if (!PROD) $_SESSION['userProfiles'] = 3;
+
     // persona con permiso 1, envia a inscripcion individual
     // si tiene permiso 2 (empresarial), puede ver el menu con iconos individual/empresarial
     // con permiso 3, puede ver un 3er icono 'Admin'
-    if ($_SESSION['userProfiles'] == 1) {
+    if ($_SESSION['userProfiles'] == 1 || !isset($_SESSION['userProfiles'])) {
         header('Location: views/formularios/inscripcion.php');
         exit();
     } elseif ($_SESSION['userProfiles'] == (2 || 3)) {

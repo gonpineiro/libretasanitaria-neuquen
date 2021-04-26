@@ -7,8 +7,7 @@ class CapacitadorController
     public function store($res)
     {
         $capacitador = new Capacitador();
-        $values = array_values($res);
-        $capacitador->set(...$values);
+        $capacitador->set(...array_values($res));
         return $capacitador->save();
     }
 
