@@ -22,8 +22,13 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#tel-span-aprobada").html(data.telefono_te);
             $("#tipo_empleo-span-aprobada").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-aprobada").html(data.renovacion === '1' ? 'SI' : 'NO');
-            $("#observaciones-span-aprobada").html(data.observaciones);
-
+            /* observaciones */
+            if (data.observaciones == (null || "")) {
+                $("#observaciones-span-aprobada").html("No presenta");
+            }
+            else {
+                $("#observaciones-span-aprobada").html(data.observaciones);
+            }
             /* fechas y numero de recibo */
             $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
             $("#fecha-alta-mas-span-aprobada").html(data.fecha_vencimiento);

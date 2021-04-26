@@ -76,8 +76,12 @@
                     </div>
                     <div class="w-100"></div>
                     <div class="card-footer w-100 text-muted">
-                        <p>Observaciones:</p>
-                        <p id="observaciones-span-aprobada">Observaciones</p>
+                        <form class="form-horizontal mx-auto">
+                            <div class="form-group">
+                                <label for="observaciones">Observaciones</label>
+                                <textarea id="observaciones-span-aprobada" class="form-control" style="border: none!important;box-shadow: inset 0 -1px 0 #ddd;" readonly rows="3"></textarea>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
