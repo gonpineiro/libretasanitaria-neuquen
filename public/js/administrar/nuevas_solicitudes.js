@@ -1,3 +1,5 @@
+import { charsetFormat } from '../functions.js';
+
 $('#tabla_solicitudes_aprobadas td').click(function (node) {
     const id = node.currentTarget.parentNode.id
     $.ajax({
@@ -268,7 +270,7 @@ function imprimirLibreta(idReferencia) {
             var fechaVencimiento = data.fecha_vencimiento;
             var tipoEmpleo = data.tipo_empleo === "1" ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
             var observaciones = data.observaciones ? data.observaciones : "No presenta";
-            var observaciones = observaciones.substring(0, 50);
+            var observaciones = charsetFormat(observaciones.substring(0, 50));
             imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones);
 
         },
