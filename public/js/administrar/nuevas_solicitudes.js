@@ -1,5 +1,3 @@
-
-
 $('#tabla_solicitudes_aprobadas td').click(function (node) {
     const id = node.currentTarget.parentNode.id
     $.ajax({
@@ -29,7 +27,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
                 $("#observaciones-span-aprobada").html("No presenta");
             }
             else {
-                $("#observaciones-span-aprobada").html(data.observaciones);
+                $("#observaciones-span-aprobada").html(charsetFormat(data.observaciones));
             }
             /* fechas y numero de recibo */
             $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
@@ -270,7 +268,7 @@ function imprimirLibreta(idReferencia) {
             var fechaVencimiento = data.fecha_vencimiento;
             var tipoEmpleo = data.tipo_empleo === "1" ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
             var observaciones = data.observaciones ? data.observaciones : "No presenta";
-            var observaciones = observaciones.substring(0, 50);
+            var observaciones = charsetFormat(observaciones.substring(0, 50));
             imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones);
 
         },
@@ -330,4 +328,26 @@ function imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpe
     });
     // se genera el pdf con el nombre
     doc.save("libreta-sanitaria-" + nombre + ".pdf");
+}
+
+const charsetFormat = (str) => {
+    str.includes('Ã¡') && (str = str.replace('Ã¡', 'á'));
+    str.includes('Ã?') && (str = str.replace('Ã?', 'Á'));
+    str.includes('Ã©') && (str = str.replace('Ã©', 'é'));
+    str.includes('Ã%') && (str = str.replace('Ã%', 'É'));
+    str.includes("Ã") && (str = str.replace("Ã", 'í'));
+    str.includes("Ã?") && (str = str.replace("Ã?", 'Í'));
+    str.includes('Ã³') && (str = str.replace('Ã³', 'ó'));
+    str.includes('Ã"') && (str = str.replace('Ã"', 'Ó'));
+    str.includes('Ãº') && (str = str.replace('Ãº', 'ú'));
+    str.includes('Ãs') && (str = str.replace('Ãs', 'Ú'));
+
+    str.includes('Ã±') && (str = str.replace('Ã±', 'ñ'));
+    str.includes("Ã'") && (str = str.replace("Ã'", 'Ñ'));
+
+    str.includes("Ã¤") && (str = str.replace("Ã¤", 'ä'));
+    str.includes("Ã„") && (str = str.replace("Ã„", 'Ä'));
+    str.includes("Ã«") && (str = str.replace("Ã«", 'ë'));
+    str.includes("Ã<") && (str = str.replace("Ã<", 'Ë'));
+    return str;
 }
