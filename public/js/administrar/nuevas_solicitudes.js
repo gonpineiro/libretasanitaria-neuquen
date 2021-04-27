@@ -33,7 +33,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
             $("#fecha-alta-mas-span-aprobada").html(data.fecha_vencimiento);
             if (verTipoArchivo(data.path_comprobante_pago)) {
-                $("#comprobante-pago-span-aprobada").html('<img style="width:100%" src="' + data.path_comprobante_pago + '">');
+                $("#comprobante-pago-span-aprobada").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
             } else {
                 $("#comprobante-pago-span-aprobada").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
             }
@@ -104,7 +104,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#fecha-alta-mas-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#nro-recibo-span-nueva").html(data.nro_recibo);
             if (verTipoArchivo(data.path_comprobante_pago)) {
-                $("#comprobante-pago-span-nueva").html('<img style="width:100%" src="' + data.path_comprobante_pago + '">');
+                $("#comprobante-pago-span-nueva").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
             }else{
                 $("#comprobante-pago-span-nueva").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
             }
