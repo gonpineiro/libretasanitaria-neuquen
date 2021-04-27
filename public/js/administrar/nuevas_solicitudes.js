@@ -32,7 +32,12 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             /* fechas y numero de recibo */
             $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
             $("#fecha-alta-mas-span-aprobada").html(data.fecha_vencimiento);
-            $("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
+            if (verTipoArchivo(data.path_comprobante_pago)) {
+                $("#comprobante-pago-span-aprobada").html('<img style="width:100%" src="' + data.path_comprobante_pago + '">');
+            } else {
+                $("#comprobante-pago-span-aprobada").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
+            }
+            //$("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
             $("#nro-recibo-span-aprobada").html(data.nro_recibo);
 
             /* capacitación */
@@ -50,7 +55,12 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#matricula-span-aprobada").html(data.matricula);
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
             $("#fecha-capa-span-aprobada").html(formatDate(data.fecha_capacitacion));
-            $("#certificado-capa-aprobada").attr("src", data.path_certificado);
+            if (verTipoArchivo(data.path_certificado)) {
+                $("#certificado-capa-aprobada").html('<img style="width:100%" src="' + data.path_certificado + '#zoom=50">');
+            } else {
+                $("#certificado-capa-aprobada").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_certificado + '"></iframe></div>');
+            }
+            //$("#certificado-capa-aprobada").attr("src", data.path_certificado);
 
 
 
@@ -93,7 +103,12 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#fecha-alta-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-nueva").html(formatDate(data.fecha_alta_sol));
             $("#nro-recibo-span-nueva").html(data.nro_recibo);
-            $("#comprobante-pago-span-nueva").attr("src", data.path_comprobante_pago);
+            if (verTipoArchivo(data.path_comprobante_pago)) {
+                $("#comprobante-pago-span-nueva").html('<img style="width:100%" src="' + data.path_comprobante_pago + '">');
+            }else{
+                $("#comprobante-pago-span-nueva").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
+            }
+            //$("#comprobante-pago-span-nueva").attr("src", data.path_comprobante_pago);
 
 
             /* capacitación */
@@ -111,7 +126,12 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#matricula-span-nueva").html(data.matricula);
             $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
             $("#fecha-capa-span-nueva").html(formatDate(data.fecha_capacitacion));
-            $("#certificado-capa-nueva").attr("src", data.path_certificado);
+            if (verTipoArchivo(data.path_certificado)) {
+                $("#certificado-capa-nueva").html('<img style="width:100%" src="' + data.path_certificado + '#zoom=50">');
+            } else {
+                $("#certificado-capa-nueva").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_certificado + '"></iframe></div>');
+            }
+            //$("#certificado-capa-nueva").attr("src", data.path_certificado);
             /* Mostramos el modal */
             $('#modalFicha').modal('show');
         },
@@ -350,4 +370,21 @@ const charsetFormat = (str) => {
     str.includes("Ã«") && (str = str.replace("Ã«", 'ë'));
     str.includes("Ã<") && (str = str.replace("Ã<", 'Ë'));
     return str;
+}
+
+function verTipoArchivo(fileName) {
+    var fileName, fileExtension;
+
+    fileExtension = fileName.replace(/^.*\./, ''); // USING JAVASCRIPT REGULAR EXPRESSIONS.
+
+    switch (fileExtension) {
+        case 'png':
+        case 'jpeg':
+        case 'jpg':
+            return true;
+            break;
+        case 'pdf':
+            return false
+            break;
+    }
 }

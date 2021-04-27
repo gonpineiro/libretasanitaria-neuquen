@@ -33,9 +33,10 @@
 
                     <div class="card-block w-100 pb-3 container">
                         <div class="collapse" id="comprobantePago">
-                            <div class="embed-responsive embed-responsive-16by9" style="background-color: beige;">
+                            <div id="comprobante-pago-span-nueva"></div>
+                            <!--                             <div class="embed-responsive embed-responsive-16by9" style="background-color: beige;">
                                 <iframe id="comprobante-pago-span-nueva" class="embed-responsive-item" src="about:blank"></iframe>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div id="div-capacitacion-nueva" class="card-block w-100 pb-3 container">
@@ -52,9 +53,10 @@
                         </div>
 
                         <div class="collapse" id="verCertificado">
-                            <div class="embed-responsive embed-responsive-16by9">
+                            <div id="certificado-capa-nueva"></div>
+                            <!--                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe id="certificado-capa-nueva" class="embed-responsive-item" src="about:blank"></iframe>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card-block w-100">

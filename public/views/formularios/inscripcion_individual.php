@@ -71,7 +71,7 @@ if ($errores) {
                                         <!-- DATOS PERSONALES -->
                                         <div class="form-group row">
                                             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                <label for="telefono">Actualice su numero de tel&eacute;fono </label>
+                                                <label for="telefono">Actualice su n&uacute;mero de tel&eacute;fono </label>
                                                 <input type="number" id="telefono" class="form-control" value="<?= $celular; ?>" placeholder="Tel&eacute;fono" name="telefono" required pattern="/^[0-9]$/">
                                                 <div class="invalid-feedback">
                                                     <strong>
@@ -206,13 +206,14 @@ if ($errores) {
                                             <label for="nro_recibo">Nro. de comprobante sellado </label>
                                             <input type="text" id="nro_recibo" minlength="1" maxlength="20" pattern="^[0-9]+-[0-9]+$" class="form-control" placeholder="Ej: 0002-57972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
-                                                <strong>
-                                                    Por favor ingrese un número como el Ej: 0002-57972906
-                                                </strong>
+                                                Por favor ingrese un n&uacute;mero como el Ej: 0002-57972906
                                             </div>
                                         </div>
 
                                         <div class="form-group">
+                                            <div class="alert alert-warning fade show" role="alert">
+                                                <strong>Aviso</strong> Obtenga y abone su Sellado Municipal en los medios habilitados <a href="https://sigemi.muninqn.gov.ar/apex/f?p=304:8200:9589380529241::NO:RP,8200::" target="_blank">http://www.neuquencapital.gov.ar/ </a>.
+                                            </div>
                                             <label for="div-path_comprobante_pago" class="required">Comprobante de pago </label>
                                             <div class="custom-file" id="div-path_comprobante_pago">
                                                 <input id="path_comprobante_pago" class="custom-file-input" type="file" name="path_comprobante_pago" required>

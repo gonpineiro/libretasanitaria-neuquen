@@ -82,7 +82,7 @@ $apellido = $nombreapellido[0];
                                 </td>
                             </tr>
                             <tr style='height: 60px;'>
-                                <td class='opcion-titulo text-center'>FORMULARIO INDIVIDUAL</td>
+                                <td class='opcion-titulo text-center'>OBTENÉ / RENOVÁ TU LIBRETA SANITARIA</td>
                             </tr>
                         </tbody>
                     </table>

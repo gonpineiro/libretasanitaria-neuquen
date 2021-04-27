@@ -33,9 +33,7 @@
 
                     <div class="card-block w-100 pb-3 container">
                         <div class="collapse" id="comprobantePago">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe id="comprobante-pago-span-aprobada" class="embed-responsive-item" src="about:blank"></iframe>
-                            </div>
+                            <div id="comprobante-pago-span-aprobada"></div>
                         </div>
                     </div>
                     <div id="div-capacitacion-aprobada" class="card-block w-100 pb-3 container">
@@ -51,9 +49,7 @@
                             </button>
                         </div>
                         <div class="collapse" id="verCertificado">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe id="certificado-capa-aprobada" class="embed-responsive-item" src="about:blank"></iframe>
-                            </div>
+                            <div id="certificado-capa-aprobada"></div>
                         </div>
                     </div>
                     <div class="card-block w-100">

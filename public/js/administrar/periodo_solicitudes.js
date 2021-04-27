@@ -28,7 +28,12 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#fecha-alta-span-periodo").html(formatDate(data.fecha_alta_sol));
             $("#fecha-alta-mas-span-periodo").html(formatDate(data.fecha_alta_sol));
             $("#nro-recibo-span-periodo").html(data.nro_recibo);
-            $("#comprobante-pago-span-periodo").attr("src", data.path_comprobante_pago);
+            if (verTipoArchivo(data.path_comprobante_pago)) {
+                $("#comprobante-pago-span-periodo").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
+            } else {
+                $("#comprobante-pago-span-periodo").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
+            }
+            //$("#comprobante-pago-span-periodo").attr("src", data.path_comprobante_pago);
 
             /* observaciones */
             if (data.observaciones == (null || "")){
@@ -61,7 +66,12 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#matricula-span-periodo").html(data.matricula);
             $("#lugar-capa-span-periodo").html(data.lugar_capacitacion);
             $("#fecha-capa-span-periodo").html(formatDate(data.fecha_capacitacion));
-            $("#certificado-capa-periodo").attr("src", data.path_certificado);
+            if (verTipoArchivo(data.path_certificado)) {
+                $("#certificado-capa-periodo").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '#zoom=50"></a>');
+            } else {
+                $("#certificado-capa-periodo").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_certificado + '"></iframe></div>');
+            }
+            //$("#certificado-capa-periodo").attr("src", data.path_certificado);
             /* Mostramos el modal */
             $('#modalFichaPeriodo').modal('show');
         },
@@ -238,4 +248,21 @@ function imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpe
     });
     // se genera el pdf con el nombre
     doc.save("libreta-sanitaria-" + nombre + ".pdf");
+}
+
+function verTipoArchivo(fileName) {
+    var fileName, fileExtension;
+
+    fileExtension = fileName.replace(/^.*\./, ''); // USING JAVASCRIPT REGULAR EXPRESSIONS.
+
+    switch (fileExtension) {
+        case 'png':
+        case 'jpeg':
+        case 'jpg':
+            return true;
+            break;
+        case 'pdf':
+            return false
+            break;
+    }
 }
