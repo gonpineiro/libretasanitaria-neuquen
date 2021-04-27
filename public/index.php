@@ -18,7 +18,7 @@ if (isset($_GET['SESSIONKEY'])) {
     }
 
     /* Entorno de prueba */
-    //if (!PROD) $_SESSION['userProfiles'] = 3;
+    if (!PROD) $_SESSION['userProfiles'] = 3;
 
     // persona con permiso 1, envia a inscripcion individual
     // si tiene permiso 2 (empresarial), puede ver el menu con iconos individual/empresarial
