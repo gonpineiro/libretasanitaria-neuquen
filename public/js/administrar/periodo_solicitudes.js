@@ -67,7 +67,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#lugar-capa-span-periodo").html(data.lugar_capacitacion);
             $("#fecha-capa-span-periodo").html(formatDate(data.fecha_capacitacion));
             if (verTipoArchivo(data.path_certificado)) {
-                $("#certificado-capa-periodo").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '#zoom=50"></a>');
+                $("#certificado-capa-periodo").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '"></a>');
             } else {
                 $("#certificado-capa-periodo").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_certificado + '"></iframe></div>');
             }

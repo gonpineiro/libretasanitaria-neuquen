@@ -56,7 +56,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
             $("#fecha-capa-span-aprobada").html(formatDate(data.fecha_capacitacion));
             if (verTipoArchivo(data.path_certificado)) {
-                $("#certificado-capa-aprobada").html('<img style="width:100%" src="' + data.path_certificado + '#zoom=50">');
+                $("#certificado-capa-aprobada").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '"></a>');
             } else {
                 $("#certificado-capa-aprobada").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_certificado + '"></iframe></div>');
             }
@@ -127,7 +127,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
             $("#fecha-capa-span-nueva").html(formatDate(data.fecha_capacitacion));
             if (verTipoArchivo(data.path_certificado)) {
-                $("#certificado-capa-nueva").html('<img style="width:100%" src="' + data.path_certificado + '#zoom=50">');
+                $("#certificado-capa-nueva").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '"></a>');
             } else {
                 $("#certificado-capa-nueva").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_certificado + '"></iframe></div>');
             }
