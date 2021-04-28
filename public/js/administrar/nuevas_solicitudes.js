@@ -105,7 +105,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#nro-recibo-span-nueva").html(data.nro_recibo);
             if (verTipoArchivo(data.path_comprobante_pago)) {
                 $("#comprobante-pago-span-nueva").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
-            }else{
+            } else {
                 $("#comprobante-pago-span-nueva").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
             }
             //$("#comprobante-pago-span-nueva").attr("src", data.path_comprobante_pago);
@@ -143,88 +143,17 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
 
 $(document).ready(function () {
     $('.tablas_solicitudes_nuevas').DataTable({
-        "language": {
-            "lengthMenu": "Display _MENU_ solicitudes por página",
-            "zeroRecords": "No se encuentra",
-            "info": "Viendo página _PAGE_ de _PAGES_",
-            "decimal": "",
-            "emptyTable": "No hay información",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ Entradas",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
-            "search": "Buscar:",
-            "zeroRecords": "Sin resultados encontrados",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
+        "order": [[4, "desc"]],
+        "language": tableLenguaje
     });
 });
 $(document).ready(function () {
     $('.tablas_solicitudes_aprobadas').DataTable({
         "order": [[4, "desc"]],
-        "language": {
-            "lengthMenu": "Display _MENU_ solicitudes por página",
-            "zeroRecords": "No se encuentra",
-            "info": "Viendo página _PAGE_ de _PAGES_",
-            "decimal": "",
-            "emptyTable": "No hay información",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ Entradas",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
-            "search": "Buscar:",
-            "zeroRecords": "Sin resultados encontrados",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
+        "language": tableLenguaje
     });
 });
-$(document).ready(function () {
-    $('.tablas_solicitudes_periodo').DataTable({
-        "data": [],
-        "order": [[4, "desc"]],
-        "language": {
-            "lengthMenu": "Display _MENU_ solicitudes por página",
-            "zeroRecords": "No se encuentra",
-            "info": "Viendo página _PAGE_ de _PAGES_",
-            "decimal": "",
-            "emptyTable": "No hay información",
-            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ Entradas",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
-            "search": "Buscar:",
-            "zeroRecords": "Sin resultados encontrados",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
-    });
-});
+
 function confirmacionCambiarEstado(estado) {
     const msgAprobado = "¿Está seguro de aprobar la solicitud?";
     const msgRechazado = "¿Está seguro de rechazar la solicitud?"
@@ -253,18 +182,7 @@ function confirmacionCambiarEstado(estado) {
     }
 }
 
-function formatDate(input) {
-    if (input == (null || '')) return ''
-    const datePart = input.match(/\d+/g)
-
-    const year = datePart[0]
-    const month = datePart[1]
-    const day = datePart[2]
-
-    return day + '/' + month + '/' + year;
-}
-
-function imprimirLibreta(idReferencia) {
+function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-aprobada').textContent
     console.log(idReferencia)
     $.ajax({
@@ -278,7 +196,7 @@ function imprimirLibreta(idReferencia) {
             var data = $.parseJSON(response);
             console.log(data);
             var dni = data.dni_te
-            var fotodni = data[0];
+            var fotodni = data.imagen;
             var nombre = data.nombre_te;
             var nombre = nombre.substring(0, 26);
             var domicilio = data.direccion_do;
@@ -350,28 +268,6 @@ function imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpe
     doc.save("libreta-sanitaria-" + nombre + ".pdf");
 }
 
-const charsetFormat = (str) => {
-    str.includes('Ã¡') && (str = str.replace('Ã¡', 'á'));
-    str.includes('Ã?') && (str = str.replace('Ã?', 'Á'));
-    str.includes('Ã©') && (str = str.replace('Ã©', 'é'));
-    str.includes('Ã%') && (str = str.replace('Ã%', 'É'));
-    str.includes("Ã") && (str = str.replace("Ã", 'í'));
-    str.includes("Ã?") && (str = str.replace("Ã?", 'Í'));
-    str.includes('Ã³') && (str = str.replace('Ã³', 'ó'));
-    str.includes('Ã"') && (str = str.replace('Ã"', 'Ó'));
-    str.includes('Ãº') && (str = str.replace('Ãº', 'ú'));
-    str.includes('Ãs') && (str = str.replace('Ãs', 'Ú'));
-
-    str.includes('Ã±') && (str = str.replace('Ã±', 'ñ'));
-    str.includes("Ã'") && (str = str.replace("Ã'", 'Ñ'));
-
-    str.includes("Ã¤") && (str = str.replace("Ã¤", 'ä'));
-    str.includes("Ã„") && (str = str.replace("Ã„", 'Ä'));
-    str.includes("Ã«") && (str = str.replace("Ã«", 'ë'));
-    str.includes("Ã<") && (str = str.replace("Ã<", 'Ë'));
-    return str;
-}
-
 function verTipoArchivo(fileName) {
     var fileName, fileExtension;
 
@@ -386,5 +282,61 @@ function verTipoArchivo(fileName) {
         case 'pdf':
             return false
             break;
+    }
+}
+
+const formatDate = (input) => {
+    if (input == (null || '')) return ''
+    const datePart = input.match(/\d+/g)
+
+    const year = datePart[0]
+    const month = datePart[1]
+    const day = datePart[2]
+
+    return day + '/' + month + '/' + year;
+}
+
+const charsetFormat = (str) => {
+    str.includes('Ã¡') && (str = str.replace('Ã¡', 'á'));
+    str.includes('Ã?') && (str = str.replace('Ã?', 'Á'));
+    str.includes('Ã©') && (str = str.replace('Ã©', 'é'));
+    str.includes('Ã%') && (str = str.replace('Ã%', 'É'));
+    str.includes("Ã") && (str = str.replace("Ã", 'í'));
+    str.includes("Ã?") && (str = str.replace("Ã?", 'Í'));
+    str.includes('Ã³') && (str = str.replace('Ã³', 'ó'));
+    str.includes('Ã"') && (str = str.replace('Ã"', 'Ó'));
+    str.includes('Ãº') && (str = str.replace('Ãº', 'ú'));
+    str.includes('Ãs') && (str = str.replace('Ãs', 'Ú'));
+    str.includes('Ã±') && (str = str.replace('Ã±', 'ñ'));
+    str.includes("Ã'") && (str = str.replace("Ã'", 'Ñ'));
+
+    str.includes("Ã¤") && (str = str.replace("Ã¤", 'ä'));
+    str.includes("Ã„") && (str = str.replace("Ã„", 'Ä'));
+    str.includes("Ã«") && (str = str.replace("Ã«", 'ë'));
+    str.includes("Ã<") && (str = str.replace("Ã<", 'Ë'));
+    return str;
+}
+
+const tableLenguaje = {
+    "lengthMenu": "Display _MENU_ solicitudes por página",
+    "zeroRecords": "No se encuentra",
+    "info": "Viendo página _PAGE_ de _PAGES_",
+    "decimal": "",
+    "emptyTable": "No hay información",
+    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+    "infoPostFix": "",
+    "thousands": ",",
+    "lengthMenu": "Mostrar _MENU_ Entradas",
+    "loadingRecords": "Cargando...",
+    "processing": "Procesando...",
+    "search": "Buscar:",
+    "zeroRecords": "Sin resultados encontrados",
+    "paginate": {
+        "first": "Primero",
+        "last": "Ultimo",
+        "next": "Siguiente",
+        "previous": "Anterior"
     }
 }

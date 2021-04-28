@@ -45,30 +45,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
     <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 
 
-    <title>Solicitudes Nuevas y Aprobadas - Libreta Sanitaria</title>
-    <style>
-        /* en hover cambia color la fila en las tablas */
-
-        table.dataTable tbody tr:hover {
-            background-color: #E4F8FE;
-            cursor: pointer;
-        }
-
-        .hideDiv {
-            display: none;
-        }
-
-        /* modal más ancho en pantallas 800x600 */
-        @media (min-width: 576px) {
-            .modal-dialog {
-                max-width: 750px;
-            }
-
-            .nombre-modal {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+    <title>Solicitudes Nuevas y Aprobadas - Libreta Sanitaria</title>    
 </head>
 
 <body>
@@ -125,5 +102,4 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 
 <script src="../../js/administrar/nuevas_solicitudes.js"></script>
-
 </html>

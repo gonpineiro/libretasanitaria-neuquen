@@ -100,16 +100,15 @@ class Solicitud
         return $solicitud;
     }
 
-    public static function get($id)
+    public static function get($params)
     {
         $conn = new BaseDatos();
-        $params = ['id' => $id];
         $result = $conn->search(SOLICITUDES, $params);
         $solicitud = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a obtener la solicitud: ' . $id;
+            $error =  $conn->getError() . ' | Error a obtener la solicitud: ' . $params[0];
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'get');
             $log->save();

@@ -5,7 +5,7 @@ class SolicitudController
     /* Guarda un solicitud */
     public function store($res)
     {
-        $solicitud = new Solicitud();
+        $solicitud = new Solicitud();        
         $values = array_values($res);
         $solicitud->set(...$values);
         return $solicitud->save();
@@ -18,9 +18,9 @@ class SolicitudController
     }
 
     /* Busca un solicitud */
-    public static function get($id)
+    public static function get($params)
     {
-        return Solicitud::get($id);
+        return Solicitud::get($params);
     }
 
     /* Actualiza un solicitud */
@@ -118,7 +118,9 @@ class SolicitudController
             sol.fecha_vencimiento as fecha_vencimiento,
             sol.observaciones as observaciones,
             sol.fecha_alta as fecha_alta_sol,
-            sol.path_comprobante_pago as path_comprobante_pago
+            sol.path_comprobante_pago as path_comprobante_pago,
+            usu.telefono as usu_telefono,
+            usu.email as usu_email
             FROM " . SOLICITUDES . " sol
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_te
@@ -129,6 +131,7 @@ class SolicitudController
                 left join " . USUARIOS . " usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
             ) ON sol.id_usuario_solicitado = usu_do.id
             LEFT JOIN " . CAPACITADORES . " cap ON sol.id_capacitador = cap.id
+            LEFT JOIN " . USUARIOS . " usu ON sol.id_usuario_solicitante = usu.id
             $where";
 
         return $sql;

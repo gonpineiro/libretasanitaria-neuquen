@@ -181,3 +181,23 @@ spl_autoload_register(function ($class_name) {
         }
     }
 });
+
+function getImageByRenaper($array)
+{
+    // busca la foto dni
+    $genero = $array['genero_te'];
+    $dni = $array['dni_te'];
+
+    $response = file_get_contents('https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/' . $genero . $dni);
+    $json = json_decode($response);
+    $imagen = $json->{'docInfo'}->{'imagen'};
+
+    // si la imagen retorna NULL fuerzo su búsqueda con @F al final de la url
+    if (is_null($imagen)) {
+        $response = file_get_contents('https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/' . $genero . $dni . "@F");
+        $json = json_decode($response);
+        $imagen = $json->{'docInfo'}->{'imagen'};
+    }
+    $array['imagen'] = $imagen;
+    return utf8_converter($array, true);
+}

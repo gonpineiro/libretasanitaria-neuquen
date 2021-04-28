@@ -36,13 +36,13 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             //$("#comprobante-pago-span-periodo").attr("src", data.path_comprobante_pago);
 
             /* observaciones */
-            if (data.observaciones == (null || "")){
+            if (data.observaciones == (null || "")) {
                 $("#observaciones-span-periodo").html("No presenta");
             }
-            else{
+            else {
                 $("#observaciones-span-periodo").html(data.observaciones);
             }
-        
+
             /* mostrar botón imprimir */
             if (data.estado == "Rechazado") {
                 $("#btn-imprimir-periodo").addClass('hideDiv');
@@ -80,6 +80,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
         }
     });
 });
+
 $('#buscar').on('click', function (e) {
     e.preventDefault();
     fecha_desde = formatDate($("#fecha_desde").val())
@@ -122,29 +123,7 @@ $('#buscar').on('click', function (e) {
                 }
 
                 ],
-                "language": {
-                    "lengthMenu": "Display _MENU_ solicitudes por página",
-                    "zeroRecords": "No se encuentra",
-                    "info": "Viendo página _PAGE_ de _PAGES_",
-                    "decimal": "",
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
+                "language": tableLenguaje
             });
 
         },
@@ -154,16 +133,6 @@ $('#buscar').on('click', function (e) {
     });
 });
 
-function formatDate(input) {
-    if (input == (null || '')) return ''
-    const datePart = input.match(/\d+/g)
-
-    const year = datePart[0]
-    const month = datePart[1]
-    const day = datePart[2]
-
-    return day + '/' + month + '/' + year;
-}
 function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-periodo').textContent
     console.log(idReferencia)
@@ -264,5 +233,40 @@ function verTipoArchivo(fileName) {
         case 'pdf':
             return false
             break;
+    }
+}
+
+const formatDate = (input) => {
+    if (input == (null || '')) return ''
+    const datePart = input.match(/\d+/g)
+
+    const year = datePart[0]
+    const month = datePart[1]
+    const day = datePart[2]
+
+    return day + '/' + month + '/' + year;
+}
+
+const tableLenguaje = {
+    "lengthMenu": "Display _MENU_ solicitudes por página",
+    "zeroRecords": "No se encuentra",
+    "info": "Viendo página _PAGE_ de _PAGES_",
+    "decimal": "",
+    "emptyTable": "No hay información",
+    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+    "infoPostFix": "",
+    "thousands": ",",
+    "lengthMenu": "Mostrar _MENU_ Entradas",
+    "loadingRecords": "Cargando...",
+    "processing": "Procesando...",
+    "search": "Buscar:",
+    "zeroRecords": "Sin resultados encontrados",
+    "paginate": {
+        "first": "Primero",
+        "last": "Ultimo",
+        "next": "Siguiente",
+        "previous": "Anterior"
     }
 }

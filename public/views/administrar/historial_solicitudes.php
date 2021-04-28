@@ -55,29 +55,6 @@ $solicitudesAprobadas = [];
 
 
     <title>Solicitudes por Per&iacute;odo - Libreta Sanitaria</title>
-    <style>
-        /* en hover cambia color la fila en las tablas */
-
-        table.dataTable tbody tr:hover {
-            background-color: #E4F8FE;
-            cursor: pointer;
-        }
-
-        .hideDiv {
-            display: none;
-        }
-
-        /* modal más ancho en pantallas 800x600 */
-        @media (min-width: 576px) {
-            .modal-dialog {
-                max-width: 750px;
-            }
-
-            .nombre-modal {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -106,17 +83,14 @@ $solicitudesAprobadas = [];
             </tbody>
         </table>
     </div>
+    <div class="body container" style="padding-bottom: 50px;">
+        <!-- Tabla solicitudes por período -->
+        <?php include './components/solicitudes_por_periodo.php' ?>
+        <!-- Modal Ficha Solicitud por período-->
+        <?php include './components/modal_solicitudes_por_periodo.php' ?>
 
-    <!-- Tabla solicitudes por período -->
-    <?php include './components/solicitudes_por_periodo.php' ?>
-    <!-- Modal Ficha Solicitud por período-->
-    <?php include './components/modal_solicitudes_por_periodo.php' ?>
-
-    <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
-    <a href="./index.php" class="btn btn-primary">Regresar</a>
-
-
-
+        <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
+        <a href="./index.php" class="btn btn-primary">Regresar</a>
     </div>
 </body>
 

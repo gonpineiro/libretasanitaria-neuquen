@@ -82,3 +82,22 @@ body {
 		#contenedorImagen {    width: 41%;}
 	#cardNombre, #cardDni, #cardTelefono, #cardEmail, #cardFechanacimiento, #cardGenero{width: 100%;}
 }
+
+table.dataTable tbody tr:hover {
+    background-color: #E4F8FE;
+    cursor: pointer;
+}
+
+.hideDiv {
+    display: none;
+}
+
+/* modal más ancho en pantallas 800x600 */
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 750px;
+    }
+    .nombre-modal {
+        font-size: 0.9rem;
+    }
+}
