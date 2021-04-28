@@ -261,6 +261,9 @@ if ($errores) {
                                     Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:carnetma@muninqn.gob.ar" target="_blank">carnetma@muninqn.gob.ar</a>
                                 </span>
                             </div>
+                            <div id="enviando" class="spinner-border text-primary hideDiv" role="status">
+                                <span class="sr-only">Enviando...</span>
+                            </div>
                             <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" />
                         </div>
                     </div>

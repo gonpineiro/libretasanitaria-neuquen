@@ -177,6 +177,15 @@ if (isset($_POST) && !empty($_POST)) {
     <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../../estilos/estilo.css">
     <title>Inscripci&oacute;n Libreta Sanitaria</title>
+    <style>
+        .hideDiv {
+            display: none;
+        }
+
+        .invalid-feedback {
+            color: lightsalmon;
+        }
+    </style>
 </head>
 
 <body>
@@ -192,10 +201,6 @@ if (isset($_POST) && !empty($_POST)) {
 <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="../../js/formularios/inscripcion.js"></script>
-<style>
-    .invalid-feedback {
-        color: lightsalmon;
-    }
-</style>
+
 
 </html>

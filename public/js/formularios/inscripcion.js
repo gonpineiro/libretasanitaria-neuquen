@@ -25,9 +25,13 @@ function validate() {
             if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
+            }else{
+                $("#submit").addClass('hideDiv');
+                $("#enviando").removeClass('hideDiv');
             }
             form.classList.add('was-validated');
             bsSelectValidation();
+
         }, false);
     });
 }
