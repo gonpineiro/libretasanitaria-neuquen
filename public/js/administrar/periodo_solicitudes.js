@@ -20,7 +20,24 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#dni-span-periodo").html(data.dni_te);
             $("#fe_nac-span-periodo").html(formatDate(data.fecha_nac_te));
             $("#dire-span-periodo").html(data.direccion_te);
-            $("#tel-span-periodo").html(data.telefono_te);
+            if (data.telefono_te === data.usu_telefono) {
+                $("#tel-span-periodo").html(data.telefono_te);
+                $("#tel-usu-actualizado-periodo").addClass('hideDiv');
+            }
+            else {
+                $("#tel-span-periodo").html(data.telefono_te);
+                $("#tel-usu-actualizado-periodo").removeClass('hideDiv');
+                $("#tel-usu-span-periodo").html(data.usu_telefono);
+            }
+            if (data.email_te === data.usu_email) {
+                $("#email-span-periodo").html(data.email_te);
+                $("#email-usu-actualizado-periodo").addClass('hideDiv');
+            }
+            else {
+                $("#email-span-periodo").html(data.email_te);
+                $("#email-usu-actualizado-periodo").removeClass('hideDiv');
+                $("#email-usu-span-periodo").html(data.usu_email);
+            }
             $("#tipo_empleo-span-periodo").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-periodo").html(data.renovacion === '1' ? 'SI' : 'NO');
 

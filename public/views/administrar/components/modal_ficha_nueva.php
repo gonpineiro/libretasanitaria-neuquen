@@ -19,6 +19,9 @@
                         <p class="card-text" style="margin-bottom:0rem;">Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Domicilio: <span id="dire-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Teléfono: <span id="tel-span-nueva"></span></p>
+                        <p id="tel-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;font-style: italic;">Teléfono Actualizado: <span id="tel-usu-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;">Email: <span id="email-span-nueva"></span></p>
+                        <p id="email-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;font-style: italic;">Email Actualizado: <span id="email-usu-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-nueva"></span></p>

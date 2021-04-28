@@ -19,7 +19,25 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#dni-span-aprobada").html(data.dni_te);
             $("#fe_nac-span-aprobada").html(formatDate(data.fecha_nac_te));
             $("#dire-span-aprobada").html(data.direccion_te);
-            $("#tel-span-aprobada").html(data.telefono_te);
+            console.log(data);
+            if (data.telefono_te === data.usu_telefono) {
+                $("#tel-span-aprobada").html(data.telefono_te);
+                $("#tel-usu-actualizado-aprobada").addClass('hideDiv');
+            }
+            else {
+                $("#tel-span-aprobada").html(data.telefono_te);
+                $("#tel-usu-actualizado-aprobada").removeClass('hideDiv');
+                $("#tel-usu-span-aprobada").html(data.usu_telefono);
+            }
+            if (data.email_te === data.usu_email) {
+                $("#email-span-aprobada").html(data.email_te);
+                $("#email-usu-actualizado-aprobada").addClass('hideDiv');
+            }
+            else {
+                $("#email-span-aprobada").html(data.email_te);
+                $("#email-usu-actualizado-aprobada").removeClass('hideDiv');
+                $("#email-usu-span-aprobada").html(data.usu_email);
+            }
             $("#tipo_empleo-span-aprobada").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-aprobada").html(data.renovacion === '1' ? 'SI' : 'NO');
             /* observaciones */
@@ -95,7 +113,24 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#dni-span-nueva").html(data.dni_te);
             $("#fe_nac-span-nueva").html(formatDate(data.fecha_nac_te));
             $("#dire-span-nueva").html(data.direccion_te);
-            $("#tel-span-nueva").html(data.telefono_te);
+            if (data.telefono_te === data.usu_telefono) {
+                $("#tel-span-nueva").html(data.telefono_te);
+                $("#tel-usu-actualizado-nueva").addClass('hideDiv');
+            }
+            else {
+                $("#tel-span-nueva").html(data.telefono_te);
+                $("#tel-usu-actualizado-nueva").removeClass('hideDiv');
+                $("#tel-usu-span-nueva").html(data.usu_telefono);
+            }
+            if (data.email_te === data.usu_email) {
+                $("#email-span-nueva").html(data.email_te);
+                $("#email-usu-actualizado-nueva").addClass('hideDiv');
+            }
+            else {
+                $("#email-span-nueva").html(data.email_te);
+                $("#email-usu-actualizado-nueva").removeClass('hideDiv');
+                $("#email-usu-span-nueva").html(data.usu_email);
+            }
             $("#tipo_empleo-span-nueva").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
             $("#renovacion-span-nueva").html(data.renovacion === '1' ? 'SI' : 'NO');
 
