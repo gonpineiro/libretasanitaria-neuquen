@@ -206,9 +206,9 @@ if ($errores) {
                                         </div>
                                         <div class="form-group">
                                             <label for="nro_recibo">Nro. de comprobante sellado </label>
-                                            <input type="text" id="nro_recibo" minlength="1" maxlength="20" pattern="^[0-9]+-[0-9]+$" class="form-control" placeholder="Ej: 0002-57972906" name="nro_recibo" required>
+                                            <input type="number" id="nro_recibo" class="form-control" placeholder="Ej: 000257972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
-                                                Por favor ingrese un n&uacute;mero como el Ej: 0002-57972906
+                                                Por favor ingrese un n&uacute;mero como el Ej: 000257972906
                                             </div>
                                         </div>
 
