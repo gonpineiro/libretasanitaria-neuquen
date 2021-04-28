@@ -26,7 +26,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
 
             /* fechas y numero de recibo */
             $("#fecha-alta-span-periodo").html(formatDate(data.fecha_alta_sol));
-            $("#fecha-alta-mas-span-periodo").html(formatDate(data.fecha_alta_sol));
+            $("#fecha-alta-mas-span-periodo").html(data.fecha_vencimiento);
             $("#nro-recibo-span-periodo").html(data.nro_recibo);
             if (verTipoArchivo(data.path_comprobante_pago)) {
                 $("#comprobante-pago-span-periodo").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
