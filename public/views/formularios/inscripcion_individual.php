@@ -201,7 +201,9 @@ if ($errores) {
                                             </div>
 
                                         </div>
-
+                                        <div class="alert alert-warning fade show" role="alert">
+                                            <strong>Aviso</strong> Obtenga y abone su Sellado Municipal en los medios habilitados <a href="https://sigemi.muninqn.gov.ar/apex/f?p=304:8200:9589380529241::NO:RP,8200::" target="_blank">http://www.neuquencapital.gov.ar/</a>.
+                                        </div>
                                         <div class="form-group">
                                             <label for="nro_recibo">Nro. de comprobante sellado </label>
                                             <input type="text" id="nro_recibo" minlength="1" maxlength="20" pattern="^[0-9]+-[0-9]+$" class="form-control" placeholder="Ej: 0002-57972906" name="nro_recibo" required>
@@ -211,9 +213,6 @@ if ($errores) {
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="alert alert-warning fade show" role="alert">
-                                                <strong>Aviso</strong> Obtenga y abone su Sellado Municipal en los medios habilitados <a href="https://sigemi.muninqn.gov.ar/apex/f?p=304:8200:9589380529241::NO:RP,8200::" target="_blank">http://www.neuquencapital.gov.ar/ </a>.
-                                            </div>
                                             <label for="div-path_comprobante_pago" class="required">Comprobante de pago </label>
                                             <div class="custom-file" id="div-path_comprobante_pago">
                                                 <input id="path_comprobante_pago" class="custom-file-input" type="file" name="path_comprobante_pago" required>
