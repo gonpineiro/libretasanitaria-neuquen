@@ -33,7 +33,9 @@ sol.observaciones as observaciones,
 sol.fecha_alta as fecha_alta_sol,
 sol.path_comprobante_pago as path_comprobante_pago,
 usu.telefono as usu_telefono,
-usu.email as usu_email
+usu.email as usu_email,
+wap_adm.nombre as adm_nombre,
+sol.id_usuario_admin as id_usuario_admin 
 FROM libretas_solicitudes sol
 LEFT OUTER JOIN (
 	dbo.wappersonas as wap_te
@@ -43,5 +45,9 @@ LEFT OUTER JOIN (
 	dbo.wappersonas as wap_do
 	left join libretas_usuarios usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
 ) ON sol.id_usuario_solicitado = usu_do.id
+LEFT OUTER JOIN (
+	dbo.wappersonas as wap_adm
+	LEFT JOIN libretas_usuarios usu_adm ON wap_adm.ReferenciaID = usu_adm.id_wappersonas
+) ON sol.id_usuario_admin = usu_adm.id
 LEFT JOIN dbo.libretas_capacitadores cap ON sol.id_capacitador = cap.id
 LEFT JOIN dbo.libretas_usuarios usu ON sol.id_usuario_solicitante = usu.id

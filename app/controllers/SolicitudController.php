@@ -5,7 +5,7 @@ class SolicitudController
     /* Guarda un solicitud */
     public function store($res)
     {
-        $solicitud = new Solicitud();        
+        $solicitud = new Solicitud();
         $solicitud->set(...array_values($res));
         return $solicitud->save();
     }
@@ -129,6 +129,10 @@ class SolicitudController
                 dbo.wappersonas as wap_do
                 left join " . USUARIOS . " usu_do ON wap_do.ReferenciaID = usu_do.id_wappersonas
             ) ON sol.id_usuario_solicitado = usu_do.id
+            LEFT OUTER JOIN (
+                dbo.wappersonas as wap_adm
+                LEFT JOIN  " . USUARIOS . "  usu_adm ON wap_adm.ReferenciaID = usu_adm.id_wappersonas
+            ) ON sol.id_usuario_admin = usu_adm.id
             LEFT JOIN " . CAPACITADORES . " cap ON sol.id_capacitador = cap.id
             LEFT JOIN " . USUARIOS . " usu ON sol.id_usuario_solicitante = usu.id
             $where";
