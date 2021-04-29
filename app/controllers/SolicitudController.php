@@ -5,13 +5,7 @@ class SolicitudController
     /* Guarda un solicitud */
     public function store($res)
     {
-        $solicitud = new Solicitud();
-        
-        /* Verificamos si existe el numero de recibo en la Base de datos */
-        $nroRecibo = $this->get(['nro_recibo' => (string)$res['nro_recibo']]);
-        if ($nroRecibo) {
-            return 'nro_recibo_duplicado';
-        }
+        $solicitud = new Solicitud();        
         $solicitud->set(...array_values($res));
         return $solicitud->save();
     }

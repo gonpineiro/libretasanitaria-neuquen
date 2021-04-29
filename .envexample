@@ -1,5 +1,4 @@
 PROD=false
-MIGRATE=true
 
 DB_HOST=
 DB_USER=
