@@ -13,7 +13,7 @@ include_once '../../../app/config/config.php'
                 <div class="card-body mb-3">
                     <p class="card-text text-center">Nº de Solicitud: <?= $idSolicitud; ?></p>
                     <p class="text-center">
-                        Su solicitud para Libreta Sanitaria fue recibida, de ser aceptada nos comunicaremos con usted.
+                        Su solicitud para Libreta Sanitaria fue recibida. En el transcurso de 48hs hábiles nos comunicaremos con usted. Recuerde que para retirar su libreta sanitaria debe presentar el comprobante de pago de sellado y el certificado de capacitación en caso que corresponda.
                     </p>
                 </div>
                 <div class="text-center">
