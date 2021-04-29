@@ -10,11 +10,13 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
         success: function (res) {
             const data = $.parseJSON(res)
             console.log(data)
+
             /* Nombre y apellido */
             const nombre = data.nombre_te
             $("#nombre-span-aprobada").html(nombre);
             $("#imagen-pefil-aprobada").attr("src", data.imagen);
-
+            /* Estado solicitud */
+            $("#estado-span-aprobada").html(" - " + data.estado);
             /* Datos principales */
             $("#dni-span-aprobada").html(data.dni_te);
             $("#fe_nac-span-aprobada").html(formatDate(data.fecha_nac_te));
@@ -242,7 +244,8 @@ function imprimirLibreta() {
             var tipoEmpleo = data.tipo_empleo === "1" ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
             var observaciones = data.observaciones ? data.observaciones : "No presenta";
             var observaciones = charsetFormat(observaciones.substring(0, 50));
-            imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones);
+            var nro_recibo = data.nro_recibo;
+            imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones, nro_recibo);
 
         },
         error: function (errorThrown) {
@@ -251,7 +254,7 @@ function imprimirLibreta() {
     });
 }
 
-function imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones) {
+function imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones, nro_recibo) {
     // https://parall.ax/products/jspdf 
 
     var doc = new jsPDF("p", "mm", "a4");
@@ -287,10 +290,12 @@ function imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpe
     doc.text(130, 39, "LIBRETA SANITARIA N° " + dni);
     doc.setFontSize(9);
     doc.text(120, 46, "Tipo Empleo: " + tipoEmpleo);
-    doc.setFontSize(7);
-    doc.text(120, 50, "Observaciones:");
     doc.setFontSize(9);
-    doc.text(120, 54, observaciones);
+    doc.text(120, 50, "Recibo Nro: " + nro_recibo);
+    doc.setFontSize(7);
+    doc.text(120, 54, "Observaciones:");
+    doc.setFontSize(9);
+    doc.text(120, 58, observaciones);
     doc.addImage(banner, "JPEG", 20.4, 20.35, 89, 12.64);
     doc.addImage(fotodni, "JPEG", 22, 35, 24, 30);
     // al abrir el pdf que se genera abre la opción de impresión del browser
