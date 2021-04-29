@@ -105,11 +105,10 @@ $apellido = $nombreapellido[0];
                     </table>
                 </div>
             </div> -->
-
-            <?php
-            if ($_SESSION['userProfiles'] == 3) { ?>
-                <div class='col-sm d-flex justify-content-center'>
-                    <div class='opcion' onclick='window.location.href = "../administrar/index.php"'>
+            
+            <?= $_SESSION['userProfiles'] != 3 ?: 
+                "<div class='col-sm d-flex justify-content-center'>
+                    <div class='opcion' onclick='window.location.href = \"../administrar/index.php\"'>
                         <table style='width: 100%;'>
                             <tbody>
                                 <tr>
@@ -123,13 +122,13 @@ $apellido = $nombreapellido[0];
                             </tbody>
                         </table>
                     </div>
-                </div>
-            <?php  } ?>
+                </div>"; 
+            ?>
         </div>
     </div>
 
-    <script src="../../../node_modules\jquery\dist\jquery.min.js"></script>
-    <script src="../../../node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
