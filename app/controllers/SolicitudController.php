@@ -119,7 +119,8 @@ class SolicitudController
             sol.fecha_alta as fecha_alta_sol,
             sol.path_comprobante_pago as path_comprobante_pago,
             usu.telefono as usu_telefono,
-            usu.email as usu_email
+            usu.email as usu_email,
+            wap_adm.nombre as adm_nombre
             FROM " . SOLICITUDES . " sol
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_te

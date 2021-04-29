@@ -34,8 +34,7 @@ sol.fecha_alta as fecha_alta_sol,
 sol.path_comprobante_pago as path_comprobante_pago,
 usu.telefono as usu_telefono,
 usu.email as usu_email,
-wap_adm.nombre as adm_nombre,
-sol.id_usuario_admin as id_usuario_admin 
+wap_adm.nombre as adm_nombre
 FROM libretas_solicitudes sol
 LEFT OUTER JOIN (
 	dbo.wappersonas as wap_te
