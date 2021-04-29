@@ -20,7 +20,7 @@
                         <p id="tel-usu-actualizado-aprobada" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> <span id="tel-usu-span-aprobada"></span><small class="text-info"> Actualizado</small></p>
                         <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> <span id="tel-span-aprobada"></span></p>
                         <p id="email-usu-actualizado-aprobada" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> <span id="email-usu-span-aprobada"></span><small class="text-info"> Actualizado</small></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email: <span id="email-span-aprobada"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> <span id="email-span-aprobada"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-aprobada"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-aprobada"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-aprobada"></span></p>
