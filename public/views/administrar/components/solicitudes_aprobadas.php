@@ -8,8 +8,8 @@
             <tr>
                 <th scope="col">N°</th>
                 <th scope="col">DNI</th>
-                <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Fecha Aprobación</th>
                 <th scope="col">Retiro</th>
             </tr>

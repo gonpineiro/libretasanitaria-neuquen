@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" style="color: #076AB3;">Ficha Libreta Sanitaria</h4>
+                <h4 class="modal-title" style="color: #076AB3;">Ficha Libreta Sanitaria <span id="estado-span-aprobada"></span></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,13 +14,13 @@
                     </div>
                     <div class="card-block px-2" id="card-detail-sol">
                         <h4 class="card-title"><span id="nombre-span-aprobada"></span></h4>
-                        <p class="card-text" style="margin-bottom:0rem;">DNI: <span id="dni-span-aprobada"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Fecha Nacimiento: <span id="fe_nac-span-aprobada"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Domicilio: <span id="dire-span-aprobada"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Teléfono: <span id="tel-span-aprobada"></span></p>
-                        <p id="tel-usu-actualizado-aprobada" class="card-text hideDiv" style="margin-bottom:0rem;font-style: italic;">Teléfono Actualizado: <span id="tel-usu-span-aprobada"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Email: <span id="email-span-aprobada"></span></p>
-                        <p id="email-usu-actualizado-aprobada" class="card-text hideDiv" style="margin-bottom:0rem;font-style: italic;">Email Actualizado: <span id="email-usu-span-aprobada"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-credit-card-2-front"></i> DNI: <span id="dni-span-aprobada"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-calendar-event"></i> Fecha Nacimiento: <span id="fe_nac-span-aprobada"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-cursor"></i> Domicilio: <span id="dire-span-aprobada"></span></p>
+                        <p id="tel-usu-actualizado-aprobada" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono Actualizado: <span id="tel-usu-span-aprobada"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono: <span id="tel-span-aprobada"></span></p>
+                        <p id="email-usu-actualizado-aprobada" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i>  Email Actualizado: <span id="email-usu-span-aprobada"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email: <span id="email-span-aprobada"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-aprobada"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-aprobada"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-aprobada"></span></p>

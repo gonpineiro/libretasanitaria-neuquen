@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" style="color: #076AB3;">Ficha Libreta Sanitaria</h5>
+                <h4 class="modal-title" style="color: #076AB3;">Ficha Libreta Sanitaria</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,13 +15,13 @@
                     <div class="card-block px-2" id="card-detail-sol">
                         <span hidden id="id-modal-nueva"></span>
                         <h5 class="card-title"><span id="nombre-span-nueva"></span></h5>
-                        <p class="card-text" style="margin-bottom:0rem;">DNI: <span id="dni-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Domicilio: <span id="dire-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Teléfono: <span id="tel-span-nueva"></span></p>
-                        <p id="tel-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;font-style: italic;">Teléfono Actualizado: <span id="tel-usu-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;">Email: <span id="email-span-nueva"></span></p>
-                        <p id="email-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;font-style: italic;">Email Actualizado: <span id="email-usu-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-credit-card-2-front"></i> DNI: <span id="dni-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-calendar-event"></i> Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-cursor"></i> Domicilio: <span id="dire-span-nueva"></span></p>
+                        <p id="tel-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono Actualizado: <span id="tel-usu-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono: <span id="tel-span-nueva"></span></p>
+                        <p id="email-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email Actualizado: <span id="email-usu-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email: <span id="email-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-nueva"></span></p>
