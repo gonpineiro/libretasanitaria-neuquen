@@ -81,7 +81,7 @@
                                 <textarea id="observaciones-span-periodo" class="form-control" style="border: none!important;box-shadow: inset 0 -1px 0 #ddd;" readonly rows="3"></textarea>
                             </div>
                         </form>
-                        <p>Solicitud evaludada por: <span id="evaluador-span-periodo"></span></p>
+                        <p>Solicitud evaluada por: <span id="evaluador-span-periodo"></span></p>
                     </div>
                 </div>
             </div>
