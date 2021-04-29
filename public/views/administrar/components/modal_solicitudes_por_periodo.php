@@ -16,11 +16,11 @@
                         <h4 class="card-title"><span id="nombre-span-periodo"></span></h4>
                         <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-credit-card-2-front"></i> DNI: <span id="dni-span-periodo"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-calendar-event"></i> Fecha Nacimiento: <span id="fe_nac-span-periodo"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-cursor"></i> Domicilio: <span id="dire-span-periodo"></span></p>
-                        <p id="tel-usu-actualizado-periodo" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono Actualizado: <span id="tel-usu-span-periodo"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono: <span id="tel-span-periodo"></span></p>
-                        <p id="email-usu-actualizado-periodo" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email Actualizado: <span id="email-usu-span-periodo"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email: <span id="email-span-periodo"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-cursor"></i> <span id="dire-span-periodo"></span></p>
+                        <p id="tel-usu-actualizado-periodo" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> <span id="tel-usu-span-periodo"></span><small class="text-info"> Actualizado</small></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> <span id="tel-span-periodo"></span></p>
+                        <p id="email-usu-actualizado-periodo" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> <span id="email-usu-span-periodo"></span><small class="text-info"> Actualizado</small></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> <span id="email-span-periodo"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-periodo"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-periodo"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-periodo"></span></p>
@@ -81,6 +81,7 @@
                                 <textarea id="observaciones-span-periodo" class="form-control" style="border: none!important;box-shadow: inset 0 -1px 0 #ddd;" readonly rows="3"></textarea>
                             </div>
                         </form>
+                        <p>Solicitud evaludada por: <span id="evaluador-span-periodo"></span></p>
                     </div>
                 </div>
             </div>

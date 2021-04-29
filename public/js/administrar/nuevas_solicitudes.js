@@ -9,7 +9,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
-            console.log(data)
+            //console.log(data)
 
             /* Nombre y apellido */
             const nombre = data.nombre_te
@@ -17,11 +17,11 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#imagen-pefil-aprobada").attr("src", data.imagen);
             /* Estado solicitud */
             $("#estado-span-aprobada").html(" - " + data.estado);
+            $("#evaluador-span-aprobada").html(data.adm_nombre);
             /* Datos principales */
             $("#dni-span-aprobada").html(data.dni_te);
             $("#fe_nac-span-aprobada").html(formatDate(data.fecha_nac_te));
             $("#dire-span-aprobada").html(data.direccion_te);
-            console.log(data);
             if (data.telefono_te === data.usu_telefono) {
                 $("#tel-span-aprobada").html(data.telefono_te);
                 $("#tel-usu-actualizado-aprobada").addClass('hideDiv');
@@ -41,7 +41,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
                 $("#email-usu-span-aprobada").html(data.usu_email);
             }
             $("#tipo_empleo-span-aprobada").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
-            $("#renovacion-span-aprobada").html(data.renovacion === '1' ? 'SI' : 'NO');
+            $("#renovacion-span-aprobada").html(data.renovacion === '1' ? 'Sí' : 'No');
             /* observaciones */
             if (data.observaciones == (null || "")) {
                 $("#observaciones-span-aprobada").html("No presenta");
@@ -105,7 +105,9 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         },
         async: false,
         success: function (res) {
+            
             const data = $.parseJSON(res)
+            console.log(data);
             $("#id-modal-nueva").html(data.id);
             /* Nombre y apellido */
             $("#nombre-span-nueva").html(data.nombre_te);
@@ -134,7 +136,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
                 $("#email-usu-span-nueva").html(data.usu_email);
             }
             $("#tipo_empleo-span-nueva").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
-            $("#renovacion-span-nueva").html(data.renovacion === '1' ? 'SI' : 'NO');
+            $("#renovacion-span-nueva").html(data.renovacion === '1' ? 'Sí' : 'No');
 
             /* fechas y numero de recibo */
             $("#fecha-alta-span-nueva").html(formatDate(data.fecha_alta_sol));
@@ -208,6 +210,9 @@ function confirmacionCambiarEstado(estado) {
             },
             async: false,
             success: function (res) {
+                $('#botonesEstado').addClass("hideDiv");
+                $('#progresoCambioEstado').removeClass("hideDiv");
+                progresoCambioEstado
                 location.reload();
             },
             error: function (errorThrown) {
