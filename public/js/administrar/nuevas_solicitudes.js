@@ -51,7 +51,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
                 $("#capacitacion-span-aprobada").html('SI PRESENTA');
             }
             $("#muni-capa-span-aprobada").html(data.municipalidad_nqn === '1' ? 'SI' : 'NO');
-            $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
+            $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? charsetFormat(data.nombre_capacitador) + ' ' + charsetFormat(data.apellido_capacitador) : '');
             $("#matricula-span-aprobada").html(data.matricula);
             $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
             $("#fecha-capa-span-aprobada").html(formatDate(data.fecha_capacitacion));
@@ -122,9 +122,9 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
                 $("#capacitacion-span-nueva").html('SI PRESENTA');
             }
             $("#muni-capa-span-nueva").html(data.municipalidad_nqn === '1' ? 'SI' : 'NO');
-            $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
+            $("#nombre-capa-span-nueva").html(data.nombre_capacitador ? charsetFormat(data.nombre_capacitador) + ' ' + charsetFormat(data.apellido_capacitador) : '');
             $("#matricula-span-nueva").html(data.matricula);
-            $("#lugar-capa-span-nueva").html(data.lugar_capacitacion);
+            $("#lugar-capa-span-nueva").html(charsetFormat(data.lugar_capacitacion));
             $("#fecha-capa-span-nueva").html(formatDate(data.fecha_capacitacion));
             if (verTipoArchivo(data.path_certificado)) {
                 $("#certificado-capa-nueva").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '"></a>');
@@ -301,7 +301,7 @@ const charsetFormat = (str) => {
     str.includes('Ã?') && (str = str.replace('Ã?', 'Á'));
     str.includes('Ã©') && (str = str.replace('Ã©', 'é'));
     str.includes('Ã%') && (str = str.replace('Ã%', 'É'));
-    str.includes("Ã") && (str = str.replace("Ã", 'í'));
+    
     str.includes("Ã?") && (str = str.replace("Ã?", 'Í'));
     str.includes('Ã³') && (str = str.replace('Ã³', 'ó'));
     str.includes('Ã"') && (str = str.replace('Ã"', 'Ó'));
@@ -309,7 +309,7 @@ const charsetFormat = (str) => {
     str.includes('Ãs') && (str = str.replace('Ãs', 'Ú'));
     str.includes('Ã±') && (str = str.replace('Ã±', 'ñ'));
     str.includes("Ã'") && (str = str.replace("Ã'", 'Ñ'));
-
+    str.includes("Ã") && (str = str.replace("Ã", 'í'));
     str.includes("Ã¤") && (str = str.replace("Ã¤", 'ä'));
     str.includes("Ã„") && (str = str.replace("Ã„", 'Ä'));
     str.includes("Ã«") && (str = str.replace("Ã«", 'ë'));

@@ -18,9 +18,6 @@ $dotenv->load();
 /* Modo produccion: true */
 define('PROD', $_ENV['PROD'] == 'true' ? true : false);
 
-/* Seguridad para migration */
-define('MIGRATE', $_ENV['MIGRATE'] == 'true' ? true : false);
-
 /* AppID */
 define('APPID', PROD ? 53 : 55);
 

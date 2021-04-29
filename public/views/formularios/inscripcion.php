@@ -107,7 +107,7 @@ if (isset($_POST) && !empty($_POST)) {
         ];
         $idSolicitud = $solicitudController->store($solicitudParams);
         if (isset($idSolicitud)) console_log("Id Solicitud: $idSolicitud");
-        if (isset($idSolicitud) && $idSolicitud != (false or null)) {
+        if (isset($idSolicitud) && $idSolicitud != (false or null or 'nro_recibo_duplicado')) {
             /* Update solicitudes with paths */
             $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
             $solicitudUpdated = $solicitudController->update(
@@ -142,8 +142,13 @@ if (isset($_POST) && !empty($_POST)) {
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto certificado capacitacion fallida");
             }
         } else {
-            $errores[] = 'Error en alta de solicitud';
-            cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
+            if ($idSolicitud == 'nro_recibo_duplicado') {
+                $_SESSION['error_form'] = "El número " . $_POST['nro_recibo'] . " ya se encuentra registrado";
+                $errores[] = 'Error en alta de solicitud por numero de recibo duplicado';
+            } else {
+                $errores[] = 'Error en alta de solicitud';
+                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
+            }
         }
 
         if (count($errores) > 0) {

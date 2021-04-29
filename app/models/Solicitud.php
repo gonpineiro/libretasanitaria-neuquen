@@ -9,7 +9,7 @@
  * @property bool $renovacion
  * @property bool $capacitacion
  * @property int $id_capacitador
- * @property int $nro_recibo
+ * @property string $nro_recibo
  * @property string $path_comprobante_pago
  * @property string $estado
  * @property string $retiro_en
@@ -59,7 +59,7 @@ class Solicitud
         $this->tipo_empleo = $tipo_empleo;
         $this->renovacion = $renovacion;
         $this->id_capacitador = $id_capacitador;
-        $this->nro_recibo = substr($nro_recibo, 0, LT_SOL_NRORECIBO);
+        $this->nro_recibo = $nro_recibo;
         $this->path_comprobante_pago = $path_comprobante_pago;
         $this->estado = $estado;
         $this->retiro_en = $retiro_en;

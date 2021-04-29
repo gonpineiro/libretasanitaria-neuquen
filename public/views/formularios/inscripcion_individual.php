@@ -44,7 +44,7 @@ if ($errores) {
                     <div class="row form">
                         <div class="col-12">
                             <div style='display:none' id="alertaErrorCarga" class="alert alert-danger fade show" role="alert">
-                                Hubo un error al intentar cargar su solicitud, por favor intente nuevamente mas tarde.
+                                Hubo un error al intentar cargar su solicitud: <?= $_SESSION['error_form'] ?>
                             </div>
                             <h1 class="titulo float-left">Solicitud Individual </h1>
                         </div>
@@ -206,9 +206,9 @@ if ($errores) {
                                         </div>
                                         <div class="form-group">
                                             <label for="nro_recibo">Nro. de comprobante sellado </label>
-                                            <input type="text" id="nro_recibo" minlength="1" maxlength="20" pattern="^[0-9]+-[0-9]+$" class="form-control" placeholder="Ej: 0002-57972906" name="nro_recibo" required>
+                                            <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
-                                                Por favor ingrese un n&uacute;mero como el Ej: 0002-57972906
+                                                Por favor ingrese un n&uacute;mero como el Ej: 257972906
                                             </div>
                                         </div>
 
