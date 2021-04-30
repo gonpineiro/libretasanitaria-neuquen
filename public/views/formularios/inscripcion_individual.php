@@ -205,7 +205,7 @@ if ($errores) {
                                             <strong>Aviso</strong> Obtenga y abone su Sellado Municipal en los medios habilitados <a href="https://sigemi.muninqn.gov.ar/apex/f?p=304:8200:9589380529241::NO:RP,8200::" target="_blank">http://www.neuquencapital.gov.ar/</a>.
                                         </div>
                                         <div class="form-group">
-                                            <label for="nro_recibo">Nro. de comprobante sellado </label>
+                                            <label for="nro_recibo">Nro. de comprobante sellado (solo números)</label>
                                             <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
                                             <div class="invalid-feedback">
                                                 Por favor ingrese un n&uacute;mero como el Ej: 257972906

@@ -22,7 +22,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             else{
                 $("#estado-span-periodo").css('color', '#f54842').html( data.estado);
             }
-            
+            $("#evaluador-span-periodo").html(data.adm_nombre);
             /* Datos principales */
             $("#dni-span-periodo").html(data.dni_te);
             $("#fe_nac-span-periodo").html(formatDate(data.fecha_nac_te));
@@ -46,7 +46,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
                 $("#email-usu-span-periodo").html(data.usu_email);
             }
             $("#tipo_empleo-span-periodo").html(data.tipo_empleo === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
-            $("#renovacion-span-periodo").html(data.renovacion === '1' ? 'SI' : 'NO');
+            $("#renovacion-span-periodo").html(data.renovacion === '1' ? 'Sí' : 'No');
 
             /* fechas y numero de recibo */
             $("#fecha-alta-span-periodo").html(formatDate(data.fecha_alta_sol));

@@ -15,13 +15,13 @@
                     <div class="card-block px-2" id="card-detail-sol">
                         <span hidden id="id-modal-nueva"></span>
                         <h5 class="card-title"><span id="nombre-span-nueva"></span></h5>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-credit-card-2-front"></i> DNI: <span id="dni-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-calendar-event"></i> Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-cursor"></i> Domicilio: <span id="dire-span-nueva"></span></p>
-                        <p id="tel-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono Actualizado: <span id="tel-usu-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> Teléfono: <span id="tel-span-nueva"></span></p>
-                        <p id="email-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email Actualizado: <span id="email-usu-span-nueva"></span></p>
-                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> Email: <span id="email-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class="text-info bi bi-credit-card-2-front"></i> DNI: <span id="dni-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class="text-info bi bi-calendar-event"></i> Fecha Nacimiento: <span id="fe_nac-span-nueva"></span></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class="text-info bi bi-cursor"></i> <span id="dire-span-nueva"></span></p>
+                        <p id="tel-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;"><i class="text-info bi bi-telephone"></i> <span id="tel-usu-span-nueva"></span><small class="text-info"> Actualizado</small></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-telephone"></i> <span id="tel-span-nueva"></span></p>
+                        <p id="email-usu-actualizado-nueva" class="card-text hideDiv" style="margin-bottom:0rem;"><i class="text-info bi bi-envelope"></i> <span id="email-usu-span-nueva"></span><small class="text-info"> Actualizado</small></p>
+                        <p class="card-text" style="margin-bottom:0rem;"><i class=" text-info bi bi-envelope"></i> <span id="email-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Tipo de Empleo: <span id="tipo_empleo-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Es renovación: <span id="renovacion-span-nueva"></span></p>
                         <p class="card-text" style="margin-bottom:0rem;">Capacitación: <span id="capacitacion-span-nueva"></span></p>
@@ -93,8 +93,11 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="confirmacionCambiarEstado('Aprobado')">Aprobar</button>
-                <button type="button" class="btn btn-primary" onclick="confirmacionCambiarEstado('Rechazado')" data-toggle="modal" href="#modalConfirmacion" style="background-color: #f54842; border-color: #f54842;">Rechazar</button>
+                <div id="progresoCambioEstado" class="hideDiv">Se está procesando...</div>
+                <div id="botonesEstado">
+                    <button type="button" class="btn btn-primary" onclick="confirmacionCambiarEstado('Aprobado')">Aprobar</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmacionCambiarEstado('Rechazado')" data-toggle="modal" href="#modalConfirmacion" style="background-color: #f54842; border-color: #f54842;">Rechazar</button>
+                </div>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
