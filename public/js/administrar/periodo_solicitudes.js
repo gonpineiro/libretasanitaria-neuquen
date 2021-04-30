@@ -16,18 +16,18 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#nombre-span-periodo").html(data.nombre_te);
             $("#imagen-pefil-periodo").attr("src", data.imagen);
             /* Estado solicitud */
-            if (data.estado === "Aprobado"){
+            if (data.estado === "Aprobado") {
                 $("#estado-span-periodo").css('color', '#60C1DE').html(data.estado);
             }
-            else{
-                $("#estado-span-periodo").css('color', '#f54842').html( data.estado);
+            else {
+                $("#estado-span-periodo").css('color', '#f54842').html(data.estado);
             }
             $("#evaluador-span-periodo").html(data.adm_nombre);
             /* Datos principales */
             $("#dni-span-periodo").html(data.dni_te);
             $("#fe_nac-span-periodo").html(formatDate(data.fecha_nac_te));
             $("#dire-span-periodo").html(data.direccion_te);
-            if (data.telefono_te === data.usu_telefono) {
+            if ((data.telefono_te === data.usu_telefono) || data.usu_telefono == '') {
                 $("#tel-span-periodo").html(data.telefono_te);
                 $("#tel-usu-actualizado-periodo").addClass('hideDiv');
             }
@@ -36,7 +36,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
                 $("#tel-usu-actualizado-periodo").removeClass('hideDiv');
                 $("#tel-usu-span-periodo").html(data.usu_telefono);
             }
-            if (data.email_te === data.usu_email) {
+            if ((data.email_te === data.usu_email) || data.usu_email == '') {
                 $("#email-span-periodo").html(data.email_te);
                 $("#email-usu-actualizado-periodo").addClass('hideDiv');
             }
@@ -64,7 +64,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
                 $("#observaciones-span-periodo").html("No presenta");
             }
             else {
-                $("#observaciones-span-periodo").html(data.observaciones);
+                $("#observaciones-span-periodo").html(charsetFormat(data.observaciones));
             }
 
             /* mostrar botón imprimir */
@@ -270,6 +270,29 @@ const formatDate = (input) => {
     const day = datePart[2]
 
     return day + '/' + month + '/' + year;
+}
+
+const charsetFormat = (str) => {
+    str.includes('Ã¡') && (str = str.replace('Ã¡', 'á'));
+    str.includes('Ã?') && (str = str.replace('Ã?', 'Á'));
+    str.includes('Ã©') && (str = str.replace('Ã©', 'é'));
+    str.includes('Ã%') && (str = str.replace('Ã%', 'É'));
+
+    str.includes("Ã?") && (str = str.replace("Ã?", 'Í'));
+    str.includes('Ã³') && (str = str.replace('Ã³', 'ó'));
+    str.includes('Ã"') && (str = str.replace('Ã"', 'Ó'));
+    str.includes('Ãº') && (str = str.replace('Ãº', 'ú'));
+    str.includes('Ãs') && (str = str.replace('Ãs', 'Ú'));
+    str.includes('Ã±') && (str = str.replace('Ã±', 'ñ'));
+    str.includes("Ã'") && (str = str.replace("Ã'", 'Ñ'));
+
+    str.includes("Ã¤") && (str = str.replace("Ã¤", 'ä'));
+    str.includes("Ã„") && (str = str.replace("Ã„", 'Ä'));
+    str.includes("Ã«") && (str = str.replace("Ã«", 'ë'));
+    str.includes("Ã<") && (str = str.replace("Ã<", 'Ë'));
+
+    str.includes("Ã") && (str = str.replace("Ã", 'í'));
+    return str;
 }
 
 const tableLenguaje = {

@@ -22,7 +22,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#dni-span-aprobada").html(data.dni_te);
             $("#fe_nac-span-aprobada").html(formatDate(data.fecha_nac_te));
             $("#dire-span-aprobada").html(data.direccion_te);
-            if (data.telefono_te === data.usu_telefono) {
+            if ((data.telefono_te === data.usu_telefono) || data.usu_telefono == '') {
                 $("#tel-span-aprobada").html(data.telefono_te);
                 $("#tel-usu-actualizado-aprobada").addClass('hideDiv');
             }
@@ -31,7 +31,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
                 $("#tel-usu-actualizado-aprobada").removeClass('hideDiv');
                 $("#tel-usu-span-aprobada").html(data.usu_telefono);
             }
-            if (data.email_te === data.usu_email) {
+            if ((data.email_te === data.usu_email) || data.usu_email == '') {
                 $("#email-span-aprobada").html(data.email_te);
                 $("#email-usu-actualizado-aprobada").addClass('hideDiv');
             }
@@ -105,7 +105,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         },
         async: false,
         success: function (res) {
-            
+
             const data = $.parseJSON(res)
             console.log(data);
             $("#id-modal-nueva").html(data.id);
@@ -117,7 +117,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             $("#dni-span-nueva").html(data.dni_te);
             $("#fe_nac-span-nueva").html(formatDate(data.fecha_nac_te));
             $("#dire-span-nueva").html(data.direccion_te);
-            if (data.telefono_te === data.usu_telefono) {
+            if ((data.telefono_te === data.usu_telefono) || data.usu_telefono == '') {
                 $("#tel-span-nueva").html(data.telefono_te);
                 $("#tel-usu-actualizado-nueva").addClass('hideDiv');
             }
@@ -126,7 +126,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
                 $("#tel-usu-actualizado-nueva").removeClass('hideDiv');
                 $("#tel-usu-span-nueva").html(data.usu_telefono);
             }
-            if (data.email_te === data.usu_email) {
+            if ((data.email_te === data.usu_email) || data.usu_email == '') {
                 $("#email-span-nueva").html(data.email_te);
                 $("#email-usu-actualizado-nueva").addClass('hideDiv');
             }
@@ -352,7 +352,7 @@ const charsetFormat = (str) => {
     str.includes('Ãs') && (str = str.replace('Ãs', 'Ú'));
     str.includes('Ã±') && (str = str.replace('Ã±', 'ñ'));
     str.includes("Ã'") && (str = str.replace("Ã'", 'Ñ'));
-    
+
     str.includes("Ã¤") && (str = str.replace("Ã¤", 'ä'));
     str.includes("Ã„") && (str = str.replace("Ã„", 'Ä'));
     str.includes("Ã«") && (str = str.replace("Ã«", 'ë'));
