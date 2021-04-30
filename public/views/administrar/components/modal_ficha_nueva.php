@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" style="color: #076AB3;">Ficha Libreta Sanitaria</h4>
+                <h4 class="modal-title" style="color: #076AB3;">Solicitud N°<span id="id-span-nueva"> </span></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

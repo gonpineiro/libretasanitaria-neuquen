@@ -12,6 +12,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             const data = $.parseJSON(res)
             //console.log(data)
             $("#id-solicitud-periodo").html(data.id)
+            $("#id-span-periodo").html(data.id);
             /* Nombre y apellido */
             $("#nombre-span-periodo").html(data.nombre_te);
             $("#imagen-pefil-periodo").attr("src", data.imagen);
@@ -55,7 +56,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             if (verTipoArchivo(data.path_comprobante_pago)) {
                 $("#comprobante-pago-span-periodo").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
             } else {
-                $("#comprobante-pago-span-periodo").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
+                $("#comprobante-pago-span-periodo").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe></div>');
             }
             //$("#comprobante-pago-span-periodo").attr("src", data.path_comprobante_pago);
 
@@ -88,7 +89,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
             $("#muni-capa-span-periodo").html(data.municipalidad_nqn === '1' ? 'SI' : 'NO');
             $("#nombre-capa-span-periodo").html(data.nombre_capacitador ? data.nombre_capacitador + ' ' + data.apellido_capacitador : '');
             $("#matricula-span-periodo").html(data.matricula);
-            $("#lugar-capa-span-periodo").html(data.lugar_capacitacion);
+            $("#lugar-capa-span-periodo").html(charsetFormat(data.lugar_capacitacion));
             $("#fecha-capa-span-periodo").html(formatDate(data.fecha_capacitacion));
             if (verTipoArchivo(data.path_certificado)) {
                 $("#certificado-capa-periodo").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '"></a>');
@@ -180,7 +181,7 @@ function imprimirLibreta() {
             var fechaExpedicion = data.fecha_evaluacion;
             var fechaVencimiento = data.fecha_vencimiento;
             var tipoEmpleo = data.tipo_empleo === "1" ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
-            var observaciones = data.observaciones ? data.observaciones : "No presenta";
+            var observaciones = data.observaciones ? charsetFormat(data.observaciones) : "No presenta";
             var nro_recibo = data.nro_recibo;
             var observaciones = observaciones.substring(0, 50);
             imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones, nro_recibo);

@@ -13,6 +13,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
 
             /* Nombre y apellido */
             const nombre = data.nombre_te
+            $("#id-span-aprobada").html(id);
             $("#nombre-span-aprobada").html(nombre);
             $("#imagen-pefil-aprobada").attr("src", data.imagen);
             /* Estado solicitud */
@@ -55,7 +56,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             if (verTipoArchivo(data.path_comprobante_pago)) {
                 $("#comprobante-pago-span-aprobada").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
             } else {
-                $("#comprobante-pago-span-aprobada").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
+                $("#comprobante-pago-span-aprobada").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe></div>');
             }
             //$("#comprobante-pago-span-aprobada").attr("src", data.path_comprobante_pago);
             $("#nro-recibo-span-aprobada").html(data.nro_recibo);
@@ -73,7 +74,7 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             $("#muni-capa-span-aprobada").html(data.municipalidad_nqn === '1' ? 'SI' : 'NO');
             $("#nombre-capa-span-aprobada").html(data.nombre_capacitador ? charsetFormat(data.nombre_capacitador) + ' ' + charsetFormat(data.apellido_capacitador) : '');
             $("#matricula-span-aprobada").html(data.matricula);
-            $("#lugar-capa-span-aprobada").html(data.lugar_capacitacion);
+            $("#lugar-capa-span-aprobada").html(charsetFormat(data.lugar_capacitacion));
             $("#fecha-capa-span-aprobada").html(formatDate(data.fecha_capacitacion));
             if (verTipoArchivo(data.path_certificado)) {
                 $("#certificado-capa-aprobada").html('<a href="' + data.path_certificado + '" target="_blank"><img style="width:100%" src="' + data.path_certificado + '"></a>');
@@ -108,7 +109,8 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
 
             const data = $.parseJSON(res)
             console.log(data);
-            $("#id-modal-nueva").html(data.id);
+            $("#id-modal-nueva").html(data.id);            
+            $("#id-span-nueva").html(id);
             /* Nombre y apellido */
             $("#nombre-span-nueva").html(data.nombre_te);
             $("#imagen-pefil-nuevo").attr("src", data.imagen);
@@ -145,7 +147,7 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
             if (verTipoArchivo(data.path_comprobante_pago)) {
                 $("#comprobante-pago-span-nueva").html('<a href="' + data.path_comprobante_pago + '" target="_blank"><img style="width:100%" src="' + data.path_comprobante_pago + '"></a>');
             } else {
-                $("#comprobante-pago-span-nueva").html('<iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe>');
+                $("#comprobante-pago-span-nueva").html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + data.path_comprobante_pago + '"></iframe></div>');
             }
             //$("#comprobante-pago-span-nueva").attr("src", data.path_comprobante_pago);
 
@@ -247,7 +249,7 @@ function imprimirLibreta() {
             var fechaExpedicion = data.fecha_evaluacion;
             var fechaVencimiento = data.fecha_vencimiento;
             var tipoEmpleo = data.tipo_empleo === "1" ? "CON Manipulación Alimentos" : "SIN Manipulación Alimentos";
-            var observaciones = data.observaciones ? data.observaciones : "No presenta";
+            var observaciones = data.observaciones ? charsetFormat(data.observaciones) : "No presenta";
             var observaciones = charsetFormat(observaciones.substring(0, 50));
             var nro_recibo = data.nro_recibo;
             imprimirPdf(fotodni, nombre, dni, domicilio, fechaNacimiento, fechaExpedicion, fechaVencimiento, tipoEmpleo, observaciones, nro_recibo);
