@@ -27,4 +27,21 @@ class UsuarioController
     {
         return Usuario::update($res, $id);
     }
+
+    public function getSolicitud($id)
+    {
+        $sql = "SELECT
+        TOP 1
+        usu.id_wappersonas, 
+        sol.fecha_vencimiento,
+        sol.fecha_alta,
+        sol.estado 
+        FROM dbo.libretas_usuarios usu 
+        LEFT JOIN dbo.libretas_solicitudes sol ON usu.id = sol.id_usuario_solicitado 
+        WHERE id_wappersonas = $id ORDER BY sol.fecha_alta DESC ";
+
+        $conn = new BaseDatos();
+        $query =  $conn->query($sql);
+        return odbc_fetch_array($query);
+    }
 }

@@ -27,7 +27,37 @@ $nombre = $nombreapellido[1];
 $apellido = $nombreapellido[0];
 
 //* false renderiza el formulario ./inscripcion_form.php
-$inscripcion_exitosa = false;
+//$inscripcion_exitosa = false;
+
+/* Verificamos si existe el usuario */
+$usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+
+if ($usuario) {
+    $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+    $vencimiento = $userWithSolicitud['fecha_vencimiento'];
+    $alta = $userWithSolicitud['fecha_alta'];
+
+    /* Estado Aprobado y vigente */
+    if ($userWithSolicitud['estado'] == 'Aprobado' && $vencimiento < date("d/m/Y")) {
+        $estado_inscripcion = 'Aprobado';
+    }
+
+    if ($userWithSolicitud['estado'] == 'Aprobado' && $vencimiento > date("d/m/Y")) {
+        $estado_inscripcion = 'Nuevo';
+    }
+
+    /* Estado Nuevo */
+    if ($userWithSolicitud['estado'] == 'Nuevo') {
+        $estado_inscripcion = 'Espera';
+    }
+
+    /* Estado rechazado */
+    if ($userWithSolicitud['estado'] == 'Rechazado') {
+        $_SESSION['estado_sol'] = 'Rechazado';
+    }
+} else {
+    $estado_inscripcion = 'Nuevo';
+}
 
 if (isset($_POST) && !empty($_POST)) {
     if (checkFile()) {
@@ -65,13 +95,13 @@ if (isset($_POST) && !empty($_POST)) {
             }
 
             /* Verificamos si cambio telefono o celular */
-            if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
+            /* if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
                 $usuarioParams = [
                     'telefono' =>  $_POST['telefono'],
                     'email' => $_POST['email']
                 ];
                 $usuarioController->update($usuarioParams, $usuario['id']);
-            }
+            } */
 
             /* Si tiene un capacitador, primero lo guardamos */
             if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
@@ -165,7 +195,7 @@ if (isset($_POST) && !empty($_POST)) {
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, $enviarMailResult['error']);
             }
         }
-        if (count($errores) == 0) $inscripcion_exitosa = true;
+        if (count($errores) == 0) $estado_inscripcion = 'Exitosa';
     } else $errores[] = 'Error adjunto';
 }
 
@@ -195,9 +225,18 @@ if (isset($_POST) && !empty($_POST)) {
 <body>
     <?php
     include('header.php');
-    if (!$inscripcion_exitosa) {
+    if ($estado_inscripcion == 'Nuevo') {
         isset($_GET['tipo']) && $_GET['tipo'] == 'e' && $_SESSION['userPerfiles'] == (2 || 3) ? include('inscripcion_empresarial.php') : include('inscripcion_individual.php');
-    } else include('inscripcion_exitosa.php');
+    }
+    if ($estado_inscripcion == 'Exitosa') {
+        include('inscripcion_exitosa.php');
+    }
+    if ($estado_inscripcion == 'Espera') {
+        include('inscripcion_espera.php');
+    }
+    if ($estado_inscripcion == 'Aprobado') {
+        include('inscripcion_aprobado.php');
+    }
     ?>
 </body>
 
