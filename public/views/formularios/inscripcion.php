@@ -147,7 +147,7 @@ if (isset($_POST) && !empty($_POST)) {
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
             }
         } else {
-            $_SESSION['error_form'] = "El número " . $_POST['nro_recibo'] . " ya se encuentra registrado";
+            $_SESSION['error_form'] = "El nro. de comprobante sellado " . $_POST['nro_recibo'] . " ya se encuentra registrado";
             $errores[] = 'Error en alta de solicitud por numero de recibo duplicado';
         }
 
