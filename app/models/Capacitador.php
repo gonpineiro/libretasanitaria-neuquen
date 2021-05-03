@@ -46,7 +46,7 @@ class Capacitador
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(CAPACITADORES, $array, 'ssssss');
+        $result = $conn->store(CAPACITADORES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {

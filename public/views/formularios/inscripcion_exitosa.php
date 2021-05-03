@@ -33,9 +33,4 @@ include_once '../../../app/config/config.php'
 foreach ($_POST as $key => $val) {
     unset($_POST[$key]);
 }
-
-/* session_destroy();
-$_SESSION = [];
-unset($_COOKIE['PHPSESSID']); */
-
 ?>

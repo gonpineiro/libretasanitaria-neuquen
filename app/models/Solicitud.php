@@ -59,7 +59,7 @@ class Solicitud
         $this->tipo_empleo = $tipo_empleo;
         $this->renovacion = $renovacion;
         $this->id_capacitador = $id_capacitador;
-        $this->nro_recibo = $nro_recibo;
+        $this->nro_recibo = ltrim($nro_recibo, "0");
         $this->path_comprobante_pago = $path_comprobante_pago;
         $this->estado = $estado;
         $this->retiro_en = $retiro_en;
@@ -73,7 +73,7 @@ class Solicitud
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(SOLICITUDES, $array, 'sssssssssssss');
+        $result = $conn->store(SOLICITUDES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {

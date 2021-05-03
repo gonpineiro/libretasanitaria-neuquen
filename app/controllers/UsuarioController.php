@@ -6,8 +6,7 @@ class UsuarioController
     public function store($res)
     {
         $usuario = new Usuario();
-        $values = array_values($res);
-        $usuario->set(...$values);
+        $usuario->set(...array_values($res));
         $usuario->save();
     }
 

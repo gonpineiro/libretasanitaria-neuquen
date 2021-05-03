@@ -10,7 +10,6 @@ if (isset($_GET['SESSIONKEY'])) {
         header('Location: ' . WEBLOGIN);
         exit();
     }
-
     
     foreach ($_SESSION['usuario']['apps'] as $apps) {
         if ($apps['id'] == APPID && $apps['userProfiles']) {

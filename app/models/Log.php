@@ -44,7 +44,7 @@ class Log
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $conn->store(LOG, $array, 'iissssssssss');
+        $conn->store(LOG, $array);
     }
 
     public static function list($param = [], $ops = [])

@@ -58,7 +58,7 @@ class BaseDatos
         };
     }
 
-    public function store($table, $params, $types)
+    public function store($table, $params)
     {
         $this->connect();
         $count = count($params);
@@ -81,7 +81,7 @@ class BaseDatos
             $values[] = $value;
         }
         $values[] = $id;
-        
+
         $strKeyValues = trim($strKeyValues, ',');
 
         $sql = "UPDATE $table SET $strKeyValues WHERE id=?";

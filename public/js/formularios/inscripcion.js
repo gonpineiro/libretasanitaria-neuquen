@@ -166,7 +166,7 @@ function bsSelectValidation() {
         }
       });
     }
-  }
+}
 
 function terminosycondicionescheck(elem) {
     if (elem.checked) {

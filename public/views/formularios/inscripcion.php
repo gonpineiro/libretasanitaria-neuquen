@@ -97,7 +97,7 @@ if (isset($_POST) && !empty($_POST)) {
                 'tipo_empleo' => $_POST['tipo_empleo'],
                 'renovacion' => $_POST['renovacion'],
                 'id_capacitador' => $_POST['capacitacion'] === "1" ? $idCapacitador : null,
-                'nro_recibo' => $_POST['nro_recibo'],
+                'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
                 'path_comprobante_pago' => null,
                 'estado' => 'Nuevo',
                 'retiro_en' => $_POST['retiro_en'],
@@ -108,7 +108,7 @@ if (isset($_POST) && !empty($_POST)) {
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
             if (isset($idSolicitud)) console_log("Id Solicitud: $idSolicitud");
-            if (isset($idSolicitud) && $idSolicitud != (false or null) && $idSolicitud != 'nro_recibo_duplicado') {
+            if (isset($idSolicitud) && $idSolicitud != (false or null)) {
                 /* Update solicitudes with paths */
                 $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
                 $solicitudUpdated = $solicitudController->update(
@@ -147,7 +147,7 @@ if (isset($_POST) && !empty($_POST)) {
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
             }
         } else {
-            $_SESSION['error_form'] = "El número " . $_POST['nro_recibo'] . " ya se encuentra registrado";
+            $_SESSION['error_form'] = "Nro. de comprobante sellado: " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
             $errores[] = 'Error en alta de solicitud por numero de recibo duplicado';
         }
 

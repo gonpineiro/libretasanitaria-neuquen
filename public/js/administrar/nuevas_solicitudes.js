@@ -108,8 +108,8 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
         success: function (res) {
 
             const data = $.parseJSON(res)
-            console.log(data);
-            $("#id-modal-nueva").html(data.id);            
+            //console.log(data);
+            $("#id-modal-nueva").html(data.id);
             $("#id-span-nueva").html(id);
             /* Nombre y apellido */
             $("#nombre-span-nueva").html(data.nombre_te);
@@ -188,6 +188,7 @@ $(document).ready(function () {
         "language": tableLenguaje
     });
 });
+
 $(document).ready(function () {
     $('.tablas_solicitudes_aprobadas').DataTable({
         "order": [[4, "desc"]],
@@ -228,7 +229,7 @@ function confirmacionCambiarEstado(estado) {
 
 function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-aprobada').textContent
-    console.log(idReferencia)
+    //console.log(idReferencia)
     $.ajax({
         url: "getDatosLibreta.php",
         type: "POST",
@@ -238,7 +239,7 @@ function imprimirLibreta() {
         async: false,
         success: function (response) {
             var data = $.parseJSON(response);
-            console.log(data);
+            //console.log(data);
             var dni = data.dni_te
             var fotodni = data.imagen;
             var nombre = data.nombre_te;

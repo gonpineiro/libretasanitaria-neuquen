@@ -62,7 +62,7 @@ class Usuario
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(USUARIOS, $array, 'iissssssssss');
+        $result = $conn->store(USUARIOS, $array);
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar un usuario';

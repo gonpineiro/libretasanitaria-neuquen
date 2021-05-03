@@ -5,8 +5,7 @@ class LogController
     public function store($res)
     {
         $log = new Log();
-        $values = array_values($res);
-        $log->set(...$values);
+        $log->set(...array_values($res));
         $log->save();
     }
 

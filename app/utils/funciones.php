@@ -182,6 +182,7 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
+/* Obtenemos la imagen de Renaper */
 function getImageByRenaper($array)
 {
     // busca la foto dni

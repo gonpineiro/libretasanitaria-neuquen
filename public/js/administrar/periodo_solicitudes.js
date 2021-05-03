@@ -121,7 +121,7 @@ $('#buscar').on('click', function (e) {
         async: true,
         success: function (response) {
             //alert(response)
-            console.log(response)
+            //console.log(response)
             var data = $.parseJSON(response)
             // destruyo la instancia anterior
             $('#tabla_solicitudes_periodo').DataTable().clear().destroy();
@@ -160,7 +160,7 @@ $('#buscar').on('click', function (e) {
 
 function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-periodo').textContent
-    console.log(idReferencia)
+    //console.log(idReferencia)
     $.ajax({
         url: "getDatosLibreta.php",
         type: "POST",
@@ -170,7 +170,7 @@ function imprimirLibreta() {
         async: false,
         success: function (response) {
             var data = $.parseJSON(response);
-            console.log(data);
+            //console.log(data);
             var dni = data.dni_te
             var fotodni = data.imagen;
             var nombre = data.nombre_te;
