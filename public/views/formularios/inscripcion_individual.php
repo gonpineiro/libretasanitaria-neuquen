@@ -43,7 +43,7 @@ if ($errores) {
                 <div class="row form">
                     <div class="col-12">
                         <div style='display:none' id="alertaErrorCarga" class="alert alert-danger fade show" role="alert">
-                            Hubo un error al intentar cargar su solicitud: <?= $errores['duplicado'];  ?>
+                            Error: <?= $errores['duplicado'];  ?>
                         </div>
                         <h1 class="titulo float-left">Solicitud Individual </h1>
                     </div>

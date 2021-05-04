@@ -51,6 +51,19 @@ CREATE TABLE libretas_log (
 	metodo VARCHAR(45) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
 ALTER TABLE libretas_solicitudes
 	ADD FOREIGN KEY (id_usuario_solicitante) REFERENCES libretas_usuarios(id);
 ALTER TABLE libretas_solicitudes

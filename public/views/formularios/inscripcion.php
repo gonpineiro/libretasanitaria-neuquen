@@ -69,7 +69,7 @@ if (isset($_POST) && !empty($_POST)) {
 
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
-        if (!$nroRecibo || $userWithSolicitud['estado'] == 'Rechazado') {
+        if (!$nroRecibo) {
             /* Cargamos usuario */
             $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
@@ -98,15 +98,6 @@ if (isset($_POST) && !empty($_POST)) {
                     $usuario = $usuarioController->get(['dni' => $params['dni'], 'genero' => $params['genero']]);
                 } else $errores[] = 'Not seteados datos usuario para cargar un tercero en carga empresarial';
             }
-
-            /* Verificamos si cambio telefono o celular */
-            /* if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
-                $usuarioParams = [
-                    'telefono' =>  $_POST['telefono'],
-                    'email' => $_POST['email']
-                ];
-                $usuarioController->update($usuarioParams, $usuario['id']);
-            } */
 
             /* Si tiene un capacitador, primero lo guardamos */
             if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
@@ -182,7 +173,7 @@ if (isset($_POST) && !empty($_POST)) {
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
             }
         } else {
-            $errores['duplicado'] = "Nro. de comprobante sellado: " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
+            $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
 
         if (count($errores) > 0) {
@@ -228,7 +219,7 @@ if (isset($_POST) && !empty($_POST)) {
 
 <body>
     <?php
-    include('header.php');
+    include('./components/header.php');
 
     switch ($estado_inscripcion) {
         case 'Nuevo':
@@ -236,15 +227,15 @@ if (isset($_POST) && !empty($_POST)) {
             break;
 
         case 'Exitosa':
-            include('inscripcion_exitosa.php');
+            include('./components/inscripcion_exitosa.php');
             break;
 
         case 'Enviado':
-            include('inscripcion_enviado.php');
+            include('./components/inscripcion_enviado.php');
             break;
 
         case 'Aprobado':
-            include('inscripcion_aprobado.php');
+            include('./components/inscripcion_aprobado.php');
             break;
     }
     ?>

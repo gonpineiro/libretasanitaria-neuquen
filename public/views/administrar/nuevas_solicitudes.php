@@ -49,7 +49,7 @@ $solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobad
 </head>
 
 <body>
-    <?php include('../formularios/header.php'); ?>
+    <?php include('../formularios/components/header.php'); ?>
     <div id="divUserInfo" class="container py-4" style="display: table-cell;float: right;">
         <table id="tableWidth" style="float: right; margin-right: 30px;">
             <tbody>
