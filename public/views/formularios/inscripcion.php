@@ -36,35 +36,40 @@ if ($usuario) {
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
     $vencimiento = $userWithSolicitud['fecha_vencimiento'];
     $alta = $userWithSolicitud['fecha_alta'];
-
+    $now = strtotime(date("d/m/Y"));
+    $evalDateOne = $vencimiento < date("d/m/Y");
+    $evalDateTwo = $vencimiento > date("d/m/Y");
     /* Estado Aprobado y vigente */
-    if ($userWithSolicitud['estado'] == 'Aprobado' && $vencimiento < date("d/m/Y")) {
+    if ($userWithSolicitud['estado'] == 'Aprobado' && strtotime($vencimiento) >= strtotime(date("d/m/Y"))) {
         $estado_inscripcion = 'Aprobado';
     }
 
-    if ($userWithSolicitud['estado'] == 'Aprobado' && $vencimiento > date("d/m/Y")) {
+    /* Libreta aprobada, pero con vencimiento */
+    if ($userWithSolicitud['estado'] == 'Aprobado' && strtotime($vencimiento) < strtotime(date("d/m/Y"))) {
         $estado_inscripcion = 'Nuevo';
     }
 
     /* Estado Nuevo */
     if ($userWithSolicitud['estado'] == 'Nuevo') {
-        $estado_inscripcion = 'Espera';
+        $estado_inscripcion = 'Enviado';
     }
 
     /* Estado rechazado */
     if ($userWithSolicitud['estado'] == 'Rechazado') {
-        $_SESSION['estado_sol'] = 'Rechazado';
+        $_SESSION['estado_sol'] = "La solicitud N° " . $userWithSolicitud['id_solicitud'] . " fue rechazada el dia " . $userWithSolicitud['fecha_evaluacion'] . ", deberá generar una nueva solicitud";
+        $estado_inscripcion = 'Nuevo';
     }
 } else {
+    /* Nunca solicita una libreta */
     $estado_inscripcion = 'Nuevo';
 }
-
+/* Envio POST de la solicitud */
 if (isset($_POST) && !empty($_POST)) {
     if (checkFile()) {
 
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
-        if (!$nroRecibo) {
+        if (!$nroRecibo || $userWithSolicitud['estado'] == 'Rechazado') {
             /* Cargamos usuario */
             $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
@@ -177,8 +182,7 @@ if (isset($_POST) && !empty($_POST)) {
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
             }
         } else {
-            $_SESSION['error_form'] = "Nro. de comprobante sellado: " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
-            $errores[] = 'Error en alta de solicitud por numero de recibo duplicado';
+            $errores['duplicado'] = "Nro. de comprobante sellado: " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
 
         if (count($errores) > 0) {
@@ -225,17 +229,23 @@ if (isset($_POST) && !empty($_POST)) {
 <body>
     <?php
     include('header.php');
-    if ($estado_inscripcion == 'Nuevo') {
-        isset($_GET['tipo']) && $_GET['tipo'] == 'e' && $_SESSION['userPerfiles'] == (2 || 3) ? include('inscripcion_empresarial.php') : include('inscripcion_individual.php');
-    }
-    if ($estado_inscripcion == 'Exitosa') {
-        include('inscripcion_exitosa.php');
-    }
-    if ($estado_inscripcion == 'Espera') {
-        include('inscripcion_espera.php');
-    }
-    if ($estado_inscripcion == 'Aprobado') {
-        include('inscripcion_aprobado.php');
+
+    switch ($estado_inscripcion) {
+        case 'Nuevo':
+            isset($_GET['tipo']) && $_GET['tipo'] == 'e' && $_SESSION['userPerfiles'] == (2 || 3) ? include('inscripcion_empresarial.php') : include('inscripcion_individual.php');
+            break;
+
+        case 'Exitosa':
+            include('inscripcion_exitosa.php');
+            break;
+
+        case 'Enviado':
+            include('inscripcion_enviado.php');
+            break;
+
+        case 'Aprobado':
+            include('inscripcion_aprobado.php');
+            break;
     }
     ?>
 </body>

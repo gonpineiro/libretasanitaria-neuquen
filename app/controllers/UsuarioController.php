@@ -34,6 +34,8 @@ class UsuarioController
         TOP 1
         usu.id_wappersonas, 
         sol.fecha_vencimiento,
+        sol.id as id_solicitud,
+        sol.fecha_evaluacion,
         sol.fecha_alta,
         sol.estado 
         FROM dbo.libretas_usuarios usu 

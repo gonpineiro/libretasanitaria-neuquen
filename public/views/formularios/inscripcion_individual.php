@@ -36,240 +36,238 @@ if ($errores) {
             </div>
         </div>
         <div class="">
-            <div class="">
-                <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
-                    <div class="row form">
-                        <div class="col-12 elementor-divider"> <span class="elementor-divider-separator"></span></div>
-                    </div>
-                    <div class="row form">
-                        <div class="col-12">
-                            <div style='display:none' id="alertaErrorCarga" class="alert alert-danger fade show" role="alert">
-                                Hubo un error al intentar cargar su solicitud: <?= $_SESSION['error_form'] ?>
-                            </div>
-                            <h1 class="titulo float-left">Solicitud Individual </h1>
+            <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
+                <div class="row form">
+                    <div class="col-12 elementor-divider"> <span class="elementor-divider-separator"></span></div>
+                </div>
+                <div class="row form">
+                    <div class="col-12">
+                        <div style='display:none' id="alertaErrorCarga" class="alert alert-danger fade show" role="alert">
+                            Hubo un error al intentar cargar su solicitud: <?= $errores['duplicado'];  ?>
                         </div>
+                        <h1 class="titulo float-left">Solicitud Individual </h1>
                     </div>
+                </div>
 
-                    <div class="row form" hidden>
-                        <label id="lblDNI"><?= $dni; ?></label>
-                        <label id="lblDireccionRenaper"><?= $direccionRenaper; ?></label>
-                        <label id="lblNroTramite"><?= $nroTramite; ?></label>
-                        <label id="lblEmail"><?= $email; ?></label>
-                        <label id="lblCelular"><?= $celular; ?></label>
-                        <label id="lblFechaNac"><?= $celular; ?></label>
-                        <label id="lblGenero"><?= $genero; ?></label>
-                        <label id="lblRazonSocial"><?= $razonSocial; ?></label>
-                        <label id="lblApellido"><?= $apellido; ?></label>
-                        <label id="lblNombre"><?= $nombre; ?></label>
-                    </div>
-                    <div class="row form">
-                        <div class="col-12 col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="form-group">
+                <div class="row form" hidden>
+                    <label id="lblDNI"><?= $dni; ?></label>
+                    <label id="lblDireccionRenaper"><?= $direccionRenaper; ?></label>
+                    <label id="lblNroTramite"><?= $nroTramite; ?></label>
+                    <label id="lblEmail"><?= $email; ?></label>
+                    <label id="lblCelular"><?= $celular; ?></label>
+                    <label id="lblFechaNac"><?= $celular; ?></label>
+                    <label id="lblGenero"><?= $genero; ?></label>
+                    <label id="lblRazonSocial"><?= $razonSocial; ?></label>
+                    <label id="lblApellido"><?= $apellido; ?></label>
+                    <label id="lblNombre"><?= $nombre; ?></label>
+                </div>
+                <div class="row form">
+                    <div class="col-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group">
 
-                                        <!-- DATOS PERSONALES -->
-                                        <div class="form-group row">
-                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                <label for="telefono">Actualice su n&uacute;mero de tel&eacute;fono </label>
-                                                <input type="number" id="telefono" class="form-control" value="<?= $celular; ?>" placeholder="Tel&eacute;fono" name="telefono" required pattern="/^[0-9]$/">
-                                                <div class="invalid-feedback">
-                                                    <strong>
-                                                        Por favor ingrese solo numeros.
-                                                    </strong>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                <label for="email">Compruebe su direcci&oacute;n de email </label>
-                                                <input type="email" id="email" class="form-control" value="<?= $email; ?>" placeholder="Email" name="email" required>
-                                                <div class="invalid-feedback">
-                                                    <strong>
-                                                        Por favor ingrese el direcci&oacute;n.
-                                                    </strong>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--  -->
-                                        <div class="form-group row">
-                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 menor">
-                                                <label for="tipo_empleo" class="required">Elegir Tipo de Empleo </label>
-                                                <select id="tipo_empleo" class="selectpicker form-control" title="Seleccionar" name='tipo_empleo' required>
-                                                    <option value="1">Con Manipulaci&oacute;n de Alimentos</option>
-                                                    <option value="0">Sin Manipulaci&oacute;n de Alimentos</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Por favor seleccionar un tipo de organizaci&oacute;n.
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 menor">
-                                                <label for="renovacion" class="required">Es renovaci&oacute;n? </label>
-                                                <select id="renovacion" class="selectpicker form-control" title="Seleccionar" name='renovacion' required>
-                                                    <option value="1">Si</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Por favor seleccionar un tipo de organizaci&oacute;n.
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <!-- CAPACITACION -->
-                                        <div class="form-group row">
-                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                <label for="capacitacion" class="required">Recibi&oacute; Capacitaci&oacute;n? </label>
-                                                <select id="capacitacion" class="selectpicker form-control" title="Seleccionar" name='capacitacion' required>
-                                                    <option value="1">Si</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Por favor seleccionar un tipo de organizaci&oacute;n.
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <!-- INFO CAPACITADOR -->
-                                        <div id="div-infoCapacitacion" style="display: none;">
-                                            <label>DATOS DE LA CAPACITACI&Oacute;N</label>
-                                            <div class="form-group row">
-                                                <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12">
-                                                    <label for="municipalidad_nqn" class="required">Fue en la Municipalidad de Neuqu&eacute;n? </label>
-                                                    <select id="municipalidad_nqn" class="selectpicker form-control" title="Seleccionar" name='municipalidad_nqn' required>
-                                                        <option value="1">Si</option>
-                                                        <option value="0">No</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        Por favor seleccionar un tipo de organizaci&oacute;n.
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                    <label for="nombre_capacitador">Nombre del Capacitador </label>
-                                                    <input type="text" id="nombre_capacitador" minlength="1" maxlength="100" class="form-control" placeholder="Indique el nombre del Capacitador" name="nombre_capacitador" required>
-                                                    <div class="invalid-feedback">
-                                                        <strong>
-                                                            Por favor ingrese la nombre del capacitador.
-                                                        </strong>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                    <label for="apellido_capacitador">Apellido del Capacitador </label>
-                                                    <input type="text" id="apellido_capacitador" minlength="1" maxlength="100" class="form-control" placeholder="Indique el Apellido del Capacitador" name="apellido_capacitador" required>
-                                                    <div class="invalid-feedback">
-                                                        <strong>
-                                                            Por favor ingrese la apellido del capacitador.
-                                                        </strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                    <label for="lugar_capacitacion" class="required">Lugar de la Capacitaci&oacute;n CURSO MANIPULACION DE ALIMENTOS </label>
-                                                    <input type="text" id="lugar_capacitacion" class="form-control" placeholder="Indique la el lugar de la capacitaci&oacute;n" name="lugar_capacitacion" required>
-                                                    <div class="invalid-feedback">
-                                                        Por favor seleccionar un tipo de organizaci&oacute;n.
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                                    <label for="fecha_capacitacion">Fecha de Capacitaci&oacute;n </label>
-                                                    <input type="date" id="fecha_capacitacion" class="form-control" name="fecha_capacitacion" required>
-                                                    <div class="invalid-feedback">
-                                                        <strong>
-                                                            Por favor ingrese la matricula del capacitador.
-                                                        </strong>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="div-path_certificado" class="required">Certificado de Capacitaci&oacute;n </label>
-                                                <div class="custom-file" id="div-path_certificado">
-                                                    <input id="path_certificado" class="custom-file-input" type="file" name="path_certificado" required>
-                                                    <label for="path_certificado" class="custom-file-label" id="label-path_certificado"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
-                                                </div>
-                                                <div class="invalid-feedback">
-                                                    Por favor cargue o compruebe que se cargo el adjunto correctamente.
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="alert alert-warning fade show" role="alert">
-                                            <strong>Aviso</strong> Obtenga y abone su Sellado Municipal en los medios habilitados <a href="https://sigemi.muninqn.gov.ar/apex/f?p=304:8200:9589380529241::NO:RP,8200::" target="_blank">http://www.neuquencapital.gov.ar/</a>.
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nro_recibo">Nro. de comprobante sellado (solo números)</label>
-                                            <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
+                                    <!-- DATOS PERSONALES -->
+                                    <div class="form-group row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
+                                            <label for="telefono">Actualice su n&uacute;mero de tel&eacute;fono </label>
+                                            <input type="number" id="telefono" class="form-control" value="<?= $celular; ?>" placeholder="Tel&eacute;fono" name="telefono" required pattern="/^[0-9]$/">
                                             <div class="invalid-feedback">
-                                                Por favor ingrese un n&uacute;mero como el Ej: 257972906
+                                                <strong>
+                                                    Por favor ingrese solo numeros.
+                                                </strong>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
+                                            <label for="email">Compruebe su direcci&oacute;n de email </label>
+                                            <input type="email" id="email" class="form-control" value="<?= $email; ?>" placeholder="Email" name="email" required>
+                                            <div class="invalid-feedback">
+                                                <strong>
+                                                    Por favor ingrese el direcci&oacute;n.
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--  -->
+                                    <div class="form-group row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 menor">
+                                            <label for="tipo_empleo" class="required">Elegir Tipo de Empleo </label>
+                                            <select id="tipo_empleo" class="selectpicker form-control" title="Seleccionar" name='tipo_empleo' required>
+                                                <option value="1">Con Manipulaci&oacute;n de Alimentos</option>
+                                                <option value="0">Sin Manipulaci&oacute;n de Alimentos</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Por favor seleccionar un tipo de organizaci&oacute;n.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 menor">
+                                            <label for="renovacion" class="required">Es renovaci&oacute;n? </label>
+                                            <select id="renovacion" class="selectpicker form-control" title="Seleccionar" name='renovacion' required>
+                                                <option value="1">Si</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Por favor seleccionar un tipo de organizaci&oacute;n.
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- CAPACITACION -->
+                                    <div class="form-group row">
+                                        <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
+                                            <label for="capacitacion" class="required">Recibi&oacute; Capacitaci&oacute;n? </label>
+                                            <select id="capacitacion" class="selectpicker form-control" title="Seleccionar" name='capacitacion' required>
+                                                <option value="1">Si</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Por favor seleccionar un tipo de organizaci&oacute;n.
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- INFO CAPACITADOR -->
+                                    <div id="div-infoCapacitacion" style="display: none;">
+                                        <label>DATOS DE LA CAPACITACI&Oacute;N</label>
+                                        <div class="form-group row">
+                                            <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12">
+                                                <label for="municipalidad_nqn" class="required">Fue en la Municipalidad de Neuqu&eacute;n? </label>
+                                                <select id="municipalidad_nqn" class="selectpicker form-control" title="Seleccionar" name='municipalidad_nqn' required>
+                                                    <option value="1">Si</option>
+                                                    <option value="0">No</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Por favor seleccionar un tipo de organizaci&oacute;n.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
+                                                <label for="nombre_capacitador">Nombre del Capacitador </label>
+                                                <input type="text" id="nombre_capacitador" minlength="1" maxlength="100" class="form-control" placeholder="Indique el nombre del Capacitador" name="nombre_capacitador" required>
+                                                <div class="invalid-feedback">
+                                                    <strong>
+                                                        Por favor ingrese la nombre del capacitador.
+                                                    </strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
+                                                <label for="apellido_capacitador">Apellido del Capacitador </label>
+                                                <input type="text" id="apellido_capacitador" minlength="1" maxlength="100" class="form-control" placeholder="Indique el Apellido del Capacitador" name="apellido_capacitador" required>
+                                                <div class="invalid-feedback">
+                                                    <strong>
+                                                        Por favor ingrese la apellido del capacitador.
+                                                    </strong>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
+                                                <label for="lugar_capacitacion" class="required">Lugar de la Capacitaci&oacute;n CURSO MANIPULACION DE ALIMENTOS </label>
+                                                <input type="text" id="lugar_capacitacion" class="form-control" placeholder="Indique la el lugar de la capacitaci&oacute;n" name="lugar_capacitacion" required>
+                                                <div class="invalid-feedback">
+                                                    Por favor seleccionar un tipo de organizaci&oacute;n.
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
+                                                <label for="fecha_capacitacion">Fecha de Capacitaci&oacute;n </label>
+                                                <input type="date" id="fecha_capacitacion" class="form-control" name="fecha_capacitacion" required>
+                                                <div class="invalid-feedback">
+                                                    <strong>
+                                                        Por favor ingrese la matricula del capacitador.
+                                                    </strong>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="div-path_comprobante_pago" class="required">Comprobante de pago </label>
-                                            <div class="custom-file" id="div-path_comprobante_pago">
-                                                <input id="path_comprobante_pago" class="custom-file-input" type="file" name="path_comprobante_pago" required>
-                                                <label for="path_comprobante_pago" class="custom-file-label" id="label-path_comprobante_pago"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
+                                            <label for="div-path_certificado" class="required">Certificado de Capacitaci&oacute;n </label>
+                                            <div class="custom-file" id="div-path_certificado">
+                                                <input id="path_certificado" class="custom-file-input" type="file" name="path_certificado" required>
+                                                <label for="path_certificado" class="custom-file-label" id="label-path_certificado"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
                                             </div>
                                             <div class="invalid-feedback">
                                                 Por favor cargue o compruebe que se cargo el adjunto correctamente.
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="retiro_en" class="required">Elegir Lugar de retiro del Carnet </label>
-                                            <select id="retiro_en" class="selectpicker form-control" title="Seleccionar" name='retiro_en' required>
-                                                <option value="Oeste">Oeste - Novella y Godoy</option>
-                                                <option value="Centro">Centro - Islas Malvinas 1850</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Por favor seleccionar lugar de retiro para el carnet.
-                                            </div>
+                                    </div>
+                                    <div class="alert alert-warning fade show" role="alert">
+                                        <strong>Aviso</strong> Obtenga y abone su Sellado Municipal en los medios habilitados <a href="https://sigemi.muninqn.gov.ar/apex/f?p=304:8200:9589380529241::NO:RP,8200::" target="_blank">http://www.neuquencapital.gov.ar/</a>.
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nro_recibo">Nro. de comprobante sellado (solo números)</label>
+                                        <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
+                                        <div class="invalid-feedback">
+                                            Por favor ingrese un n&uacute;mero como el Ej: 257972906
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="div-path_comprobante_pago" class="required">Comprobante de pago </label>
+                                        <div class="custom-file" id="div-path_comprobante_pago">
+                                            <input id="path_comprobante_pago" class="custom-file-input" type="file" name="path_comprobante_pago" required>
+                                            <label for="path_comprobante_pago" class="custom-file-label" id="label-path_comprobante_pago"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Por favor cargue o compruebe que se cargo el adjunto correctamente.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="retiro_en" class="required">Elegir Lugar de retiro del Carnet </label>
+                                        <select id="retiro_en" class="selectpicker form-control" title="Seleccionar" name='retiro_en' required>
+                                            <option value="Oeste">Oeste - Novella y Godoy</option>
+                                            <option value="Centro">Centro - Islas Malvinas 1850</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por favor seleccionar lugar de retiro para el carnet.
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
                         </div>
+                        <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
                     </div>
-                    <div class="row mt-3 mb-3">
-                        <div class="col-12">
-                            <div class="form-inline">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="terminosycondiciones" id="terminosycondiciones" onchange="terminosycondicionescheck(this);" required>
-                                    <label class="form-check-label" for="terminosycondiciones">
-                                        He le&iacute;do y acepto las <a class="ml-1" href="BASES_Y_CONDICIONES.pdf" target="_blank"> Bases y condiciones </a>
-                                    </label>
-                                </div>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-12">
+                        <div class="form-inline">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="terminosycondiciones" id="terminosycondiciones" onchange="terminosycondicionescheck(this);" required>
+                                <label class="form-check-label" for="terminosycondiciones">
+                                    He le&iacute;do y acepto las <a class="ml-1" href="BASES_Y_CONDICIONES.pdf" target="_blank"> Bases y condiciones </a>
+                                </label>
+                            </div>
 
 
-                                <div class="invalid-feedback" style="color: #dc3545;">
-                                    <strong>
-                                        Debe aceptar los t&eacute;rminos.
-                                    </strong>
-                                </div>
+                            <div class="invalid-feedback" style="color: #dc3545;">
+                                <strong>
+                                    Debe aceptar los t&eacute;rminos.
+                                </strong>
                             </div>
-                            <div class="form-inline">
-                                <span>
-                                    Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:carnetma@muninqn.gob.ar" target="_blank">carnetma@muninqn.gob.ar</a>
-                                </span>
-                            </div>
-                            <div id="enviando" class="spinner-border text-primary hideDiv" role="status">
-                                <span class="sr-only">Enviando...</span>
-                            </div>
-                            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" />
                         </div>
+                        <div class="form-inline">
+                            <span>
+                                Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:carnetma@muninqn.gob.ar" target="_blank">carnetma@muninqn.gob.ar</a>
+                            </span>
+                        </div>
+                        <div id="enviando" class="spinner-border text-primary hideDiv" role="status">
+                            <span class="sr-only">Enviando...</span>
+                        </div>
+                        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" />
                     </div>
-                </form>
+                </div>
+            </form>
 
-            </div>
         </div>
     </div>
 
