@@ -183,7 +183,7 @@ spl_autoload_register(function ($class_name) {
 });
 
 /* Obtenemos la imagen de Renaper */
-function getImageByRenaper($array)
+function getImageByRenaper($array, $jsonStr = true)
 {
     // busca la foto dni
     $genero = $array['genero_te'];
@@ -200,5 +200,5 @@ function getImageByRenaper($array)
         $imagen = $json->{'docInfo'}->{'imagen'};
     }
     $array['imagen'] = $imagen;
-    return utf8_converter($array, true);
+    return utf8_converter($array, $jsonStr);
 }

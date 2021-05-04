@@ -99,5 +99,11 @@ table.dataTable tbody tr:hover {
     }
     .nombre-modal {
         font-size: 0.9rem;
+    } 
+}
+
+@media (max-width: 576px) {
+    .scale{
+        transform: scale(0.9) !important;
     }
 }
