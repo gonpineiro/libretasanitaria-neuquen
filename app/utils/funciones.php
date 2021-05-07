@@ -2,14 +2,15 @@
 
 function data_submitted()
 {
-
     $_AAux = array();
-    if (!empty($_REQUEST))
+    if (!empty($_REQUEST)) {
         $_AAux = $_REQUEST;
+    }
     if (count($_AAux)) {
         foreach ($_AAux as $indice => $valor) {
-            if ($valor == "")
+            if ($valor == "") {
                 $_AAux[$indice] = 'null';
+            }
         }
     }
     return $_AAux;
@@ -163,7 +164,9 @@ function utf8_converter($array, $json)
     array_walk_recursive($array, function (&$item) {
         $item = utf8_encode($item);
     });
-    if ($json === true) return json_encode($array);
+    if ($json === true) {
+        return json_encode($array);
+    }
     return $array;
 }
 
@@ -201,4 +204,18 @@ function getImageByRenaper($array, $jsonStr = true)
     }
     $array['imagen'] = $imagen;
     return utf8_converter($array, $jsonStr);
+}
+
+function compararFechas($string, $get, $format = 'd/m/Y')
+{
+    $now = new DateTime();
+    $date = DateTime::createFromFormat('d/m/Y', $string);
+
+    $compare = $now < $date;
+    $array = [
+        'now' => $now,
+        'date' => $date,
+        'dif' => $date->diff($now)->$get,
+];
+    return $array;
 }

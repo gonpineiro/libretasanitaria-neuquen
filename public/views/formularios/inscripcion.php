@@ -31,33 +31,50 @@ $apellido = $nombreapellido[0];
 
 /* Verificamos si existe el usuario */
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
-
 if ($usuario) {
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-    $vencimiento = $userWithSolicitud['fecha_vencimiento'];
     $alta = $userWithSolicitud['fecha_alta'];
-    $now = strtotime(date("d/m/Y"));
-    $evalDateOne = $vencimiento < date("d/m/Y");
-    $evalDateTwo = $vencimiento > date("d/m/Y");
-    /* Estado Aprobado y vigente */
-    if ($userWithSolicitud['estado'] == 'Aprobado' && strtotime($vencimiento) >= strtotime(date("d/m/Y"))) {
-        $estado_inscripcion = 'Aprobado';
-    }
+    $vencimiento = $userWithSolicitud['fecha_vencimiento'];
 
-    /* Libreta aprobada, pero con vencimiento */
-    if ($userWithSolicitud['estado'] == 'Aprobado' && strtotime($vencimiento) < strtotime(date("d/m/Y"))) {
-        $estado_inscripcion = 'Nuevo';
-    }
+    
+    
+    /* analizamos las fechas */
+    if (isset($vencimiento) && $userWithSolicitud['fecha_vencimiento'] != '') {
+        # code...
+    
+        $arrayFechas = compararFechas($userWithSolicitud['fecha_vencimiento'], 'days');
 
-    /* Estado Nuevo */
-    if ($userWithSolicitud['estado'] == 'Nuevo') {
-        $estado_inscripcion = 'Enviado';
-    }
+        /* Estado Aprobado y vigente, faltando 7 dias o menospara el vencimiento */
+        if ($userWithSolicitud['estado'] == 'Aprobado' &&  ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now'])) {
+            /* Muestra la carnet */
+            $estado_inscripcion = 'Nuevo';
+        } else {
+            /* Muestra la carnet */
+            $estado_inscripcion = 'Aprobado';
+        }
 
-    /* Estado rechazado */
-    if ($userWithSolicitud['estado'] == 'Rechazado') {
-        $_SESSION['estado_sol'] = "La solicitud N° " . $userWithSolicitud['id_solicitud'] . " fue rechazada el dia " . $userWithSolicitud['fecha_evaluacion'] . ", deberá generar una nueva solicitud";
-        $estado_inscripcion = 'Nuevo';
+        /* Estado Aprobado y vigente */
+        if ($userWithSolicitud['estado'] == 'Aprobado' && $arrayFechas['date'] > $arrayFechas['now']) {
+        }
+
+        
+
+        /* Estado rechazado */
+        if ($userWithSolicitud['estado'] == 'Rechazado') {
+            $_SESSION['estado_sol'] = "La solicitud N° " . $userWithSolicitud['id_solicitud'] . " fue rechazada el dia " . $userWithSolicitud['fecha_evaluacion'] . ", deberá generar una nueva solicitud";
+            $estado_inscripcion = 'Nuevo';
+        }
+    } else {
+        /* Estado Nuevo */
+        if ($userWithSolicitud['estado'] == 'Nuevo') {
+            $estado_inscripcion = 'Enviado';
+        }
+
+        /* Estado rechazado */
+        if ($userWithSolicitud['estado'] == 'Rechazado') {
+            $_SESSION['estado_sol'] = "La solicitud N° " . $userWithSolicitud['id_solicitud'] . " fue rechazada el dia " . $userWithSolicitud['fecha_evaluacion'] . ", deberá generar una nueva solicitud";
+            $estado_inscripcion = 'Nuevo';
+        }
     }
 } else {
     /* Nunca solicita una libreta */
@@ -73,7 +90,9 @@ if (isset($_POST) && !empty($_POST)) {
             /* Cargamos usuario */
             $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
-            if (!$usuario) $usuarioController->store(['id_wappersonas' => $id_wappersonas]);
+            if (!$usuario) {
+                $usuarioController->store(['id_wappersonas' => $id_wappersonas]);
+            }
 
             /* buscamos el usuario  */
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
@@ -96,7 +115,9 @@ if (isset($_POST) && !empty($_POST)) {
 
                     $usuarioController->store($params);
                     $usuario = $usuarioController->get(['dni' => $params['dni'], 'genero' => $params['genero']]);
-                } else $errores[] = 'Not seteados datos usuario para cargar un tercero en carga empresarial';
+                } else {
+                    $errores[] = 'Not seteados datos usuario para cargar un tercero en carga empresarial';
+                }
             }
 
             /* Si tiene un capacitador, primero lo guardamos */
@@ -133,7 +154,9 @@ if (isset($_POST) && !empty($_POST)) {
                 'id_usuario_admin' => null,
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
-            if (isset($idSolicitud)) console_log("Id Solicitud: $idSolicitud");
+            if (isset($idSolicitud)) {
+                console_log("Id Solicitud: $idSolicitud");
+            }
             if (isset($idSolicitud) && $idSolicitud != (false or null)) {
                 /* Update solicitudes with paths */
                 $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
@@ -190,8 +213,12 @@ if (isset($_POST) && !empty($_POST)) {
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, $enviarMailResult['error']);
             }
         }
-        if (count($errores) == 0) $estado_inscripcion = 'Exitosa';
-    } else $errores[] = 'Error adjunto';
+        if (count($errores) == 0) {
+            $estado_inscripcion = 'Exitosa';
+        }
+    } else {
+        $errores[] = 'Error adjunto';
+    }
 }
 
 ?>
