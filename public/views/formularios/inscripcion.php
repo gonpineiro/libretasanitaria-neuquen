@@ -10,71 +10,37 @@ $usuarioController = new UsuarioController();
 $capacitadorController = new CapacitadorController();
 $solicitudController = new SolicitudController();
 
-$errores = [];
-$id_wapusuarios = $_SESSION['usuario']['referenciaID'];
-$dni = $_SESSION['usuario']['documento'];
-$datosPersonales = $_SESSION['usuario']['datosPersonales'];
-$direccionRenaper = $datosPersonales['domicilioReal']['direccion'] . ' ' . $datosPersonales['domicilioReal']['codigoPostal']['ciudad'];
-$nroTramite = $datosPersonales['properties']['renaperID'];
-$id_wappersonas = $datosPersonales['referenciaID'];
-$email = $_SESSION['usuario']['correoElectronico'];
-$celular = $_SESSION['usuario']['celular'];
-$fechanacimiento = date('d-m-Y', strtotime(mb_split('T', $_SESSION['usuario']['fechaNacimiento'])[0]));
-$genero = $_SESSION['usuario']['genero'];
-$nombreapellido = explode(",", $_SESSION['usuario']["razonSocial"]);
-$razonSocial = $_SESSION['usuario']["razonSocial"];
-$nombre = $nombreapellido[1];
-$apellido = $nombreapellido[0];
-
-//* false renderiza el formulario ./inscripcion_form.php
-//$inscripcion_exitosa = false;
+/* datos de la sesion */
+include('session.php');
 
 /* Verificamos si existe el usuario */
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 if ($usuario) {
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+    $id = $userWithSolicitud['id_solicitud'];
     $alta = $userWithSolicitud['fecha_alta'];
     $vencimiento = $userWithSolicitud['fecha_vencimiento'];
+    $fechaEvaluacion = $userWithSolicitud['fecha_evaluacion'];
 
-    
-    
-    /* analizamos las fechas */
-    if (isset($vencimiento) && $userWithSolicitud['fecha_vencimiento'] != '') {
-        # code...
-    
-        $arrayFechas = compararFechas($userWithSolicitud['fecha_vencimiento'], 'days');
-
-        /* Estado Aprobado y vigente, faltando 7 dias o menospara el vencimiento */
-        if ($userWithSolicitud['estado'] == 'Aprobado' &&  ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now'])) {
-            /* Muestra la carnet */
-            $estado_inscripcion = 'Nuevo';
-        } else {
-            /* Muestra la carnet */
-            $estado_inscripcion = 'Aprobado';
-        }
-
-        /* Estado Aprobado y vigente */
-        if ($userWithSolicitud['estado'] == 'Aprobado' && $arrayFechas['date'] > $arrayFechas['now']) {
-        }
-
-        
-
-        /* Estado rechazado */
-        if ($userWithSolicitud['estado'] == 'Rechazado') {
-            $_SESSION['estado_sol'] = "La solicitud N° " . $userWithSolicitud['id_solicitud'] . " fue rechazada el dia " . $userWithSolicitud['fecha_evaluacion'] . ", deberá generar una nueva solicitud";
-            $estado_inscripcion = 'Nuevo';
-        }
-    } else {
-        /* Estado Nuevo */
-        if ($userWithSolicitud['estado'] == 'Nuevo') {
+    switch ($userWithSolicitud['estado']) {
+        case 'Nuevo':
             $estado_inscripcion = 'Enviado';
-        }
+            break;
 
-        /* Estado rechazado */
-        if ($userWithSolicitud['estado'] == 'Rechazado') {
-            $_SESSION['estado_sol'] = "La solicitud N° " . $userWithSolicitud['id_solicitud'] . " fue rechazada el dia " . $userWithSolicitud['fecha_evaluacion'] . ", deberá generar una nueva solicitud";
+        case 'Rechazado':
+            $userNot = "La solicitud N° " . $id . " fue rechazada el dia " . $fechaEvaluacion . ", deberá generar una nueva solicitud";
             $estado_inscripcion = 'Nuevo';
-        }
+            break;
+
+        case 'Aprobado':
+            $arrayFechas = compararFechas($vencimiento, 'days');
+            if ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now']) {
+                $userNot = "Faltan 7 días o menos para que el vencimiento de su libreta, deberá generar una nueva solicitud";
+                $estado_inscripcion = 'Nuevo';
+            } else {
+                $estado_inscripcion = 'Aprobado';
+            }
+            break;
     }
 } else {
     /* Nunca solicita una libreta */
@@ -232,16 +198,7 @@ if (isset($_POST) && !empty($_POST)) {
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../../estilos/estilo.css">
-    <title>Inscripci&oacute;n Libreta Sanitaria</title>
-    <style>
-        .hideDiv {
-            display: none;
-        }
-
-        .invalid-feedback {
-            color: lightsalmon;
-        }
-    </style>
+    <title>Inscripci&oacute;n Libreta Sanitaria</title>    
 </head>
 
 <body>

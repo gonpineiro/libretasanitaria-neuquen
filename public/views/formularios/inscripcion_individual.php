@@ -42,9 +42,7 @@ if ($errores) {
                 </div>
                 <div class="row form">
                     <div class="col-12">
-                        <div style='display:none' id="alertaErrorCarga" class="alert alert-danger fade show" role="alert">
-                            Error: <?= $errores['duplicado'];  ?>
-                        </div>
+                        <?php include('./components/user-msg.php') ?>
                         <h1 class="titulo float-left">Solicitud Individual </h1>
                     </div>
                 </div>
