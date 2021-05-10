@@ -58,7 +58,7 @@ $solicitudesAprobadas = [];
 </head>
 
 <body>
-    <?PHP include('../formularios/header.php'); ?>
+    <?PHP include('../formularios/components/header.php'); ?>
     <div id="divUserInfo" class="container py-4" style="display: table-cell;float: right;">
         <table id="tableWidth" style="float: right; margin-right: 30px;">
             <tbody>

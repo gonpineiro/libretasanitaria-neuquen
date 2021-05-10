@@ -127,6 +127,7 @@ $('#buscar').on('click', function (e) {
             $('#tabla_solicitudes_periodo').DataTable().clear().destroy();
             // creo la nueva instancia
             $('#tabla_solicitudes_periodo').DataTable({
+                "order": [[0, "desc"]],
                 data: data,
                 columns: [{
                     'data': "id"

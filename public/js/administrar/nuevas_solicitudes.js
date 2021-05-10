@@ -184,14 +184,14 @@ $('#tabla_nuevas_solicitudes td').click(function (node) {
 
 $(document).ready(function () {
     $('.tablas_solicitudes_nuevas').DataTable({
-        "order": [[4, "desc"]],
+        "order": [[0, "desc"]],
         "language": tableLenguaje
     });
 });
 
 $(document).ready(function () {
     $('.tablas_solicitudes_aprobadas').DataTable({
-        "order": [[4, "desc"]],
+        "order": [[0, "desc"]],
         "language": tableLenguaje
     });
 });

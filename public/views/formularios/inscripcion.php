@@ -28,14 +28,14 @@ if ($usuario) {
             break;
 
         case 'Rechazado':
-            $userNot = "La solicitud N° " . $id . " fue rechazada el dia " . $fechaEvaluacion . ", deberá generar una nueva solicitud";
+            $userNot = "Su última solicitud fue rechazada. Puede generar una nueva solicitud.";
             $estado_inscripcion = 'Nuevo';
             break;
 
         case 'Aprobado':
             $arrayFechas = compararFechas($vencimiento, 'days');
             if ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now']) {
-                $userNot = "Faltan 7 días o menos para que el vencimiento de su libreta, deberá generar una nueva solicitud";
+                $userNot = "La fecha de vencimiento de su libreta es : $vencimiento. Puede generar una nueva solicitud.";
                 $estado_inscripcion = 'Nuevo';
             } else {
                 $estado_inscripcion = 'Aprobado';
@@ -198,7 +198,7 @@ if (isset($_POST) && !empty($_POST)) {
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../../estilos/estilo.css">
-    <title>Inscripci&oacute;n Libreta Sanitaria</title>    
+    <title>Inscripci&oacute;n Libreta Sanitaria</title>
 </head>
 
 <body>
