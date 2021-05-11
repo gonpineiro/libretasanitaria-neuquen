@@ -63,6 +63,15 @@ if (isset($_POST) && !empty($_POST)) {
             /* buscamos el usuario  */
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 
+            /* Verificamos si cambio telefono o celular */
+            if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
+                $usuarioParams = [
+                    'telefono' =>  $_POST['telefono'],
+                    'email' => $_POST['email']
+                ];
+                $usuarioController->update($usuarioParams, $usuario['id']);
+            }
+
             /* Si es carga empresarial y se carga a un tercero  */
             if (!$usuario) {
                 if (isset($_POST['dni'], $_POST['genero'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email'], $_POST['direccion_renaper'], $_POST['fecha_nac'])) {
