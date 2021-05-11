@@ -10,7 +10,7 @@ if (isset($_GET['SESSIONKEY'])) {
         header('Location: ' . WEBLOGIN);
         exit();
     }
-    
+
     foreach ($_SESSION['usuario']['apps'] as $apps) {
         if ($apps['id'] == APPID && $apps['userProfiles']) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
@@ -20,8 +20,13 @@ if (isset($_GET['SESSIONKEY'])) {
     /* Entorno de prueba */
     if (!PROD) $_SESSION['userProfiles'] = 3;
 
-    header('Location: views/menu/index.php');
-    exit();
+    if ($_SESSION['userProfiles'] != 3) {
+        header('Location: views/formularios/inscripcion.php');
+        exit();
+    } else {
+        header('Location: views/menu/index.php');
+        exit();
+    }
 }
 header('Location: ' . WEBLOGIN);
 exit();
