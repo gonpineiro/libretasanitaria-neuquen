@@ -50,3 +50,14 @@ LEFT OUTER JOIN (
 ) ON sol.id_usuario_admin = usu_adm.id
 LEFT JOIN dbo.libretas_capacitadores cap ON sol.id_capacitador = cap.id
 LEFT JOIN dbo.libretas_usuarios usu ON sol.id_usuario_solicitante = usu.id
+
+
+/*  */
+SELECT 
+id,
+id_wappersonas,
+wap.ReferenciaID,
+wap.Documento,
+wap.Nombre 
+FROM dbo.libretas_usuarios usu
+LEFT JOIN wappersonas wap ON wap.ReferenciaID  = usu.id_wappersonas 
