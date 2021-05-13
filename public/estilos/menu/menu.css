@@ -9,7 +9,7 @@ body{    background-size: 100%;
 .opcion {
     display: inline-block;
     cursor: pointer;
-    width: 130px;
+    width: 180px;
     height: 160px;
     margin: auto;
     background-color: transparent;
