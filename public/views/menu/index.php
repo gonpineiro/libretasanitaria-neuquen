@@ -68,7 +68,9 @@ $apellido = $nombreapellido[0];
             </td>
         </tr>
     </tbody>
-
+    <div class="container pt-5">
+        <span style="color: transparent;">.</span>
+    </div>
     <div class="container">
 
         <div class="row">
@@ -105,8 +107,8 @@ $apellido = $nombreapellido[0];
                     </table>
                 </div>
             </div> -->
-            
-            <?= $_SESSION['userProfiles'] != 3 ?: 
+
+            <?= $_SESSION['userProfiles'] != 3 ?:
                 "<div class='col-sm d-flex justify-content-center'>
                     <div class='opcion' onclick='window.location.href = \"../administrar/index.php\"'>
                         <table style='width: 100%;'>
@@ -122,7 +124,7 @@ $apellido = $nombreapellido[0];
                             </tbody>
                         </table>
                     </div>
-                </div>"; 
+                </div>";
             ?>
         </div>
     </div>
