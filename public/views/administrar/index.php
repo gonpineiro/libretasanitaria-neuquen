@@ -80,8 +80,15 @@ $apellido = $nombreapellido[0];
                     <button type="button" onclick='window.location = ("./historial_solicitudes.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:320px">Solicitudes por Período</button>
                 </div>
             </div>
+            <div class="form-group col-12">
+                <div class='col-sm d-flex justify-content-center'>
+                    <button type="button" onclick='window.location = ("./estadisticas.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:320px">Estadísticas</button>
+                </div>
+            </div>
         </div>
     </div>
+
+
     <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="" async defer></script>

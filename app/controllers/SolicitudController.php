@@ -140,4 +140,23 @@ class SolicitudController
 
         return $sql;
     }
+    //
+    public function getCountEstados()
+    {
+        $sql = "SELECT estado, count(*) as nota FROM dbo.libretas_solicitudes GROUP BY estado";
+        $conn = new BaseDatos();
+        $array = [];
+        $query =  $conn->query($sql);
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Obtener las estadisticas';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'getCountEstados');
+            $log->save();
+        }
+        while ($row = odbc_fetch_array($query)) {
+            $array[$row['estado']] = $row['nota'];
+        }
+        return $array;
+    }
 }

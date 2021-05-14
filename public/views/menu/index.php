@@ -71,6 +71,7 @@ $apellido = $nombreapellido[0];
     <div class="container pt-5">
         <span style="color: transparent;">.</span>
     </div>
+    
     <div class="container">
 
         <div class="row">
