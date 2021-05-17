@@ -106,11 +106,8 @@ $solicitudesAprobadas = [];
         <span style="color: transparent;">.</span>
     </div>
 
-
-
-
     <div class="body container" style="padding-bottom: 50px;">
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-md-3">
                 <div class="card-counter primary">
                     <i class="fa fa-code-fork"></i>
@@ -143,7 +140,9 @@ $solicitudesAprobadas = [];
                 </div>
             </div>
         </div>
-        <a href="./index.php" class="btn btn-primary">Regresar</a>
+        <div class="row">
+            <a href="./index.php" class="btn btn-primary mx-auto">Regresar</a>
+        </div>
     </div>
 </body>
 
