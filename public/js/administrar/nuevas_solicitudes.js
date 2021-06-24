@@ -226,7 +226,23 @@ function confirmacionCambiarEstado(estado) {
         // cancelar
     }
 }
-
+function cambiarEstadoManipulacion(){
+    const id = $("#id-span-aprobada").text();
+    $.ajax({
+        url: "cambio_manipulacion.php",
+        type: "POST",
+        data: {
+            id
+        },
+        async: false,
+        success: function (res) {
+            $("#tipo_empleo-span-aprobada").html(res === '1' ? 'Con manipulación de alimentos' : 'Sin manipulación de alimentos');
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
 function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-aprobada').textContent
     //console.log(idReferencia)
