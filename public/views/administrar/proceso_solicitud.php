@@ -2,7 +2,6 @@
 include '../../../app/config/config.php';
 $solicitudController = new SolicitudController();
 
-
 /* Consultamos para el modal */
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -26,6 +25,9 @@ if (isset($_POST['id']) && isset($_POST['estado'])) {
     }
 
     if ($_POST['estado'] === 'Rechazado') {
+        $solicitud = $solicitudController->getSolicitudesWhereId($_POST['id']);
+        // función para enviar el email rechazado
+        enviarMailRechazado($solicitud['email_te'], $solicitud['nombre_te'], $_POST['observaciones'], $_POST['id']);
         $params['nro_recibo'] = null;
     }
 
@@ -33,3 +35,4 @@ if (isset($_POST['id']) && isset($_POST['estado'])) {
     echo ($sol);
     exit();
 }
+
