@@ -48,7 +48,17 @@ class SolicitudController
     /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where periodo de fechas */
     public function getSolicitudesWherePeriod($fecha_desde, $fecha_hasta)
     {
-        $where = "where (estado = 'Rechazado' or estado ='Aprobado') and (fecha_evaluacion BETWEEN " . "'" . $fecha_desde . "'" . " AND " . "'" . $fecha_hasta . "'" . ")";
+        $where = "WHERE (
+                    SELECT DATEDIFF(SECOND,{d '1970-01-01'}, fecha_evaluacion )
+                    ) 
+                    BETWEEN 
+                    (
+                        SELECT DATEDIFF(SECOND,{d '1970-01-01'}, '" . $fecha_desde . "' )
+                    ) 
+                    AND 
+                    (
+                        SELECT DATEDIFF(SECOND,{d '1970-01-01'}, '" . $fecha_hasta . "')
+                    )";
         $conn = new BaseDatos();
         $array = [];
         $query =  $conn->query($this->insertSqlQuery($where));
