@@ -159,6 +159,35 @@ $('#buscar').on('click', function (e) {
     });
 });
 
+function descargarCsvPeriodo() {
+    fecha_desde = formatDate($("#fecha_desde").val())
+    fecha_hasta = formatDate($("#fecha_hasta").val())
+    $.ajax({
+        url: "descarga_periodo_csv.php",
+        type: "POST",
+        data: {
+            fecha_desde: fecha_desde,
+            fecha_hasta: fecha_hasta,
+        },
+        async: true,
+        success: function (response) {
+            // Se crea un link virtual con el archivo csv que ya se ha creado en descarga_periodo_csv.php
+            var downloadLink = document.createElement("a");
+            var url = '../../views/administrar/csv/solicitudes.csv';
+            downloadLink.href = url;
+            downloadLink.download = "solicitudes.csv";
+            // Y se descarga virtualmente
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            //console.log(response)
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
+
 function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-periodo').textContent
     //console.log(idReferencia)

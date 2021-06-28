@@ -28,6 +28,10 @@
                 <label for="fecha_hasta font-weight-bold" style="visibility: hidden;">Buscar </label>
                 <input type="submit" value="Buscar Período" id="buscar" class="form-control" name="buscar" required style="background-color: #60C1DE;color:white;">
             </div>
+            <div class="form-group col">
+                <label for="fecha_hasta font-weight-bold" style="visibility: hidden;">Descargar .CSV </label>
+                <a id="descargar_csv" href="#" onclick="descargarCsvPeriodo()" class="form-control btn" style="background-color: #60C1DE;color:white;">Descargar Período .CSV</a>
+            </div>
         </div>
     </form>
 </div>

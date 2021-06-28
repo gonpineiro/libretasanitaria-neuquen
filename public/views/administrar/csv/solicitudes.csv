@@ -1,0 +1,6 @@
+"numero solicitud","nombre solicitante",dni,"fecha nacimiento",direccion,telefono,"telefono actualizado",email,"email actualizado","tipo empleo",renovacion,"numero recibo","fecha expedicion","fecha vencimiento",observaciones,"admin evaluador",estado
+17,"STANGE ROJAS, NORBERTO EDGARDO",32020923,"1986-03-23 00:00:00.000","LEANDRO N ALEM 1682",2995193772,,norbertostange@gmail.com,,0,0,,25/06/2021,,"No puede, porque no trabaja con alimentos.","MURILLO, LAURA HORTENSIA",Aprobado
+14,"MURILLO, LAURA HORTENSIA",27493663,"1979-09-15 00:00:00.000","BOLIVIA 410 - CENTRO",2974003114,,lauradejaramillo@gmail.com,,1,1,1234,11/05/2021,10/05/2021,,"MURILLO, LAURA HORTENSIA",Aprobado
+16,"PIÑEIRO ALEMAN URQUIZA, GONZALO",31960202,"1991-08-02 00:00:00.000","EDISON 1030",1126410253,,gon.pineiro@gmail.com,,0,0,23123,14/05/2021,13/05/2022,"SE RECHAZA POR FALTA DE COMPROBANTE DE PAGO DEL SELLADO MUNICIPAL.-","MURILLO, LAURA HORTENSIA",Aprobado
+12,"PIÑEIRO ALEMAN URQUIZA, GONZALO",31960202,"1991-08-02 00:00:00.000","EDISON 1030",1126410253,,gon.pineiro@gmail.com,,1,0,232323,10/05/2021,31/12/2020,Aprobado,"PIÑEIRO ALEMAN URQUIZA, GONZALO",Aprobado
+15,"PIÑEIRO ALEMAN URQUIZA, GONZALO",31960202,"1991-08-02 00:00:00.000","EDISON 1030",1126410253,,gon.pineiro@gmail.com,,0,0,22323,12/05/2021,11/05/2021,Aprobado,,Aprobado
