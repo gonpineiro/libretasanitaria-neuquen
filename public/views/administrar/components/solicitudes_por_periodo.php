@@ -30,7 +30,7 @@
             </div>
             <div class="form-group col">
                 <label for="fecha_hasta font-weight-bold" style="visibility: hidden;">Descargar .CSV </label>
-                <a id="descargar_csv" href="#" onclick="descargarCsvPeriodo()" class="form-control btn" style="background-color: #60C1DE;color:white;">Descargar Período .CSV</a>
+                <a id="descargar_csv" href="#" onclick="descargarCsvPeriodo()" class="form-control btn" style="background-color: #60C1DE;color:white;" title="Descarga de solicitudes aprobadas por período">Descargar Período .CSV</a>
             </div>
         </div>
     </form>
