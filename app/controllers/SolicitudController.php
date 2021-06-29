@@ -86,7 +86,7 @@ class SolicitudController
                     )
                     AND estado ='Aprobado'";
         $sql =
-            "SELECT
+        "SELECT
             sol.id as id,
             wap_te.nombre as nombre_te,
             wap_te.Documento as dni_te,
@@ -103,6 +103,7 @@ class SolicitudController
             sol.fecha_vencimiento as fecha_vencimiento,
             sol.observaciones as observaciones,
             wap_adm.nombre as adm_nombre,
+            sol.retiro_en as retiro_en,
             sol.estado as estado
             
             FROM " . SOLICITUDES . " sol

@@ -30,7 +30,7 @@ if (isset($_POST['fecha_desde']) and isset($_POST['fecha_hasta'])) {
     //$fp = fopen("./csv/" . "".$file_name."", "w+");
     $fp = fopen("./csv/" . 'solicitudes.csv', "w+");
     $header = [
-        'numero solicitud', 'nombre solicitante', 'dni', 'fecha nacimiento', 'direccion', 'telefono', 'telefono actualizado', 'email', 'email actualizado', 'tipo empleo', 'renovacion', 'numero recibo', 'fecha expedicion', 'fecha vencimiento', 'observaciones', 'admin evaluador', 'estado'
+        'numero solicitud', 'nombre solicitante', 'dni', 'fecha nacimiento', 'direccion', 'telefono', 'telefono actualizado', 'email', 'email actualizado', 'tipo empleo', 'renovacion', 'numero recibo', 'fecha expedicion', 'fecha vencimiento', 'observaciones', 'admin evaluador', 'retira en', 'estado'
     ];
 
     // Headers    
