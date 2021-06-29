@@ -26,7 +26,12 @@ if (isset($_POST['id']) && isset($_POST['estado'])) {
 
     if ($_POST['estado'] === 'Rechazado') {
         $solicitud = $solicitudController->getSolicitudesWhereId($_POST['id']);
-        // función para enviar el email rechazado
+        // Comparo las cuentas de email del registro y la actualizada. Si hay email actualizado, también se envía la notificación.
+        if(!$solicitud['usu_email'] == "" AND !empty($solicitud['usu_email'])){
+            // Función para enviar el email rechazado
+            enviarMailRechazado($solicitud['usu_email'], $solicitud['nombre_te'], $_POST['observaciones'], $_POST['id']);
+        }
+        // Función para enviar el email rechazado
         enviarMailRechazado($solicitud['email_te'], $solicitud['nombre_te'], $_POST['observaciones'], $_POST['id']);
         $params['nro_recibo'] = null;
     }
