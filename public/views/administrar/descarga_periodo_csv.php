@@ -8,46 +8,28 @@ if (isset($_POST['fecha_desde']) and isset($_POST['fecha_hasta'])) {
     $fecha_desde = str_replace("/", "_", $_POST['fecha_desde']);
     $fecha_hasta = str_replace("/", "_", $_POST['fecha_hasta']);
     $solicitudPeriodo = $solicitudController->getSolicitudesWherePeriodApproved($_POST['fecha_desde'], $_POST['fecha_hasta']);
-    //print_r($fecha_hasta);
-    //die();
-    //echo (utf8_converter($solicitudPeriodo, true));
 
-    $file_name = 'solicitudes-'. $fecha_desde.'-'. $fecha_hasta.'.csv';
-    $csv = '.csv';
-    $date = date('Y-m-d');
-    header("Content-Type: text/csv;charset=utf-8");
-    header("Content-Disposition: attachment;filename=\"$file_name$csv\"");
-    header("Content-Transfer-Encoding: binary");
-    header("Pragma: no-cache");
-    header("Expires: 0");
-    header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
-    header("Last-Modified: {$date} GMT");
-    header("Content-Type: application/force-download");
-    header("Content-Type: application/octet-stream");
-    header("Content-Type: application/download");
-
-    //$fp = fopen('php://output' . 'data.csv', 'w');
-    //$fp = fopen("./csv/" . "".$file_name."", "w+");
-    $fp = fopen("./csv/" . $file_name, "w");
+    $fp = fopen("./csv/" . 'solicitudes.csv', "w+");
     $header = [
-        'numero solicitud', 'NOMOASDSDDSe', 'dni', 'fecha nacimiento', 'direccion', 'telefono', 'telefono actualizado', 'email', 'email actualizado', 'tipo empleo', 'renovacion', 'numero recibo', 'fecha expedicion', 'fecha vencimiento', 'observaciones', 'admin evaluador', 'retira en', 'estado'
+        'numero solicitud', 'nombre solicitante', 'dni', 'fecha nacimiento', 'direccion', 'telefono', 'telefono actualizado', 'email', 'email actualizado', 'tipo empleo', 'renovacion', 'numero recibo', 'fecha evaluacion', 'fecha vencimiento', 'observaciones', 'admin evaluador', 'retira en', 'estado'
     ];
 
     // Headers    
-    fputcsv($fp, $header, ";");
-    fputcsv($fp, $header, ";");
     fputcsv($fp, $header, ";");
 
     // Data, Records
     while ($row = odbc_fetch_array($solicitudPeriodo)) {
         $array = $row;
         if ($row['tipo_empleo'] == 0) {
-            $array['tipo_empleo'] = 'Sin Manipulacion';
-        }else{
-            $array['tipo_empleo'] = 'Con Manipulacion';
-
+            $array['tipo_empleo'] = 'Sin Manipulación';
+        } else {
+            $array['tipo_empleo'] = 'Con Manipulación';
         }
-        die();
+        if ($row['renovacion'] == 0) {
+            $array['renovacion'] = 'NO';
+        } else {
+            $array['renovacion'] = 'SI';
+        }
         fputcsv($fp, array_values($array), ";");
     }
     fclose($fp);

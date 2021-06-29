@@ -10,7 +10,7 @@ $('#tabla_solicitudes_periodo').on("click", "tr", function () {
         async: false,
         success: function (res) {
             const data = $.parseJSON(res)
-            //console.log(data)
+            console.log(data)
             $("#id-solicitud-periodo").html(data.id)
             $("#id-span-periodo").html(data.id);
             /* Nombre y apellido */
@@ -173,9 +173,12 @@ function descargarCsvPeriodo() {
         success: function (response) {
             // Se crea un link virtual con el archivo csv que ya se ha creado en descarga_periodo_csv.php
             var downloadLink = document.createElement("a");
+            // se busca el archivo dentro de la carpeta
             var url = '../../views/administrar/csv/solicitudes.csv';
             downloadLink.href = url;
-            downloadLink.download = "solicitudes.csv";
+            // se crea el nombre del archivo para descargar. JS pasa las / a _ en las fechas sin problema :O
+            downloadLink.download = `solicitudes-desde-${ fecha_desde }-hasta-${ fecha_hasta }.csv`;
+            //downloadLink.download = "solicitudes-desde-" + fecha_desde + "-hasta-" + fecha_hasta +".csv";
             // Y se descarga virtualmente
             document.body.appendChild(downloadLink);
             downloadLink.click();
