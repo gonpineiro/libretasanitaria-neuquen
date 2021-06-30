@@ -85,7 +85,7 @@
                         <form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
                             <div class="form-group">
                                 <label for="observaciones">Observaciones</label>
-                                <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+                                <textarea class="form-control" id="observaciones" maxlength="600" name="observaciones" rows="3"></textarea>
                             </div>
                         </form>
                     </div>
