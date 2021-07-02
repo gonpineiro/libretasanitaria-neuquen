@@ -1,5 +1,6 @@
 $('#tabla_solicitudes_aprobadas td').click(function (node) {
-    const id = node.currentTarget.parentNode.id
+    const id = node.currentTarget.parentNode.id;
+    console.log('hihih?');
     $.ajax({
         url: "proceso_solicitud.php",
         type: "GET",
@@ -8,11 +9,11 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
         },
         async: false,
         success: function (res) {
-            const data = $.parseJSON(res)
+            let data = $.parseJSON(res)
             //console.log(data)
 
             /* Nombre y apellido */
-            const nombre = data.nombre_te
+            let nombre = data.nombre_te
             $("#id-span-aprobada").html(id);
             $("#nombre-span-aprobada").html(nombre);
             $("#imagen-pefil-aprobada").attr("src", data.imagen);
@@ -48,8 +49,9 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
                 $("#observaciones-span-aprobada").html("No presenta");
             }
             else {
-                $("#observaciones-span-aprobada").html(charsetFormat(data.observaciones));
+                document.getElementById('observaciones-span-aprobada').value = data.observaciones;
             }
+            console.log(data);
             /* fechas y numero de recibo */
             $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
             $("#fecha-alta-mas-span-aprobada").html(data.fecha_vencimiento);
