@@ -95,7 +95,13 @@ table.dataTable tbody tr:hover {
 .invalid-feedback {
     color: lightsalmon;
 }
-
+.div-observaciones{
+    background-color: rgb(3 177 125 / 10%);
+    transition: 0.5s;
+}
+.card-footer{
+    transition: 0.5s;
+}
 /* modal más ancho en pantallas 800x600 */
 @media (min-width: 576px) {
     .modal-dialog {

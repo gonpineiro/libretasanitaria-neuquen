@@ -78,7 +78,7 @@
                         <form class="form-horizontal mx-auto">
                             <div class="form-group">
                                 <label for="observaciones">Observaciones</label>
-                                <textarea id="observaciones-span-aprobada" class="form-control" style="border: none!important;box-shadow: inset 0 -1px 0 #ddd;" readonly rows="3"></textarea>
+                                <textarea id="observaciones-span-aprobada" class="form-control" maxlength="50" style="border: none!important;box-shadow: inset 0 -1px 0 #ddd;" rows="3"></textarea>
                             </div>
                         </form>
                         <p>Solicitud evaluada por: <span id="evaluador-span-aprobada"></span></p>
@@ -87,6 +87,8 @@
             </div>
             <div class="modal-footer">
                 <span id="id-solicitud-aprobada" hidden></span>
+                <button type="button" class="btn btn-primary" onclick="actualizarObservaciones()">Actualizar Observaciones
+                </button>
                 <button type="button" class="btn btn-primary" onclick="imprimirLibreta()">Imprimir
                 </button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>

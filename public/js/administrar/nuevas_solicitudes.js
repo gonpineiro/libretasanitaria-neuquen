@@ -243,6 +243,30 @@ function cambiarEstadoManipulacion(){
         }
     });
 }
+function actualizarObservaciones() {
+    const id = $("#id-span-aprobada").text();
+    const observaciones = $("#observaciones-span-aprobada").val();
+    $.ajax({
+        url: "edicion_observaciones.php",
+        type: "POST",
+        data: {
+            id,
+            observaciones
+        },
+        async: false,
+        success: function (res) {
+            //$('.card-footer').css('background-color', 'rgb(3 177 125 / 10%)'); 
+            $('.card-footer').addClass('div-observaciones');
+            setTimeout(function () {
+                $('.card-footer').removeClass('div-observaciones');
+            }, 2000);
+            
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
 function imprimirLibreta() {
     var idReferencia = document.getElementById('id-solicitud-aprobada').textContent
     //console.log(idReferencia)
