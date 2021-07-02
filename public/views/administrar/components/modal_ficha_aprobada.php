@@ -75,6 +75,9 @@
                     </div>
                     <div class="w-100"></div>
                     <div class="card-footer w-100 text-muted">
+                        <div id="observaciones-actualizacion" class="alert alert-success" style="display: none;" role="alert">
+                            Se actualizaron las observaciones.
+                        </div>
                         <form class="form-horizontal mx-auto">
                             <div class="form-group">
                                 <label for="observaciones">Observaciones</label>

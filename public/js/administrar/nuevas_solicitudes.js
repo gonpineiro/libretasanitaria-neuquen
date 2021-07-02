@@ -1,6 +1,5 @@
 $('#tabla_solicitudes_aprobadas td').click(function (node) {
     const id = node.currentTarget.parentNode.id;
-    console.log('hihih?');
     $.ajax({
         url: "proceso_solicitud.php",
         type: "GET",
@@ -51,7 +50,6 @@ $('#tabla_solicitudes_aprobadas td').click(function (node) {
             else {
                 document.getElementById('observaciones-span-aprobada').value = data.observaciones;
             }
-            console.log(data);
             /* fechas y numero de recibo */
             $("#fecha-alta-span-aprobada").html(data.fecha_evaluacion);
             $("#fecha-alta-mas-span-aprobada").html(data.fecha_vencimiento);
@@ -258,10 +256,12 @@ function actualizarObservaciones() {
         async: false,
         success: function (res) {
             //$('.card-footer').css('background-color', 'rgb(3 177 125 / 10%)'); 
-            $('.card-footer').addClass('div-observaciones');
+            $('#observaciones-actualizacion').show(500);
+            $('.card-footer').addClass('bg-observaciones');
             setTimeout(function () {
-                $('.card-footer').removeClass('div-observaciones');
-            }, 2000);
+                $('.card-footer').removeClass('bg-observaciones');
+                $('#observaciones-actualizacion').hide(500);
+            }, 3000);
             
         },
         error: function (errorThrown) {
