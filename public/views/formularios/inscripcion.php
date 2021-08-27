@@ -41,6 +41,9 @@ if ($usuario) {
                 $estado_inscripcion = 'Aprobado';
             }
             break;
+        default:
+            $estado_inscripcion = 'Nuevo';
+            break;
     }
 } else {
     /* Nunca solicita una libreta */
@@ -70,29 +73,6 @@ if (isset($_POST) && !empty($_POST)) {
                     'email' => $_POST['email']
                 ];
                 $usuarioController->update($usuarioParams, $usuario['id']);
-            }
-
-            /* Si es carga empresarial y se carga a un tercero  */
-            if (!$usuario) {
-                if (isset($_POST['dni'], $_POST['genero'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['email'], $_POST['direccion_renaper'], $_POST['fecha_nac'])) {
-                    $params = [
-                        'dni' => $_POST['dni'],
-                        'genero' => $_POST['genero'],
-                        'nombre' => $_POST['nombre'],
-                        'apellido' => $_POST['apellido'],
-                        'telefono' => $_POST['telefono'],
-                        'email' => $_POST['email'],
-                        'direccion_renaper' => $_POST['direccion_renaper'],
-                        'fecha_nac' => $_POST['fecha_nac'],
-                        'empresa_cuil' => $_POST['empresa_cuil'],
-                        'empresa_nombre' => $_POST['empresa_nombre']
-                    ];
-
-                    $usuarioController->store($params);
-                    $usuario = $usuarioController->get(['dni' => $params['dni'], 'genero' => $params['genero']]);
-                } else {
-                    $errores[] = 'Not seteados datos usuario para cargar un tercero en carga empresarial';
-                }
             }
 
             /* Si tiene un capacitador, primero lo guardamos */
