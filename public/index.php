@@ -11,13 +11,14 @@ if (isset($_GET['SESSIONKEY'])) {
         exit();
     }
 
+    $_SESSION['userProfiles'] = null;
+
     foreach ($_SESSION['usuario']['apps'] as $apps) {
         if ($apps['id'] == APPID && $apps['userProfiles']) {
             $_SESSION['userProfiles'] = $apps['userProfiles'];
         }
     }
 
-    /* Entorno de prueba */
     if (!PROD) $_SESSION['userProfiles'] = 3;
 
     if ($_SESSION['userProfiles'] != 3) {
