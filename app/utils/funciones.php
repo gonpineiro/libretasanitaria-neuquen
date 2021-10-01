@@ -211,14 +211,19 @@ function getImageByRenaper($array, $jsonStr = true)
     // busca la foto dni
     $genero = $array['genero_te'];
     $dni = $array['dni_te'];
-
-    $response = file_get_contents('https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/' . $genero . $dni);
+    $arrContextOptions = array(
+        "ssl" => array(
+            "verify_peer" => false,
+            "verify_peer_name" => false,
+        ),
+    );
+    $response = file_get_contents('https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/' . $genero . $dni, false, stream_context_create($arrContextOptions));
     $json = json_decode($response);
     $imagen = $json->{'docInfo'}->{'imagen'};
 
     // si la imagen retorna NULL fuerzo su búsqueda con @F al final de la url
     if (is_null($imagen)) {
-        $response = file_get_contents('https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/' . $genero . $dni . "@F");
+        $response = file_get_contents('https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/' . $genero . $dni . "@F", false, stream_context_create($arrContextOptions));
         $json = json_decode($response);
         $imagen = $json->{'docInfo'}->{'imagen'};
     }
