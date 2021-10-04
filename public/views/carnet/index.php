@@ -12,6 +12,20 @@ if (isset($_GET['solicitud'])) {
     $emision = $solicitud['fecha_evaluacion'];
     $vencimiento = $solicitud['fecha_vencimiento'];
     $observaciones = $solicitud['observaciones'];
+
+    $arrayFechas = compararFechas($vencimiento, 'days');
+    if ($arrayFechas['date'] <= $arrayFechas['now']) {
+        $vigencia = 'Vencido';
+        $borderColor = '#ff7878';
+        $backColor = '#ffa9a9';
+        $fontColor = '#820000';
+        
+    } else {
+        $borderColor = '#C9E4CD';
+        $backColor = '#D8ECDB';
+        $fontColor = '#2A562A';
+        $vigencia = 'Vigente';
+    }
 } else {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: ' . WEBLOGIN);
@@ -29,6 +43,14 @@ if (isset($_GET['solicitud'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <title>Solicitud - <?= $id ?></title>
     <link rel="stylesheet" href="./style.css">
+
+    <style>
+        .card {
+            border-color: <?= $borderColor ?>;
+            background-color: <?= $backColor ?>;
+            color: <?= $fontColor ?>;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,7 +78,7 @@ if (isset($_GET['solicitud'])) {
         </div>
 
         <div class="card d-flex flex-column justify-content-center align-items-center">
-            asd
+            <?= $vigencia ?>
         </div>
 
     </div>
