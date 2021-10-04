@@ -1,0 +1,39 @@
+img {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.main {
+    background-color: #F7F7F7;
+    align-content: space-between;
+    min-height: 100vh;
+}
+
+h4 {
+    color: #545454;
+    font-size: calc(1rem + .3vw);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+p {
+    color: #6AB3E1;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.detalle {
+    margin: auto;
+}
+
+.card {
+    border-top: 1px solid;
+    border-radius: 5%;
+    border-color: #C9E4CD;
+    background-color: #D8ECDB;
+    color: #2A562A;
+    height: 4rem;
+    width: 90%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
