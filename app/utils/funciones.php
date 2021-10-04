@@ -15,18 +15,21 @@ function data_submitted()
     }
     return $_AAux;
 }
+
 function verEstructura($e)
 {
     echo "<pre>";
     print_r($e);
     echo "</pre>";
 }
+
 function console_log($data)
 {
     echo "<script>";
     echo "console.log('$data')";
     echo "</script>";
 }
+
 function verificarSesion()
 {
     if (!isset($_SESSION['usuario'])) {
@@ -74,6 +77,7 @@ function enviarMailApi($address, $arrIdSolicitud)
 
     return json_decode($result, true);
 }
+
 function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitud)
 {
     $body = "<p>Estimado/a " . $solicitante . ", su solicitud (Nº $idsolicitud) para Libreta Sanitaria fue rechazada.</p>
@@ -95,6 +99,7 @@ function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitu
 
     return json_decode($result, true);
 }
+
 function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName)
 {
     $path = null;
