@@ -105,11 +105,11 @@ $apellido = $nombreapellido[0];
             doc.setTextColor(50);
             doc.setFontSize(12);
             // referencia de la posición de los textos (posición eje horizontal, posición eje vertical)
-            doc.text(18, 10, "Municipalidad de Neuquén");
+            doc.text(17, 10, "Municipalidad de Neuquén");
             doc.setFontSize(8);
-            doc.text(28, 15, "Provincia de Neuquén");
+            doc.text(29, 15, "Provincia de Neuquén");
             doc.setFontSize(12);
-            doc.text(28, 28, "Lebed Francisco");
+            doc.text(27, 28, "Lebed Francisco");
             doc.setFontSize(8);
             doc.text(17, 32, "Director Municipal de Calidad Alimentaria");
             doc.setFontSize(6);
@@ -124,6 +124,7 @@ $apellido = $nombreapellido[0];
                 "de acuerdo a las exigencias establecidas en el Artículo 21 de la Ley 18284"
             );
             doc.text(8, 46, "(Código Alimentario Argentino) y es de alcance nacional.");
+
             // al abrir el pdf que se genera abre la opción de impresión del browser
             doc.autoPrint({
                 variant: "javascript",
