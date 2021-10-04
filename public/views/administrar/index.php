@@ -85,13 +85,55 @@ $apellido = $nombreapellido[0];
                     <button type="button" onclick='window.location = ("./estadisticas.php")' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:320px">Estadísticas</button>
                 </div>
             </div>
+            <div class="form-group col-12">
+                <div class='col-sm d-flex justify-content-center'>
+                    <button type="button" onclick='descargarDorso()' class="btn btn-primary btn-lg" style="background-color: #109AD6;min-width:320px">Descargar Dorso Carnet</button>
+                </div>
+            </div>
         </div>
     </div>
 
 
     <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script>
+        function descargarDorso() {
+            var doc = new jsPDF("p", "mm", "a4");
+            // rectángulo izquierdo de la libreta
+            doc.rect(0, 0, 85, 54);
+            doc.setTextColor(50);
+            doc.setFontSize(12);
+            // referencia de la posición de los textos (posición eje horizontal, posición eje vertical)
+            doc.text(17, 10, "Municipalidad de Neuquén");
+            doc.setFontSize(8);
+            doc.text(29, 15, "Provincia de Neuquén");
+            doc.setFontSize(12);
+            doc.text(27, 28, "Lebed Francisco");
+            doc.setFontSize(8);
+            doc.text(17, 32, "Director Municipal de Calidad Alimentaria");
+            doc.setFontSize(6);
+            doc.text(
+                8,
+                42,
+                "El presente Carnet emitido por la Municipalidad de Neuquén es autorizado"
+            );
+            doc.text(
+                8,
+                44,
+                "de acuerdo a las exigencias establecidas en el Artículo 21 de la Ley 18284"
+            );
+            doc.text(8, 46, "(Código Alimentario Argentino) y es de alcance nacional.");
+
+            // al abrir el pdf que se genera abre la opción de impresión del browser
+            doc.autoPrint({
+                variant: "javascript",
+            });
+            // se genera el pdf con el nombre
+            doc.save("dorso-carnet-sanitario.pdf");
+        }
+    </script>
+
 </body>
 
 </html>
